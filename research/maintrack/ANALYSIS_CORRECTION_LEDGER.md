@@ -22,14 +22,14 @@ endpoint remains in the receipts and report for auditability.
 
 ## 2026-07-13: Dependence across registered configurations
 
-Threshold pairs and nested validation fractions reuse the same five seed-level
+Threshold pairs and nested validation fractions reuse the same seed-level
 fits and examples. Configuration-level Clopper--Pearson intervals and McNemar
 tests therefore do not have independent Bernoulli trials. The analyzer retains
 those preregistered calculations as diagnostics, but adds an exact sign-flip
 test that treats each seed as one independent block. Inferential claims must be
-governed by the seed-blocked result. With five blocks, the minimum possible
-two-sided unadjusted p-value is `0.0625`; statistical significance cannot be
-claimed from this study alone.
+governed by the seed-blocked result. The final confirmation uses eight untouched
+blocks and a one-sided test fixed before those seeds run; a sign-only test is
+reported as a secondary sensitivity.
 
 ## 2026-07-13: Exact external-outcome timing
 
@@ -37,32 +37,27 @@ The claim-grade runner fixes the preregistration, upstream commit, edit,
 post-edit probes, and certification arrays before it computes external
 outcomes for that run. The unattended matrix nevertheless computes and stores
 those external outcomes run by run; it does not physically defer all external
-label access until all 125 runs finish. No aggregate analysis or parameter
+label access until all 200 runs finish. No aggregate analysis or parameter
 change is performed during the matrix, and the preregistration hash prevents a
 changed configuration from being labeled claim-grade.
 
 The paper may therefore say that external labels are unused by edit
 construction and candidate selection, and that aggregate external analysis was
 deferred until matrix completion. It must not say that external labels were
-physically inaccessible throughout the entire 125-run execution.
+physically inaccessible throughout the entire 200-run execution.
 
 ## 2026-07-14: Hierarchical shift-class clarification
 
-Proof review before aggregate real-outcome analysis found that the target and
-leakage contracts use different conditioning laws. Target harm is audited
-under each environment law $P_g$, while leakage is audited under each
-environment/source law $P_{g,s}$. A density-ratio bound on $Q_g/P_g$ alone does
-not generally imply the same bound on $Q_{g,s}/P_{g,s}$.
-
-The guarantee is therefore stated over the hierarchical intersection actually
-implemented by the certificate: target deployment laws satisfy the bound
-relative to $P_g$, and every leakage-cell deployment law separately satisfies
-the bound relative to $P_{g,s}$. Environment mixture weights may change
-arbitrarily. Source-class weights are not claimed to change arbitrarily; they
-must remain compatible with the marginal and conditional restrictions. This
-clarification changes no receipt, threshold, candidate, selection rule, or
-computed radius. It narrows an ambiguous prose claim to the model justified by
-the registered contract-specific samples.
+Proof review before aggregate real-outcome analysis found that target and
+leakage use different contract-specific reference laws. In the final balanced
+protocol, target harm is audited under each environment law $P_g$, while each
+attacker's leakage is the equal mean of robust recalls under the two source
+laws $P_s$. The theorem therefore applies to any joint deployment law whose
+relevant environment and source conditionals satisfy their separately declared
+density-ratio bounds. Environment and source marginal weights are unrestricted,
+but the theorem does not assert that every arbitrary collection of conditional
+laws is jointly realizable. This clarification changes no receipt, threshold,
+candidate, selection rule, or computed radius.
 
 ## 2026-07-14: Maximum-class leakage is a degenerate estimand
 

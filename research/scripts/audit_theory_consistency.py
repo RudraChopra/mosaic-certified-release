@@ -15,18 +15,20 @@ from pathlib import Path
 import numpy as np
 
 from vera_robust_certificate import (
+    certify_balanced_iut_fixed_profile,
+    certify_balanced_shift_envelope,
+    certify_balanced_shift_radius,
     certify_discrete_group_shift_envelope,
     certify_discrete_shift_radius,
     empirical_reweighting_risk,
+    exact_balanced_leakage_certificate,
 )
 
 
 ROOT = Path(__file__).resolve().parents[1]
 REPOSITORY = ROOT.parent
-PREREG = ROOT / "prereg_real.json"
-PREREG_HASH = ROOT / "prereg_real.sha256"
-ENVELOPE_PREREG = ROOT / "prereg_shift_envelope_extension.json"
-ENVELOPE_PREREG_HASH = ROOT / "prereg_shift_envelope_extension.sha256"
+PREREG = ROOT / "prereg_confirmatory_balanced.json"
+PREREG_HASH = ROOT / "prereg_confirmatory_balanced.sha256"
 THEORY = ROOT / "maintrack" / "appendix_shift_robust_theory.tex"
 OUTPUT = ROOT / "artifacts" / "vera_theory_consistency_audit.json"
 
@@ -130,8 +132,8 @@ def check_group_mixture(rng: np.random.Generator) -> tuple[bool, float, int]:
     return maximum_violation <= 1e-12, maximum_violation, checks
 
 
-def check_hierarchical_shift(rng: np.random.Generator) -> tuple[bool, float, int]:
-    """Check target marginals and leakage conditionals on one shift profile."""
+def check_balanced_shift(rng: np.random.Generator) -> tuple[bool, float, int]:
+    """Check target mixtures and source-prior-invariant balanced leakage."""
 
     maximum_violation = 0.0
     checks = 0
@@ -139,8 +141,8 @@ def check_hierarchical_shift(rng: np.random.Generator) -> tuple[bool, float, int
         for _ in range(150):
             target_values = [rng.uniform(-1.0, 1.0, size=24) for _ in range(3)]
             leakage_values = [
-                [rng.binomial(1, rng.uniform(0.2, 0.7), size=18) for _ in range(2)]
-                for _ in range(3)
+                rng.binomial(1, rng.uniform(0.2, 0.7), size=24)
+                for _ in range(2)
             ]
             environment_weights = rng.dirichlet(np.ones(3))
             shifted_target = []
@@ -155,19 +157,94 @@ def check_hierarchical_shift(rng: np.random.Generator) -> tuple[bool, float, int
                 robust_target.append(
                     empirical_reweighting_risk(target_values[environment], gamma)
                 )
-                for source in range(2):
-                    values = leakage_values[environment][source]
-                    conditional_weights = bounded_random_weights(rng, len(values), gamma)
-                    shifted = float(np.mean(conditional_weights * values))
-                    robust = empirical_reweighting_risk(values, gamma)
-                    maximum_violation = max(maximum_violation, shifted - robust)
-                    checks += 1
             mixture_target = float(np.dot(environment_weights, shifted_target))
             maximum_violation = max(
                 maximum_violation, mixture_target - max(robust_target)
             )
+            shifted_recalls = []
+            robust_recalls = []
+            for source in range(2):
+                values = leakage_values[source]
+                conditional_weights = bounded_random_weights(rng, len(values), gamma)
+                shifted_recalls.append(float(np.mean(conditional_weights * values)))
+                robust_recalls.append(empirical_reweighting_risk(values, gamma))
+            # The prevalence draw is intentionally unused by the balanced estimand.
+            _source_prevalence = rng.uniform()
+            maximum_violation = max(
+                maximum_violation,
+                float(np.mean(shifted_recalls) - np.mean(robust_recalls)),
+            )
             checks += 1
     return maximum_violation <= 1e-12, maximum_violation, checks
+
+
+def check_balanced_certificates(
+    rng: np.random.Generator,
+) -> tuple[bool, int, list[str]]:
+    failures: list[str] = []
+    checks = 0
+    source = np.tile(np.asarray([0, 1], dtype=np.int64), 300)
+    constant_correct = (source == 0).astype(float)
+    constant = exact_balanced_leakage_certificate(
+        "constant",
+        constant_correct,
+        source,
+        gamma=1.0,
+        failure_probability=0.05,
+    )
+    if abs(constant.empirical_robust_risk - 0.5) > 1e-12:
+        failures.append("constant attacker does not have empirical balanced leakage 0.5")
+    checks += 1
+    for index in range(100):
+        target = {
+            f"target::environment={group}": rng.choice(
+                (-1, 0, 1), size=600, p=(0.03, 0.94, 0.03)
+            )
+            for group in range(3)
+        }
+        leakage = {
+            attacker: rng.binomial(
+                1,
+                np.where(source == 0, 0.34 + 0.01 * attacker, 0.42 - 0.01 * attacker),
+            )
+            for attacker in range(4)
+        }
+        iut = certify_balanced_iut_fixed_profile(
+            target,
+            leakage,
+            source,
+            gamma=1.0,
+            delta=0.05,
+            candidate_count=12,
+            target_threshold=0.15,
+            leakage_threshold=0.75,
+        )
+        radius = certify_balanced_shift_radius(
+            target,
+            leakage,
+            source,
+            delta=0.05,
+            family_size=12 * 7,
+            target_threshold=0.15,
+            leakage_threshold=0.75,
+            gamma_cap=8.0,
+        )
+        if iut.decision == "EDIT":
+            for certificate in iut.certificates:
+                threshold = (
+                    0.15 if certificate.key.startswith("target::") else 0.75
+                )
+                if certificate.upper_confidence_bound > threshold + 1e-12:
+                    failures.append(f"trial {index}: IUT accepted a failed component")
+        if radius.certified_radius > 0.0:
+            for certificate in radius.certificates_at_radius:
+                threshold = (
+                    0.15 if certificate.key.startswith("target::") else 0.75
+                )
+                if certificate.upper_confidence_bound > threshold + 1e-12:
+                    failures.append(f"trial {index}: radius accepted a failed component")
+        checks += 2
+    return not failures, checks, failures
 
 
 def check_radius_contracts(rng: np.random.Generator) -> tuple[bool, int, list[str]]:
@@ -196,6 +273,80 @@ def check_radius_contracts(rng: np.random.Generator) -> tuple[bool, int, list[st
             failures.append(f"trial {index}: zero radius did not abstain")
         checks += 1
     return not failures, checks, failures
+
+
+def check_balanced_shift_envelope(
+    rng: np.random.Generator,
+) -> tuple[bool, float, int, list[str]]:
+    failures: list[str] = []
+    maximum_error = 0.0
+    checks = 0
+    source = np.tile(np.asarray([0, 1], dtype=np.int64), 300)
+    for index in range(100):
+        target = {
+            f"target::environment={group}": rng.choice(
+                (-1, 0, 1), size=600, p=(0.03, 0.94, 0.03)
+            )
+            for group in (0, 1)
+        }
+        leakage = {
+            attacker: rng.binomial(
+                1,
+                np.where(
+                    source == 0,
+                    0.30 + 0.02 * attacker,
+                    0.38 - 0.01 * attacker,
+                ),
+            )
+            for attacker in range(3)
+        }
+        family_size = 60
+        envelope = certify_balanced_shift_envelope(
+            target,
+            leakage,
+            source,
+            delta=0.05,
+            family_size=family_size,
+            target_threshold=0.15,
+            leakage_threshold=0.75,
+            registered_target_environments=[0, 1, 2],
+            gamma_cap=8.0,
+        )
+        joint = certify_balanced_shift_radius(
+            target,
+            leakage,
+            source,
+            delta=0.05,
+            family_size=family_size,
+            target_threshold=0.15,
+            leakage_threshold=0.75,
+            gamma_cap=8.0,
+        )
+        error = abs(envelope.observed_common_radius - joint.certified_radius)
+        maximum_error = max(maximum_error, error)
+        if error > 1e-4:
+            failures.append(
+                f"trial {index}: balanced envelope diagonal differs from radius"
+            )
+        observed_coordinates = [
+            value
+            for key, value in envelope.target_environment_radii.items()
+            if key != "2"
+        ] + list(envelope.source_class_radii.values())
+        if envelope.observed_common_radius > min(observed_coordinates) + 1e-4:
+            failures.append(
+                f"trial {index}: diagonal exceeds a coordinate intercept"
+            )
+        if (
+            envelope.target_environment_radii["2"] != 0.0
+            or envelope.deployment_common_radius != 0.0
+            or envelope.decision != "ABSTAIN"
+        ):
+            failures.append(
+                f"trial {index}: unsupported balanced cell did not force zero"
+            )
+        checks += 3
+    return not failures, maximum_error, checks, failures
 
 
 def check_group_shift_envelope(
@@ -276,48 +427,59 @@ def main() -> int:
     failures: list[str] = []
     prereg_hash = sha256(PREREG)
     locked_hash = PREREG_HASH.read_text(encoding="utf-8").split()[0]
-    envelope_prereg_hash = sha256(ENVELOPE_PREREG)
-    envelope_locked_hash = ENVELOPE_PREREG_HASH.read_text(encoding="utf-8").split()[0]
     theory_text = THEORY.read_text(encoding="utf-8")
     required_source_fragments = (
         "\\label{lem:cvar-identity}",
         "\\label{thm:robust-paired}",
         "\\label{cor:exact-discrete}",
+        "\\label{prop:source-prior}",
+        "\\label{thm:iut}",
         "\\label{cor:mixture}",
         "\\label{cor:shift-envelope}",
         "\\label{thm:shift-radius}",
         "\\label{thm:unsupported}",
-        "Q_g\\in\\mathcal{Q}_{\\Gamma}(P_g)",
-        "Q_{g,s}\\in\\mathcal Q_{\\gamma_g}(P_{g,s})",
-        "Source-class weights are not claimed",
+        "B_{e,a}(\\eta_0,\\eta_1)",
+        "Q_s\\in\\mathcal Q_{\\eta_s}(P_s)",
+        "Source-class prevalences may also vary",
+        "If identity is itself a selectable deployment action",
+        "unused conditional remains part of the declared",
         "\\widetilde p_+=\\min\\{U_+,1-L_-\\}",
     )
     source_contract_ok = all(fragment in theory_text for fragment in required_source_fragments)
     if prereg_hash != locked_hash:
         failures.append("preregistration hash mismatch")
-    if envelope_prereg_hash != envelope_locked_hash:
-        failures.append("shift-envelope extension preregistration hash mismatch")
     if not source_contract_ok:
         failures.append("theory source is missing a required statement")
 
     cvar_ok, cvar_error, cvar_checks = check_cvar_duality(rng)
     paired_ok, paired_error, paired_checks = check_paired_formula()
     mixture_ok, mixture_violation, mixture_checks = check_group_mixture(rng)
-    hierarchy_ok, hierarchy_violation, hierarchy_checks = check_hierarchical_shift(rng)
+    balanced_ok, balanced_violation, balanced_checks = check_balanced_shift(rng)
+    balanced_certificate_ok, balanced_certificate_checks, balanced_failures = (
+        check_balanced_certificates(rng)
+    )
     radius_ok, radius_checks, radius_failures = check_radius_contracts(rng)
     envelope_ok, envelope_error, envelope_checks, envelope_failures = (
         check_group_shift_envelope(rng)
     )
+    (
+        balanced_envelope_ok,
+        balanced_envelope_error,
+        balanced_envelope_checks,
+        balanced_envelope_failures,
+    ) = check_balanced_shift_envelope(rng)
     if not cvar_ok:
         failures.append("empirical CVaR dual does not match the reweighting program")
     if not paired_ok:
         failures.append("paired closed form does not match the reweighting program")
     if not mixture_ok:
         failures.append("a sampled within-group shift exceeded the robust mixture bound")
-    if not hierarchy_ok:
-        failures.append("a hierarchical target/leakage shift exceeded its robust bound")
+    if not balanced_ok:
+        failures.append("a target mixture or balanced source shift exceeded its robust bound")
+    failures.extend(balanced_failures)
     failures.extend(radius_failures)
     failures.extend(envelope_failures)
+    failures.extend(balanced_envelope_failures)
     head = subprocess.run(
         ["git", "rev-parse", "HEAD"],
         cwd=REPOSITORY,
@@ -327,12 +489,18 @@ def main() -> int:
     ).stdout.strip()
     report = {
         "name": "VERA theory implementation consistency audit",
-        "passed": not failures and radius_ok and envelope_ok and hierarchy_ok,
+        "passed": (
+            not failures
+            and radius_ok
+            and envelope_ok
+            and balanced_envelope_ok
+            and balanced_ok
+            and balanced_certificate_ok
+        ),
         "formal_proof_verified": False,
         "novelty_verified": False,
         "git_commit": head,
         "prereg_sha256": prereg_hash,
-        "shift_envelope_prereg_sha256": envelope_prereg_hash,
         "theory_sha256": sha256(THEORY),
         "source_contract_ok": source_contract_ok,
         "cvar_duality": {
@@ -350,10 +518,14 @@ def main() -> int:
             "checks": mixture_checks,
             "maximum_observed_violation": mixture_violation,
         },
-        "hierarchical_shift": {
-            "passed": hierarchy_ok,
-            "checks": hierarchy_checks,
-            "maximum_observed_violation": hierarchy_violation,
+        "balanced_shift": {
+            "passed": balanced_ok,
+            "checks": balanced_checks,
+            "maximum_observed_violation": balanced_violation,
+        },
+        "balanced_certificates": {
+            "passed": balanced_certificate_ok,
+            "checks": balanced_certificate_checks,
         },
         "radius_contracts": {
             "passed": radius_ok,
@@ -363,6 +535,11 @@ def main() -> int:
             "passed": envelope_ok,
             "checks": envelope_checks,
             "maximum_common_radius_error": envelope_error,
+        },
+        "balanced_shift_envelope": {
+            "passed": balanced_envelope_ok,
+            "checks": balanced_envelope_checks,
+            "maximum_common_radius_error": balanced_envelope_error,
         },
         "failures": failures,
     }

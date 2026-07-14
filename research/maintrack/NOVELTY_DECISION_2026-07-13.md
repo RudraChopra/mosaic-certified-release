@@ -17,8 +17,10 @@ collapse to zero?
 The paired quantity matters. For target loss, VERA evaluates the incremental
 harm of an edit relative to the identity intervention on the same example. For
 leakage, VERA audits fresh heterogeneous attackers and certifies the worst
-preregistered attacker, not the eraser's native probe. This removes the need to
-name or discover environments in the primary method.
+preregistered attacker, not the eraser's native probe. The locked study uses
+observed environment cells to scope target guarantees and source-class cells
+to define prevalence-invariant balanced leakage; it does not claim to discover
+latent environments.
 
 ## New Name
 
@@ -40,6 +42,13 @@ The final paper must prove and evaluate all of the following together:
    decisions; and
 5. an honest boundary that no finite attacker portfolio certifies erasure
    against all measurable recovery algorithms.
+
+The paper must also distinguish this package from distributional fairness
+certification and Wasserstein fairness auditing. Those neighboring literatures
+already combine ambiguity sets, fairness functionals, and finite-sample bounds.
+The remaining claim is the selected representation-intervention contract and
+its support-aware paired-harm/multi-attacker envelope, not generic robust
+auditing.
 
 ## Kill Criteria
 

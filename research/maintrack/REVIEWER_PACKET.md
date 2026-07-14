@@ -1,30 +1,106 @@
-# VERA Reviewer Packet
+# VERA External Cold-Review Packet
 
-## What A Reviewer Should Believe
+## Gate
 
-VERA is a decision protocol for representation editing. Its primary novelty is
-not a new projection formula; it is the certified accept-or-abstain contract
-over a leakage-utility frontier.
+The submission gate requires two completed reviews from real people who have
+published peer-reviewed machine-learning research. Self-review, collaborator
+review, automated review, and an LLM-generated review do not count. The
+manuscript remains not submission-ready until both reviews are received and
+every critical or major issue is resolved or explicitly rebutted in the paper.
 
-## Evidence Map
+For each reviewer, the private project record must retain:
 
-- Novelty: `NOVELTY_LOCK.md` and `NOVELTY_SWEEP_2026_UPDATE.md`.
-- Algorithm: `ALGORITHM_SPEC.md`.
-- Theory: `THEORY_TARGET.md` and the manuscript.
-- Benchmarks: Waterbirds and Camelyon17-WILDS official receipts.
-- MANCE++: full Waterbirds official-code reference statistics plus Camelyon17
-  diagnostic boundary.
-- Reproducibility: `REPRODUCIBILITY_CHECKLIST.md` and audit artifacts.
-- Claim control: `CLAIM_LEDGER.md`.
+- name and institutional or professional affiliation;
+- a public URL for at least one peer-reviewed ML publication;
+- date the review was requested and received;
+- the exact manuscript PDF SHA-256 reviewed;
+- conflict disclosure;
+- the review in the reviewer's own words or an email attesting to it.
 
-## Expected Attacks
+Reviewer identity is not placed in the anonymous submission.
 
-The strongest attack is that VERA is a wrapper around erasers. The response is
-that the wrapper is the method: the paper studies the certified decision problem
-that prior unconditional erasers do not solve.
+## Cold-Review Rule
 
-The second attack is that Waterbirds is not a VERA win. The response is to say
-so explicitly and use it as failure analysis and abstention motivation.
+Send the anonymous main paper, anonymous supplement, anonymous code archive,
+and the short request below. Do not send the claim ledger, internal audits,
+reviewer-response drafts, or a defense of the method before the review. The
+reviewer should encounter the argument as a conference reviewer would.
 
-The third attack is MANCE++. The response is the official-code Waterbirds
-baseline and a clear Camelyon17 diagnostic boundary.
+Suggested request:
+
+> Please review this as a skeptical ICLR/AAAI main-track submission. I need you
+> to identify fatal, major, and minor issues rather than help defend the paper.
+> In particular, assess novelty over Learn Then Test and robust risk control,
+> correctness and usefulness of the shift envelope, validity of the
+> unsupported-support theorem, and whether the experiments support the stated
+> claims. Please use the form below or return equivalent free-form feedback.
+
+## Materials
+
+- Anonymous main paper PDF and SHA-256.
+- Anonymous supplement PDF and SHA-256.
+- Anonymous code/data archive and SHA-256.
+- One-command reproduction instructions.
+
+All materials must be frozen before a review is counted. If a critical
+scientific change follows review 1, review 2 must receive the revised frozen
+version. The ledger records which findings remain applicable across versions.
+
+## Required Review Form
+
+### Recommendation
+
+- Overall score on a 1--10 conference scale.
+- Confidence on a 1--5 scale.
+- Accept/reject recommendation.
+- One-sentence reason for the recommendation.
+
+### Fatal Issues
+
+List any issue that independently warrants rejection. State the precise claim,
+the counterargument or prior work, and the evidence needed to fix it.
+
+### Major Issues
+
+Evaluate:
+
+1. Is the paper's proposed object distinguishable from finite-family Learn Then
+   Test, Conformal Risk Control, robust validation, and ordinary sensitivity
+   analysis?
+2. Is the simultaneous support-aware envelope mathematically correct under its
+   stated density-ratio and support assumptions?
+3. Does the fixed-profile IUT spend error probability correctly over candidates
+   and components?
+4. Does balanced robust leakage support the source-prior claim without implying
+   ordinary-accuracy or universal-erasure guarantees?
+5. Does the unsupported-cell result say something intervention-specific and is
+   Camelyon17 an honest instance rather than rhetorical decoration?
+6. Are external benchmark outcomes clearly separated from theorem-guaranteed
+   target distributions?
+7. Are official baselines, seeds, thresholds, uncertainty, and abstention taxes
+   sufficient to support the empirical story?
+8. Does the paper state the LTT overlap plainly enough that it cannot be read as
+   evasion?
+
+### Minor Issues
+
+List clarity, notation, presentation, citation, reproducibility, and formatting
+problems.
+
+### Missing Prior Work
+
+Give exact papers or search directions. Flag the closest paper that could
+invalidate the novelty claim.
+
+### Strongest Version
+
+State the strongest claim the evidence actually supports, even if narrower
+than the paper's current claim.
+
+## Completion Rule
+
+A review counts only when all required provenance fields and substantive
+feedback are present. "Looks good," a numerical score without reasoning, or a
+review generated by a model is insufficient. The final response ledger must
+map every fatal and major finding to a manuscript location, code change,
+additional experiment, or an explicit unresolved limitation.

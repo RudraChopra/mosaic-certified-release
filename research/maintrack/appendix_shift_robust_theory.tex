@@ -14,15 +14,14 @@ set
 and the robust risk
 $\rho_{\Gamma,P}(V)=\sup_{Q\in\mathcal{Q}_{\Gamma}(P)}\mathbb{E}_Q[V]$.
 The reference law is contract-specific. Target contracts use the
-environment-conditional law $P_g$, while leakage contracts use
-$P_{g,s}$ conditional on environment $g$ and represented source class $s$.
-Accordingly, an admissible deployment profile requires both
-$Q_g\in\mathcal Q_{\gamma_g}(P_g)$ for target harm and
-$Q_{g,s}\in\mathcal Q_{\gamma_g}(P_{g,s})$ for every leakage cell. Environment
-mixture weights may vary arbitrarily. Source-class weights are not claimed to
-vary arbitrarily: they must remain compatible with these marginal and
-conditional density-ratio restrictions. This hierarchical intersection is the
-stated shift model throughout.
+environment-conditional law $P_g$. Leakage uses $P_s$, the law conditional on
+represented source class $s\in\{0,1\}$, and evaluates equal-weight robust
+class recall rather than ordinary accuracy. Accordingly, an admissible
+deployment profile requires $Q_g\in\mathcal Q_{\gamma_g}(P_g)$ for target
+harm and $Q_s\in\mathcal Q_{\eta_s}(P_s)$ for leakage. Environment mixture
+weights may vary arbitrarily. Source-class prevalences may also vary
+arbitrarily because the leakage estimand fixes the two class weights at one
+half; this does not imply control of prevalence-weighted ordinary accuracy.
 
 \begin{lemma}[Reweighting--CVaR identity]
 \label{lem:cvar-identity}
@@ -134,6 +133,70 @@ independent of $\Gamma$, so it holds over the entire continuum and remains
 valid after inversion and edit selection.
 \end{proof}
 
+For attacker $a$, let $L_{e,a}=\mathbf 1\{a_e(Z^e)=S\}$ and define the
+balanced robust leakage
+\begin{equation}
+ B_{e,a}(\eta_0,\eta_1)
+ =\frac12\sum_{s\in\{0,1\}}\rho_{\eta_s,P_s}(L_{e,a}).
+ \label{eq:balanced-leakage}
+\end{equation}
+If $U_{e,a,s}(\eta_s)$ is an upper confidence curve for the class-$s$
+recall, then
+$\widehat B_{e,a}=\tfrac12(U_{e,a,0}+U_{e,a,1})$ upper-bounds
+Eq.~\eqref{eq:balanced-leakage} on the intersection of the two coverage
+events. A component-level error budget $\alpha$ is therefore obtained by
+using one-sided Clopper--Pearson bounds at $\alpha/2$ for the two recalls.
+
+\begin{lemma}[Source-prior invariance]
+\label{prop:source-prior}
+Let the deployment model declare both source-conditional laws and let source
+prevalence be any $\pi\in[0,1]$, including $0$ or $1$. Suppose the two
+source-conditional deployment laws obey
+$Q_s\in\mathcal Q_{\eta_s}(P_s)$. The balanced robust leakage in
+Eq.~\eqref{eq:balanced-leakage} is independent of $\pi$ and is at most
+$\lambda$ whenever $\widehat B_{e,a}\leq\lambda$. A constant binary attacker
+has balanced leakage $1/2$ at $\eta_0=\eta_1=1$, regardless of which class it
+always predicts.
+\end{lemma}
+
+\begin{proof}
+The estimand assigns weight one half to each conditional recall by definition,
+so prevalence $\pi$ does not enter it. On the joint confidence event, each
+robust recall is at most its corresponding upper curve; averaging gives the
+first claim. A constant attacker has class recalls $(1,0)$ or $(0,1)$ under
+IID evaluation, whose equal-weight mean is $1/2$.
+At $\pi\in\{0,1\}$, the unused conditional remains part of the declared
+standardization model; the balanced functional is not ordinary accuracy
+observable from a deployment sample containing only one class.
+\end{proof}
+
+\begin{theorem}[Fixed-profile candidate intersection--union test]
+\label{thm:iut}
+Fix $M$ candidate edits before certification. For candidate $e$, let
+$\{R_{e,j}\leq c_j\}_{j\in\mathcal J_e}$ contain every target and balanced
+leakage component at one declared shift profile. Suppose each reported
+component bound $U_{e,j}$ undercovers $R_{e,j}$ with probability at most
+$\alpha=\delta/M$. For paired target harm, the positive- and negative-count
+bounds split this $\alpha$ equally; for balanced leakage, its two class-recall
+bounds do the same. Accept candidate $e$ only if
+$U_{e,j}\leq c_j$ for every $j$, then select any accepted candidate by a
+fixed utility rule. The probability of deploying any candidate that violates
+at least one component contract is at most $\delta$.
+If identity is itself a selectable deployment action, it is included among the
+$M$ candidates; using identity only to define paired harm does not add a
+selection hypothesis.
+\end{theorem}
+
+\begin{proof}
+For each unsafe candidate $e$, choose one population-violated component
+$j(e)$ before the certification draw. False acceptance of $e$ implies
+$U_{e,j(e)}\leq c_{j(e)}<R_{e,j(e)}$, an undercoverage event of probability at
+most $\alpha$. No union bound across components is needed because acceptance
+requires every component to pass: this is an intersection--union test. A union
+bound over the at most $M$ unsafe candidates gives $M\alpha=\delta$.
+Selection among accepted candidates is contained in the same event.
+\end{proof}
+
 \begin{corollary}[Worst-group mixture shift]
 \label{cor:mixture}
 Let $P_g$ be validated group-conditional distributions for
@@ -150,46 +213,49 @@ $\mathbb{E}_{Q_{\pi}}[V_e]=\sum_g\pi_g\mathbb{E}_{Q_g}[V_e]\leq
 \sum_g\pi_gc=c$.
 \end{proof}
 
-For an observed environment $g$, let $\mathcal K_{e,g}$ contain its paired
-target-harm contract under $P_g$ and every registered
-environment--source--attacker contract under $P_{g,s}$ for edit $e$. Define
-the groupwise population and certified radii by
+Let $U^T_{e,g}(\gamma_g)$ be a simultaneous upper curve for paired target harm
+in observed environment $g$, and let $U^L_{e,a,s}(\eta_s)$ be one for attacker
+$a$'s class-$s$ recall. The \emph{support-aware erasure shift envelope} is
 \begin{equation}
- \Gamma_{e,g}^\star=\inf_{k\in\mathcal K_{e,g}}\Gamma_{e,k}^\star,
- \qquad
- \widehat\Gamma_{e,g}=\inf_{k\in\mathcal K_{e,g}}\widehat\Gamma_{e,k},
+\begin{split}
+ \widehat{\mathcal E}_e=\{(\boldsymbol\gamma,\boldsymbol\eta):
+ &U^T_{e,g}(\gamma_g)\leq\tau\quad\forall g,\\
+ &\tfrac12\textstyle\sum_s U^L_{e,a,s}(\eta_s)\leq\lambda
+ \quad\forall a\}.
+ \label{eq:envelope}
+\end{split}
 \end{equation}
-using radius zero for an unsupported required cell. The \emph{support-aware
-erasure shift envelope} is the set of deployment profiles whose support is
-contained in observed environments and whose requested within-environment
-budget $\gamma_g$ obeys $1\leq\gamma_g\leq\widehat\Gamma_{e,g}$ wherever the
-deployment mixture assigns positive mass, with the hierarchical marginal and
-conditional restrictions stated above.
+Profiles that place deployment mass on an unobserved required environment are
+excluded. A missing source class excludes balanced-leakage certification
+unless a structural assumption identifies its conditional recall.
 
 \begin{corollary}[Support-aware erasure shift envelope]
 \label{cor:shift-envelope}
 With probability at least $1-\delta$, simultaneously for every registered edit
 $e$, every deployment profile in its certified envelope satisfies every
-registered target and leakage contract. Environment mixture weights may be
-chosen arbitrarily after certification. For a declared supported environment
-set $A$, the largest certified common budget is
+registered target and balanced-leakage contract. Environment mixture weights
+and source-class prevalences may be chosen arbitrarily after certification.
+The largest certified common budget is
 \begin{equation}
- \widehat\Gamma_e(A)=\min_{g\in A}\widehat\Gamma_{e,g}.
+ \widehat\Gamma_e=\sup\{\Gamma\geq1:
+ (\Gamma\mathbf 1_{|\mathcal G|},\Gamma,\Gamma)
+ \in\widehat{\mathcal E}_e\},
 \end{equation}
-No additional multiplicity correction is required to inspect the envelope or
-to choose $A$ and the budgets after certification.
+with value zero if the IID profile fails. No additional multiplicity
+correction is required to inspect the envelope or choose a contained profile
+after certification.
 \end{corollary}
 
 \begin{proof}
-The simultaneous event used for the individual contract curves already ranges
-over every edit, environment, source cell, and attacker. On that event,
-$\gamma_g\leq\widehat\Gamma_{e,g}$ controls target harm for every allowed
-$Q_g$ and leakage for every allowed $Q_{g,s}$. Arbitrary environment mixing
-preserves the target threshold by Corollary~\ref{cor:mixture}; the leakage
-thresholds are conditional contracts and hold separately in every deployed
-$(g,s)$ cell. The largest budget shared by all $g\in A$ is their minimum.
-Inspecting or intersecting objects that are all valid on the same event does
-not spend additional error probability.
+The simultaneous event used for the individual curves already ranges over
+every edit, target environment, source class, and attacker. On that event,
+membership in Eq.~\eqref{eq:envelope} controls target harm for every allowed
+$Q_g$ and balanced leakage for every allowed $Q_s$. Arbitrary environment
+mixing preserves the target threshold by Corollary~\ref{cor:mixture}; source
+prevalence does not enter Eq.~\eqref{eq:balanced-leakage}. Restricting to the
+diagonal profile gives the common radius. Inspecting or intersecting objects
+that are all valid on the same event does not spend additional error
+probability.
 \end{proof}
 
 \begin{corollary}[False acceptance]

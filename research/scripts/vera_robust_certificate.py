@@ -70,6 +70,43 @@ class ShiftRadiusCertificate:
 
 
 @dataclass(frozen=True)
+class BalancedShiftEnvelopeCertificate:
+    decision: str
+    target_environment_radii: Mapping[str, float]
+    source_class_radii: Mapping[str, float]
+    observed_common_radius: float
+    deployment_common_radius: float
+    unsupported_target_environments: tuple[str, ...]
+    gamma_cap: float
+    delta: float
+    family_size: int
+    right_censored_coordinates: tuple[str, ...]
+    simultaneous_curve_parameters: Mapping[str, Mapping[str, float | int | str]]
+    method: str = "exact_balanced_support_aware_envelope"
+
+    def to_dict(self) -> dict[str, object]:
+        return {
+            "decision": self.decision,
+            "target_environment_radii": dict(self.target_environment_radii),
+            "source_class_radii": dict(self.source_class_radii),
+            "observed_common_radius": self.observed_common_radius,
+            "deployment_common_radius": self.deployment_common_radius,
+            "unsupported_target_environments": list(
+                self.unsupported_target_environments
+            ),
+            "gamma_cap": self.gamma_cap,
+            "delta": self.delta,
+            "family_size": self.family_size,
+            "right_censored_coordinates": list(self.right_censored_coordinates),
+            "simultaneous_curve_parameters": {
+                key: dict(value)
+                for key, value in self.simultaneous_curve_parameters.items()
+            },
+            "method": self.method,
+        }
+
+
+@dataclass(frozen=True)
 class GroupShiftEnvelopeCertificate:
     decision: str
     group_radii: Mapping[str, float]
@@ -544,6 +581,191 @@ def certify_balanced_shift_radius(
             lower_certificates[key] for key in sorted(lower_certificates)
         ),
         method="exact_balanced_leakage",
+    )
+
+
+def certify_balanced_shift_envelope(
+    target_samples: Mapping[str, Iterable[float]],
+    leakage_correct: Mapping[str, Iterable[float]],
+    source: Iterable[int],
+    *,
+    delta: float,
+    family_size: int,
+    target_threshold: float,
+    leakage_threshold: float,
+    registered_target_environments: Sequence[str | int] | None = None,
+    gamma_cap: float = 32.0,
+    tolerance: float = 1e-4,
+) -> BalancedShiftEnvelopeCertificate:
+    """Certify coordinate intercepts and curves for the balanced shift envelope.
+
+    Each target coordinate varies one registered environment budget while all
+    other coordinates remain at one. Each source coordinate varies one
+    source-conditional budget while the other remains at one; every registered
+    attacker must continue to pass. The complete envelope is represented by
+    the simultaneous curve parameters and inequalities, while these intercepts
+    make its geometry directly inspectable.
+    """
+
+    if not target_samples or not leakage_correct:
+        raise ValueError("target and leakage contract families must be nonempty")
+    if family_size < len(target_samples) + len(leakage_correct):
+        raise ValueError("family_size is smaller than the supplied contract family")
+    if not 0.0 < delta < 1.0:
+        raise ValueError("delta must lie in (0, 1)")
+    if gamma_cap < 1.0 or not np.isfinite(gamma_cap):
+        raise ValueError("gamma_cap must be finite and at least one")
+    if tolerance <= 0.0 or not np.isfinite(tolerance):
+        raise ValueError("tolerance must be finite and positive")
+
+    materialized_target = {
+        str(key): _as_bounded_array(values, lower=-1.0, upper=1.0)
+        for key, values in target_samples.items()
+    }
+    materialized_leakage = {
+        str(key): _as_bounded_array(values, lower=0.0, upper=1.0)
+        for key, values in leakage_correct.items()
+    }
+    source_array = np.asarray(list(source), dtype=np.int64)
+    if set(map(int, np.unique(source_array))) != {0, 1}:
+        raise ValueError("balanced leakage requires represented source classes {0, 1}")
+    if any(len(values) != len(source_array) for values in materialized_leakage.values()):
+        raise ValueError("source labels must align with every leakage array")
+    local_alpha = delta / family_size
+
+    iid = balanced_contract_certificates(
+        materialized_target,
+        materialized_leakage,
+        source_array,
+        gamma=1.0,
+        local_failure_probability=local_alpha,
+    )
+    iid_passes = all(
+        certificate.upper_confidence_bound
+        <= (
+            target_threshold
+            if key.startswith("target::")
+            else leakage_threshold
+        )
+        for key, certificate in iid.items()
+    )
+    curve_parameters: dict[str, Mapping[str, float | int | str]] = {}
+    for key, certificate in iid.items():
+        details = dict(certificate.confidence_details or {})
+        details["threshold"] = (
+            float(target_threshold)
+            if key.startswith("target::")
+            else float(leakage_threshold)
+        )
+        curve_parameters[key] = details
+
+    observed_group_by_key = {
+        key: key.split("target::environment=", 1)[1]
+        if key.startswith("target::environment=")
+        else key
+        for key in materialized_target
+    }
+    observed_groups = set(observed_group_by_key.values())
+    registered_groups = (
+        observed_groups
+        if registered_target_environments is None
+        else set(map(str, registered_target_environments))
+    )
+    unsupported = tuple(sorted(registered_groups - observed_groups))
+
+    def radius(predicate: Any) -> tuple[float, bool]:
+        if not predicate(1.0):
+            return 0.0, False
+        if predicate(float(gamma_cap)):
+            return float(gamma_cap), True
+        lower, upper = 1.0, float(gamma_cap)
+        while upper - lower > tolerance:
+            midpoint = (lower + upper) / 2.0
+            if predicate(midpoint):
+                lower = midpoint
+            else:
+                upper = midpoint
+        return float(lower), False
+
+    target_radii: dict[str, float] = {
+        group: 0.0 for group in sorted(registered_groups)
+    }
+    source_radii = {"0": 0.0, "1": 0.0}
+    right_censored: list[str] = []
+    if iid_passes:
+        for key, values in materialized_target.items():
+            group = observed_group_by_key[key]
+
+            def target_passes(gamma: float, *, values: np.ndarray = values, key: str = key) -> bool:
+                certificate = exact_discrete_risk_certificate(
+                    key,
+                    values,
+                    gamma=gamma,
+                    failure_probability=local_alpha,
+                    support=(-1, 0, 1),
+                )
+                return certificate.upper_confidence_bound <= target_threshold
+
+            value, censored = radius(target_passes)
+            target_radii[group] = value
+            if censored:
+                right_censored.append(f"target::environment={group}")
+
+        leakage_probabilities = {
+            attacker: {
+                source_class: float(
+                    iid[f"balanced_leakage::{attacker}"].confidence_details[
+                        f"class_{source_class}_probability_upper"
+                    ]
+                )
+                for source_class in (0, 1)
+            }
+            for attacker in materialized_leakage
+        }
+        for source_class in (0, 1):
+            other = 1 - source_class
+
+            def source_passes(gamma: float, *, source_class: int = source_class, other: int = other) -> bool:
+                return all(
+                    0.5
+                    * (
+                        min(1.0, gamma * probabilities[source_class])
+                        + probabilities[other]
+                    )
+                    <= leakage_threshold
+                    for probabilities in leakage_probabilities.values()
+                )
+
+            value, censored = radius(source_passes)
+            source_radii[str(source_class)] = value
+            if censored:
+                right_censored.append(f"source_class={source_class}")
+
+    common = certify_balanced_shift_radius(
+        materialized_target,
+        materialized_leakage,
+        source_array,
+        delta=delta,
+        family_size=family_size,
+        target_threshold=target_threshold,
+        leakage_threshold=leakage_threshold,
+        gamma_cap=gamma_cap,
+        tolerance=tolerance,
+    )
+    observed_common = float(common.certified_radius)
+    deployment_common = 0.0 if unsupported else observed_common
+    return BalancedShiftEnvelopeCertificate(
+        decision="EDIT" if deployment_common >= 1.0 else "ABSTAIN",
+        target_environment_radii=target_radii,
+        source_class_radii=source_radii,
+        observed_common_radius=observed_common,
+        deployment_common_radius=deployment_common,
+        unsupported_target_environments=unsupported,
+        gamma_cap=float(gamma_cap),
+        delta=float(delta),
+        family_size=int(family_size),
+        right_censored_coordinates=tuple(sorted(right_censored)),
+        simultaneous_curve_parameters=curve_parameters,
     )
 
 

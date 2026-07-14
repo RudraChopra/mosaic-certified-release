@@ -3,25 +3,44 @@
 ## Defensible Claim
 
 VERA is not another unconditional erasure method. Its novelty is the
-frontier-aware edit-or-abstain contract: estimate a source-leakage versus
-target-utility frontier, certify a safe set under simultaneous intervals, pick
-the smallest source-reducing edit that preserves target risk, or return an
-auditable abstention certificate.
+erasure-specific robust object: a simultaneous support-aware envelope of
+groupwise bounded-reweighting budgets under which one edit satisfies paired
+target harm and every registered post-edit leakage contract. The generic ingredients
+are not new. CVaR duality, DKW and Clopper--Pearson bounds, finite-family
+testing, and abstention must be credited to prior work.
 
 ## Not Just Prior Erasure
 
-INLP, LEACE, R-LACE/RLACE, TaCo, SPLINCE, and MANCE motivate the baseline space, but
-the VERA claim is different. Those methods define erasure or task-preserving
-projection procedures. VERA defines a decision layer over candidate erasers: it
-can accept, reject, or abstain based on target-preservation and source-leakage
-certificates.
+INLP, LEACE, R-LACE, TaCo, SPLINCE, and MANCE motivate the baseline space, but
+the VERA claim is different. Those methods construct erasure or task-preserving
+interventions. VERA quantifies how much declared deployment reweighting each
+candidate can tolerate, identifies the limiting contract, and abstains when no
+nontrivial radius is support-identified.
 
 ## Not Just Domain Generalization
 
 Domain generalization methods optimize prediction under distribution shift.
-VERA audits whether a representation edit is safe after source or environment
-information is reduced. The paper may compare against domain generalization
-baselines only with matched representations, splits, metrics, and source labels.
+VERA audits a representation intervention under a user-declared shift class.
+The generic bounded density-ratio curve can be applied to any registered audit
+cell. In the locked primary study, target harm is certified separately within
+each observed environment, then mixed with arbitrary deployment weights;
+leakage is certified within each source class and reported as balanced robust
+accuracy. These labels define the scope of the guarantee rather than being
+learned latent environments. Unsupported deployment mass remains explicitly
+uncertifiable.
+
+## Not Just Robust Fairness Auditing
+
+Kang et al. (NeurIPS 2022) already certify performance over shifted
+fairness-constrained distributions, and Ehyaei, Farnadi, and Samadi (2025)
+already apply Wasserstein DRO to finite-sample group-fairness audits. VERA must
+not claim the first distribution-shift fairness certificate or present standard
+DRO algebra as the contribution. Its proposed delta is intervention-specific:
+candidate selection by incremental paired edit harm, a retrained heterogeneous
+attacker family, the full vector of separately interpretable reweighting
+budgets, and a zero-radius support boundary tied to the same audit cells. The
+locked deployment-rule experiment must show that this object changes unsafe
+edit decisions; otherwise the novelty claim is not empirically earned.
 
 ## Medical Scope
 
@@ -33,9 +52,10 @@ deployment readiness.
 
 ## Locked Boundary
 
-Allowed: VERA introduces a certified frontier and abstention protocol for
-target-preserving source removal.
+Allowed: VERA proposes the paired multi-contract erasure shift envelope, its
+common-radius summary, and a support-scoped method for lower-certifying both
+over registered edit frontiers.
 
 Forbidden: VERA is universally state of the art, clinically safe, independent
-of source labels, or a reference implementation of every concept-erasure
-baseline.
+of support assumptions, secure against every possible attacker, or the first
+finite-family risk-control method.

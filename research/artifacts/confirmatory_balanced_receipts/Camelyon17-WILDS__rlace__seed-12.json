@@ -1,0 +1,201 @@
+{
+  "candidates": [
+    {
+      "audit_npz": "/Volumes/Backups/FARO/artifacts/vera_balanced_confirmatory/Camelyon17-WILDS__rlace__seed-12/candidate-00.npz",
+      "audit_npz_sha256": "716a9de29ced19ba9abb30a64df015078150aa89e8a4cfbaae3391563d70a453",
+      "candidate_key": "R-LACE::rank=1",
+      "method": "R-LACE",
+      "metrics": {
+        "attackers": {
+          "forest": {
+            "certification_balanced_accuracy": 0.5839067486138458,
+            "external_balanced_accuracy": null
+          },
+          "linear": {
+            "certification_balanced_accuracy": 0.5082304943138223,
+            "external_balanced_accuracy": null
+          },
+          "mlp": {
+            "certification_balanced_accuracy": 0.8115773117242628,
+            "external_balanced_accuracy": null
+          },
+          "rbf": {
+            "certification_balanced_accuracy": 0.8001296839263988,
+            "external_balanced_accuracy": null
+          }
+        },
+        "certification_mean_paired_target_harm": 0.000625,
+        "certification_target_balanced_accuracy": 0.889872790448972,
+        "external_mean_paired_target_harm": 0.008375,
+        "external_target_balanced_accuracy": 0.8349013959313373
+      },
+      "provenance": {
+        "commit": "2d9b6d03f65416172b4a2ca7f6da10e374002e5f",
+        "compatibility_change": "SGDClassifier loss='log_loss' replaces removed alias loss='log'",
+        "iterations": 10000,
+        "official_entrypoint": "rlace.solve_adv_game",
+        "rank": 1,
+        "remote": "https://github.com/shauli-ravfogel/rlace-icml",
+        "reported_upstream_score": 0.8245,
+        "repository": "/Volumes/Backups/FARO/external/rlace-icml"
+      },
+      "strength": "rank=1"
+    },
+    {
+      "audit_npz": "/Volumes/Backups/FARO/artifacts/vera_balanced_confirmatory/Camelyon17-WILDS__rlace__seed-12/candidate-01.npz",
+      "audit_npz_sha256": "4721e14d96c3d539d36b8a2d24962225ccd05180208b780f8afd30a20d003561",
+      "candidate_key": "R-LACE::rank=4",
+      "method": "R-LACE",
+      "metrics": {
+        "attackers": {
+          "forest": {
+            "certification_balanced_accuracy": 0.6088038118790629,
+            "external_balanced_accuracy": null
+          },
+          "linear": {
+            "certification_balanced_accuracy": 0.5858795253912503,
+            "external_balanced_accuracy": null
+          },
+          "mlp": {
+            "certification_balanced_accuracy": 0.8134309389120054,
+            "external_balanced_accuracy": null
+          },
+          "rbf": {
+            "certification_balanced_accuracy": 0.7973116070045585,
+            "external_balanced_accuracy": null
+          }
+        },
+        "certification_mean_paired_target_harm": 0.003,
+        "certification_target_balanced_accuracy": 0.8874142868207764,
+        "external_mean_paired_target_harm": -0.0025,
+        "external_target_balanced_accuracy": 0.8457726778607924
+      },
+      "provenance": {
+        "commit": "2d9b6d03f65416172b4a2ca7f6da10e374002e5f",
+        "compatibility_change": "SGDClassifier loss='log_loss' replaces removed alias loss='log'",
+        "iterations": 10000,
+        "official_entrypoint": "rlace.solve_adv_game",
+        "rank": 4,
+        "remote": "https://github.com/shauli-ravfogel/rlace-icml",
+        "reported_upstream_score": 0.824125,
+        "repository": "/Volumes/Backups/FARO/external/rlace-icml"
+      },
+      "strength": "rank=4"
+    }
+  ],
+  "claim_configuration_verified": true,
+  "claim_grade": true,
+  "created_at": "2026-07-14T16:39:10.820001+00:00",
+  "dataset": "Camelyon17-WILDS",
+  "environment_classes": {
+    "certification": [
+      0,
+      1,
+      3,
+      4
+    ],
+    "construction": [
+      0,
+      3,
+      4
+    ],
+    "external": [
+      2
+    ],
+    "train": [
+      0,
+      3,
+      4
+    ]
+  },
+  "external_labels_locked_during_edit_construction": true,
+  "git_commit": "b77620363d2df30ffec448da5c58e5d73170f096",
+  "indices": {
+    "certification": {
+      "n": 8000,
+      "sha256": "4e4d8a0a7d4907960a4d0d8d2eeaa6b4108fdbcfaeffd6a031c8238ae0239cd3"
+    },
+    "construction": {
+      "n": 2000,
+      "sha256": "65831d986e17ea56b9dc4ce13b0d8e7d9efcec7132d51129b8bece0536d29e8a"
+    },
+    "external": {
+      "n": 8000,
+      "sha256": "3401cf7b37189c6df59b6b8f96933d9157f4b30f4088ed558bc4f4b7e69fdffb"
+    },
+    "train": {
+      "n": 8000,
+      "sha256": "4755ce1c6e8425800f22e20ed1c9f72ee9a506743dcbc8755c3e8de3f61a2e29"
+    }
+  },
+  "locked_configuration": {
+    "dataset_manifest_sha256": "6d18335f5a66a174304bbafbd7ca6efca9250fb4c450d7d35ce9791a27883fb3",
+    "method": {
+      "candidate_configuration": {
+        "batch_size": 256,
+        "epsilon": 0.002,
+        "evaluate_every": 1000,
+        "iterations": 10000,
+        "optimizer": "SGD",
+        "predictor_optimizer": {
+          "lr": 0.005,
+          "momentum": 0.9,
+          "weight_decay": 1e-05
+        },
+        "projection_optimizer": {
+          "lr": 0.005,
+          "momentum": 0.0,
+          "weight_decay": 0.0001
+        },
+        "ranks": [
+          1,
+          4
+        ]
+      },
+      "candidate_count": 2,
+      "display_name": "RLACE",
+      "upstream_commit": "2d9b6d03f65416172b4a2ca7f6da10e374002e5f",
+      "upstream_remote": "https://github.com/shauli-ravfogel/rlace-icml"
+    },
+    "runner_parameters": {
+      "max_certification": 8000,
+      "max_construction": 2000,
+      "max_external": 8000,
+      "max_train": 8000,
+      "pca_dimension": 128
+    }
+  },
+  "method_family": "rlace",
+  "method_name": "RLACE",
+  "preprocessing": {
+    "explained_variance_ratio_sum": 0.8794467449188232,
+    "input_dimension": 512,
+    "output_dimension": 128,
+    "pca_fit_on_train_only": true,
+    "standardized_from_train_only": true
+  },
+  "prereg_sha256": "2767b64f1fa844f512026c5cc4d5e81bca4ed92bef9c8dfd5287dec2918395aa",
+  "preregistration_path": "/Volumes/Backups/FARO/github_export/vera-edit-or-abstain/research/prereg_confirmatory_balanced.json",
+  "seed": 12,
+  "smoke": false,
+  "source_classes": {
+    "certification": [
+      0,
+      1
+    ],
+    "construction": [
+      0,
+      1
+    ],
+    "external": [
+      1
+    ],
+    "train": [
+      0,
+      1
+    ]
+  },
+  "split_policy": "eraser train/construction are disjoint group-stratified partitions of official train; certification is untouched official validation",
+  "store_dir": "/Volumes/Backups/FARO/artifacts/camelyon17_resnet18_torch_center_numpy_store",
+  "store_manifest_sha256": "6d18335f5a66a174304bbafbd7ca6efca9250fb4c450d7d35ce9791a27883fb3"
+}

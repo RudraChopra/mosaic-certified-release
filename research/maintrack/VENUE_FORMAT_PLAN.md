@@ -1,70 +1,68 @@
 # VERA Venue Format Plan
 
-Date: July 13, 2026
+Date checked: July 14, 2026
 
-## Target Order
+## Immediate Target: AAAI-27 Main Technical Track
 
-1. ICLR main track first, if the 2027 author guide and style files are released
-   in time.
-2. NeurIPS or ICML next, using the corresponding current official style file.
-3. AAAI-27 as the nearest concrete AAAI target, with the official AAAI-27 author
-   instructions.
+Official sources:
 
-## Current Verified Guidance
+- `https://aaai.org/conference/aaai/aaai-27/`
+- `https://aaai.org/conference/aaai/aaai-27/main-technical-track-call/`
+- `https://aaai.org/conference/aaai/aaai-27/submission-instructions/`
+- `https://aaai.org/conference/aaai/aaai-27/supplementary-material/`
+- `https://aaai.org/conference/aaai/aaai-27/areas-and-topics/`
+- `https://aaai.org/aaai-publications/aaai-publication-policies-guidelines/`
 
-- ICLR 2026 author guidance reports a 9-page-or-fewer main-text limit at
-  submission, with references outside the page limit. The 2027 guide must be
-  rechecked before submission.
-- AAAI-27 official pages are live. AAAI technical papers use a 7-page technical
-  content limit excluding references, with the official AAAI author kit/style
-  required. The official kit was downloaded from `https://aaai.org/authorkit27/`
-  into `research/maintrack/aaai2027_template/AuthorKit27/`.
-- NeurIPS 2026 official conference and handbook pages are live, but the
-  checked July 13, 2026 style-file guesses
-  `https://media.neurips.cc/Conferences/NeurIPS2026/Styles/neurips_2026.sty`
-  and `.tex` returned HTTP 404. Do not treat a NeurIPS draft as official until
-  the current style files are downloaded from the official NeurIPS style page.
-- Local venue-template references are useful for drafting, but they are not a
-  substitute for the official current style files.
+Verified Anywhere-on-Earth deadlines are July 21, 2026 for the genuine
+abstract, July 28 for the full paper, and July 31 for supplementary material and
+code. The main submission permits seven pages of technical content; later pages
+are reserved for references. The reproducibility checklist is uploaded
+separately.
 
-## Current VERA Manuscript Status
+AAAI-27 is double blind. The anonymous paper and supplement must omit author,
+affiliation, acknowledgement, named-repository, and identifying metadata. The
+supplement must be uploaded through OpenReview and must not point to mutable web
+material. Critical evidence must remain in the seven-page main paper because
+reviewers are not required to inspect supplements.
 
-`research/maintrack/faro_main.tex` is a readable generic LaTeX content draft.
-`research/maintrack/iclr2026_template/iclr2026/faro_iclr2026_draft.tex` is an
-anonymous ICLR-2026-style draft compiled with the official ICLR 2026 style files
-downloaded from the ICLR Master-Template repository. The compiled PDF is
-`research/maintrack/faro_iclr2026_draft.pdf`.
+AAAI-27 permits judicious generative-AI assistance, but the human authors remain
+fully responsible for every claim, reference, experiment, and ethical obligation.
+AAAI's publication policy also requires the role of any AI system used in
+developing the publication to be documented in the manuscript. AI systems are
+not authors or citable sources. Because AI assistance in this project was
+extensive, both paper variants contain a full-scope disclosure. The author must
+understand and personally verify this submission.
 
-`research/maintrack/aaai2027_template/AuthorKit27/faro_aaai2027_draft.tex` is
-an anonymous AAAI-27-style source draft using the official `aaai2027.sty`.
-Compilation is currently blocked locally because the AAAI-27 style enforces
-PDFLaTeX and this Mac does not have `pdflatex`; Tectonic stops at the official
-`pdfTeX is required` guard. Do not modify the official style file to bypass
-this. Install a PDFLaTeX distribution before treating the AAAI draft as
-compiled.
+The registered primary topic is `ML: Evaluation, Benchmarking, Datasets &
+Analysis`, with secondary topics for model editing, robustness, representation
+learning, and AI evaluation/auditing. These are exact AAAI-27 labels and remain
+subject to the author's final reviewer-matching judgment.
 
-ICLR 2027 style files are not yet the verified target. Before a real
-submission, replace the 2026 style with the current official target-year style.
+The active sources are:
 
-`research/maintrack/faro_neurips_draft.tex` is a portable two-column NeurIPS-like
-content draft and now matches the 80k Camelyon MANCE++ diagnostic text, but it
-is not an official current NeurIPS-style submission source.
+- `aaai2027_template/AuthorKit27/vera_aaai2027_anonymous.tex`
+- `aaai2027_template/AuthorKit27/vera_aaai2027_named.tex`
+- `aaai2027_template/AuthorKit27/vera_aaai2027_supplement_anonymous.tex`
+- `aaai2027_template/AuthorKit27/vera_aaai2027_supplement_named.tex`
 
-## Required Conversion Work
+They use the unmodified official `aaai2027.sty`. Both anonymous and named
+versions compile locally with PDFLaTeX. Final readiness requires exactly seven
+content pages, clean metadata and source scans, the separate checklist, and a
+reproducing anonymous ZIP.
 
-- Select the final target venue and replace the ICLR-2026 draft style with the
-  official current target-year style files.
-- For AAAI-27, install PDFLaTeX and compile
-  `research/maintrack/aaai2027_template/AuthorKit27/faro_aaai2027_draft.tex`
-  without modifying `aaai2027.sty`.
-- Convert the content draft into that exact target template.
-- Keep the anonymous submission version separate from any camera-ready version.
-- Move long derivations, additional ablations, diagnostic artifacts, and full
-  audit tables into an appendix or supplement.
-- Re-render and inspect the PDF after conversion.
+## Later Target: ICLR 2027
 
-## Claim Boundary
+As of July 14, 2026, an official ICLR 2027 call, author guide, and style package
+were not discoverable from the official conference site. The 2026 rules are not
+a valid substitute. Do not claim an ICLR 2027 deadline or compile a nominal
+ICLR 2027 submission until the official materials are released and rechecked.
 
-The current manuscript can support internal review and continued development,
-but it should not be submitted until the official venue template, page limit,
-anonymization rules, checklist, and supplement rules are satisfied.
+AAAI-27 and ICLR 2027 are archival venues. The same or substantially similar
+paper cannot be under simultaneous archival review. Venue order must follow the
+official multiple-submission policies and actual decisions or withdrawals.
+
+## Legacy Drafts
+
+Files named for earlier project names or 2026 venue templates are historical
+development artifacts only. They are not submission sources, are excluded from
+the anonymous package, and must not be cited as current venue-ready versions.

@@ -3,79 +3,100 @@
 ## Purpose
 
 This ledger is the submission-facing contract between the manuscript and the
-evidence. It separates claims that the current artifacts support from claims
-that must not appear in a NeurIPS, AAAI, ICLR, ICML, ICDM, or journal
-submission. The machine-readable source is
-`research/configs/faro_claim_ledger.json`, and the validator is
-`research/scripts/audit_claim_ledger.py`.
+claim-grade evidence. Machine audits verify consistency and provenance; they do
+not prove novelty, theorem correctness, ethical eligibility, or acceptance.
 
-## Allowed Claims
+## Allowed Method Claims
 
-VERA may claim that it reframes source or concept removal as certified
-edit-or-abstain selection over a leakage-utility frontier. The evidence is the
-novelty lock, algorithm specification, theory target, and manuscript. This is a
-method claim about the object being optimized and the certified decision rule,
-not a claim that VERA is a universally stronger eraser.
+VERA may claim to audit a finite, preregistered family of representation edits
+and either select an edit satisfying paired target-harm and balanced-leakage
+contracts at a declared shift profile or abstain. The finite-candidate
+acceptance mechanism must be attributed to Learn Then Test and related risk
+control; it is not a novelty claim.
 
-VERA may claim that the method is fully specified by a candidate edit family, a
-frontier, a certified safe set, a lexicographic selection rule, and an
-abstention report. The evidence is the algorithm specification and manuscript.
+VERA may claim a simultaneous support-aware erasure shift envelope. Target
+coordinates bound within-environment density ratios for paired incremental
+harm. Leakage coordinates bound within-source-class density ratios for every
+registered retrained attacker, with the two class recalls averaged equally.
+The common-radius summary is the diagonal of this vector envelope. The
+certificate applies only to deployment laws satisfying the stated support and
+conditional density-ratio assumptions.
 
-VERA may claim theory support for target preservation and abstention inside the
-tested family. The manuscript includes rank-one target-preservation, rank-one
-frontier abstention, finite-candidate safety, and finite-candidate abstention
-statements, plus a simultaneous-frontier false-acceptance control corollary.
-These theorems do not establish clinical safety, fairness guarantees, or
-optimality outside the candidate family.
+VERA may claim that arbitrary observed-environment mixtures preserve a target
+threshold once every environment-conditional contract is controlled, and that
+balanced leakage is invariant to source prevalence. It must not claim that
+every independently specified collection of environment/source conditionals is
+jointly realizable.
 
-VERA may claim that Waterbirds and Camelyon17-WILDS are the current durable
-official claim-ready benchmark families in the local packet. Waterbirds is an
-official abstention and failure-analysis row, where VERA abstains and
-group-reweighted ERM is stronger. Waterbirds must not be described as a VERA
-win. Camelyon17-WILDS is an official high-stakes frozen-embedding benchmark
-row with an explicit non-clinical-deployment boundary. CivilComments-WILDS may
-be discussed only as prior non-durable stress evidence until its full-store
-receipt and paired statistical report are regenerated or rehydrated as
-materialized local artifacts.
+VERA may claim a two-world impossibility boundary: if a required deployment
+cell has no certification support and the model class contains observationally
+indistinguishable safe and unsafe worlds, no validation-only protocol can both
+uniformly control false acceptance and nontrivially accept in the safe world.
 
-VERA may claim that abstention is demonstrated by a synthetic overlap
-certificate, a prior CivilComments-WILDS frontier stress test, and a full
-Camelyon17-WILDS projection-frontier certificate. In the Camelyon17 certificate,
-selection uses validation metrics only; the tested source-direction projection
-family has zero certified source-reduction lower bound at every strength, so
-VERA returns `ABSTAIN`. External source leakage is scoped out for that
-certificate because the binary source encoding has a single source class in the
-external split.
+## Allowed Empirical Claims
 
-VERA may claim that MANCE++ has a full official-code reference baseline on
-Waterbirds with five seeds and claim-grade statistics, plus a full no-cap
-claim-grade Camelyon17-WILDS reference row under the frozen-representation
-protocol. The upstream inventory pins official repositories for MANCE++,
-R-LACE, TaCo, and LEACE. VERA may also claim real frozen-feature INLP rows and
-official LEACE rows using the pinned `concept-erasure` implementation. The
-current SPLINCE/SPLICE, R-LACE, and TaCo rows remain matched proxy stress tests
-unless separate reference-implementation receipts are added.
+Only outputs generated from the locked seeds 5--12 analysis may be called
+confirmatory. Seeds 0--4 informed protocol design and remain exploratory.
 
-VERA may claim that the reproducibility packet has locked seeds, commands, an
-artifact map, release boundaries, and two durable claim-ready official rows.
+The official matrix contains exactly 200 receipts: five datasets
+(Waterbirds, Camelyon17-WILDS, CivilComments-WILDS, Bios, and GaitPDB), five
+pinned official erasers (INLP, R-LACE, LEACE, TaCo, and MANCE++), and eight
+untouched seeds. No proxy row may enter a claim-grade table.
+
+The paper may report measured external contract violations as benchmark
+outcomes. It must separately report procedural support mismatch and must state
+that benchmark outcomes do not prove the external law belongs to the theorem's
+ambiguity class. Camelyon17 center 2 forces abstention because it is absent from
+certification; external balanced leakage is `NA` because its registered binary
+source slice contains one class.
+
+The exact 54-cell study may support theory/data agreement only if all 108,000
+registered replicates and the independent replay pass. The 216-cell
+candidate/group-count extension, whose multiplicity family includes the
+identity action, may support family-size robustness only if its 432,000
+registered replicates and independent replay pass.
+
+The memorable abstract sentence may appear only if it is generated from the
+32 prespecified stress configurations, the point-selection minus VERA gap is at
+least 15 percentage points, the complete primary pass conditions hold, and the
+independent raw-NPZ audit reproduces it.
+
+## Statistical Boundaries
+
+The primary paired comparison averages all nine threshold outcomes inside each
+seed and uses the locked exact one-sided sign-flip test with Holm correction
+over the four externally estimable datasets. The sign-only test is a secondary
+robustness check. Configuration-level McNemar and Clopper-Pearson calculations
+reuse fits and thresholds and are descriptive diagnostics. Retention
+uncertainty uses seed-cluster resampling in the main paper.
+
+No unfavorable result may be removed. A failed primary pass condition cannot
+be replaced by a secondary ablation, alternate threshold, alternate shift
+budget, or exploratory seed result.
 
 ## Forbidden Claims
 
-Do not claim that VERA beats group-reweighted ERM on Waterbirds. Do not claim
-that VERA is clinically safe or deployment-ready. Do not claim universal
-state-of-the-art performance across domain-generalization or concept-erasure
-benchmarks. Do not claim that VERA works without source or environment labels.
-Do not treat the Camelyon17-WILDS frozen-embedding benchmark as clinical
-deployment evidence. Do not call R-LACE, TaCo, or SPLINCE/SPLICE proxy rows
-official reference implementations.
+- Do not claim that VERA invents LTT, conformal risk control, finite-family
+  testing, generic robust validation, or generic fairness certification.
+- Do not claim universal concept erasure, security against unregistered
+  attackers, fairness for unmeasured concepts, or eraser optimality.
+- Do not claim external-distribution validity without the stated support and
+  density-ratio assumptions.
+- Do not recode Camelyon17 support mismatch as a measured external violation.
+- Do not claim clinical safety or clinical deployment evidence.
+- Do not claim acceptance at AAAI, ICLR, ISEF, or any other venue is likely or
+  guaranteed on the basis of internal audits.
+- Do not hide, minimize, or remove the manuscript's generative-AI assistance
+  disclosure.
 
-## Current Submission Boundary
+## Release And Human Gates
 
-The local packet now has two durable official rows, a high-stakes official
-Camelyon17-WILDS row, a claim-grade Waterbirds MANCE++ reference row, a large
-full no-cap Camelyon17 MANCE++ reference row, pinned official upstream
-repositories for close eraser baselines, real INLP rows, official LEACE rows,
-and a green adversarial internal review. The paper remains bounded as a
-protocol contribution rather than a universal erasure
-state-of-the-art claim. The claim ledger is meant to make that boundary
-difficult to accidentally erase while drafting.
+Every published number must trace to a frozen row, receipt, preregistration
+hash, and analysis audit. The anonymous package excludes private datasets and
+large derivatives but includes compact rows, all 200 JSON receipts, hashes,
+analysis code, figures, paper sources, and one-command compact reproduction.
+
+Submission remains blocked until two genuine external ML-publisher reviews are
+closed, the human author completes the scientific/authorship verification gate,
+the official venue checklist and deadlines are personally confirmed, and the
+final anonymous package passes its content and metadata audits.

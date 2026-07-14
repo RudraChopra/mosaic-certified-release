@@ -12,6 +12,7 @@ sys.path.insert(0, str(SCRIPTS))
 
 from vera_robust_certificate import (  # noqa: E402
     certify_balanced_iut_fixed_profile,
+    certify_balanced_shift_envelope,
     certify_balanced_shift_radius,
     certify_discrete_iut_fixed_profile,
     certify_discrete_group_shift_envelope,
@@ -90,6 +91,59 @@ class CertificateTests(unittest.TestCase):
         )
         self.assertEqual(iut.decision, "EDIT")
         self.assertGreaterEqual(envelope.certified_radius, 1.25)
+
+    def test_balanced_envelope_exposes_coordinates_and_unsupported_zero(self) -> None:
+        source = np.asarray([0] * 1000 + [1] * 1000)
+        leakage = {
+            "asymmetric": np.asarray(
+                [1] * 600 + [0] * 400 + [1] * 400 + [0] * 600
+            )
+        }
+        target = {
+            "target::environment=0": np.zeros(1000, dtype=int),
+            "target::environment=1": np.zeros(1000, dtype=int),
+        }
+        envelope = certify_balanced_shift_envelope(
+            target,
+            leakage,
+            source,
+            delta=0.05,
+            family_size=36,
+            target_threshold=0.1,
+            leakage_threshold=0.55,
+            registered_target_environments=[0, 1, 2],
+            gamma_cap=4.0,
+        )
+        self.assertEqual(envelope.target_environment_radii["2"], 0.0)
+        self.assertEqual(envelope.unsupported_target_environments, ("2",))
+        self.assertEqual(envelope.deployment_common_radius, 0.0)
+        self.assertEqual(envelope.decision, "ABSTAIN")
+        self.assertGreaterEqual(envelope.observed_common_radius, 1.0)
+        self.assertGreater(
+            envelope.source_class_radii["1"],
+            envelope.source_class_radii["0"],
+        )
+        self.assertIn(
+            "balanced_leakage::asymmetric",
+            envelope.simultaneous_curve_parameters,
+        )
+
+    def test_balanced_envelope_is_empty_when_iid_contract_fails(self) -> None:
+        source = np.asarray([0] * 500 + [1] * 500)
+        envelope = certify_balanced_shift_envelope(
+            {"target::environment=0": np.zeros(1000, dtype=int)},
+            {"perfect": np.ones(1000, dtype=int)},
+            source,
+            delta=0.05,
+            family_size=24,
+            target_threshold=0.1,
+            leakage_threshold=0.7,
+            gamma_cap=4.0,
+        )
+        self.assertEqual(envelope.observed_common_radius, 0.0)
+        self.assertEqual(envelope.target_environment_radii["0"], 0.0)
+        self.assertEqual(envelope.source_class_radii, {"0": 0.0, "1": 0.0})
+        self.assertEqual(envelope.decision, "ABSTAIN")
 
     def test_iut_fixed_profile_spends_alpha_over_candidates_only(self) -> None:
         samples = {

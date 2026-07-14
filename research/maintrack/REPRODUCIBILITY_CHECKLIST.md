@@ -2,114 +2,117 @@
 
 ## Scope
 
-This checklist defines what must be reproducible before Paper A is submitted to
-ICLR, NeurIPS, AAAI, ICML, ICDM, or a journal extension. It covers the VERA
-method paper, not the old science-fair materials. The authoritative
-machine-readable manifest is
-`research/configs/faro_paper_a_reproducibility.json`.
+This checklist covers the claim-grade VERA paper, its exact synthetic studies,
+and the untouched-seed official-code experiment. The locked scientific object
+is the support-aware certificate for paired target harm and balanced attacker
+leakage. It does not certify perfect erasure, clinical safety, or deployment
+outside the declared support and bounded-density-ratio model.
 
-## Fixed Claims
+## Locked Protocols
 
-The paper's reproducible claim is that VERA estimates a leakage-utility
-frontier over candidate representation edits, applies the smallest edit whose
-simultaneous intervals certify source reduction and target-risk preservation,
-and abstains when the certified safe set is empty. The reproducibility packet
-does not support clinical deployment claims, universal concept-erasure
-optimality, or state-of-the-art claims against reference implementations that
-have not been run.
+- Primary real-study preregistration:
+  `research/prereg_confirmatory_balanced.json` with SHA-256
+  `2767b64f1fa844f512026c5cc4d5e81bca4ed92bef9c8dfd5287dec2918395aa`.
+- Real learning-curve diagnostic:
+  `research/prereg_real_learning_curve_diagnostic.json` and its sidecar.
+- Secondary ablations:
+  `research/prereg_confirmatory_secondary_ablations.json` and its sidecar.
+- Candidate/group-count exact extension:
+  `research/prereg_exact_family_grid.json` and its sidecar.
+- Seeds `0` through `4` are exploratory and excluded from confirmation.
+- Seeds `5` through `12` are the eight untouched confirmatory seeds.
+- The primary analysis uses all nine registered threshold pairs at full
+  certification size and `Gamma=1.0`; `Gamma=1.01` is the fixed shift
+  sensitivity.
 
-## Required Seeds and Statistics
+## Data And Methods
 
-Official benchmark rows must use seeds `0, 1, 2, 3, 4` unless the benchmark is
-explicitly deterministic and the manuscript says why. Every claim-ready row
-must report seed-level metrics, 95 percent confidence intervals, paired
-comparisons against the predeclared strongest relevant baseline, target utility,
-worst-group or worst-domain utility when applicable, residual source leakage,
-and the selected edit or abstention decision.
+The real matrix contains five public datasets: Waterbirds,
+Camelyon17-WILDS, CivilComments-WILDS, Bios, and GaitPDB. It crosses five
+pinned official eraser implementations: INLP, R-LACE, LEACE, TaCo, and
+MANCE++. One receipt is required for every dataset, eraser, and untouched seed,
+for exactly 200 official-code receipts and zero proxy rows. Each receipt records
+the upstream remote and commit, runner commit, split hashes, preregistration
+hash, candidate settings, and per-example NPZ hashes.
 
-## Reproduction Commands
+The external split is never used to construct an edit, train a target model or
+attacker, certify a candidate, or select a deployment rule. It is opened only
+for locked evaluation after candidate construction. Camelyon17 center 2 is
+outside certification support and therefore forces VERA to abstain; its
+single-class external source slice makes balanced leakage non-estimable.
 
-The current checked reproduction path is:
+## Statistical Checks
+
+- The candidate-wise fixed-profile intersection-union test spends
+  `delta / 12` per candidate and requires every component contract to pass.
+- The post-selection envelope uses simultaneous coverage over all registered
+  candidate-contract pairs.
+- The exact balanced study contains 54 cells and 2,000 repetitions per cell.
+- The family/grid extension contains 216 cells and 2,000 repetitions per cell.
+- Primary real-data inference averages the nine correlated threshold outcomes
+  within each seed and applies an exact one-sided sign-flip test, followed by
+  Holm correction over the four externally estimable datasets.
+- A sign-only test is a secondary robustness check. Configuration-level
+  McNemar and Clopper-Pearson calculations are reported as dependent-cell
+  diagnostics, not independent-trial inference.
+- Safe-retention uncertainty is reported with a seed-cluster bootstrap; the
+  configuration-level binomial interval remains a labeled diagnostic.
+
+## Reproduction
+
+From the anonymous archive, compact reproduction verifies frozen rows and
+rebuilds the main table without private datasets or upstream repositories:
 
 ```bash
-python3 research/scripts/audit_benchmark_claims.py
-/tmp/faro-torch-venv/bin/python research/scripts/audit_reference_baseline_scope.py --no-fail
-/usr/bin/python3 research/scripts/audit_upstream_baseline_references.py --no-fail
-/usr/bin/python3 research/scripts/audit_aaai2027_source_readiness.py --no-fail
-/usr/bin/python3 research/scripts/run_camelyon17_numpy_store_benchmark.py --store-dir /Volumes/Backups/FARO/artifacts/camelyon17_resnet18_torch_full_numpy_store --results research/artifacts/camelyon17_wilds_official_multiseed_results.csv --receipt research/artifacts/camelyon17_wilds_official_result_receipt.json --statistics research/artifacts/camelyon17_wilds_official_statistical_report.json --seeds 0,1,2,3,4
-/tmp/faro-torch-venv/bin/python research/scripts/run_camelyon17_projection_frontier_certificate.py
-/usr/bin/python3 research/scripts/audit_mance_camelyon_scaling.py --no-fail
-/usr/bin/python3 research/scripts/build_maintrack_figures.py
-python3 research/scripts/audit_maintrack_readiness.py --no-fail
-python3 research/scripts/run_faro_adversarial_review.py --no-fail
-tectonic -X compile research/maintrack/faro_main.tex
+python research/scripts/reproduce_vera_submission.py
 ```
 
-The full historical artifact runner remains:
+Full reproduction requires the public datasets, pinned upstream repositories,
+and immutable NPZ paths recorded by the preregistration and receipts:
 
 ```bash
-python3 research/scripts/reproduce_paper_artifacts.py
+python research/scripts/reproduce_vera_submission.py --full
 ```
 
-That runner is useful for broad regression checks, but the main-track readiness
-audit is the authoritative submission gate for Paper A.
+The claim-grade audit sequence is:
 
-## Current Claim-Ready Rows
+```bash
+python research/scripts/audit_exact_balanced_simulation.py
+python research/scripts/audit_exact_family_grid_simulation.py
+python research/scripts/audit_official_eraser_receipts.py \
+  --prereg research/prereg_confirmatory_balanced.json \
+  --hash-file research/prereg_confirmatory_balanced.sha256 \
+  --receipt-dir research/artifacts/confirmatory_balanced_receipts \
+  --output research/artifacts/confirmatory_balanced_receipt_audit.json
+python research/scripts/analyze_vera_confirmatory_balanced.py
+python research/scripts/audit_vera_confirmatory_analysis.py
+python research/scripts/audit_vera_confirmatory_compact.py
+python research/scripts/analyze_vera_learning_curve_diagnostic.py
+python research/scripts/analyze_vera_confirmatory_ablations.py
+python research/scripts/build_vera_confirmatory_results.py
+python research/scripts/audit_presentation_readiness.py
+python research/scripts/audit_goal_completion.py --no-fail
+```
 
-Waterbirds and Camelyon17-WILDS are the current durable official claim-ready
-families in the local packet. Waterbirds has full local image metadata, frozen
-ResNet-18 embeddings, five seeds, paired statistics, and a passing receipt.
-Waterbirds is a negative or abstention row: VERA abstains under the locked rule
-while group-reweighted ERM is stronger on worst-group accuracy.
-Camelyon17-WILDS has a complete 455,954-example frozen ResNet-18 embedding
-store, full NumPy-store conversion, five locked protocol rows, paired
-statistics, a passing high-stakes official receipt, and a full
-projection-frontier abstention certificate. It supports
-representation-reliability claims only, not clinical deployment claims.
-CivilComments-WILDS has prior full-store stress artifacts, but it is not
-counted as claim-ready while its receipt and paired statistical report are
-dataless local placeholders.
+The independent confirmatory audit rehashes and directly loads all 480 raw
+candidate NPZs, recomputes 25,920 candidate-configuration rows with a separate
+certificate implementation, replays every decision rule, and regenerates the
+headline and inferential diagnostics.
 
-## Current Required Blocker
+## Release Policy
 
-The high-stakes benchmark blocker is cleared by Camelyon17-WILDS. The remaining
-submission blocker is that the adversarial internal review and readiness audit
-must clear critical and major findings. CivilComments-WILDS remains a
-non-durable optional/third-family row until its local receipt and statistics are
-rehydrated or regenerated.
+Release source code, frozen preregistrations, compact aggregate rows, receipt
+JSON files, audit reports, figures, paper sources, and the anonymous archive.
+Do not commit third-party datasets, derived embedding stores, or private human
+review/account records. Public-data derivatives remain on external storage and
+are represented by manifests and content hashes.
 
-The upstream baseline inventory now pins official local repositories for
-MANCE++, R-LACE, TaCo, and LEACE. These pins improve reproducibility, but
-R-LACE, TaCo, and LEACE remain proxy rows until exact matched receipts are
-generated. The AAAI-27 source readiness audit currently verifies source
-integrity and reports a single expected warning: local final AAAI PDF
-compilation still requires PDFLaTeX.
+## Final Human Gates
 
-## Artifact Policy
-
-Small scripts, configuration files, figure builders, receipts, statistical
-reports, and manuscript sources should be released. Third-party datasets and
-large embedding stores should not be committed to the public repository. The
-release should instead provide download instructions, manifest paths, checkpoint
-hashes, validation reports, and regeneration commands.
-
-## Pre-Submission Checklist
-
-- The novelty lock, algorithm specification, theory target, baseline protocol,
-  statistical integrity plan, and this reproducibility checklist are present.
-- The machine-readable reproducibility manifest validates with
-  `audit_reproducibility_packet.py`.
-- The benchmark claim audit reports the current official claim-ready rows.
-- The reference baseline scope audit verifies that proxy rows and official
-  reference rows are labeled separately.
-- The upstream baseline inventory verifies the pinned official-code repositories
-  used to define future reference-parity work.
-- The AAAI-27 source readiness audit has no source failures; any PDFLaTeX
-  warning must be resolved before actual AAAI upload.
-- The main-track figure builder regenerates all manuscript figures from
-  existing CSV/JSON artifacts.
-- The manuscript compiles locally from `research/maintrack/faro_main.tex`.
-- The readiness audit has no failing checks.
-- The adversarial internal review has zero critical and zero major findings.
-- Camelyon17 or an equivalent high-stakes benchmark has a passing official
-  receipt and paired statistics.
+Technical audits do not establish novelty, proof correctness, ethical
+eligibility, or likely acceptance. Before submission, the human author must
+verify every official checklist response, confirm the venue deadline and
+OpenReview account, inspect the anonymous archive, and close two genuine cold
+reviews from researchers who publish in machine learning. The manuscript's
+generative-AI disclosure must remain present and must accurately describe the
+full scope of assistance.

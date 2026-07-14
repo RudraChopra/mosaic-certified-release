@@ -1,0 +1,66 @@
+{
+  "name": "VERA full-certification plug-in learning-curve diagnostic",
+  "status": "frozen_before_confirmatory_outcome_analysis",
+  "parent_preregistration": "research/prereg_confirmatory_balanced.json",
+  "parent_preregistration_sha256": "2767b64f1fa844f512026c5cc4d5e81bca4ed92bef9c8dfd5287dec2918395aa",
+  "purpose": "Compare observed VERA-IUT abstention across the five locked certification fractions with a full-certification empirical plug-in prediction. This is a calibration diagnostic, not independent validation of the finite-sample theorem.",
+  "inputs": {
+    "datasets": [
+      "Waterbirds",
+      "Camelyon17-WILDS",
+      "CivilComments-WILDS",
+      "Bios",
+      "GaitPDB"
+    ],
+    "confirmatory_seeds": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "candidate_count": 12,
+    "attacker_count": 4,
+    "validation_fractions": [
+      0.05,
+      0.1,
+      0.25,
+      0.5,
+      1.0
+    ],
+    "target_harm_thresholds": [
+      0.05,
+      0.1,
+      0.2
+    ],
+    "balanced_leakage_thresholds": [
+      0.6,
+      0.7,
+      0.8
+    ],
+    "delta": 0.05,
+    "gamma": 1.0
+  },
+  "bootstrap": {
+    "replicates": 2000,
+    "seed": 20270719,
+    "sampling_unit": "Aligned certification example across all candidates and attackers.",
+    "strata": "Cartesian cells of target label, binary source label, and registered environment.",
+    "procedure": "Within each dataset and algorithmic seed, draw one full-length empirical-bootstrap sequence with replacement inside every stratum. For each fraction, take the registered max(1, floor(fraction times stratum size)) prefix from every stratum. Prefixes are nested within each replicate.",
+    "dependence": "The same sampled indices are applied to all 12 candidates and all four attackers, preserving their row-wise dependence. Bootstrap replicate indices are coordinated across the eight algorithmic seeds before aggregation.",
+    "certificate": "Recompute the fixed-profile balanced VERA intersection-union test at candidate alpha delta divided by 12. Paired target bounds split candidate alpha across positive and negative tails; each balanced leakage bound splits it across the two source-class recalls.",
+    "aggregation": "For each dataset, fraction, and bootstrap replicate, average abstention across eight seeds and all nine locked threshold pairs.",
+    "interval": "Pointwise 95 percent percentile interval over 2000 bootstrap aggregate abstention rates.",
+    "observed_curve": "Use the deterministic nested stratified subsets fixed in the parent preregistration and the receipt-backed VERA-IUT rule rows."
+  },
+  "reporting": {
+    "primary_plot": "For each dataset, overlay observed abstention at all five fractions on the plug-in bootstrap mean and pointwise 95 percent band.",
+    "coverage_summary": "Report each point as inside or outside its band and the number of datasets for which all five observed points are inside.",
+    "support_mismatch": "Camelyon17 VERA abstention is fixed to one in both observed and predicted curves because external center 2 is unsupported. Display it but do not treat it as evidence that the bootstrap predicts statistical power.",
+    "claim_boundary": "The full certification fold estimates the empirical law used by the bootstrap, so this overlay is descriptive calibration. Only the separately locked synthetic law provides an exact theory-data prediction."
+  },
+  "outcome_independent": true
+}

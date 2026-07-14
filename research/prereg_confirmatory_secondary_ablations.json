@@ -1,0 +1,190 @@
+{
+  "project": "VERA: Support-Aware Shift Envelopes for Representation Erasure",
+  "status": "frozen_before_untouched_seed_aggregate_outcome_analysis",
+  "parent_preregistration": "research/prereg_confirmatory_balanced.json",
+  "parent_preregistration_sha256": "2767b64f1fa844f512026c5cc4d5e81bca4ed92bef9c8dfd5287dec2918395aa",
+  "scope": "Secondary analyses of the locked seeds 5-12 balanced-leakage receipts. They cannot change the primary datasets, methods, seeds, candidates, splits, attackers, thresholds, decision rules, endpoints, or pass conditions.",
+  "outcome_access_at_lock": "No aggregate seeds 5-12 confirmatory report, candidate table, abstract number, or real-data diagnostic has been generated. Individual run receipts necessarily contain external arrays; that operational limitation is disclosed.",
+  "selection_utility": "Among eligible candidates, minimize maximum validation balanced leakage, then maximum environment-conditional paired target harm, then stable candidate key.",
+  "common_rules": {
+    "source_metric": "Equal-weight mean of source-class recalls for each attacker.",
+    "target_metric": "Maximum environment-conditional paired target harm.",
+    "delta": 0.05,
+    "external_safety": "Always evaluated against the complete four-attacker balanced-leakage contract and every externally estimable target environment.",
+    "support": "Camelyon17 remains procedurally unsupported and VERA remains forced to abstain in every ablation.",
+    "default_analysis_slice": "Unless an ablation names another fraction or shift budget, use the full certification fold, Gamma=1.0, and all nine registered target-harm by balanced-leakage threshold pairs.",
+    "inference": "Seed-cluster bootstrap intervals are descriptive. No ablation p-value is promoted to a confirmatory claim.",
+    "multiplicity": "Primary IUT keeps candidate alpha at delta divided by the original 12 candidates in every leave-out analysis. The simultaneous envelope keeps the original complete-family denominator. This isolates information removal from a multiplicity windfall."
+  },
+  "ablations": {
+    "fixed_profile_shift_budget": {
+      "gamma_values": [
+        1.0,
+        1.01,
+        1.05,
+        1.1,
+        1.25,
+        1.5,
+        2.0,
+        4.0
+      ],
+      "fractions": [
+        1.0
+      ],
+      "outputs": [
+        "VERA-IUT deployment rate",
+        "measured external contract-violation rate",
+        "safe deployment retention",
+        "dataset-level abstention"
+      ]
+    },
+    "validation_size": {
+      "fractions": [
+        0.05,
+        0.1,
+        0.25,
+        0.5,
+        1.0
+      ],
+      "gamma": 1.0,
+      "outputs": [
+        "VERA-IUT abstention rate",
+        "point-selection and VERA measured external contract-violation rates",
+        "safe deployment retention"
+      ]
+    },
+    "contract_thresholds": {
+      "target_harm": [
+        0.05,
+        0.1,
+        0.2
+      ],
+      "balanced_leakage": [
+        0.6,
+        0.7,
+        0.8
+      ],
+      "outputs": [
+        "deployment rate",
+        "measured external contract-violation rate",
+        "safe deployment retention"
+      ]
+    },
+    "attacker_portfolio": {
+      "portfolios": {
+        "linear_only": [
+          "linear"
+        ],
+        "linear_rbf": [
+          "linear",
+          "rbf"
+        ],
+        "full": [
+          "linear",
+          "rbf",
+          "forest",
+          "mlp"
+        ],
+        "drop_linear": [
+          "rbf",
+          "forest",
+          "mlp"
+        ],
+        "drop_rbf": [
+          "linear",
+          "forest",
+          "mlp"
+        ],
+        "drop_forest": [
+          "linear",
+          "rbf",
+          "mlp"
+        ],
+        "drop_mlp": [
+          "linear",
+          "rbf",
+          "forest"
+        ]
+      },
+      "outputs": [
+        "deployment rate",
+        "full-portfolio measured external contract-violation rate",
+        "candidate-selection changes",
+        "attacker limiting-frequency"
+      ]
+    },
+    "eraser_frontier": {
+      "conditions": [
+        "all five official erasers",
+        "leave INLP out",
+        "leave R-LACE out",
+        "leave LEACE out",
+        "leave TaCo out",
+        "leave MANCE++ out"
+      ],
+      "outputs": [
+        "deployment rate",
+        "measured external contract-violation rate",
+        "safe deployment retention",
+        "selected-method distribution"
+      ]
+    },
+    "frontier_granularity": {
+      "conditions": {
+        "full_12": "All registered candidate strengths.",
+        "coarse_5": [
+          "INLP::rank=4",
+          "RLACE::rank=4",
+          "LEACE::closed_form",
+          "TaCo::components_removed=3",
+          "MANCE++::epsilon=0.05,steps=3"
+        ]
+      },
+      "rule": "Candidate alpha and envelope family size remain fixed at the full 12-candidate allocation.",
+      "outputs": [
+        "deployment rate",
+        "measured external contract-violation rate",
+        "safe deployment retention",
+        "selection changes"
+      ]
+    },
+    "certificate_geometry": {
+      "outputs": [
+        "common-radius distribution",
+        "environment and source-class coordinate distributions",
+        "limiting-contract frequencies",
+        "unsupported-cell zero-coordinate verification"
+      ]
+    },
+    "inference_robustness": {
+      "conditions": [
+        "exact two-sided paired McNemar diagnostic over threshold configurations with Holm correction over supported datasets",
+        "exact one-sided sign test over nonzero seed-block differences with Holm correction over supported datasets",
+        "seed-cluster bootstrap interval for safe-deployment retention",
+        "strict VERA false-acceptance audit within every supported dataset-seed block"
+      ],
+      "rule": "These checks are secondary diagnostics. Configuration-level McNemar pairs are dependent, the sign test is a lower-power symmetry-free sensitivity analysis, and the per-seed block audit does not replace the locked aggregate primary endpoint.",
+      "outputs": [
+        "discordant counts and adjusted McNemar values",
+        "nonzero-block signs and adjusted sign-test values",
+        "seed-cluster retention interval",
+        "maximum supported dataset-seed VERA false-acceptance rate"
+      ]
+    }
+  },
+  "reporting_constraints": {
+    "all_registered_cells_reported": true,
+    "unfavorable_results_retained": true,
+    "no_post_hoc_threshold_selection": true,
+    "external_outcomes_never_used_for_candidate_selection": true,
+    "primary_pass_conditions_changed": false,
+    "claim_status": "Secondary outcome-blind sensitivity analysis."
+  },
+  "pass_conditions": {
+    "source_and_hash": "This JSON and its SHA-256 sidecar match and are committed before aggregate seeds 5-12 outcome analysis.",
+    "receipt_gate": "The 200-run official receipt audit passes before any ablation is generated.",
+    "coverage": "Every registered ablation cell is present or explicitly marked not estimable with a reason.",
+    "provenance": "Every output records the parent preregistration hash, this ablation hash, and source artifact hashes.",
+    "honesty": "The manuscript labels all ablations secondary and does not use them to replace a failed primary endpoint."
+  }
+}

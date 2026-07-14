@@ -2,80 +2,78 @@
 
 ## Identity
 
-**VERA: Validation-Gated Edit-or-Abstain for Reliable Representation Interventions**
+**VERA: Verified Erasure under Reweighting Ambiguity**
 
-VERA is the ICLR-first reboot of the TRACE work. TRACE remains the
-implementation scaffold in `research/src/trace`, but the paper identity moves
-to VERA: a method and evaluation protocol for finding the safest point on a
-source-removal versus target-preservation frontier. If ICLR 2027 is not ready,
-the fallback sequence is ICML, NeurIPS, ICDM, AAAI, or a strong ML journal.
+VERA is a general machine-learning method for deciding whether a proposed
+representation edit remains acceptable under a declared deployment shift. It is
+software-only and domain-general; the evidence spans vision, medical vision,
+text, and time series. Camelyon17 is a high-stakes reliability benchmark, not a
+clinical-safety claim.
 
 ## Core Thesis
 
-Robust representation learning should not blindly erase source or domain
-information. When source and target evidence overlap, perfect erasure can damage
-the task. VERA treats this as the central problem: estimate a frontier of
-candidate edits, choose the smallest edit that reduces source leakage without
-violating a target-risk constraint, and abstain when no safe edit exists.
+Concept erasers construct interventions, but a deployment system still needs to
+know how much shift an intervention can survive. VERA evaluates paired target
+harm against the identity edit and leakage from fresh, heterogeneous attackers.
+For each candidate, it lower-certifies a support-aware vector of groupwise
+density-ratio budgets under which every registered contract holds. The output
+is a certified shift envelope, its common-radius summary, limiting contracts,
+or `ABSTAIN`.
 
-## Main-Conference Claim
+The finite-candidate decision layer is an application of Learn Then Test and
+related distribution-free risk control. The novelty claim is deliberately
+narrower: the paired multi-contract erasure shift envelope, its simultaneous
+lower certificate over a continuum of deployment budgets, its common-radius
+geometry, and its support-mismatch boundary.
 
-VERA is not a medical app, a hallucination detector, or a dashboard. It is a
-general ML method for representation editing under distribution shift.
+## Evidence Contract
 
-The intended main-paper claim is:
+The locked evidence package has three parts. The exact balanced study contains
+54 cells: six validation sizes, three error levels, three shift budgets, and
+2,000 replicates per cell. An independent implementation replays every seeded
+cell and checks both false acceptance and predicted abstention. A separate
+216-cell exact grid varies validation size, candidate-family size,
+validated-environment count, and error level, again with 2,000 replicates per
+cell; each family includes the identity control action in its multiplicity
+count.
 
-> Source erasure is unsafe when source and target signal overlap. VERA makes the
-> tradeoff measurable, optimizes the target-preserving frontier, and exposes
-> when robust repair should abstain.
+The real study is a preregistered 200-run matrix:
 
-The current paper contract is locked in
-[`PAPER_A_LOCK.md`](PAPER_A_LOCK.md). That file is the source of truth for the
-ICLR/NeurIPS/AAAI readiness target: contribution sentence, theory contract,
-empirical contract, and no-go rules.
+- five official-code erasers: INLP, R-LACE, LEACE, TaCo, and MANCE++;
+- five datasets: Waterbirds, Camelyon17-WILDS, CivilComments-WILDS, Bios, and
+  GaitPDB; and
+- eight untouched seeds (5--12) with one shared split, preprocessing,
+  target-probe, and attacker protocol per dataset. Pilot seeds 0--4 are
+  excluded from confirmation.
 
-The visual story is tracked in [`FIGURE_PLAN.md`](FIGURE_PLAN.md). The main
-figures must make VERA's frontier, safe set, and abstention behavior legible
-without relying on prose alone.
+Every run must carry the locked preregistration hash, the same runner commit, a
+pinned and clean upstream checkout, split hashes, and hashes for its per-example
+audit arrays. Missing or proxy rows fail closed.
 
-The reproducibility story is tracked in
-[`REPRODUCIBILITY_CHECKLIST.md`](REPRODUCIBILITY_CHECKLIST.md) and the
-machine-readable manifest
-[`../configs/faro_paper_a_reproducibility.json`](../configs/faro_paper_a_reproducibility.json).
-These files lock the seed policy, reproduction commands, artifact map, and
-claim boundaries for Paper A.
+## Scientific Boundaries
 
-The evidence-to-claim boundary is tracked in
-[`CLAIM_LEDGER.md`](CLAIM_LEDGER.md) and
-[`../configs/faro_claim_ledger.json`](../configs/faro_claim_ledger.json). This
-ledger is deliberately conservative: it records what the manuscript may claim,
-what it must not claim, and which artifacts prove each allowed statement.
+VERA does not certify clinical deployment, universal concept removal, or
+security against every measurable attacker. Its shift guarantee is restricted
+to deployment distributions absolutely continuous with respect to the
+certification distribution and bounded by the declared density ratio. A
+deployment environment absent from certification is not covered; the
+unsupported-cell theorem shows why no validation-only protocol can repair that
+without an additional structural assumption.
 
-## What Changes From TRACE
+Configuration-level tests that reuse the same seeds, samples, thresholds, or
+nested fractions are not treated as independent evidence. The analysis retains
+the preregistered diagnostics but uses seed-blocked sensitivity analyses for
+inferential claims. Corrections are recorded in
+[`ANALYSIS_CORRECTION_LEDGER.md`](ANALYSIS_CORRECTION_LEDGER.md).
 
-- The method identity changes from TRACE to VERA, a main-track
-  representation-learning contribution.
-- The key object becomes the frontier, not a single edited model.
-- Abstention becomes a first-class output rather than a limitation.
-- Medical data becomes one high-stakes benchmark family, not the whole project.
-- Official benchmark receipts and reproducibility gates become non-negotiable.
+## Completion Rule
 
-## Current Status
-
-As of July 13, 2026, the durable local packet has two materialized official
-claim-ready rows: Waterbirds and Camelyon17-WILDS. The Waterbirds row is
-scientifically useful but not a VERA win: VERA abstains under the locked
-selection rule, while a group-reweighted ERM probe is stronger on worst-group
-accuracy. Camelyon17-WILDS now supplies the high-stakes medical/hospital-shift
-row through a complete 455,954-example frozen ResNet-18 embedding store,
-NumPy-store conversion, five locked protocol rows, paired statistics, and a
-passing official receipt. This is representation-reliability evidence only,
-not clinical deployment evidence. CivilComments-WILDS has prior full-store
-result artifacts, but the receipt and statistical report are currently macOS
-File Provider dataless placeholders; the paper must not count that row until
-those files are rehydrated or regenerated as durable local artifacts.
-
-The project is therefore still not submission-ready, but the active blocker has
-moved: the official benchmark breadth and high-stakes row are now present, while
-the adversarial internal review and remaining claim-boundary issues must be
-cleared before main-track submission.
+The source of truth is [`VERA_AIRTIGHT_SPEC.md`](VERA_AIRTIGHT_SPEC.md), and the
+machine-readable decision is produced by
+`research/scripts/audit_goal_completion.py`. Submission readiness requires all
+scientific gates, a complete anonymous and named paper package, and two genuine
+cold reviews from researchers who publish in machine learning. Internal scripts
+cannot substitute for those reviews or guarantee acceptance. OpenAI Codex's
+extensive assistance is disclosed in the manuscript; every listed human author
+must complete [`HUMAN_AUTHOR_VERIFICATION_GATE.md`](HUMAN_AUTHOR_VERIFICATION_GATE.md)
+and personally verify the entire submission.

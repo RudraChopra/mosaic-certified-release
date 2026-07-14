@@ -1,0 +1,137 @@
+{
+  "candidates": [
+    {
+      "audit_npz": "/Volumes/Backups/FARO/artifacts/vera_balanced_confirmatory/CivilComments-WILDS__leace__seed-12/candidate-00.npz",
+      "audit_npz_sha256": "167e41f9d834d66f2d25f8ef9f864d482ab6ce9d5b3ee1aacd24df097deeed28",
+      "candidate_key": "LEACE::closed_form",
+      "method": "LEACE",
+      "metrics": {
+        "attackers": {
+          "forest": {
+            "certification_balanced_accuracy": 0.6681057757135175,
+            "external_balanced_accuracy": 0.660775200032166
+          },
+          "linear": {
+            "certification_balanced_accuracy": 0.5,
+            "external_balanced_accuracy": 0.5
+          },
+          "mlp": {
+            "certification_balanced_accuracy": 0.7726752764119185,
+            "external_balanced_accuracy": 0.765666840899039
+          },
+          "rbf": {
+            "certification_balanced_accuracy": 0.7162044187936133,
+            "external_balanced_accuracy": 0.7085979655019903
+          }
+        },
+        "certification_mean_paired_target_harm": 0.0135,
+        "certification_target_balanced_accuracy": 0.6027038794426769,
+        "external_mean_paired_target_harm": 0.022125,
+        "external_target_balanced_accuracy": 0.6096638687160235
+      },
+      "provenance": {
+        "commit": "9f51753821316a1edacf78b52b464ab26d40e60a",
+        "official_entrypoint": "concept_erasure.LeaceFitter.fit(method='leace')",
+        "remote": "https://github.com/EleutherAI/concept-erasure",
+        "repository": "/Volumes/Backups/FARO/external/concept-erasure"
+      },
+      "strength": "closed_form"
+    }
+  ],
+  "claim_configuration_verified": true,
+  "claim_grade": true,
+  "created_at": "2026-07-14T09:20:37.285578+00:00",
+  "dataset": "CivilComments-WILDS",
+  "environment_classes": {
+    "certification": [
+      0,
+      1
+    ],
+    "construction": [
+      0,
+      1
+    ],
+    "external": [
+      0,
+      1
+    ],
+    "train": [
+      0,
+      1
+    ]
+  },
+  "external_labels_locked_during_edit_construction": true,
+  "git_commit": "b77620363d2df30ffec448da5c58e5d73170f096",
+  "indices": {
+    "certification": {
+      "n": 8000,
+      "sha256": "8360e8294018f98cc3d2ca272bc4d4266733eb4400ad874d0086ba3766a4c884"
+    },
+    "construction": {
+      "n": 2000,
+      "sha256": "a65471dc02e71b3c6cee0b39acc914132f04b9cfabe804225411c67ba3819f40"
+    },
+    "external": {
+      "n": 8000,
+      "sha256": "55ad5fda004a13d0f1dc70f67a274e345b7ebee86e4972f57c753e4f4af2ce59"
+    },
+    "train": {
+      "n": 8000,
+      "sha256": "43e6ec60e016ef51c180ce2d950154f32d78af0c20cbf1873ba07be7a42188a5"
+    }
+  },
+  "locked_configuration": {
+    "dataset_manifest_sha256": "bfe7394a8189cfeaa12efbaf038306b0463c70d9e05508eed6f154823b0e5c10",
+    "method": {
+      "candidate_configuration": {
+        "candidate": "closed_form",
+        "method": "leace"
+      },
+      "candidate_count": 1,
+      "display_name": "LEACE",
+      "upstream_commit": "9f51753821316a1edacf78b52b464ab26d40e60a",
+      "upstream_remote": "https://github.com/EleutherAI/concept-erasure"
+    },
+    "runner_parameters": {
+      "max_certification": 8000,
+      "max_construction": 2000,
+      "max_external": 8000,
+      "max_train": 8000,
+      "pca_dimension": 128
+    }
+  },
+  "method_family": "leace",
+  "method_name": "LEACE",
+  "preprocessing": {
+    "explained_variance_ratio_sum": 0.5728705525398254,
+    "input_dimension": 256,
+    "output_dimension": 128,
+    "pca_fit_on_train_only": true,
+    "standardized_from_train_only": true
+  },
+  "prereg_sha256": "2767b64f1fa844f512026c5cc4d5e81bca4ed92bef9c8dfd5287dec2918395aa",
+  "preregistration_path": "/Volumes/Backups/FARO/github_export/vera-edit-or-abstain/research/prereg_confirmatory_balanced.json",
+  "seed": 12,
+  "smoke": false,
+  "source_classes": {
+    "certification": [
+      0,
+      1
+    ],
+    "construction": [
+      0,
+      1
+    ],
+    "external": [
+      0,
+      1
+    ],
+    "train": [
+      0,
+      1
+    ]
+  },
+  "split_policy": "eraser train/construction are disjoint group-stratified partitions of official train; certification is untouched official validation",
+  "store_dir": "/Volumes/Backups/FARO/artifacts/civilcomments_lexical_numpy_store",
+  "store_manifest_sha256": "bfe7394a8189cfeaa12efbaf038306b0463c70d9e05508eed6f154823b0e5c10"
+}

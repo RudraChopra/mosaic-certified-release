@@ -27,8 +27,10 @@ Erasure under Reweighting Ambiguity**. It studies the incremental, paired harm
 of editing a representation instead of the absolute performance of an edited
 model. It seeks a certificate that holds simultaneously for every deployment
 distribution whose density ratio relative to validation is bounded, without
-requiring environment labels or one known target weighting function. The
-worst-group mixture result is retained as a transparent special case. Leakage
+requiring one known target weighting function. The generic curve applies to
+any registered audit cell; the locked study uses observed environment cells
+for target harm and source-class cells for balanced leakage. Arbitrary mixtures
+of the observed target environments are covered. Leakage
 is audited against a heterogeneous, preregistered attacker portfolio because
 protection against one nonlinear probe is known not to transfer reliably to
 another.
@@ -147,11 +149,130 @@ the robust-risk upper bound as a new theorem.
     close to the paired-harm robust-risk interpretation and must be discussed.
     https://proceedings.mlr.press/v125/jeong20a.html
 
-The revised candidate novelty is the **erasure shift radius**: the maximum
-common bounded-reweighting budget under which one edit simultaneously satisfies
-paired target-harm and all registered leakage contracts. VERA returns a
-simultaneous lower confidence bound on this radius for every edit, valid over a
-continuum of deployment budgets, and reports which contract limits the radius.
-The unsupported-mass theorem explains when this radius cannot be nontrivial.
-This remains a candidate domain-specific contribution, not proof of novelty;
-the cold external reviews are still mandatory.
+The revised candidate novelty is the **support-aware erasure shift envelope**:
+a simultaneous vector of groupwise bounded-reweighting budgets under which one
+edit satisfies paired target-harm and all registered leakage contracts. The
+original common erasure shift radius is the minimum coordinate over a declared
+deployment support. The unsupported-cell theorem explains why an unobserved
+required environment or environment--source cell receives radius zero without
+additional structure. This remains a candidate domain-specific contribution,
+not proof of novelty; the cold external reviews are still mandatory.
+
+## Third-Pass Update: Robust Validation and 2026 Risk-Control Work
+
+A July 13, 2026 search specifically targeted `risk control ambiguity set`,
+`bounded likelihood ratio risk control`, `certified distribution shift radius`,
+and `concept erasure certification distribution shift`. It adds the following
+closest work and further narrows the claim.
+
+18. Cauchois et al., *Robust Validation: Confident Predictions Even When
+    Distributions Shift*, JASA 2024. This gives finite-sample conformal coverage
+    uniformly over an $f$-divergence ball. It invalidates any broad claim that
+    VERA is the first validation procedure robust to an ambiguity set. Its
+    object is prediction-set coverage, not paired representation-edit harm,
+    attacker leakage, or an erasure shift radius.
+    https://arxiv.org/abs/2008.04267
+
+19. Timans et al., *On Continuous Monitoring of Risk Violations under Unknown
+    Shift*, UAI 2025. This monitors bounded deployment risks under arbitrary
+    evolving shifts using testing by betting. It is a post-deployment detector,
+    whereas VERA is a pre-deployment, support-scoped certificate.
+    https://proceedings.mlr.press/v286/timans25a.html
+
+20. Akbari, Afshari, and Boddeti, *Obliviator Reveals the Cost of Nonlinear
+    Guardedness in Concept Erasure*, NeurIPS 2025. This strengthens the need for
+    nonlinear attacker audits and prevents VERA from equating linear leakage
+    control with complete erasure.
+    https://proceedings.neurips.cc/paper_files/paper/2025/hash/d55f39791f04745b2e0c8abebf3dd5d7-Abstract-Conference.html
+
+21. Bai and Jin, *Conformal Selective Prediction with General Risk Control*,
+    arXiv:2603.24704, 2026. This combines selective prediction, e-values, and
+    general bounded risks, with an extension to distribution shift. VERA must
+    distinguish whole-edit abstention and its bounded-reweighting intervention
+    contracts from example-level selective prediction.
+    https://arxiv.org/abs/2603.24704
+
+## Fourth-Pass Update: Joint and Group-Conditional Certificates
+
+A July 14, 2026 search added three recent preprints that materially narrow the
+claim and must appear in the submission-facing discussion.
+
+22. Yu and Liu, *A Joint Finite-Sample Certificate for Adaptive Selective
+    Conformal Risk Control*, arXiv:2606.08517, 2026. This jointly certifies
+    selected risk, acceptance, and utility under adaptive threshold choice. It
+    further rules out claiming that coupling several finite-sample bounds is
+    new. Its decision is example-level selective prediction; it does not report
+    a support-aware distribution-shift envelope for a representation
+    intervention or retrained-attacker family.
+    https://arxiv.org/abs/2606.08517
+
+23. Huang et al., *Conditional Performance Guarantee for Large Reasoning
+    Models*, arXiv:2601.22790, 2026. This establishes group-conditional PAC risk
+    control for routing between reasoning models. It prevents VERA from
+    claiming generic group-conditional certification. VERA's remaining delta is
+    the simultaneous groupwise reweighting envelope for paired erasure harm and
+    leakage, its common-radius geometry, and its unsupported-cell boundary.
+    https://arxiv.org/abs/2601.22790
+
+24. Kotte, *When Can Conformal Risk Control Certify LLM Outputs? Bounds,
+    Impossibility, and Adaptation for Structured Generation*,
+    arXiv:2606.29054, 2026. Its feasibility and impossibility results are in a
+    different structured-generation setting, but they reinforce that an
+    abstention/impossibility story is not novel without an
+    intervention-specific identification boundary.
+    https://arxiv.org/abs/2606.29054
+
+These additions do not establish priority. They establish the exact statement
+that must survive external review: **VERA is an erasure-specific robust
+selection layer whose proposed object is a simultaneous support-aware envelope
+of groupwise bounded-reweighting budgets under which paired edit harm and every
+registered retrained-attacker leakage contract hold.** The common radius is the
+minimum coordinate over declared support. CVaR duality, concentration tools,
+finite-family testing, group-conditional risk control, abstention, and generic
+support impossibility are all prior machinery and must be credited as such. No
+search establishes absence of all prior overlap; two external cold reviews
+remain a hard gate.
+
+## Fifth-Pass Update: Fairness Certificates and Shifted Interventions
+
+A July 14, 2026 search targeted `representation erasure distribution shift
+certification`, `fairness audit shift certificate`, `concept intervention OOD`,
+and the exact phrase `support-aware concept erasure`. It found no paper with the
+complete VERA object, but it found four neighbors that materially raise the
+novelty bar.
+
+25. Kang et al., *Certifying Some Distributional Fairness with Subpopulation
+    Decomposition*, NeurIPS 2022. This certifies model performance over shifted
+    fairness-constrained distributions. VERA cannot claim to introduce
+    distribution-shift fairness certification.
+    https://proceedings.neurips.cc/paper_files/paper/2022/hash/c8e9a2beb84ab1a616edb89581c4b32a-Abstract-Conference.html
+
+26. Ehyaei, Farnadi, and Samadi, *From Fragile to Certified: Wasserstein Audits
+    of Group Fairness Under Distribution Shift*, arXiv:2509.26241. Its public
+    ICLR 2026 reviews are a direct warning: applying established DRO machinery to
+    a fairness functional was judged application-relevant but theoretically
+    incremental. VERA must demonstrate an intervention-specific scientific
+    object and decision consequence, not rely on CVaR/DRO algebra as novelty.
+    https://arxiv.org/abs/2509.26241
+
+27. Espinosa Zarlenga et al., *Avoiding Leakage Poisoning: Concept
+    Interventions Under Distribution Shifts*, ICML 2025. This studies a
+    different intervention in concept bottleneck models, but directly shows that
+    leaked information can become harmful OOD. It strengthens the motivation
+    while ruling out a first-study-of-shifted-concept-interventions claim.
+    https://proceedings.mlr.press/v267/espinosa-zarlenga25a.html
+
+28. Yang et al., *Concept Concentration for Faithful Representation
+    Intervention*, ICML 2026. This gives a different nonlinear infeasibility
+    result and an OOD-robust intervention method for LLM safety. VERA's
+    unsupported-cell impossibility is an identification boundary for validation
+    support, not a first impossibility theorem for representation intervention.
+    https://openreview.net/forum?id=g6fTNu8z0f
+
+The remaining proposed delta is therefore intentionally narrow: the selected
+edit is evaluated by paired incremental target harm and a retrained heterogeneous
+attacker portfolio; each contract receives a simultaneous groupwise
+bounded-reweighting curve; the vector of admissible budgets is reported with an
+explicit zero boundary for unsupported required cells; and the empirical study
+tests whether that object prevents contract-violating deployments. This is still
+a candidate synthesis contribution until cold expert review.

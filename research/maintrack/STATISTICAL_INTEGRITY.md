@@ -1,30 +1,52 @@
 # VERA Statistical Integrity
 
-## Claim-Ready Unit
+## Confirmatory Unit
 
-A claim-ready benchmark row requires a materialized receipt, a statistical
-report, locked splits, no data leakage, source leakage metrics, target utility
-metrics, worst-group or worst-domain metrics when applicable, and an explicit
-claim boundary.
+The claim-grade real-data unit is one preregistered dataset, official eraser,
+and untouched algorithmic seed. The complete matrix contains five datasets,
+five pinned official erasers, and seeds 5 through 12, for 200 JSON receipts.
+Every receipt must match the locked preregistration hash, runner commit,
+upstream commit, split hashes, and per-example audit-array hashes. A missing,
+proxy, dirty, or checksum-mismatched cell fails closed.
 
-## Seeds
+Seeds 0 through 4 informed estimand repair, threshold-family design, and power
+diagnostics. They are exploratory and contribute to no confirmatory estimate,
+interval, hypothesis test, or abstract number.
 
-Official stochastic rows use seed list `0, 1, 2, 3, 4`. Deterministic rows may
-repeat the locked protocol rows only when the receipt states that the solver is
-deterministic and the manuscript does not treat repeated rows as independent
-randomness.
+## Selection And Outcomes
 
-## Confidence Interval Policy
+Edits, target probes, leakage attackers, certification bounds, and deployment
+choices use no external labels. External arrays are generated only after each
+candidate is fixed and are used for locked evaluation. Aggregate confirmatory
+analysis begins only after all 200 runs finish and the receipt matrix passes.
 
-Reports must include a 95 percent confidence interval or a clearly scoped
-deterministic equivalent. Paired comparisons should use the predeclared
-strongest relevant baseline, usually GroupDRO-style or group-reweighted ERM for
-the current official rows.
+The primary analysis uses the full certification fold, all nine registered
+target-harm/leakage threshold pairs, and Gamma 1.0. Gamma 1.01 is a fixed shift
+sensitivity. No alternate seed, threshold, validation fraction, attacker
+portfolio, or shift budget may replace an unfavorable primary result.
 
-## Current Official Rows
+## Dependence And Inference
 
-Waterbirds and Camelyon17-WILDS are the durable claim-ready rows in the local
-packet. CivilComments-WILDS remains prior non-durable stress evidence until its
-receipt and statistical report are materialized locally. Camelyon17-WILDS is a
-high-stakes representation-reliability benchmark, not evidence of clinical
-safety.
+Threshold pairs and nested validation fractions reuse the same examples and
+seed-level fits. Configuration-level Clopper-Pearson and McNemar calculations
+are therefore dependent-cell diagnostics. They are not treated as independent
+replications.
+
+The primary point-selection comparison averages all nine threshold outcomes
+within each seed and uses a one-sided exact sign-flip test over the eight seed
+blocks, with Holm correction over the four externally estimable datasets. This
+test relies on paired sign symmetry. A sign-only test is reported as a
+lower-power sensitivity without magnitude symmetry. Retention uncertainty uses
+whole-seed cluster resampling; the configuration-level binomial interval is
+kept only as a labeled diagnostic.
+
+## Claim Boundaries
+
+Measured external violations are benchmark outcomes, not evidence that the
+external benchmark belongs to the theorem's density-ratio class. Camelyon17
+center 2 is outside certification support and therefore forces procedural
+abstention. Its one-class external source slice makes balanced leakage
+non-estimable and is never recoded as a measured violation.
+
+All five datasets, all registered methods, every adjusted p-value, and every
+failed pass condition remain in the released artifacts regardless of outcome.

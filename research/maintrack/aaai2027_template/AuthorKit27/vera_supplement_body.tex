@@ -1,0 +1,154 @@
+\begin{abstract}
+This supplement provides full proofs, protocol details, implementation audits,
+and receipt-level reporting for VERA. It follows the claims and terminology of
+the main paper. Standard finite-family testing, exact binomial intervals, CVaR
+duality, and bounded-density-ratio robustness are credited as prior machinery;
+the proposed object is the support-aware erasure shift envelope for paired
+representation interventions and a registered retrained-attacker portfolio.
+\end{abstract}
+
+\section{Scope and Reproducibility Contract}
+
+The exploratory parent preregistration is identified by SHA-256
+\texttt{4c9343207f940220d762e230023531af}\allowbreak
+\texttt{353cc0886a982f133ff7794c87f13ab7}. It governs seeds 0--4, which
+were used only for estimand and power diagnostics. The untouched-seed balanced
+confirmatory preregistration is identified by SHA-256
+\texttt{2767b64f1fa844f512026c5cc4d5e81b}\allowbreak
+\texttt{ca4ed92bef9c8dfd5287dec2918395aa} and immutable Git tag
+\texttt{vera-balanced-confirmatory-}\allowbreak
+\texttt{locked-2026-07-14}.
+The untouched-seed secondary-ablation protocol is identified by SHA-256
+\texttt{389b32fe926bf427abc80b4b249c6e9f}\allowbreak
+\texttt{27342b1ade3ecfc19e71fee32b1362a6}.
+The descriptive real learning-curve diagnostic is separately fixed by SHA-256
+\texttt{b2f0a5c66c5fa55c84aeeaa30f397820}\allowbreak
+\texttt{4a4217d8c50e60973a671a21d316e824}.
+The candidate-family/group-count coverage extension is fixed by SHA-256
+\texttt{c63a4a5b68ab194dd52bbaea1f1d3266}\allowbreak
+\texttt{a450147349e9994a51cd0566fdf61b2e}.
+The confirmatory lock fixes datasets, methods, candidates, seeds 5--12, splits,
+thresholds, attackers, validation fractions, the primary IUT at $\Gamma=1$,
+the $\Gamma=1.01$ sensitivity, the simultaneous envelope, and every pass
+condition before the first new-seed run.
+
+All claim-grade real runs are tied to one parent repository commit and one
+pinned upstream eraser commit. Each compact JSON receipt names its split
+indices, preprocessing policy, official upstream entry point, candidate
+strengths, and the SHA-256 digest of every external-drive audit archive. The
+audit opens every archive and verifies required arrays, lengths, supports,
+attacker names, candidate uniqueness, repository cleanliness, and commit
+identity. A missing, proxy, dirty, or hash-mismatched row fails closed.
+
+\input{../../appendix_shift_robust_theory}
+
+\section{Exact Finite-Sample Study}
+
+The exact study was locked before execution. It crosses certification sizes
+$n\in\{250,500,1000,2000,5000,10000\}$ with
+$\delta\in\{0.01,0.05,0.10\}$ and
+$\Gamma\in\{1,1.01,1.25\}$, using 2,000 independent replicates in each of
+54 cells. Twelve candidates trade paired target harm in three environments
+against four attackers, each measured by two source-class recalls. The
+fixed-profile IUT allocates $\delta/12$ to each candidate; paired harm and
+balanced leakage split each component allocation between their two exact
+one-sided bounds.
+
+The finite multinomial/binomial law supplies the exact acceptance probability,
+simultaneous prediction bands, and false-acceptance bounds. All 54 cells pass:
+zero false acceptances occur in 108,000 repetitions, and every observed
+abstention rate falls inside its simultaneous exact prediction band. The
+largest absolute prediction error is 0.0143. This study validates the discrete
+implementation under a known law. It does not establish novelty or replace the
+real benchmark study.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.96\textwidth]{../../figures/vera_exact_theory_match.pdf}
+\caption{Exact predicted and observed abstention across the 54 locked balanced
+cells. Bands are simultaneous over the registered grid.}
+\label{fig:supp-exact}
+\end{figure*}
+
+\IfFileExists{vera_family_grid_results.tex}{
+\input{vera_family_grid_results}
+}{}
+
+\IfFileExists{../../figures/vera_real_learning_curve.pdf}{
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.96\textwidth]{../../figures/vera_real_learning_curve.pdf}
+\caption{Observed real-data abstention versus a full-certification empirical
+plug-in bootstrap. Resampling preserves registered strata and aligned
+dependence across candidates and attackers. Unlike Fig.~\ref{fig:supp-exact},
+this is a descriptive calibration diagnostic because the same full
+certification fold estimates its bootstrap law.}
+\label{fig:supp-real-learning}
+\end{figure*}
+}{}
+
+\section{Official Real-Study Protocol}
+
+The real study crosses INLP, R-LACE, LEACE, TaCo, and MANCE++ with Waterbirds,
+Camelyon17-WILDS, CivilComments-WILDS, Bios, and GaitPDB at untouched seeds
+5--12. Candidate construction uses at most 8,000 eraser-training examples and 2,000 construction
+examples; certification and external evaluation each use at most 8,000
+examples. Standardization and randomized PCA are fitted on eraser-training data
+only. Every edit retrains a balanced logistic target probe and four leakage
+attackers: linear logistic, RBF-Nystroem logistic, random forest, and a two-layer
+MLP.
+
+The registered grid uses certification fractions
+$\{0.05,0.10,0.25,0.50,1.00\}$, paired target-harm thresholds
+$\tau\in\{0.05,0.10,0.20\}$, leakage thresholds
+$\lambda\in\{0.60,0.70,0.80\}$, $\delta=0.05$, primary budget $\Gamma=1$,
+shifted sensitivity $\Gamma=1.01$, and radius cap $\Gamma_{\max}=8$. The
+decision rules are always deploy, point-feasible validation selection,
+VERA-IUT, the VERA simultaneous envelope, and an external oracle used only for
+evaluation.
+
+Camelyon17 center 2 is absent from certification, while centers 0, 1, 3, and 4
+are observed. Its center-0-versus-other binary source label is constant in the
+center-2 external slice. The primary protocol therefore assigns center 2 a
+zero envelope coordinate and abstains for a declared five-center deployment.
+This is procedural non-certifiability, not by itself a measured external
+contract violation.
+
+\section{Statistical Integrity}
+
+Threshold pairs and nested fractions share the same eight seed-level fits and
+examples. Configuration-level Clopper--Pearson and McNemar calculations are
+retained as preregistered diagnostics, not treated as independent-trial
+inference. The primary comparison averages each rule's nine outcomes within
+seed and applies the preregistered exact one-sided sign-flip test over eight
+seed blocks, with Holm correction over four externally estimable datasets.
+All adjusted values are reported regardless of outcome. Seeds 0--4 contribute
+to none of these estimates or tests.
+
+External labels are unused by edit construction and candidate selection.
+The unattended runner nevertheless computes external arrays run by run after
+each candidate is fixed; aggregate analysis is deferred until the entire
+official matrix and receipt audit finish. The paper does not claim that
+external labels were physically inaccessible throughout execution.
+
+\InputIfFileExists{vera_supplement_results.tex}{
+  \input{vera_supplement_results}
+}{
+  \section{Receipt-Level Results}
+  The locked official matrix and fail-closed aggregate analysis are still in
+  progress in this source state. No placeholder value is a scientific result.
+}
+
+\InputIfFileExists{vera_ablation_results.tex}{
+  \input{vera_ablation_results}
+}{}
+
+\section{Claim Boundary}
+
+VERA does not prove perfect erasure, security against every measurable
+attacker, fairness for unmeasured concepts, clinical safety, or validity on new
+support. The density-ratio budgets are declared sensitivity parameters, not
+facts estimated from an external test set. Internal audits check consistency
+and provenance but cannot establish novelty, proof correctness, or conference
+acceptance. Two cold reviews from researchers who publish in machine learning
+remain a mandatory submission gate.

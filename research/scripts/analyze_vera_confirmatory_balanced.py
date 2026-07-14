@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import Any
 
 import numpy as np
+from scipy.stats import binomtest
 
 from analyze_vera_attacker_ablation import load_candidates
 from analyze_vera_balanced_existing import (
@@ -24,7 +25,7 @@ from analyze_vera_balanced_existing import (
 from analyze_vera_real_study import cp_interval, holm_adjust, nested_stratified_indices
 from vera_robust_certificate import (
     certify_balanced_iut_fixed_profile,
-    certify_balanced_shift_radius,
+    certify_balanced_shift_envelope,
 )
 
 
@@ -78,6 +79,46 @@ def exact_one_sided_signflip(differences: list[float]) -> float:
     )
 
 
+def exact_one_sided_sign_test(differences: list[float]) -> float:
+    """One-sided sign test after discarding exact zero seed-block differences."""
+
+    signs = [value for value in differences if abs(value) > 1e-15]
+    if not signs:
+        return 1.0
+    positive = sum(value > 0.0 for value in signs)
+    return float(
+        binomtest(positive, len(signs), 0.5, alternative="greater").pvalue
+    )
+
+
+def seed_cluster_ratio_interval(
+    numerators: dict[int, int],
+    denominators: dict[int, int],
+    *,
+    seed: int = 2_027_071_9,
+    replicates: int = 20_000,
+) -> tuple[float, float]:
+    """Bootstrap a ratio by resampling whole algorithmic-seed clusters."""
+
+    keys = sorted(set(numerators) | set(denominators))
+    if not keys or sum(denominators.get(key, 0) for key in keys) == 0:
+        return 0.0, 1.0
+    rng = np.random.default_rng(seed)
+    values = np.empty(replicates, dtype=np.float64)
+    for index in range(replicates):
+        sampled = rng.choice(keys, size=len(keys), replace=True)
+        denominator = sum(denominators.get(int(key), 0) for key in sampled)
+        values[index] = (
+            np.nan
+            if denominator == 0
+            else sum(numerators.get(int(key), 0) for key in sampled) / denominator
+        )
+    finite = values[np.isfinite(values)]
+    if len(finite) == 0:
+        return 0.0, 1.0
+    return float(np.quantile(finite, 0.025)), float(np.quantile(finite, 0.975))
+
+
 def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
     estimable = [row for row in rows if row["external_contract_estimable"]]
     deployments = sum(bool(row["deployed"]) for row in rows)
@@ -106,6 +147,56 @@ def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "procedurally_unsupported_deployment_count": sum(
             bool(row["procedurally_unsupported_deployment"]) for row in rows
         ),
+    }
+
+
+def build_abstract_record(
+    *,
+    prereg_hash: str,
+    stress_configuration_count: int,
+    point_rate: float,
+    vera_rate: float,
+    retention: float,
+    empirical_pass: bool,
+    gap_pass: bool,
+    camelyon_abstention_pass: bool,
+    camelyon_forced_count: int,
+) -> dict[str, Any]:
+    if empirical_pass and gap_pass:
+        headline_mode = "empirical_gap"
+        sentence = (
+            f"Across {stress_configuration_count} prespecified stress configurations, "
+            f"validation-only selection deployed contract-violating edits in "
+            f"{100 * point_rate:.1f}% of configurations versus "
+            f"{100 * vera_rate:.1f}% for VERA, while VERA retained "
+            f"{100 * retention:.1f}% of external-oracle opportunities."
+        )
+    else:
+        headline_mode = "theory_forced_abstention"
+        sentence = (
+            "VERA gives finite-sample false-acceptance control over its declared "
+            "shift class and identifies when certification is impossible; on "
+            f"Camelyon17 it forced abstention in all {camelyon_forced_count} "
+            "registered VERA configurations because the deployment hospital was "
+            "outside certification support."
+        )
+    return {
+        "verified": True,
+        "registered_pass_conditions_met": empirical_pass,
+        "headline_mode": headline_mode,
+        "headline_gap_condition_met": gap_pass,
+        "theory_forced_abstention_lead_verified": (
+            headline_mode == "theory_forced_abstention"
+            and camelyon_abstention_pass
+        ),
+        "unsupported_camelyon_abstention_verified": camelyon_abstention_pass,
+        "camelyon_forced_abstention_configuration_count": camelyon_forced_count,
+        "prereg_sha256": prereg_hash,
+        "stress_configuration_count": stress_configuration_count,
+        "point_selection_violation_rate": point_rate,
+        "vera_iut_violation_rate": vera_rate,
+        "safe_retention": retention,
+        "sentence": sentence,
     }
 
 
@@ -193,7 +284,20 @@ def run_analysis(
                         )
                         evaluated: list[dict[str, Any]] = []
                         for candidate in prepared:
-                            envelope = certify_balanced_shift_radius(
+                            registered_environments = list(
+                                dataset_config.get(
+                                    "certification_environment_classes",
+                                    sorted(
+                                        int(key.rsplit("=", 1)[1])
+                                        for key in candidate["target"]
+                                    ),
+                                )
+                            ) + list(
+                                dataset_config.get(
+                                    "unsupported_external_environment_classes", []
+                                )
+                            )
+                            envelope = certify_balanced_shift_envelope(
                                 candidate["target"],
                                 candidate["leakage"],
                                 candidate["source"],
@@ -201,6 +305,7 @@ def run_analysis(
                                 family_size=family_size,
                                 target_threshold=target_threshold,
                                 leakage_threshold=leakage_threshold,
+                                registered_target_environments=registered_environments,
                                 gamma_cap=gamma_cap,
                             )
                             iut = certify_balanced_iut_fixed_profile(
@@ -243,11 +348,34 @@ def run_analysis(
                                 ),
                                 "envelope_eligible": (
                                     not support_mismatch
-                                    and envelope.certified_radius >= gamma
+                                    and envelope.deployment_common_radius >= gamma
                                 ),
-                                "envelope_radius": envelope.certified_radius,
+                                "envelope_radius": envelope.deployment_common_radius,
+                                "observed_envelope_radius": envelope.observed_common_radius,
+                                "target_environment_radii": envelope.target_environment_radii,
+                                "source_class_radii": envelope.source_class_radii,
+                                "unsupported_target_environments": envelope.unsupported_target_environments,
+                                "right_censored_coordinates": envelope.right_censored_coordinates,
+                                "simultaneous_curve_parameters": envelope.simultaneous_curve_parameters,
                                 "iut_limiting_contracts": iut.limiting_contracts,
-                                "envelope_limiting_contracts": envelope.limiting_contracts,
+                                "envelope_limiting_contracts": tuple(
+                                    key
+                                    for key, radius in {
+                                        **{
+                                            f"target::environment={key}": value
+                                            for key, value in envelope.target_environment_radii.items()
+                                        },
+                                        **{
+                                            f"source_class={key}": value
+                                            for key, value in envelope.source_class_radii.items()
+                                        },
+                                    }.items()
+                                    if radius
+                                    == min(
+                                        list(envelope.target_environment_radii.values())
+                                        + list(envelope.source_class_radii.values())
+                                    )
+                                ),
                                 "external_max_target_harm": external_target,
                                 "external_max_balanced_leakage": external_leakage,
                                 "external_contract_estimable": external_estimable,
@@ -278,6 +406,26 @@ def run_analysis(
                                     "iut_eligible": record["iut_eligible"],
                                     "envelope_eligible": record["envelope_eligible"],
                                     "envelope_radius": record["envelope_radius"],
+                                    "observed_envelope_radius": record[
+                                        "observed_envelope_radius"
+                                    ],
+                                    "target_environment_radii": json.dumps(
+                                        record["target_environment_radii"],
+                                        sort_keys=True,
+                                    ),
+                                    "source_class_radii": json.dumps(
+                                        record["source_class_radii"], sort_keys=True
+                                    ),
+                                    "unsupported_target_environments": json.dumps(
+                                        record["unsupported_target_environments"]
+                                    ),
+                                    "right_censored_coordinates": json.dumps(
+                                        record["right_censored_coordinates"]
+                                    ),
+                                    "simultaneous_curve_parameters": json.dumps(
+                                        record["simultaneous_curve_parameters"],
+                                        sort_keys=True,
+                                    ),
                                     "iut_limiting_contracts": json.dumps(
                                         record["iut_limiting_contracts"]
                                     ),
@@ -456,6 +604,25 @@ def run_analysis(
         if oracle_opportunities == 0
         else iut_safe_on_opportunity / oracle_opportunities
     )
+    retention_numerators: dict[int, int] = {}
+    retention_denominators: dict[int, int] = {}
+    for seed in seeds:
+        seed_opportunities = [
+            config_id
+            for config_id, row in oracle_primary.items()
+            if row["seed"] == seed and row["deployed"]
+        ]
+        retention_denominators[seed] = len(seed_opportunities)
+        retention_numerators[seed] = sum(
+            bool(
+                iut_by_id[config_id]["deployed"]
+                and iut_by_id[config_id]["external_contract_satisfied"] is True
+            )
+            for config_id in seed_opportunities
+        )
+    retention_cluster_interval = seed_cluster_ratio_interval(
+        retention_numerators, retention_denominators
+    )
 
     naive_regimes: dict[str, dict[str, Any]] = {}
     for dataset in supported:
@@ -492,6 +659,9 @@ def run_analysis(
     point_by_id = {row["config_id"]: row for row in point_primary}
     seed_differences: dict[str, list[float]] = {}
     raw_p: dict[str, float] = {}
+    sign_raw_p: dict[str, float] = {}
+    mcnemar_raw_p: dict[str, float] = {}
+    mcnemar_counts: dict[str, dict[str, int]] = {}
     for dataset in supported:
         differences = []
         for seed in seeds:
@@ -521,7 +691,70 @@ def run_analysis(
             differences.append(point_rate - iut_rate)
         seed_differences[dataset] = differences
         raw_p[dataset] = exact_one_sided_signflip(differences)
+        sign_raw_p[dataset] = exact_one_sided_sign_test(differences)
+        dataset_ids = [
+            config_id
+            for config_id, row in point_by_id.items()
+            if row["dataset"] == dataset
+        ]
+        point_only = sum(
+            bool(point_by_id[config_id]["measured_external_contract_violation"])
+            and not bool(
+                iut_by_id[config_id]["measured_external_contract_violation"]
+            )
+            for config_id in dataset_ids
+        )
+        iut_only = sum(
+            not bool(
+                point_by_id[config_id]["measured_external_contract_violation"]
+            )
+            and bool(iut_by_id[config_id]["measured_external_contract_violation"])
+            for config_id in dataset_ids
+        )
+        mcnemar_counts[dataset] = {
+            "point_only_violation": point_only,
+            "vera_only_violation": iut_only,
+        }
+        discordant = point_only + iut_only
+        mcnemar_raw_p[dataset] = (
+            1.0
+            if discordant == 0
+            else float(
+                binomtest(
+                    min(point_only, iut_only),
+                    discordant,
+                    0.5,
+                    alternative="two-sided",
+                ).pvalue
+            )
+        )
     holm_p = holm_adjust(raw_p)
+    sign_holm_p = holm_adjust(sign_raw_p)
+    mcnemar_holm_p = holm_adjust(mcnemar_raw_p)
+
+    iut_primary_by_dataset_seed = {
+        dataset: {
+            str(seed): summarize(
+                [
+                    row
+                    for row in iut_primary
+                    if row["dataset"] == dataset and row["seed"] == seed
+                ]
+            )
+            for seed in seeds
+        }
+        for dataset in supported
+    }
+    strict_seed_control = all(
+        summary["measured_external_violation_rate"] <= delta
+        for seed_map in iut_primary_by_dataset_seed.values()
+        for summary in seed_map.values()
+    )
+    maximum_seed_violation_rate = max(
+        float(summary["measured_external_violation_rate"])
+        for seed_map in iut_primary_by_dataset_seed.values()
+        for summary in seed_map.values()
+    )
 
     stress_lookup = {
         (
@@ -640,10 +873,20 @@ def run_analysis(
         "confirmatory": True,
         "passed": empirical_pass,
         "theory_match_evaluated_elsewhere": True,
+        "datasets": list(datasets),
+        "erasers": [
+            method["display_name"] for method in study["methods"].values()
+        ],
+        "confirmatory_seeds": seeds,
+        "validation_fractions": fractions,
+        "target_harm_thresholds": target_thresholds,
+        "leakage_thresholds": leakage_thresholds,
+        "threshold_pair_count": len(target_thresholds) * len(leakage_thresholds),
+        "deployment_rules": list(RULES),
+        "delta": delta,
         "prereg_sha256": prereg_hash,
         "receipt_audit_sha256": sha256(args.receipt_audit),
         "pilot_seeds_excluded": prereg["parent_pilot"]["seeds"],
-        "confirmatory_seeds": seeds,
         "rule_row_count": len(rows),
         "candidate_row_count": len(candidate_rows),
         "primary_summaries": primary_summaries,
@@ -652,16 +895,46 @@ def run_analysis(
         "shifted_sensitivity_by_dataset": shifted_by_dataset,
         "learning_curve": learning_curve,
         "naive_failure_regimes": naive_regimes,
+        "datasets_with_naive_violation_at_least_20pct": sum(
+            record["measured_external_violation_rate"] >= 0.20
+            for record in naive_regimes.values()
+        ),
         "safe_retention": {
             "safe_deployment_count": iut_safe_on_opportunity,
             "external_oracle_opportunity_count": oracle_opportunities,
             "rate": retention,
             "cp95": list(cp_interval(iut_safe_on_opportunity, oracle_opportunities)),
+            "seed_cluster_bootstrap95": list(retention_cluster_interval),
+            "seed_cluster_numerators": retention_numerators,
+            "seed_cluster_denominators": retention_denominators,
             "supported_datasets_with_deployment": deployment_datasets,
         },
+        "primary_vera_by_supported_dataset_seed": iut_primary_by_dataset_seed,
+        "strict_supported_dataset_seed_control": strict_seed_control,
+        "maximum_supported_dataset_seed_violation_rate": maximum_seed_violation_rate,
         "seed_blocked_point_minus_iut_differences": seed_differences,
         "seed_blocked_one_sided_signflip_raw_p": raw_p,
         "seed_blocked_one_sided_signflip_holm_p": holm_p,
+        "seed_blocked_significant_dataset_count": sum(
+            value <= 0.05 for value in holm_p.values()
+        ),
+        "seed_blocked_one_sided_sign_test_raw_p": sign_raw_p,
+        "seed_blocked_one_sided_sign_test_holm_p": sign_holm_p,
+        "seed_blocked_sign_test_significant_dataset_count": sum(
+            value <= 0.05 for value in sign_holm_p.values()
+        ),
+        "mcnemar_discordant_counts": mcnemar_counts,
+        "mcnemar_two_sided_raw_p": mcnemar_raw_p,
+        "mcnemar_two_sided_holm_p": mcnemar_holm_p,
+        "mcnemar_holm_significant_dataset_count": sum(
+            value <= 0.05 for value in mcnemar_holm_p.values()
+        ),
+        "mcnemar_discordant_counts_reported": True,
+        "configuration_level_dependence_warning": (
+            "McNemar pairs share seed-level fits and threshold configurations; "
+            "these values are descriptive diagnostics, not independent-pair inference."
+        ),
+        "certification_tax_intervals_reported": True,
         "headline_stress_family": {
             "configuration_count": len(stress_point),
             "point_selection_violation_rate": stress_point_rate,
@@ -696,21 +969,21 @@ def run_analysis(
             "do not establish that an external benchmark belongs to that model."
         ),
     }
-    sentence = (
-        f"Across 32 prespecified stress configurations, validation-only selection "
-        f"deployed contract-violating edits in {100 * stress_point_rate:.1f}% of "
-        f"configurations versus {100 * stress_iut_rate:.1f}% for VERA, while VERA "
-        f"retained {100 * retention:.1f}% of externally certifiable opportunities."
+    camelyon_forced_count = sum(
+        not row["deployed"] and row["support_mismatch_forced_abstention"]
+        for row in camelyon_rows
     )
-    abstract = {
-        "verified": bool(empirical_pass),
-        "prereg_sha256": prereg_hash,
-        "stress_configuration_count": len(stress_point),
-        "point_selection_violation_rate": stress_point_rate,
-        "vera_iut_violation_rate": stress_iut_rate,
-        "safe_retention": retention,
-        "sentence": sentence,
-    }
+    abstract = build_abstract_record(
+        prereg_hash=prereg_hash,
+        stress_configuration_count=len(stress_point),
+        point_rate=stress_point_rate,
+        vera_rate=stress_iut_rate,
+        retention=retention,
+        empirical_pass=empirical_pass,
+        gap_pass=abstract_gap_pass,
+        camelyon_abstention_pass=camelyon_abstention_pass,
+        camelyon_forced_count=camelyon_forced_count,
+    )
     return rows, candidate_rows, report, abstract
 
 
