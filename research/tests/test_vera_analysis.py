@@ -1,0 +1,243 @@
+from __future__ import annotations
+
+import sys
+import unittest
+from pathlib import Path
+
+import numpy as np
+from scipy.stats import binom
+
+
+SCRIPTS = Path(__file__).resolve().parents[1] / "scripts"
+sys.path.insert(0, str(SCRIPTS))
+
+from analyze_real_theory_match import leakage_ucb, paired_ucb  # noqa: E402
+from analyze_vera_attacker_ablation import filter_portfolio  # noqa: E402
+from analyze_vera_confirmatory_balanced import (  # noqa: E402
+    exact_one_sided_signflip,
+    summarize,
+)
+from analyze_vera_real_study import (  # noqa: E402
+    exact_cluster_signflip,
+    group_contract_family,
+    holm_adjust,
+)
+from analyze_vera_secondary_ablations import (  # noqa: E402
+    cluster_summary,
+    select_candidate,
+)
+from run_exact_balanced_simulation import (  # noqa: E402
+    cp_upper,
+    exact_balanced_pass_probability,
+)
+from vera_robust_certificate import exact_discrete_risk_certificate  # noqa: E402
+
+
+class SeedBlockedInferenceTests(unittest.TestCase):
+    def test_five_concordant_seed_blocks_have_minimum_two_sided_p(self) -> None:
+        self.assertEqual(exact_cluster_signflip([1.0] * 5), 0.0625)
+
+    def test_zero_seed_block_differences_have_unit_p(self) -> None:
+        self.assertEqual(exact_cluster_signflip([0.0] * 5), 1.0)
+
+    def test_holm_adjustment_is_monotone_in_rank(self) -> None:
+        adjusted = holm_adjust({"a": 0.01, "b": 0.03, "c": 0.2})
+        self.assertEqual(adjusted, {"a": 0.03, "b": 0.06, "c": 0.2})
+
+    def test_eight_positive_blocks_have_exact_one_sided_p(self) -> None:
+        self.assertEqual(exact_one_sided_signflip([1.0] * 8), 1 / 256)
+
+    def test_nonpositive_direction_has_unit_one_sided_p(self) -> None:
+        self.assertEqual(exact_one_sided_signflip([-1.0] * 8), 1.0)
+
+    def test_confirmatory_summary_uses_estimable_configuration_denominator(self) -> None:
+        rows = [
+            {
+                "external_contract_estimable": True,
+                "deployed": True,
+                "external_contract_satisfied": False,
+                "measured_external_contract_violation": True,
+                "procedurally_unsupported_deployment": False,
+            },
+            {
+                "external_contract_estimable": True,
+                "deployed": False,
+                "external_contract_satisfied": "NA",
+                "measured_external_contract_violation": False,
+                "procedurally_unsupported_deployment": False,
+            },
+            {
+                "external_contract_estimable": False,
+                "deployed": True,
+                "external_contract_satisfied": "NA",
+                "measured_external_contract_violation": False,
+                "procedurally_unsupported_deployment": True,
+            },
+        ]
+        observed = summarize(rows)
+        self.assertEqual(observed["estimable_configuration_count"], 2)
+        self.assertEqual(observed["procedurally_unsupported_deployment_count"], 1)
+        self.assertEqual(observed["measured_external_violation_rate"], 0.5)
+
+
+class VectorizedCertificateTests(unittest.TestCase):
+    def test_paired_vectorized_bound_matches_production_certificate(self) -> None:
+        values = np.asarray([1] * 7 + [0] * 80 + [-1] * 13)
+        expected = exact_discrete_risk_certificate(
+            "harm",
+            values,
+            gamma=1.25,
+            failure_probability=0.001,
+            support=(-1, 0, 1),
+        )
+        observed = paired_ucb(
+            np.asarray([7]), np.asarray([13]), 100, 0.001, 1.25
+        )[0]
+        self.assertAlmostEqual(observed, expected.upper_confidence_bound)
+
+    def test_leakage_vectorized_bound_matches_production_certificate(self) -> None:
+        values = np.asarray([1] * 17 + [0] * 83)
+        expected = exact_discrete_risk_certificate(
+            "leakage",
+            values,
+            gamma=1.25,
+            failure_probability=0.001,
+            support=(0, 1),
+        )
+        observed = leakage_ucb(np.asarray([17]), 100, 0.001, 1.25)[0]
+        self.assertAlmostEqual(observed, expected.upper_confidence_bound)
+
+    def test_exact_balanced_probability_matches_brute_force_sum(self) -> None:
+        n = 8
+        p0, p1 = 0.35, 0.55
+        gamma = 1.01
+        threshold = 0.7
+        candidate_alpha = 0.05
+        upper = np.minimum(
+            1.0,
+            gamma
+            * cp_upper(np.arange(n + 1), n, candidate_alpha / 2.0),
+        )
+        brute = sum(
+            float(binom.pmf(first, n, p0))
+            * float(binom.pmf(second, n, p1))
+            for first in range(n + 1)
+            for second in range(n + 1)
+            if 0.5 * (upper[first] + upper[second]) <= threshold
+        )
+        exact = exact_balanced_pass_probability(
+            n,
+            (p0, p1),
+            gamma=gamma,
+            threshold=threshold,
+            candidate_alpha=candidate_alpha,
+        )
+        self.assertAlmostEqual(exact, brute)
+
+
+class GroupContractFamilyTests(unittest.TestCase):
+    def test_contracts_are_partitioned_by_environment(self) -> None:
+        samples = {
+            "target::environment=0": np.zeros(10),
+            "leakage::linear::environment=0::source=1": np.zeros(5),
+            "target::environment=2": np.zeros(8),
+        }
+        supports = {
+            "target::environment=0": (-1, 0, 1),
+            "leakage::linear::environment=0::source=1": (0, 1),
+            "target::environment=2": (-1, 0, 1),
+        }
+        thresholds = {key: 0.1 for key in samples}
+        grouped_samples, grouped_supports, grouped_thresholds = group_contract_family(
+            samples, supports, thresholds
+        )
+        self.assertEqual(set(grouped_samples), {"0", "2"})
+        self.assertEqual(len(grouped_samples["0"]), 2)
+        self.assertEqual(grouped_supports["2"]["target::environment=2"], (-1, 0, 1))
+        self.assertEqual(grouped_thresholds["0"]["target::environment=0"], 0.1)
+
+
+class SecondaryAblationTests(unittest.TestCase):
+    def test_attacker_portfolio_keeps_target_and_named_attackers(self) -> None:
+        samples = {
+            "target::environment=0": np.zeros(4),
+            "leakage::linear::environment=0::source=0": np.zeros(2),
+            "leakage::forest::environment=0::source=0": np.zeros(2),
+        }
+        supports = {
+            "target::environment=0": (-1, 0, 1),
+            "leakage::linear::environment=0::source=0": (0, 1),
+            "leakage::forest::environment=0::source=0": (0, 1),
+        }
+        filtered_samples, filtered_supports = filter_portfolio(
+            samples, supports, {"linear"}
+        )
+        self.assertEqual(
+            set(filtered_samples),
+            {
+                "target::environment=0",
+                "leakage::linear::environment=0::source=0",
+            },
+        )
+        self.assertEqual(set(filtered_samples), set(filtered_supports))
+
+    def test_selection_uses_radius_support_and_registered_tiebreak(self) -> None:
+        candidates = [
+            {
+                "candidate": "A",
+                "method": "INLP",
+                "support_mismatch": "False",
+                "certified_radius": "1.5",
+                "validation_max_leakage": "0.4",
+                "validation_max_target_harm": "0.1",
+            },
+            {
+                "candidate": "B",
+                "method": "LEACE",
+                "support_mismatch": "False",
+                "certified_radius": "1.2",
+                "validation_max_leakage": "0.2",
+                "validation_max_target_harm": "0.0",
+            },
+            {
+                "candidate": "C",
+                "method": "TaCo",
+                "support_mismatch": "True",
+                "certified_radius": "8.0",
+                "validation_max_leakage": "0.1",
+                "validation_max_target_harm": "0.0",
+            },
+        ]
+        selected = select_candidate(candidates, gamma=1.25)
+        self.assertIsNotNone(selected)
+        self.assertEqual(selected["candidate"], "A")
+        self.assertIsNone(
+            select_candidate(candidates, gamma=1.25, excluded_method="INLP")
+        )
+
+    def test_cluster_summary_keeps_configuration_denominator(self) -> None:
+        records = [
+            {
+                "dataset": "D",
+                "seed": seed,
+                "deployed": deployed,
+                "violation": violation,
+                "safe": deployed and not violation,
+                "oracle_deployed": True,
+            }
+            for seed, deployed, violation in [
+                (0, True, True),
+                (0, False, False),
+                (1, True, False),
+                (1, True, False),
+            ]
+        ]
+        summary = cluster_summary(records, bootstrap_seed=3, replicates=100)
+        self.assertEqual(summary["seed_cluster_count"], 2)
+        self.assertAlmostEqual(summary["deployment_rate"], 0.75)
+        self.assertAlmostEqual(summary["measured_external_violation_rate"], 0.25)
+        self.assertAlmostEqual(summary["violation_rate_conditional_on_deployment"], 1 / 3)
+        self.assertAlmostEqual(summary["safe_deployment_retention"], 0.5)
+
+if __name__ == "__main__":
+    unittest.main()

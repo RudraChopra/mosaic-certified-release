@@ -35,7 +35,6 @@ REPOSITORY = ROOT.parent
 DEFAULT_EXTERNAL = Path("/Volumes/Backups/FARO/artifacts/vera_real_study")
 DEFAULT_RECEIPTS = ROOT / "artifacts" / "real_study_receipts"
 DEFAULT_PREREG = ROOT / "prereg_real.json"
-DEFAULT_HASH = ROOT / "prereg_real.sha256"
 SPLIT_TRAIN = 0
 SPLIT_VALIDATION = 1
 SPLIT_EXTERNAL = 2
@@ -83,24 +82,40 @@ METHOD_NAMES = {
 
 
 def enforce_preregistration(path: Path) -> tuple[dict[str, object], str, str]:
-    if path.resolve() != DEFAULT_PREREG.resolve():
-        raise RuntimeError(f"claim-grade runs require {DEFAULT_PREREG}")
-    if not path.is_file() or not DEFAULT_HASH.is_file():
+    resolved = path.resolve()
+    try:
+        relative = resolved.relative_to(REPOSITORY.resolve()).as_posix()
+    except ValueError as error:
+        raise RuntimeError("claim-grade preregistration must be inside the repository") from error
+    hash_path = resolved.with_suffix(".sha256")
+    if not resolved.is_file() or not hash_path.is_file():
         raise RuntimeError("real-study preregistration or hash sidecar is missing")
-    observed = sha256(path)
-    expected = DEFAULT_HASH.read_text(encoding="utf-8").split()[0]
+    observed = sha256(resolved)
+    expected = hash_path.read_text(encoding="utf-8").split()[0]
     if observed != expected:
         raise RuntimeError("real-study preregistration hash mismatch")
-    relative = path.resolve().relative_to(REPOSITORY.resolve()).as_posix()
-    committed = subprocess.run(
-        ["git", "show", f"HEAD:{relative}"],
-        cwd=REPOSITORY,
-        check=True,
-        capture_output=True,
-    ).stdout
-    if hashlib.sha256(committed).hexdigest() != observed:
+    hash_relative = hash_path.relative_to(REPOSITORY.resolve()).as_posix()
+    try:
+        committed_prereg = subprocess.run(
+            ["git", "show", f"HEAD:{relative}"],
+            cwd=REPOSITORY,
+            check=True,
+            capture_output=True,
+        ).stdout
+        committed_hash = subprocess.run(
+            ["git", "show", f"HEAD:{hash_relative}"],
+            cwd=REPOSITORY,
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.split()[0]
+    except (IndexError, subprocess.CalledProcessError) as error:
+        raise RuntimeError("preregistration and hash sidecar must be committed at HEAD") from error
+    if hashlib.sha256(committed_prereg).hexdigest() != observed:
         raise RuntimeError("real-study preregistration is not committed at HEAD")
-    prereg = json.loads(path.read_text(encoding="utf-8"))
+    if committed_hash != observed:
+        raise RuntimeError("real-study hash sidecar is not committed at HEAD")
+    prereg = json.loads(resolved.read_text(encoding="utf-8"))
     if not isinstance(prereg, dict) or prereg.get("status") != "locked_before_claim_grade_runs":
         raise RuntimeError("real-study preregistration is not marked as locked")
     return prereg, observed, git_head()
@@ -764,6 +779,7 @@ def main() -> None:
         "method_name": METHOD_NAMES[args.method],
         "seed": args.seed,
         "git_commit": commit,
+        "preregistration_path": str(args.prereg.resolve()),
         "prereg_sha256": prereg_hash,
         "claim_configuration_verified": bool(args.claim_grade),
         "locked_configuration": locked_configuration,

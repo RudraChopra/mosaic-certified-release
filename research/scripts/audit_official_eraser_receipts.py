@@ -1,20 +1,25 @@
-"""Fail-closed audit for the official five-by-five-by-five VERA run matrix."""
+"""Fail-closed audit for a locked official VERA run matrix."""
 
 from __future__ import annotations
 
 import argparse
 import hashlib
 import json
+import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+import numpy as np
+
 
 ROOT = Path(__file__).resolve().parents[1]
+REPOSITORY = ROOT.parent
 DEFAULT_PREREG = ROOT / "prereg_real.json"
 DEFAULT_HASH = ROOT / "prereg_real.sha256"
 DEFAULT_RECEIPTS = ROOT / "artifacts" / "real_study_receipts"
 DEFAULT_REPORT = ROOT / "artifacts" / "official_eraser_receipt_audit.json"
+REQUIRED_ATTACKERS = {"linear", "rbf", "forest", "mlp"}
 
 
 def sha256(path: Path) -> str:
@@ -52,6 +57,7 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
     valid_receipts = 0
     runner_commits: set[str] = set()
     split_signatures: dict[tuple[str, int], set[str]] = {}
+    upstream_repositories: dict[str, tuple[str, str]] = {}
 
     if prereg.get("status") != "locked_before_claim_grade_runs":
         errors.append("preregistration is not locked")
@@ -93,6 +99,7 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
                 candidates = candidates if isinstance(candidates, list) else []
                 if len(candidates) != int(method_config.get("candidate_count", -1)):
                     receipt_errors.append("candidate count mismatch")
+                candidate_keys: list[str] = []
                 for candidate_index, candidate in enumerate(candidates):
                     if not isinstance(candidate, dict):
                         receipt_errors.append(f"candidate {candidate_index} is not an object")
@@ -103,6 +110,23 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
                         receipt_errors.append(f"candidate {candidate_index} upstream commit mismatch")
                     if provenance.get("remote") != method_config.get("upstream_remote"):
                         receipt_errors.append(f"candidate {candidate_index} upstream remote mismatch")
+                    repository = str(provenance.get("repository") or "")
+                    if not repository:
+                        receipt_errors.append(f"candidate {candidate_index} upstream repository missing")
+                    else:
+                        upstream_repositories[repository] = (
+                            str(provenance.get("commit") or ""),
+                            str(provenance.get("remote") or ""),
+                        )
+                    entrypoints = provenance.get("official_entrypoint") or provenance.get(
+                        "official_entrypoints"
+                    )
+                    if not entrypoints:
+                        receipt_errors.append(f"candidate {candidate_index} official entrypoint missing")
+                    candidate_key = str(candidate.get("candidate_key") or "")
+                    candidate_keys.append(candidate_key)
+                    if not candidate_key or not str(candidate.get("strength") or ""):
+                        receipt_errors.append(f"candidate {candidate_index} key or strength missing")
                     serialized = json.dumps(candidate).lower()
                     if "proxy" in serialized:
                         proxy_rows += 1
@@ -112,6 +136,85 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
                         receipt_errors.append(f"candidate {candidate_index} audit NPZ missing")
                     elif sha256(audit_path) != candidate.get("audit_npz_sha256"):
                         receipt_errors.append(f"candidate {candidate_index} audit NPZ hash mismatch")
+                    else:
+                        try:
+                            with np.load(audit_path) as archive:
+                                required = {
+                                    "target_harm_certification",
+                                    "target_harm_external",
+                                    "source_certification",
+                                    "source_external",
+                                    "environment_certification",
+                                    "environment_external",
+                                    "target_certification",
+                                    "target_external",
+                                }
+                                leakage_certification = {
+                                    name.removeprefix("leakage_correct_certification__")
+                                    for name in archive.files
+                                    if name.startswith("leakage_correct_certification__")
+                                }
+                                leakage_external = {
+                                    name.removeprefix("leakage_correct_external__")
+                                    for name in archive.files
+                                    if name.startswith("leakage_correct_external__")
+                                }
+                                if not required.issubset(archive.files):
+                                    receipt_errors.append(
+                                        f"candidate {candidate_index} audit NPZ required arrays missing"
+                                    )
+                                elif leakage_certification != REQUIRED_ATTACKERS or leakage_external != REQUIRED_ATTACKERS:
+                                    receipt_errors.append(
+                                        f"candidate {candidate_index} attacker arrays differ from locked portfolio"
+                                    )
+                                else:
+                                    certification_n = int(receipt.get("indices", {}).get("certification", {}).get("n", -1))
+                                    external_n = int(receipt.get("indices", {}).get("external", {}).get("n", -1))
+                                    certification_names = [
+                                        name
+                                        for name in archive.files
+                                        if name.endswith("_certification")
+                                        or "_certification__" in name
+                                    ]
+                                    external_names = [
+                                        name
+                                        for name in archive.files
+                                        if name.endswith("_external") or "_external__" in name
+                                    ]
+                                    if any(len(archive[name]) != certification_n for name in certification_names):
+                                        receipt_errors.append(
+                                            f"candidate {candidate_index} certification array length mismatch"
+                                        )
+                                    if any(len(archive[name]) != external_n for name in external_names):
+                                        receipt_errors.append(
+                                            f"candidate {candidate_index} external array length mismatch"
+                                        )
+                                    if not np.isin(
+                                        archive["target_harm_certification"], (-1, 0, 1)
+                                    ).all() or not np.isin(
+                                        archive["target_harm_external"], (-1, 0, 1)
+                                    ).all():
+                                        receipt_errors.append(
+                                            f"candidate {candidate_index} paired harm leaves declared support"
+                                        )
+                                    leakage_names = [
+                                        name
+                                        for name in archive.files
+                                        if name.startswith("leakage_correct_")
+                                    ]
+                                    if any(
+                                        not np.isin(archive[name], (0, 1)).all()
+                                        for name in leakage_names
+                                    ):
+                                        receipt_errors.append(
+                                            f"candidate {candidate_index} leakage correctness is non-binary"
+                                        )
+                        except (OSError, ValueError, KeyError) as exc:
+                            receipt_errors.append(
+                                f"candidate {candidate_index} audit NPZ unreadable: {exc}"
+                            )
+                if len(candidate_keys) != len(set(candidate_keys)):
+                    receipt_errors.append("candidate keys are not unique")
 
                 indices = receipt.get("indices", {})
                 indices = indices if isinstance(indices, dict) else {}
@@ -154,17 +257,68 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
         errors.append(f"method families used different split indices: {mismatched_splits}")
     if len(runner_commits) > 1:
         errors.append(f"claim-grade runs span multiple runner commits: {sorted(runner_commits)}")
+    for repository, (commit, remote) in sorted(upstream_repositories.items()):
+        path = Path(repository)
+        try:
+            observed_commit = subprocess.run(
+                ["git", "-C", str(path), "rev-parse", "HEAD"],
+                check=True,
+                capture_output=True,
+                text=True,
+            ).stdout.strip()
+            observed_remote = subprocess.run(
+                ["git", "-C", str(path), "remote", "get-url", "origin"],
+                check=True,
+                capture_output=True,
+                text=True,
+            ).stdout.strip()
+            dirty = subprocess.run(
+                ["git", "-C", str(path), "status", "--porcelain", "--untracked-files=all"],
+                check=True,
+                capture_output=True,
+                text=True,
+            ).stdout.splitlines()
+            material_dirty = [
+                line
+                for line in dirty
+                if "__pycache__" not in line
+                and not line.endswith((".pyc", ".DS_Store"))
+            ]
+            if observed_commit != commit or observed_remote != remote or material_dirty:
+                errors.append(
+                    f"upstream checkout is not clean and pinned: {repository}"
+                )
+        except (OSError, subprocess.CalledProcessError) as exc:
+            errors.append(f"could not verify upstream checkout {repository}: {exc}")
+
+    runner_commit_contains_prereg = False
+    if len(runner_commits) == 1:
+        runner_commit = next(iter(runner_commits))
+        try:
+            prereg_relative = args.prereg.resolve().relative_to(REPOSITORY.resolve())
+            committed_prereg = subprocess.run(
+                ["git", "show", f"{runner_commit}:{prereg_relative.as_posix()}"],
+                cwd=REPOSITORY,
+                check=True,
+                capture_output=True,
+            ).stdout
+            runner_commit_contains_prereg = hashlib.sha256(committed_prereg).hexdigest() == actual_hash
+        except subprocess.CalledProcessError:
+            runner_commit_contains_prereg = False
+        if not runner_commit_contains_prereg:
+            errors.append("runner commit does not contain the locked preregistration")
 
     expected_count = len(datasets) * len(methods) * len(seeds)
     passed = (
         bool(prereg)
-        and expected_count == 125
+        and expected_count > 0
         and valid_receipts == expected_count
         and not missing
         and not invalid
         and not errors
         and proxy_rows == 0
         and len(runner_commits) == 1
+        and runner_commit_contains_prereg
     )
     return {
         "name": "VERA official eraser receipt audit",
@@ -191,6 +345,8 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
         ),
         "shared_protocol_verified": not mismatched_splits and not invalid,
         "runner_commits": sorted(runner_commits),
+        "runner_commit_contains_locked_preregistration": runner_commit_contains_prereg,
+        "upstream_repository_count": len(upstream_repositories),
         "missing_receipts": missing,
         "invalid_receipts": invalid,
         "errors": errors,
