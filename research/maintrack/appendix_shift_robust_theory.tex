@@ -13,6 +13,16 @@ set
 \end{equation}
 and the robust risk
 $\rho_{\Gamma,P}(V)=\sup_{Q\in\mathcal{Q}_{\Gamma}(P)}\mathbb{E}_Q[V]$.
+The reference law is contract-specific. Target contracts use the
+environment-conditional law $P_g$, while leakage contracts use
+$P_{g,s}$ conditional on environment $g$ and represented source class $s$.
+Accordingly, an admissible deployment profile requires both
+$Q_g\in\mathcal Q_{\gamma_g}(P_g)$ for target harm and
+$Q_{g,s}\in\mathcal Q_{\gamma_g}(P_{g,s})$ for every leakage cell. Environment
+mixture weights may vary arbitrarily. Source-class weights are not claimed to
+vary arbitrarily: they must remain compatible with these marginal and
+conditional density-ratio restrictions. This hierarchical intersection is the
+stated shift model throughout.
 
 \begin{lemma}[Reweighting--CVaR identity]
 \label{lem:cvar-identity}
@@ -49,14 +59,16 @@ be their empirical distribution and let
 Fix $K$ bounded audit variables before observing their certification folds.
 Variable $k$ has range $[a_k,b_k]$ and $n_k$ independent observations.  Define
 \begin{equation}
- \epsilon_k=\sqrt{\frac{\log(2K/\delta)}{2n_k}},\qquad
- U_k=\min\left\{b_k,
+\begin{aligned}
+ \epsilon_k&=\sqrt{\frac{\log(2K/\delta)}{2n_k}},\\
+ U_k(\Gamma)&=\min\left\{b_k,
  \widehat\rho_{\Gamma,n_k}(V_k)
  +\Gamma(b_k-a_k)\epsilon_k\right\}.
+\end{aligned}
 \end{equation}
 Then, with probability at least $1-\delta$, simultaneously for all $k$ and
-all $Q\in\mathcal{Q}_{\Gamma}(P_k)$,
-$\mathbb{E}_Q[V_k]\leq U_k$.
+all $\Gamma\geq1$, and all $Q\in\mathcal{Q}_{\Gamma}(P_k)$,
+$\mathbb{E}_Q[V_k]\leq U_k(\Gamma)$.
 Consequently, any data-dependent edit selected only when its paired target-harm
 bound is at most $\tau$ and all of its preregistered attacker-leakage bounds
 are at most $\lambda$ satisfies those contracts for every allowed deployment
@@ -68,10 +80,10 @@ For one variable, the Dvoretzky--Kiefer--Wolfowitz inequality gives
 $\sup_t|F_n(t)-F(t)|\leq\epsilon_k$ except on an event of probability
 $\delta/K$.  For every $\eta\in[a_k,b_k]$,
 \begin{align}
- \left|\mathbb{E}_P[(V-\eta)_+]
- -\mathbb{E}_{\widehat P_n}[(V-\eta)_+]\right|
- &=\left|\int_{\eta}^{b_k}(F_n(t)-F(t))\,\mathrm{d}t\right|\\
- &\leq(b_k-a_k)\epsilon_k.
+ &\left|\mathbb{E}_P[(V-\eta)_+]
+ -\mathbb{E}_{\widehat P_n}[(V-\eta)_+]\right| \nonumber\\
+ &\quad=\left|\int_{\eta}^{b_k}(F_n(t)-F(t))\,\mathrm{d}t\right| \nonumber\\
+ &\quad\leq(b_k-a_k)\epsilon_k.
 \end{align}
 Applying this inequality inside Lemma~\ref{lem:cvar-identity} and taking the
 infimum over $\eta$ yields
@@ -88,22 +100,25 @@ $H\in\{-1,0,1\}$ have probabilities $(p_-,p_0,p_+)$. Then
 \begin{equation}
  \rho_{\Gamma,P}(L)=\min\{1,\Gamma p\},
 \end{equation}
-and
+and, writing $a=\Gamma p_+$ and $d=\Gamma(1-p_-)$,
 \begin{equation}
  \rho_{\Gamma,P}(H)=
  \begin{cases}
-  1, & \Gamma p_+\geq1,\\
-  \Gamma p_+, & \Gamma p_+<1\leq\Gamma(1-p_-),\\
-  \Gamma p_+-\{1-\Gamma(1-p_-)\}, & \Gamma(1-p_-)<1.
+  1, & a\geq1,\\
+  a, & a<1\leq d,\\
+  a+d-1, & d<1.
  \end{cases}
 \end{equation}
 For a registered family of $K$ contracts, replace $p$ by a one-sided
-Clopper--Pearson upper bound at error $\delta/K$. For paired harm, replace
-$p_+$ by its one-sided upper bound and $p_-$ by its one-sided lower bound,
-each at error $\delta/(2K)$. Substitution in the formulas above gives
-simultaneous upper confidence curves for every $\Gamma\geq1$. Inverting these
-curves therefore gives the same shift-radius and false-acceptance guarantees
-as Theorem~\ref{thm:shift-radius}.
+Clopper--Pearson upper bound at error $\delta/K$. For paired harm, let
+$U_+$ be a one-sided upper bound for $p_+$ and $L_-$ a one-sided lower bound
+for $p_-$, each at error $\delta/(2K)$, and substitute
+$\widetilde p_+=\min\{U_+,1-L_-\}$ and $\widetilde p_-=L_-$ in the formula.
+The clipping preserves the probability-simplex constraint and can only tighten
+the upper bound. These substitutions give simultaneous upper confidence curves
+for every $\Gamma\geq1$. Inverting the curves therefore gives the same
+shift-radius and false-acceptance guarantees as
+Theorem~\ref{thm:shift-radius}.
 \end{corollary}
 
 \begin{proof}
@@ -111,24 +126,70 @@ The worst density ratio assigns weight $\Gamma$ first to value one, then to
 value zero, and finally assigns the residual unit mass to value minus one.
 This greedy allocation yields the displayed formulas. The Bernoulli expression
 is increasing in $p$. The paired expression is increasing in $p_+$ and
-decreasing in $p_-$ in every branch. The stated exact binomial intervals and a
-union bound therefore dominate every registered robust risk simultaneously.
-Their coverage event is independent of $\Gamma$, so the event holds over the
-entire continuum and remains valid after inversion and edit selection.
+decreasing in $p_-$ in every branch. On the joint confidence event,
+$p_+\leq U_+$ and $p_-\geq L_-$. Since also $p_+\leq1-p_-\leq1-L_-$,
+$p_+\leq\widetilde p_+$; hence the clipped substitution dominates the true
+robust risk. A union bound gives simultaneous validity. The coverage event is
+independent of $\Gamma$, so it holds over the entire continuum and remains
+valid after inversion and edit selection.
 \end{proof}
 
 \begin{corollary}[Worst-group mixture shift]
 \label{cor:mixture}
 Let $P_g$ be validated group-conditional distributions for
-$g\in\mathcal{G}$.  If $\mathbb{E}_{P_g}[V_e]\leq c$ is simultaneously
-certified for every edit $e$ and group $g$, then for every deployment mixture
-$Q_{\pi}=\sum_g\pi_gP_g$ with $\pi$ in the probability simplex,
+$g\in\mathcal{G}$. If
+$\rho_{\Gamma,P_g}(V_e)\leq c$ is simultaneously certified for every edit
+$e$ and group $g$, then for every collection
+$Q_g\in\mathcal{Q}_{\Gamma}(P_g)$ and every deployment mixture
+$Q_{\pi}=\sum_g\pi_gQ_g$ with $\pi$ in the probability simplex,
 $\mathbb{E}_{Q_{\pi}}[V_e]\leq c$.
 \end{corollary}
 
 \begin{proof}
-$\mathbb{E}_{Q_{\pi}}[V_e]=\sum_g\pi_g\mathbb{E}_{P_g}[V_e]\leq
+$\mathbb{E}_{Q_{\pi}}[V_e]=\sum_g\pi_g\mathbb{E}_{Q_g}[V_e]\leq
 \sum_g\pi_gc=c$.
+\end{proof}
+
+For an observed environment $g$, let $\mathcal K_{e,g}$ contain its paired
+target-harm contract under $P_g$ and every registered
+environment--source--attacker contract under $P_{g,s}$ for edit $e$. Define
+the groupwise population and certified radii by
+\begin{equation}
+ \Gamma_{e,g}^\star=\inf_{k\in\mathcal K_{e,g}}\Gamma_{e,k}^\star,
+ \qquad
+ \widehat\Gamma_{e,g}=\inf_{k\in\mathcal K_{e,g}}\widehat\Gamma_{e,k},
+\end{equation}
+using radius zero for an unsupported required cell. The \emph{support-aware
+erasure shift envelope} is the set of deployment profiles whose support is
+contained in observed environments and whose requested within-environment
+budget $\gamma_g$ obeys $1\leq\gamma_g\leq\widehat\Gamma_{e,g}$ wherever the
+deployment mixture assigns positive mass, with the hierarchical marginal and
+conditional restrictions stated above.
+
+\begin{corollary}[Support-aware erasure shift envelope]
+\label{cor:shift-envelope}
+With probability at least $1-\delta$, simultaneously for every registered edit
+$e$, every deployment profile in its certified envelope satisfies every
+registered target and leakage contract. Environment mixture weights may be
+chosen arbitrarily after certification. For a declared supported environment
+set $A$, the largest certified common budget is
+\begin{equation}
+ \widehat\Gamma_e(A)=\min_{g\in A}\widehat\Gamma_{e,g}.
+\end{equation}
+No additional multiplicity correction is required to inspect the envelope or
+to choose $A$ and the budgets after certification.
+\end{corollary}
+
+\begin{proof}
+The simultaneous event used for the individual contract curves already ranges
+over every edit, environment, source cell, and attacker. On that event,
+$\gamma_g\leq\widehat\Gamma_{e,g}$ controls target harm for every allowed
+$Q_g$ and leakage for every allowed $Q_{g,s}$. Arbitrary environment mixing
+preserves the target threshold by Corollary~\ref{cor:mixture}; the leakage
+thresholds are conditional contracts and hold separately in every deployed
+$(g,s)$ cell. The largest budget shared by all $g\in A$ is their minimum.
+Inspecting or intersecting objects that are all valid on the same event does
+not spend additional error probability.
 \end{proof}
 
 \begin{corollary}[False acceptance]
@@ -171,32 +232,42 @@ bisection is valid. Post-certificate choice within that interval leaves the
 event unchanged.
 \end{proof}
 
-\begin{theorem}[Unsupported-mass impossibility]
+\begin{theorem}[Unsupported-cell impossibility]
 \label{thm:unsupported}
-Suppose the allowed deployment class contains a distribution assigning all
-mass to a point outside the support of the validation distribution.  Any
-protocol that controls false acceptance at level $\delta$ uniformly over that
-class can accept a fixed edit with probability at most $\delta$, even in a
-world where the edit is harmless on the unsupported point.
+Fix an edit $e$, a contract threshold $c$, and let $O_n$ contain every random
+quantity available to a validation-only protocol. Suppose an audit cell
+$A$ has zero validation probability, the allowed deployment class contains a
+law $Q_A$ supported on $A$, and the nonparametric model class contains two
+worlds $M_0,M_1$ such that
+\begin{enumerate}
+  \item $O_n$ has the same distribution under $M_0$ and $M_1$;
+  \item $\mathbb{E}_{Q_A,M_0}[V_e]\leq c$; and
+  \item $\mathbb{E}_{Q_A,M_1}[V_e]>c$.
+\end{enumerate}
+If a possibly randomized protocol controls false acceptance at level $\delta$
+uniformly over this model and deployment class, then its probability of
+accepting $e$ under the safe world $M_0$ is at most $\delta$.
 \end{theorem}
 
 \begin{proof}
-Let validation put all mass on $x_0$, and let $x_1$ be outside its support.
-Construct two worlds that agree on the full distribution of every observable
-validation variable.  In the safe world set the edit harm at $x_1$ to zero.
-In the unsafe world set it to one, above the declared threshold.  Let
-deployment be the point mass at $x_1$.  The protocol's observations, and hence
-its acceptance probability $p$, are identical in the two worlds.  Uniform
-false-acceptance control in the unsafe world requires $p\leq\delta$.  The same
-bound therefore holds in the safe world.  This is a two-point indistinguishability
-argument with total variation zero between the observed experiments.
+Include the protocol's independent random seed in $O_n$. By condition 1, its
+acceptance probability $p$ is identical in the two worlds. Under $M_1$ and
+$Q_A$, acceptance of $e$ is a false acceptance by condition 3. Uniform control
+therefore requires $p\leq\delta$. The same bound holds under $M_0$, although
+condition 2 says that $e$ is safe there. Equivalently, the two observable
+experiments have total-variation distance zero, so no test can distinguish
+them.
 \end{proof}
 
-The same construction applies when a declared deployment environment is absent
-from certification: its conditional representation law can be changed
-arbitrarily without changing any observed sample. In the preregistered
-Camelyon17 split, official hospital center 2 occurs only in the external split,
-whereas centers 0, 1, 3, and 4 are observed during certification. A uniform
-certificate over all five centers must therefore abstain unless an additional
-cross-center structural assumption is supplied. This dataset is an instance
-of the support boundary, not evidence for the theorem by itself.
+An audit cell may be an input region, an environment, or an
+environment--source-label pair. Thus the result covers both an absent
+deployment environment and a conditional leakage contract whose required
+label cell is unobserved. A single-class slice cannot identify the omitted
+class's conditional leakage without a structural assumption. In the
+preregistered Camelyon17 split, official hospital center 2 occurs only in the
+external split, whereas centers 0, 1, 3, and 4 are observed during
+certification; moreover, the binary center-0 source label is constant in the
+center-2 external slice. A uniform certificate over the missing cells must
+acquire representative support, assert a testable cross-cell model, or abstain.
+The dataset instantiates the support boundary; it is not evidence for the
+theorem by itself.

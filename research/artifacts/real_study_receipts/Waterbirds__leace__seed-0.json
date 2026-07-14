@@ -1,0 +1,136 @@
+{
+  "candidates": [
+    {
+      "audit_npz": "/Volumes/Backups/FARO/artifacts/vera_real_study/Waterbirds__leace__seed-0/candidate-00.npz",
+      "audit_npz_sha256": "39ff270addd629b70d669c8d6e897c9546c207d276709f28cd9ca357a1614443",
+      "candidate_key": "LEACE::closed_form",
+      "method": "LEACE",
+      "metrics": {
+        "attackers": {
+          "forest": {
+            "certification_balanced_accuracy": 0.5125278241513634,
+            "external_balanced_accuracy": 0.5056955471177079
+          },
+          "linear": {
+            "certification_balanced_accuracy": 0.5,
+            "external_balanced_accuracy": 0.5
+          },
+          "mlp": {
+            "certification_balanced_accuracy": 0.7229410127991096,
+            "external_balanced_accuracy": 0.725750776665516
+          },
+          "rbf": {
+            "certification_balanced_accuracy": 0.7022106288258207,
+            "external_balanced_accuracy": 0.7086641353123921
+          }
+        },
+        "certification_mean_paired_target_harm": -0.015012510425354461,
+        "certification_target_balanced_accuracy": 0.7886355760784598,
+        "external_mean_paired_target_harm": 0.0018985157059026579,
+        "external_target_balanced_accuracy": 0.7766018401475434
+      },
+      "provenance": {
+        "commit": "9f51753821316a1edacf78b52b464ab26d40e60a",
+        "official_entrypoint": "concept_erasure.LeaceFitter.fit(method='leace')",
+        "remote": "https://github.com/EleutherAI/concept-erasure",
+        "repository": "/Volumes/Backups/FARO/external/concept-erasure"
+      },
+      "strength": "closed_form"
+    }
+  ],
+  "claim_configuration_verified": true,
+  "claim_grade": true,
+  "created_at": "2026-07-14T06:08:21.187548+00:00",
+  "dataset": "Waterbirds",
+  "environment_classes": {
+    "certification": [
+      0,
+      1
+    ],
+    "construction": [
+      0,
+      1
+    ],
+    "external": [
+      0,
+      1
+    ],
+    "train": [
+      0,
+      1
+    ]
+  },
+  "external_labels_locked_during_edit_construction": true,
+  "git_commit": "07f8d19c17fc68ff948bff420f85424b48775fd3",
+  "indices": {
+    "certification": {
+      "n": 1199,
+      "sha256": "1a3dbff46a4a9c637d9c473fe3bd11072b44a4e5601da93f36d2f9d952051f56"
+    },
+    "construction": {
+      "n": 959,
+      "sha256": "18d6b8176c53470fc7488d7b49a607d67967016d867247b232083def564ff802"
+    },
+    "external": {
+      "n": 5794,
+      "sha256": "9e279849784941eb5b28d1c28800ce63b4730e92c549d75e2c21cf76aace4c5d"
+    },
+    "train": {
+      "n": 3836,
+      "sha256": "7a499c870892ff489db0d7b14a52fd004f64929d59fbf8a205b4b8c33bb5f967"
+    }
+  },
+  "locked_configuration": {
+    "dataset_manifest_sha256": "fd4c17004512e9b38afc086eab8544dd9a15d187323747f666f3ae38d5d8c41f",
+    "method": {
+      "candidate_configuration": {
+        "candidate": "closed_form",
+        "method": "leace"
+      },
+      "candidate_count": 1,
+      "display_name": "LEACE",
+      "upstream_commit": "9f51753821316a1edacf78b52b464ab26d40e60a",
+      "upstream_remote": "https://github.com/EleutherAI/concept-erasure"
+    },
+    "runner_parameters": {
+      "max_certification": 8000,
+      "max_construction": 2000,
+      "max_external": 8000,
+      "max_train": 8000,
+      "pca_dimension": 128
+    }
+  },
+  "method_family": "leace",
+  "method_name": "LEACE",
+  "preprocessing": {
+    "explained_variance_ratio_sum": 0.8232709169387817,
+    "input_dimension": 512,
+    "output_dimension": 128,
+    "pca_fit_on_train_only": true,
+    "standardized_from_train_only": true
+  },
+  "prereg_sha256": "4c9343207f940220d762e230023531af353cc0886a982f133ff7794c87f13ab7",
+  "seed": 0,
+  "smoke": false,
+  "source_classes": {
+    "certification": [
+      0,
+      1
+    ],
+    "construction": [
+      0,
+      1
+    ],
+    "external": [
+      0,
+      1
+    ],
+    "train": [
+      0,
+      1
+    ]
+  },
+  "split_policy": "eraser train/construction are disjoint group-stratified partitions of official train; certification is untouched official validation",
+  "store_dir": "/Volumes/Backups/FARO/artifacts/waterbirds_official_numpy_store",
+  "store_manifest_sha256": "fd4c17004512e9b38afc086eab8544dd9a15d187323747f666f3ae38d5d8c41f"
+}

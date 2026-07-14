@@ -8,6 +8,7 @@ attacker and candidate must be fixed independently of the certification fold.
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
+from functools import lru_cache
 from math import log, sqrt
 from typing import Any, Iterable, Mapping, Sequence
 
@@ -64,6 +65,57 @@ class ShiftRadiusCertificate:
         payload = asdict(self)
         payload["certificates_at_radius"] = [
             cert.to_dict() for cert in self.certificates_at_radius
+        ]
+        return payload
+
+
+@dataclass(frozen=True)
+class GroupShiftEnvelopeCertificate:
+    decision: str
+    group_radii: Mapping[str, float]
+    observed_common_radius: float
+    deployment_common_radius: float
+    unsupported_groups: tuple[str, ...]
+    registered_groups: tuple[str, ...]
+    gamma_cap: float
+    delta: float
+    family_size: int
+    group_certificates: Mapping[str, ShiftRadiusCertificate]
+    method: str = "exact_discrete_reweighting"
+
+    def to_dict(self) -> dict[str, object]:
+        return {
+            "decision": self.decision,
+            "group_radii": dict(self.group_radii),
+            "observed_common_radius": self.observed_common_radius,
+            "deployment_common_radius": self.deployment_common_radius,
+            "unsupported_groups": list(self.unsupported_groups),
+            "registered_groups": list(self.registered_groups),
+            "gamma_cap": self.gamma_cap,
+            "delta": self.delta,
+            "family_size": self.family_size,
+            "group_certificates": {
+                key: value.to_dict() for key, value in self.group_certificates.items()
+            },
+            "method": self.method,
+        }
+
+
+@dataclass(frozen=True)
+class IUTFixedProfileCertificate:
+    decision: str
+    gamma: float
+    delta: float
+    candidate_count: int
+    candidate_failure_probability: float
+    limiting_contracts: tuple[str, ...]
+    certificates: tuple[RiskCertificate, ...]
+    method: str = "candidate_iut_exact_discrete"
+
+    def to_dict(self) -> dict[str, object]:
+        payload = asdict(self)
+        payload["certificates"] = [
+            certificate.to_dict() for certificate in self.certificates
         ]
         return payload
 
@@ -154,6 +206,7 @@ def robust_risk_certificate(
     )
 
 
+@lru_cache(maxsize=None)
 def _clopper_pearson_upper(successes: int, n: int, alpha: float) -> float:
     from scipy.stats import beta
 
@@ -162,6 +215,7 @@ def _clopper_pearson_upper(successes: int, n: int, alpha: float) -> float:
     return float(beta.ppf(1.0 - alpha, successes + 1, n - successes))
 
 
+@lru_cache(maxsize=None)
 def _clopper_pearson_lower(successes: int, n: int, alpha: float) -> float:
     from scipy.stats import beta
 
@@ -236,6 +290,263 @@ def exact_discrete_risk_certificate(
     )
 
 
+def exact_balanced_leakage_certificate(
+    key: str,
+    correct: Iterable[float],
+    source: Iterable[int],
+    *,
+    gamma: float,
+    failure_probability: float,
+) -> RiskCertificate:
+    """Upper-certify binary-source balanced attacker accuracy under shift."""
+
+    correctness = _as_bounded_array(correct, lower=0.0, upper=1.0)
+    source_array = np.asarray(list(source), dtype=np.int64)
+    if source_array.ndim != 1 or len(source_array) != len(correctness):
+        raise ValueError("source must be one-dimensional and match correctness")
+    if set(map(int, np.unique(source_array))) != {0, 1}:
+        raise ValueError("balanced leakage requires represented source classes {0, 1}")
+    if not 0.0 < failure_probability < 1.0:
+        raise ValueError("failure_probability must lie in (0, 1)")
+    if gamma < 1.0 or not np.isfinite(gamma):
+        raise ValueError("gamma must be finite and at least one")
+    class_alpha = failure_probability / 2.0
+    empirical_components: list[float] = []
+    upper_components: list[float] = []
+    details: dict[str, float | int | str] = {
+        "interval": "two class-conditional one-sided Clopper-Pearson bounds",
+        "aggregation": "equal-weight robust class recall",
+    }
+    for source_class in (0, 1):
+        values = correctness[source_array == source_class]
+        successes = int(np.sum(values == 1))
+        n_class = int(len(values))
+        probability_upper = _clopper_pearson_upper(
+            successes, n_class, class_alpha
+        )
+        empirical_components.append(empirical_reweighting_risk(values, gamma))
+        upper_components.append(min(1.0, gamma * probability_upper))
+        details[f"class_{source_class}_n"] = n_class
+        details[f"class_{source_class}_successes"] = successes
+        details[f"class_{source_class}_probability_upper"] = probability_upper
+    return RiskCertificate(
+        key=key,
+        n=int(len(correctness)),
+        gamma=float(gamma),
+        lower=0.0,
+        upper=1.0,
+        empirical_robust_risk=float(np.mean(empirical_components)),
+        dkw_epsilon=0.0,
+        simultaneous_failure_probability=float(failure_probability),
+        upper_confidence_bound=float(np.mean(upper_components)),
+        method="exact_balanced_leakage",
+        confidence_details=details,
+    )
+
+
+def balanced_contract_certificates(
+    target_samples: Mapping[str, Iterable[float]],
+    leakage_correct: Mapping[str, Iterable[float]],
+    source: Iterable[int],
+    *,
+    gamma: float,
+    local_failure_probability: float,
+) -> dict[str, RiskCertificate]:
+    """Evaluate target and balanced-leakage contracts at one local alpha."""
+
+    if not target_samples or not leakage_correct:
+        raise ValueError("target and leakage contract families must be nonempty")
+    certificates = {
+        key: exact_discrete_risk_certificate(
+            key,
+            values,
+            gamma=gamma,
+            failure_probability=local_failure_probability,
+            support=(-1, 0, 1),
+        )
+        for key, values in target_samples.items()
+    }
+    for attacker, values in leakage_correct.items():
+        key = f"balanced_leakage::{attacker}"
+        if key in certificates:
+            raise ValueError(f"duplicate balanced contract key: {key}")
+        certificates[key] = exact_balanced_leakage_certificate(
+            key,
+            values,
+            source,
+            gamma=gamma,
+            failure_probability=local_failure_probability,
+        )
+    return certificates
+
+
+def certify_balanced_iut_fixed_profile(
+    target_samples: Mapping[str, Iterable[float]],
+    leakage_correct: Mapping[str, Iterable[float]],
+    source: Iterable[int],
+    *,
+    gamma: float,
+    delta: float,
+    candidate_count: int,
+    target_threshold: float,
+    leakage_threshold: float,
+) -> IUTFixedProfileCertificate:
+    """Candidate-wise IUT for target and balanced-leakage contracts."""
+
+    if candidate_count <= 0:
+        raise ValueError("candidate_count must be positive")
+    if not 0.0 < delta < 1.0:
+        raise ValueError("delta must lie in (0, 1)")
+    candidate_alpha = delta / candidate_count
+    certificates = balanced_contract_certificates(
+        target_samples,
+        leakage_correct,
+        source,
+        gamma=gamma,
+        local_failure_probability=candidate_alpha,
+    )
+    thresholds = {
+        key: target_threshold if key.startswith("target::") else leakage_threshold
+        for key in certificates
+    }
+    margins = {
+        key: thresholds[key] - certificate.upper_confidence_bound
+        for key, certificate in certificates.items()
+    }
+    accepted = all(margin >= 0.0 for margin in margins.values())
+    worst = min(margins.values())
+    return IUTFixedProfileCertificate(
+        decision="EDIT" if accepted else "ABSTAIN",
+        gamma=float(gamma),
+        delta=float(delta),
+        candidate_count=int(candidate_count),
+        candidate_failure_probability=float(candidate_alpha),
+        limiting_contracts=tuple(
+            sorted(key for key, margin in margins.items() if margin <= worst + 1e-12)
+        ),
+        certificates=tuple(certificates[key] for key in sorted(certificates)),
+        method="candidate_iut_exact_balanced_leakage",
+    )
+
+
+def certify_balanced_shift_radius(
+    target_samples: Mapping[str, Iterable[float]],
+    leakage_correct: Mapping[str, Iterable[float]],
+    source: Iterable[int],
+    *,
+    delta: float,
+    family_size: int,
+    target_threshold: float,
+    leakage_threshold: float,
+    gamma_cap: float = 32.0,
+    tolerance: float = 1e-4,
+) -> ShiftRadiusCertificate:
+    """Simultaneously lower-certify the balanced-contract common radius."""
+
+    contract_count = len(target_samples) + len(leakage_correct)
+    if family_size < contract_count:
+        raise ValueError("family_size cannot be smaller than the supplied contracts")
+    if gamma_cap < 1.0 or not np.isfinite(gamma_cap):
+        raise ValueError("gamma_cap must be finite and at least one")
+    if tolerance <= 0.0 or not np.isfinite(tolerance):
+        raise ValueError("tolerance must be finite and positive")
+    local_alpha = delta / family_size
+
+    def evaluate(gamma: float) -> tuple[bool, dict[str, RiskCertificate]]:
+        certificates = balanced_contract_certificates(
+            target_samples,
+            leakage_correct,
+            source,
+            gamma=gamma,
+            local_failure_probability=local_alpha,
+        )
+        passed = all(
+            certificate.upper_confidence_bound
+            <= (
+                target_threshold
+                if key.startswith("target::")
+                else leakage_threshold
+            )
+            for key, certificate in certificates.items()
+        )
+        return passed, certificates
+
+    iid_passes, iid_certificates = evaluate(1.0)
+    thresholds = {
+        key: target_threshold if key.startswith("target::") else leakage_threshold
+        for key in iid_certificates
+    }
+    if not iid_passes:
+        margins = {
+            key: thresholds[key] - certificate.upper_confidence_bound
+            for key, certificate in iid_certificates.items()
+        }
+        worst = min(margins.values())
+        return ShiftRadiusCertificate(
+            decision="ABSTAIN",
+            certified_radius=0.0,
+            gamma_cap=float(gamma_cap),
+            right_censored=False,
+            delta=float(delta),
+            limiting_contracts=tuple(
+                sorted(key for key, margin in margins.items() if margin <= worst + 1e-12)
+            ),
+            certificates_at_radius=tuple(
+                iid_certificates[key] for key in sorted(iid_certificates)
+            ),
+            method="exact_balanced_leakage",
+        )
+    cap_passes, cap_certificates = evaluate(gamma_cap)
+    if cap_passes:
+        margins = {
+            key: thresholds[key] - certificate.upper_confidence_bound
+            for key, certificate in cap_certificates.items()
+        }
+        worst = min(margins.values())
+        return ShiftRadiusCertificate(
+            decision="EDIT",
+            certified_radius=float(gamma_cap),
+            gamma_cap=float(gamma_cap),
+            right_censored=True,
+            delta=float(delta),
+            limiting_contracts=tuple(
+                sorted(key for key, margin in margins.items() if margin <= worst + 1e-12)
+            ),
+            certificates_at_radius=tuple(
+                cap_certificates[key] for key in sorted(cap_certificates)
+            ),
+            method="exact_balanced_leakage",
+        )
+    lower_gamma, upper_gamma = 1.0, float(gamma_cap)
+    lower_certificates = iid_certificates
+    while upper_gamma - lower_gamma > tolerance:
+        midpoint = (lower_gamma + upper_gamma) / 2.0
+        passed, certificates = evaluate(midpoint)
+        if passed:
+            lower_gamma, lower_certificates = midpoint, certificates
+        else:
+            upper_gamma = midpoint
+    margins = {
+        key: thresholds[key] - certificate.upper_confidence_bound
+        for key, certificate in lower_certificates.items()
+    }
+    worst = min(margins.values())
+    return ShiftRadiusCertificate(
+        decision="EDIT",
+        certified_radius=float(lower_gamma),
+        gamma_cap=float(gamma_cap),
+        right_censored=False,
+        delta=float(delta),
+        limiting_contracts=tuple(
+            sorted(key for key, margin in margins.items() if margin <= worst + tolerance)
+        ),
+        certificates_at_radius=tuple(
+            lower_certificates[key] for key in sorted(lower_certificates)
+        ),
+        method="exact_balanced_leakage",
+    )
+
+
 def simultaneous_exact_discrete_certificates(
     samples: Mapping[str, Iterable[float]],
     *,
@@ -264,6 +575,61 @@ def simultaneous_exact_discrete_certificates(
         )
         for key, values in samples.items()
     }
+
+
+def certify_discrete_iut_fixed_profile(
+    samples: Mapping[str, Iterable[float]],
+    *,
+    gamma: float,
+    delta: float,
+    candidate_count: int,
+    supports: Mapping[str, tuple[int, ...]],
+    thresholds: Mapping[str, float],
+) -> IUTFixedProfileCertificate:
+    """Certify one fixed candidate/profile by an intersection-union test.
+
+    For an unsafe candidate, at least one component contract is a true null.
+    Requiring every component to pass at level ``delta / candidate_count`` is
+    therefore a level-``delta / candidate_count`` test of the candidate union
+    null. A union bound across candidates controls selection of any unsafe
+    candidate. This rule does not provide a simultaneous post-hoc envelope.
+    """
+
+    if not samples or set(samples) != set(supports) or set(samples) != set(thresholds):
+        raise ValueError("nonempty samples, supports, and thresholds need identical keys")
+    if not 0.0 < delta < 1.0:
+        raise ValueError("delta must lie in (0, 1)")
+    if candidate_count <= 0:
+        raise ValueError("candidate_count must be positive")
+    candidate_alpha = delta / candidate_count
+    certificates = {
+        key: exact_discrete_risk_certificate(
+            key,
+            values,
+            gamma=gamma,
+            failure_probability=candidate_alpha,
+            support=supports[key],
+        )
+        for key, values in samples.items()
+    }
+    margins = {
+        key: thresholds[key] - certificate.upper_confidence_bound
+        for key, certificate in certificates.items()
+    }
+    accepted = all(margin >= 0.0 for margin in margins.values())
+    worst = min(margins.values())
+    limiting = tuple(
+        sorted(key for key, margin in margins.items() if margin <= worst + 1e-12)
+    )
+    return IUTFixedProfileCertificate(
+        decision="EDIT" if accepted else "ABSTAIN",
+        gamma=float(gamma),
+        delta=float(delta),
+        candidate_count=int(candidate_count),
+        candidate_failure_probability=float(candidate_alpha),
+        limiting_contracts=limiting,
+        certificates=tuple(certificates[key] for key in sorted(certificates)),
+    )
 
 
 def certify_discrete_shift_radius(
@@ -363,6 +729,79 @@ def certify_discrete_shift_radius(
         limiting_contracts=tuple(sorted(key for key, value in margins.items() if value <= worst + tolerance)),
         certificates_at_radius=tuple(lower_certificates[key] for key in sorted(lower_certificates)),
         method="exact_discrete_reweighting",
+    )
+
+
+def certify_discrete_group_shift_envelope(
+    grouped_samples: Mapping[str, Mapping[str, Iterable[float]]],
+    *,
+    delta: float,
+    grouped_supports: Mapping[str, Mapping[str, tuple[int, ...]]],
+    grouped_thresholds: Mapping[str, Mapping[str, float]],
+    family_size: int,
+    registered_groups: Sequence[str] | None = None,
+    gamma_cap: float = 32.0,
+    tolerance: float = 1e-4,
+) -> GroupShiftEnvelopeCertificate:
+    """Certify the support-aware vector of groupwise reweighting radii.
+
+    ``family_size`` is the multiplicity denominator for the complete registered
+    candidate-contract family, not just the groups supplied to this call. A
+    registered group with no certification samples receives radius zero.
+    """
+
+    observed_groups = tuple(sorted(map(str, grouped_samples)))
+    if set(grouped_samples) != set(grouped_supports):
+        raise ValueError("grouped_samples and grouped_supports must have identical groups")
+    if set(grouped_samples) != set(grouped_thresholds):
+        raise ValueError("grouped_samples and grouped_thresholds must have identical groups")
+    if any(not samples for samples in grouped_samples.values()):
+        raise ValueError("every observed group must contain at least one contract")
+    supplied_contracts = sum(len(samples) for samples in grouped_samples.values())
+    if family_size < supplied_contracts:
+        raise ValueError("family_size cannot be smaller than the supplied contract family")
+    if registered_groups is None:
+        all_groups = observed_groups
+    else:
+        all_groups = tuple(sorted({str(group) for group in registered_groups}))
+        if not set(observed_groups).issubset(all_groups):
+            raise ValueError("registered_groups must contain every observed group")
+
+    certificates: dict[str, ShiftRadiusCertificate] = {}
+    group_radii: dict[str, float] = {}
+    for group in observed_groups:
+        certificate = certify_discrete_shift_radius(
+            grouped_samples[group],
+            delta=delta,
+            supports=grouped_supports[group],
+            thresholds=grouped_thresholds[group],
+            family_size=family_size,
+            gamma_cap=gamma_cap,
+            tolerance=tolerance,
+        )
+        certificates[group] = certificate
+        group_radii[group] = certificate.certified_radius
+
+    unsupported = tuple(sorted(set(all_groups) - set(observed_groups)))
+    for group in unsupported:
+        group_radii[group] = 0.0
+    observed_common = min(
+        (group_radii[group] for group in observed_groups), default=0.0
+    )
+    deployment_common = min(
+        (group_radii[group] for group in all_groups), default=0.0
+    )
+    return GroupShiftEnvelopeCertificate(
+        decision="EDIT" if deployment_common >= 1.0 else "ABSTAIN",
+        group_radii={group: group_radii[group] for group in all_groups},
+        observed_common_radius=float(observed_common),
+        deployment_common_radius=float(deployment_common),
+        unsupported_groups=unsupported,
+        registered_groups=all_groups,
+        gamma_cap=float(gamma_cap),
+        delta=float(delta),
+        family_size=int(family_size),
+        group_certificates=certificates,
     )
 
 

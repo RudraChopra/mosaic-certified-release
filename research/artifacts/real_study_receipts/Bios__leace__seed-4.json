@@ -1,0 +1,136 @@
+{
+  "candidates": [
+    {
+      "audit_npz": "/Volumes/Backups/FARO/artifacts/vera_real_study/Bios__leace__seed-4/candidate-00.npz",
+      "audit_npz_sha256": "105b576ec5e9e3883d2c5c9b5c260307b70724c73e9f55e17b3b8659c0190baf",
+      "candidate_key": "LEACE::closed_form",
+      "method": "LEACE",
+      "metrics": {
+        "attackers": {
+          "forest": {
+            "certification_balanced_accuracy": 0.7085879022552961,
+            "external_balanced_accuracy": 0.7357383836569963
+          },
+          "linear": {
+            "certification_balanced_accuracy": 0.5,
+            "external_balanced_accuracy": 0.5
+          },
+          "mlp": {
+            "certification_balanced_accuracy": 0.903230413991285,
+            "external_balanced_accuracy": 0.8797293003302109
+          },
+          "rbf": {
+            "certification_balanced_accuracy": 0.6708531081652145,
+            "external_balanced_accuracy": 0.680154448462817
+          }
+        },
+        "certification_mean_paired_target_harm": 0.004375,
+        "certification_target_balanced_accuracy": 0.6175678232921931,
+        "external_mean_paired_target_harm": 0.000375,
+        "external_target_balanced_accuracy": 0.6119899273449526
+      },
+      "provenance": {
+        "commit": "9f51753821316a1edacf78b52b464ab26d40e60a",
+        "official_entrypoint": "concept_erasure.LeaceFitter.fit(method='leace')",
+        "remote": "https://github.com/EleutherAI/concept-erasure",
+        "repository": "/Volumes/Backups/FARO/external/concept-erasure"
+      },
+      "strength": "closed_form"
+    }
+  ],
+  "claim_configuration_verified": true,
+  "claim_grade": true,
+  "created_at": "2026-07-14T06:18:21.645466+00:00",
+  "dataset": "Bios",
+  "environment_classes": {
+    "certification": [
+      0,
+      1
+    ],
+    "construction": [
+      0,
+      1
+    ],
+    "external": [
+      0,
+      1
+    ],
+    "train": [
+      0,
+      1
+    ]
+  },
+  "external_labels_locked_during_edit_construction": true,
+  "git_commit": "07f8d19c17fc68ff948bff420f85424b48775fd3",
+  "indices": {
+    "certification": {
+      "n": 8000,
+      "sha256": "1c97e6c7006a3cd1ad44f3306f712da9eae2959cd458eb53d51cfaf34c31e2bf"
+    },
+    "construction": {
+      "n": 2000,
+      "sha256": "6ba6ced4afead812ef2de38ce3217d5a974323b49830833c73897f1b1726ac06"
+    },
+    "external": {
+      "n": 8000,
+      "sha256": "57b7fe37f0d09efc9aa4e11c49d09afa5fc2a250bfe7e3e0feddd1b6fa5dfa96"
+    },
+    "train": {
+      "n": 8000,
+      "sha256": "b3170f63518852dbfcef6c8ee136c3a4d4b38798f56d0b9cdd9a0a7ca8fe6039"
+    }
+  },
+  "locked_configuration": {
+    "dataset_manifest_sha256": "a2f0d7cd2d67eb2cb01a05fccbd32c24519cd916ac9ceb508ca680ce1f3aa1e4",
+    "method": {
+      "candidate_configuration": {
+        "candidate": "closed_form",
+        "method": "leace"
+      },
+      "candidate_count": 1,
+      "display_name": "LEACE",
+      "upstream_commit": "9f51753821316a1edacf78b52b464ab26d40e60a",
+      "upstream_remote": "https://github.com/EleutherAI/concept-erasure"
+    },
+    "runner_parameters": {
+      "max_certification": 8000,
+      "max_construction": 2000,
+      "max_external": 8000,
+      "max_train": 8000,
+      "pca_dimension": 128
+    }
+  },
+  "method_family": "leace",
+  "method_name": "LEACE",
+  "preprocessing": {
+    "explained_variance_ratio_sum": 0.8436643481254578,
+    "input_dimension": 768,
+    "output_dimension": 128,
+    "pca_fit_on_train_only": true,
+    "standardized_from_train_only": true
+  },
+  "prereg_sha256": "4c9343207f940220d762e230023531af353cc0886a982f133ff7794c87f13ab7",
+  "seed": 4,
+  "smoke": false,
+  "source_classes": {
+    "certification": [
+      0,
+      1
+    ],
+    "construction": [
+      0,
+      1
+    ],
+    "external": [
+      0,
+      1
+    ],
+    "train": [
+      0,
+      1
+    ]
+  },
+  "split_policy": "eraser train/construction are disjoint group-stratified partitions of official train; certification is untouched official validation",
+  "store_dir": "/Volumes/Backups/FARO/artifacts/bios_rlace_numpy_store",
+  "store_manifest_sha256": "a2f0d7cd2d67eb2cb01a05fccbd32c24519cd916ac9ceb508ca680ce1f3aa1e4"
+}

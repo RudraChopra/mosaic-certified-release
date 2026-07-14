@@ -1,0 +1,66 @@
+{
+  "project": "VERA: Support-Aware Shift Envelopes for Representation Erasure",
+  "status": "locked_after_primary_and_iut_diagnostics_before_balanced_leakage_analysis_or_new_runs",
+  "locked_date": "2026-07-14",
+  "parent_prereg_sha256": "4c9343207f940220d762e230023531af353cc0886a982f133ff7794c87f13ab7",
+  "iut_extension_sha256": "e62554d877811328bbc234b7f3c25aec83a63948fd4217d8a17d1ef79575d8f3",
+  "timing_disclosure": {
+    "primary_analysis_seen": true,
+    "iut_existing_seed_analysis_seen": true,
+    "observed_trigger": "Both the original simultaneous-envelope rule and the fixed-profile IUT rule deployed in 0 of 1125 configurations. Diagnostic inspection showed that the registered maximum-class-recall leakage endpoint can equal one for an information-free constant attacker.",
+    "balanced_leakage_results_seen_at_lock": false,
+    "new_seed_results_seen_at_lock": false,
+    "claim_status": "Seeds 0-4 are exploratory for the corrected estimand. Confirmatory empirical claims require the new-seed study registered below."
+  },
+  "estimand_correction": {
+    "problem": "The parent leakage endpoint maximized correctness over represented source classes. For a binary source, a constant attacker has class recalls (1,0), so the maximum is 1 despite carrying no information beyond the class prior. This endpoint confounds classifier bias with representation leakage and can make successful erasure uncertifiable.",
+    "source_classes": [0, 1],
+    "attacker_contract": "For attacker a, define balanced robust leakage B_a(Gamma) = one half times the sum over source classes s in {0,1} of the worst-case correctness under density-ratio bound Gamma relative to the certification law conditional on S=s.",
+    "threshold": "Require B_a(Gamma) <= lambda for every registered attacker.",
+    "interpretation": "At Gamma=1, the empirical target of B_a is balanced accuracy. Constant prediction scores 0.5. The robust version permits bounded within-source reweighting while remaining invariant to deployment source-class proportions.",
+    "missing_class_rule": "If either registered source class is absent from certification, the attacker contract is unsupported and certification abstains. If either class is absent from external evaluation, measured external balanced leakage is not estimable and is reported as NA, never as pass or failure."
+  },
+  "shift_model": {
+    "target": "For each observed environment g, target harm is bounded under Q_g/P_g <= Gamma.",
+    "leakage": "For each source class s and attacker a, correctness is bounded under Q_s/P_s <= Gamma; balanced leakage averages the two robust class recalls with fixed equal weights.",
+    "environment_mixture": "Environment weights may vary arbitrarily after every environment target contract is certified.",
+    "source_mixture": "Source proportions may vary arbitrarily because leakage is evaluated with fixed balanced weights rather than deployment prevalence.",
+    "support": "Any required unseen environment or missing source class has radius zero without an additional structural assumption."
+  },
+  "certificates": {
+    "simultaneous_envelope": "For each candidate, include every environment target contract and every attacker balanced-leakage contract in the candidate-contract family. Bonferroni covers all candidate contracts. Each paired target contract splits its local alpha over positive and negative harm tails; each balanced-leakage contract splits its local alpha over the two source-class recall upper bounds.",
+    "fixed_profile_iut": "For each candidate, test every environment target contract and every attacker balanced-leakage contract at delta divided by the candidate count. Each compound contract splits its candidate-level alpha across its two binomial components. Require all contracts, then union-bound across candidates.",
+    "envelope_geometry": "An observed environment coordinate is the minimum of its target-harm radius and every global balanced-leakage attacker radius. Unsupported required environments receive zero. The common radius is the minimum coordinate."
+  },
+  "decision_rules": [
+    "always_deploy_balanced",
+    "point_selection_balanced",
+    "vera_balanced_envelope",
+    "vera_balanced_iut",
+    "external_balanced_oracle"
+  ],
+  "selection_utility": "Among eligible candidates, minimize maximum validation attacker balanced accuracy, then maximum environment-conditional paired target harm, then candidate key.",
+  "existing_seed_analysis": {
+    "seeds": [0, 1, 2, 3, 4],
+    "status": "exploratory_estimand_diagnostic",
+    "all_parent_datasets_methods_candidates_attackers_thresholds_fractions": "unchanged",
+    "reporting": "Retain the failed parent and IUT tables alongside every corrected-estimand result."
+  },
+  "confirmatory_new_seed_study": {
+    "seeds": [5, 6, 7, 8, 9, 10, 11, 12],
+    "receipt_count": 200,
+    "datasets_methods_candidates_attackers_thresholds_fractions_and_gamma": "Use the parent protocol unchanged except for the corrected leakage estimand and seed numbers.",
+    "analysis_unit": "Use each of the eight new algorithmic seeds as one block; never treat thresholds or nested fractions as independent.",
+    "inference": "Use exact two-sided seed-block sign-flip tests with Holm correction across the four datasets whose external balanced leakage is estimable. Seeds 0-4 remain exploratory and are excluded from confirmatory p-values.",
+    "benchmark_reuse_caution": "The datasets are reused, but edits, probes, split indices, and random seeds are new. The paper must not call this a new-dataset holdout."
+  },
+  "pass_conditions": {
+    "theory": "Independent simulation verifies false-acceptance control at or below delta for both the simultaneous-envelope and fixed-profile IUT balanced-leakage rules.",
+    "nontrivial_power": "On new seeds, at least one VERA balanced rule deploys safely in at least 30 percent of externally estimable balanced-oracle opportunities and deploys in at least three supported datasets.",
+    "external_check": "On new seeds, its measured external balanced-contract violation rate is at most delta globally and in every externally estimable dataset.",
+    "naive_failure": "At least one registered always-deploy or balanced point-selection regime violates the measured external balanced contract at least 20 percent of the time.",
+    "inference": "The seed-block comparison against balanced point selection is Holm-significant in at least three externally estimable datasets, or the paper explicitly reports failure of this gate.",
+    "support_honesty": "Camelyon17 center-2 external balanced leakage is NA because only one source class is present; unsupported deployment is reported separately.",
+    "history_honesty": "The parent maximum-class-recall and IUT 0/1125 deployment results remain visible as failed estimands/rules and are never overwritten."
+  }
+}

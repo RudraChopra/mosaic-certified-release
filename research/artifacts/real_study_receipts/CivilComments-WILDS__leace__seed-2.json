@@ -1,0 +1,136 @@
+{
+  "candidates": [
+    {
+      "audit_npz": "/Volumes/Backups/FARO/artifacts/vera_real_study/CivilComments-WILDS__leace__seed-2/candidate-00.npz",
+      "audit_npz_sha256": "f4a8595369e3307eac42b38c6f35ecd536afb99a3a17068bdffed2cb784faf51",
+      "candidate_key": "LEACE::closed_form",
+      "method": "LEACE",
+      "metrics": {
+        "attackers": {
+          "forest": {
+            "certification_balanced_accuracy": 0.6357679318514038,
+            "external_balanced_accuracy": 0.6437319285490339
+          },
+          "linear": {
+            "certification_balanced_accuracy": 0.5,
+            "external_balanced_accuracy": 0.5
+          },
+          "mlp": {
+            "certification_balanced_accuracy": 0.7319956260139018,
+            "external_balanced_accuracy": 0.7312258793150961
+          },
+          "rbf": {
+            "certification_balanced_accuracy": 0.6688526310267038,
+            "external_balanced_accuracy": 0.6741537091865925
+          }
+        },
+        "certification_mean_paired_target_harm": 0.02625,
+        "certification_target_balanced_accuracy": 0.6042144872052047,
+        "external_mean_paired_target_harm": 0.023,
+        "external_target_balanced_accuracy": 0.6068441414885777
+      },
+      "provenance": {
+        "commit": "9f51753821316a1edacf78b52b464ab26d40e60a",
+        "official_entrypoint": "concept_erasure.LeaceFitter.fit(method='leace')",
+        "remote": "https://github.com/EleutherAI/concept-erasure",
+        "repository": "/Volumes/Backups/FARO/external/concept-erasure"
+      },
+      "strength": "closed_form"
+    }
+  ],
+  "claim_configuration_verified": true,
+  "claim_grade": true,
+  "created_at": "2026-07-14T06:13:11.622620+00:00",
+  "dataset": "CivilComments-WILDS",
+  "environment_classes": {
+    "certification": [
+      0,
+      1
+    ],
+    "construction": [
+      0,
+      1
+    ],
+    "external": [
+      0,
+      1
+    ],
+    "train": [
+      0,
+      1
+    ]
+  },
+  "external_labels_locked_during_edit_construction": true,
+  "git_commit": "07f8d19c17fc68ff948bff420f85424b48775fd3",
+  "indices": {
+    "certification": {
+      "n": 8000,
+      "sha256": "3f64e482ad1bed861c076236de4587c8bcb9f7bdc7ef7ad32bb888acec73883f"
+    },
+    "construction": {
+      "n": 2000,
+      "sha256": "cd6d500fb887901d40ae967bb84b47ba53aa6f2538fd7a0fe8f7374be75c20f6"
+    },
+    "external": {
+      "n": 8000,
+      "sha256": "5df6bd3a25cc18ce7e4955fcd563adcd624246ac4c5fc5cc41d2e820fe13312e"
+    },
+    "train": {
+      "n": 8000,
+      "sha256": "a9d5df3de71b6cc373785853443ad3772c0dbb224d3ed87869867b6a6518cb45"
+    }
+  },
+  "locked_configuration": {
+    "dataset_manifest_sha256": "bfe7394a8189cfeaa12efbaf038306b0463c70d9e05508eed6f154823b0e5c10",
+    "method": {
+      "candidate_configuration": {
+        "candidate": "closed_form",
+        "method": "leace"
+      },
+      "candidate_count": 1,
+      "display_name": "LEACE",
+      "upstream_commit": "9f51753821316a1edacf78b52b464ab26d40e60a",
+      "upstream_remote": "https://github.com/EleutherAI/concept-erasure"
+    },
+    "runner_parameters": {
+      "max_certification": 8000,
+      "max_construction": 2000,
+      "max_external": 8000,
+      "max_train": 8000,
+      "pca_dimension": 128
+    }
+  },
+  "method_family": "leace",
+  "method_name": "LEACE",
+  "preprocessing": {
+    "explained_variance_ratio_sum": 0.5701299905776978,
+    "input_dimension": 256,
+    "output_dimension": 128,
+    "pca_fit_on_train_only": true,
+    "standardized_from_train_only": true
+  },
+  "prereg_sha256": "4c9343207f940220d762e230023531af353cc0886a982f133ff7794c87f13ab7",
+  "seed": 2,
+  "smoke": false,
+  "source_classes": {
+    "certification": [
+      0,
+      1
+    ],
+    "construction": [
+      0,
+      1
+    ],
+    "external": [
+      0,
+      1
+    ],
+    "train": [
+      0,
+      1
+    ]
+  },
+  "split_policy": "eraser train/construction are disjoint group-stratified partitions of official train; certification is untouched official validation",
+  "store_dir": "/Volumes/Backups/FARO/artifacts/civilcomments_lexical_numpy_store",
+  "store_manifest_sha256": "bfe7394a8189cfeaa12efbaf038306b0463c70d9e05508eed6f154823b0e5c10"
+}

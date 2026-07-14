@@ -1,0 +1,255 @@
+{
+  "certification_tax_intervals_reported": true,
+  "configuration_level_dependence_warning": "The McNemar pairs reuse seeds, samples, thresholds, and nested fractions; their p-values are preregistered diagnostics, not valid independent-pair inference.",
+  "datasets": [
+    "Waterbirds",
+    "Camelyon17-WILDS",
+    "CivilComments-WILDS",
+    "Bios",
+    "GaitPDB"
+  ],
+  "datasets_with_naive_violation_at_least_20pct": 2,
+  "delta": 0.05,
+  "deployment_gamma": 1.25,
+  "deployment_rules": [
+    "always_deploy",
+    "point_selection",
+    "iid_ltt",
+    "vera",
+    "oracle"
+  ],
+  "descriptive_conditions_passed": false,
+  "endpoint_semantics": {
+    "false_acceptance": "Compatibility name for deployment followed by a measured external contract violation; it is not evidence that the external law lies inside the declared ambiguity set.",
+    "preregistered_unsafe_deployment": "Measured external contract violation or deployment into a registered environment absent from certification.",
+    "safe_deployment_retention": "Fraction of measured external-oracle opportunities in which VERA deploys an edit that meets the measured external contract."
+  },
+  "eraser_count": 5,
+  "generated_at": "2026-07-14T08:20:31.051950+00:00",
+  "holm_mcnemar_significant_dataset_count": 1,
+  "mcnemar_discordant_counts": {
+    "Bios": {
+      "point_only_false": 0,
+      "vera_only_false": 0
+    },
+    "Camelyon17-WILDS": {
+      "point_only_false": 0,
+      "vera_only_false": 0
+    },
+    "CivilComments-WILDS": {
+      "point_only_false": 7,
+      "vera_only_false": 0
+    },
+    "GaitPDB": {
+      "point_only_false": 13,
+      "vera_only_false": 0
+    },
+    "Waterbirds": {
+      "point_only_false": 0,
+      "vera_only_false": 0
+    }
+  },
+  "mcnemar_holm_p": {
+    "Bios": 1.0,
+    "Camelyon17-WILDS": 1.0,
+    "CivilComments-WILDS": 0.0625,
+    "GaitPDB": 0.001220703125,
+    "Waterbirds": 1.0
+  },
+  "mcnemar_raw_p": {
+    "Bios": 1.0,
+    "Camelyon17-WILDS": 1.0,
+    "CivilComments-WILDS": 0.015625,
+    "GaitPDB": 0.000244140625,
+    "Waterbirds": 1.0
+  },
+  "measured_external_oracle_opportunity_count": 65,
+  "naive_failure_regimes": {
+    "Bios": {
+      "false_acceptance_rate": 0.0,
+      "false_acceptances": 0,
+      "leakage_threshold": 0.8,
+      "seeds": 5,
+      "target_threshold": 0.2,
+      "validation_fraction": 1.0
+    },
+    "Camelyon17-WILDS": {
+      "false_acceptance_rate": 0.0,
+      "false_acceptances": 0,
+      "leakage_threshold": 0.8,
+      "seeds": 5,
+      "target_threshold": 0.2,
+      "validation_fraction": 1.0
+    },
+    "CivilComments-WILDS": {
+      "false_acceptance_rate": 0.4,
+      "false_acceptances": 2,
+      "leakage_threshold": 0.8,
+      "seeds": 5,
+      "target_threshold": 0.2,
+      "validation_fraction": 0.1
+    },
+    "GaitPDB": {
+      "false_acceptance_rate": 0.4,
+      "false_acceptances": 2,
+      "leakage_threshold": 0.7,
+      "seeds": 5,
+      "target_threshold": 0.2,
+      "validation_fraction": 0.5
+    },
+    "Waterbirds": {
+      "false_acceptance_rate": 0.0,
+      "false_acceptances": 0,
+      "leakage_threshold": 0.8,
+      "seeds": 5,
+      "target_threshold": 0.2,
+      "validation_fraction": 1.0
+    }
+  },
+  "name": "VERA preregistered deployment-rule study",
+  "oracle_certifiable_configuration_count": 65,
+  "passed": false,
+  "prereg_sha256": "4c9343207f940220d762e230023531af353cc0886a982f133ff7794c87f13ab7",
+  "preregistered_configuration_level_passed": false,
+  "safe_deployment_retention": 0.0,
+  "safe_deployment_retention_cp95": [
+    0.0,
+    0.055171634318813376
+  ],
+  "seed_blocked_rate_differences": {
+    "Bios": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "Camelyon17-WILDS": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "CivilComments-WILDS": [
+      0.044444444444444446,
+      0.022222222222222223,
+      0.0,
+      0.08888888888888889,
+      0.0
+    ],
+    "GaitPDB": [
+      0.0,
+      0.15555555555555556,
+      0.13333333333333333,
+      0.0,
+      0.0
+    ],
+    "Waterbirds": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "seed_blocked_signflip_holm_p": {
+    "Bios": 1.0,
+    "Camelyon17-WILDS": 1.0,
+    "CivilComments-WILDS": 1.0,
+    "GaitPDB": 1.0,
+    "Waterbirds": 1.0
+  },
+  "seed_blocked_signflip_raw_p": {
+    "Bios": 1.0,
+    "Camelyon17-WILDS": 1.0,
+    "CivilComments-WILDS": 0.25,
+    "GaitPDB": 0.5,
+    "Waterbirds": 1.0
+  },
+  "seed_blocked_significant_dataset_count": 0,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "statistical_caution": "Threshold/fraction configurations share seeds and are not independent. Configuration-level Clopper-Pearson and McNemar values are reported exactly as preregistered diagnostics; the exact seed-blocked sign-flip analysis governs inferential claims. With five seed blocks, its minimum attainable two-sided unadjusted p-value is 0.0625.",
+  "summaries": {
+    "always_deploy": {
+      "configuration_count": 1125,
+      "deployment_count": 1125,
+      "false_acceptance_count": 1087,
+      "false_acceptance_cp95": [
+        0.9539302431876949,
+        0.9759881550745821
+      ],
+      "false_acceptance_rate": 0.9662222222222222,
+      "measured_external_contract_violation_count": 1087,
+      "measured_external_contract_violation_rate": 0.9662222222222222,
+      "preregistered_unsafe_deployment_count": 1087,
+      "preregistered_unsafe_deployment_rate": 0.9662222222222222
+    },
+    "iid_ltt": {
+      "configuration_count": 1125,
+      "deployment_count": 2,
+      "false_acceptance_count": 0,
+      "false_acceptance_cp95": [
+        0.0,
+        0.0032736338968188928
+      ],
+      "false_acceptance_rate": 0.0,
+      "measured_external_contract_violation_count": 0,
+      "measured_external_contract_violation_rate": 0.0,
+      "preregistered_unsafe_deployment_count": 0,
+      "preregistered_unsafe_deployment_rate": 0.0
+    },
+    "oracle": {
+      "configuration_count": 1125,
+      "deployment_count": 65,
+      "false_acceptance_count": 0,
+      "false_acceptance_cp95": [
+        0.0,
+        0.0032736338968188928
+      ],
+      "false_acceptance_rate": 0.0,
+      "measured_external_contract_violation_count": 0,
+      "measured_external_contract_violation_rate": 0.0,
+      "preregistered_unsafe_deployment_count": 0,
+      "preregistered_unsafe_deployment_rate": 0.0
+    },
+    "point_selection": {
+      "configuration_count": 1125,
+      "deployment_count": 52,
+      "false_acceptance_count": 20,
+      "false_acceptance_cp95": [
+        0.01089208715202239,
+        0.02732333879738622
+      ],
+      "false_acceptance_rate": 0.017777777777777778,
+      "measured_external_contract_violation_count": 20,
+      "measured_external_contract_violation_rate": 0.017777777777777778,
+      "preregistered_unsafe_deployment_count": 20,
+      "preregistered_unsafe_deployment_rate": 0.017777777777777778
+    },
+    "vera": {
+      "configuration_count": 1125,
+      "deployment_count": 0,
+      "false_acceptance_count": 0,
+      "false_acceptance_cp95": [
+        0.0,
+        0.0032736338968188928
+      ],
+      "false_acceptance_rate": 0.0,
+      "measured_external_contract_violation_count": 0,
+      "measured_external_contract_violation_rate": 0.0,
+      "preregistered_unsafe_deployment_count": 0,
+      "preregistered_unsafe_deployment_rate": 0.0
+    }
+  },
+  "threshold_pair_count": 9,
+  "validation_size_count": 5,
+  "vera_global_false_acceptance_upper": 0.0032736338968188928,
+  "vera_safe_deployment_count": 0
+}

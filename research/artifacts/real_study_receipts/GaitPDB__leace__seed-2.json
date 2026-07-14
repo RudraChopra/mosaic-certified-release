@@ -1,0 +1,136 @@
+{
+  "candidates": [
+    {
+      "audit_npz": "/Volumes/Backups/FARO/artifacts/vera_real_study/GaitPDB__leace__seed-2/candidate-00.npz",
+      "audit_npz_sha256": "29260d6cda7c7d21413e0aa9040722187e90df356b5267eb330ccfb13969ea4f",
+      "candidate_key": "LEACE::closed_form",
+      "method": "LEACE",
+      "metrics": {
+        "attackers": {
+          "forest": {
+            "certification_balanced_accuracy": 0.5515151515151515,
+            "external_balanced_accuracy": 0.4375
+          },
+          "linear": {
+            "certification_balanced_accuracy": 0.5,
+            "external_balanced_accuracy": 0.5
+          },
+          "mlp": {
+            "certification_balanced_accuracy": 0.5272727272727272,
+            "external_balanced_accuracy": 0.49094827586206896
+          },
+          "rbf": {
+            "certification_balanced_accuracy": 0.5348484848484849,
+            "external_balanced_accuracy": 0.5237068965517242
+          }
+        },
+        "certification_mean_paired_target_harm": 0.015873015873015872,
+        "certification_target_balanced_accuracy": 0.6489234449760766,
+        "external_mean_paired_target_harm": -0.043478260869565216,
+        "external_target_balanced_accuracy": 0.7352941176470589
+      },
+      "provenance": {
+        "commit": "9f51753821316a1edacf78b52b464ab26d40e60a",
+        "official_entrypoint": "concept_erasure.LeaceFitter.fit(method='leace')",
+        "remote": "https://github.com/EleutherAI/concept-erasure",
+        "repository": "/Volumes/Backups/FARO/external/concept-erasure"
+      },
+      "strength": "closed_form"
+    }
+  ],
+  "claim_configuration_verified": true,
+  "claim_grade": true,
+  "created_at": "2026-07-14T06:18:33.043248+00:00",
+  "dataset": "GaitPDB",
+  "environment_classes": {
+    "certification": [
+      0,
+      1
+    ],
+    "construction": [
+      0,
+      1
+    ],
+    "external": [
+      0,
+      1
+    ],
+    "train": [
+      0,
+      1
+    ]
+  },
+  "external_labels_locked_during_edit_construction": true,
+  "git_commit": "07f8d19c17fc68ff948bff420f85424b48775fd3",
+  "indices": {
+    "certification": {
+      "n": 63,
+      "sha256": "6866f55da4e2d187f67dba2bdade10bc0eadd1a873c1ca39f2e083441c52e4c6"
+    },
+    "construction": {
+      "n": 35,
+      "sha256": "0b6dda8374855909a569d496e6195f56839ed9f19111c43d4167527a03128deb"
+    },
+    "external": {
+      "n": 69,
+      "sha256": "57d471b22cfd01f034ac17b330210b48318f922568ee3c202fe027ad629e58fa"
+    },
+    "train": {
+      "n": 139,
+      "sha256": "faf9614e4398ad7f34769f86d619809588f1f70df038a84933405ef644d2cc61"
+    }
+  },
+  "locked_configuration": {
+    "dataset_manifest_sha256": "8ff97ea9c25d32e58dc5551dbadfd63f12e3582b0623808713ad3a3a81c7d8bc",
+    "method": {
+      "candidate_configuration": {
+        "candidate": "closed_form",
+        "method": "leace"
+      },
+      "candidate_count": 1,
+      "display_name": "LEACE",
+      "upstream_commit": "9f51753821316a1edacf78b52b464ab26d40e60a",
+      "upstream_remote": "https://github.com/EleutherAI/concept-erasure"
+    },
+    "runner_parameters": {
+      "max_certification": 8000,
+      "max_construction": 2000,
+      "max_external": 8000,
+      "max_train": 8000,
+      "pca_dimension": 128
+    }
+  },
+  "method_family": "leace",
+  "method_name": "LEACE",
+  "preprocessing": {
+    "explained_variance_ratio_sum": 0.9999061822891235,
+    "input_dimension": 334,
+    "output_dimension": 128,
+    "pca_fit_on_train_only": true,
+    "standardized_from_train_only": true
+  },
+  "prereg_sha256": "4c9343207f940220d762e230023531af353cc0886a982f133ff7794c87f13ab7",
+  "seed": 2,
+  "smoke": false,
+  "source_classes": {
+    "certification": [
+      0,
+      1
+    ],
+    "construction": [
+      0,
+      1
+    ],
+    "external": [
+      0,
+      1
+    ],
+    "train": [
+      0,
+      1
+    ]
+  },
+  "split_policy": "eraser train/construction are disjoint group-stratified partitions of official train; certification is untouched official validation",
+  "store_dir": "/Volumes/Backups/FARO/artifacts/gaitpdb_numpy_store",
+  "store_manifest_sha256": "8ff97ea9c25d32e58dc5551dbadfd63f12e3582b0623808713ad3a3a81c7d8bc"
+}

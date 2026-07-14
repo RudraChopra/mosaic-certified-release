@@ -1,0 +1,63 @@
+{
+  "project": "VERA: Support-Aware Shift Envelopes for Representation Erasure",
+  "status": "locked_after_primary_analysis_before_iut_analysis_or_new_runs",
+  "locked_date": "2026-07-14",
+  "parent_prereg_sha256": "4c9343207f940220d762e230023531af353cc0886a982f133ff7794c87f13ab7",
+  "shift_envelope_prereg_sha256": "b592145f81f961a6c54198e3a8564d8dbd5a149e6015034b4c8ca039be26e146",
+  "secondary_ablation_prereg_sha256": "4638534a1b2f5a87368a2858bd751f95bb721545c79c0ef2b5a2c0f4ef82c213",
+  "timing_disclosure": {
+    "primary_analysis_seen": true,
+    "observed_trigger": "The original simultaneous-envelope rule deployed in 0 of 1125 registered configurations. Point selection had 20 measured external contract violations in 1125 configurations and safe retention was zero.",
+    "iut_results_seen_at_lock": false,
+    "new_seed_results_seen_at_lock": false,
+    "claim_status": "The existing-seed IUT analysis is exploratory because the method was specified after seeing the primary aggregate result. Any confirmatory empirical claim requires the separately locked new-seed study below."
+  },
+  "motivation": "The parent rule used Bonferroni over every candidate-contract pair to support simultaneous post-hoc inspection of the full envelope. Fixed deployment of one candidate against all of its contracts is an intersection-union testing problem and does not require a union bound over contracts.",
+  "fixed_profile_rule": {
+    "name": "VERA-IUT",
+    "deployment_gamma": 1.25,
+    "declared_environment_support": "Exactly the complete support registered for each dataset in the parent protocol; unsupported required environments force abstention.",
+    "candidate_null": "For candidate e, at least one registered target or leakage contract is violated at the fixed deployment profile.",
+    "candidate_test": "Reject the candidate null only when every component contract rejects at level delta divided by the number of registered candidates. For paired harm, split that component level equally between the positive-harm upper and negative-harm lower binomial bounds.",
+    "selection": "Among rejected candidate nulls, use the parent protocol's fixed validation lexicographic utility rule.",
+    "guarantee": "For any unsafe candidate, at least one component null is true; requiring all component rejections gives a level-delta/E candidate test. A union bound over E candidates controls the probability of selecting any unsafe candidate by delta.",
+    "standard_machinery_disclosure": "Intersection-union testing and Bonferroni across candidates are standard and are not a novelty claim."
+  },
+  "envelope_boundary": {
+    "full_envelope_rule": "The original candidate-contract simultaneous correction remains the only rule used to report a rectangular groupwise envelope whose coordinates or supported subsets may be selected after inspection.",
+    "iut_scope": "VERA-IUT certifies only the fixed full-support Gamma=1.25 deployment profile. It must not be described as a simultaneous post-hoc confidence envelope.",
+    "unsupported_support": "No multiplicity refinement can certify an unobserved required environment without an additional structural assumption or representative data."
+  },
+  "existing_seed_analysis": {
+    "seeds": [0, 1, 2, 3, 4],
+    "status": "exploratory_power_diagnostic",
+    "datasets": ["Waterbirds", "Camelyon17-WILDS", "CivilComments-WILDS", "Bios", "GaitPDB"],
+    "methods": ["INLP", "R-LACE", "LEACE", "TaCo", "MANCE++"],
+    "thresholds_and_fractions": "Unchanged from the parent preregistration.",
+    "reporting": "Report every rule, dataset, threshold pair, validation fraction, and seed, including zero deployment or unfavorable external outcomes."
+  },
+  "confirmatory_new_seed_study": {
+    "seeds": [5, 6, 7, 8, 9, 10, 11, 12],
+    "datasets": ["Waterbirds", "Camelyon17-WILDS", "CivilComments-WILDS", "Bios", "GaitPDB"],
+    "methods": ["INLP", "R-LACE", "LEACE", "TaCo", "MANCE++"],
+    "candidates_attackers_splits_thresholds_fractions": "Use the parent protocol unchanged, with each seed deterministically generating its own train, construction, certification, and external indices.",
+    "receipt_count": 200,
+    "external_data_caution": "Benchmark datasets are reused, but edits, probes, split indices, and random seeds are new. Claims must disclose this and must not describe the study as a new dataset holdout.",
+    "analysis_unit": "Seed is the independent algorithmic replication block; configurations within a seed remain correlated.",
+    "inference": "Use exact two-sided seed-block sign-flip tests on the eight new seeds only, with Holm correction across supported datasets. Old and new seeds may be combined only for descriptive estimates, never to relabel the post-hoc existing-seed analysis as confirmatory."
+  },
+  "registered_endpoints": {
+    "primary": "Measured external contract violation per registered configuration for always-deploy, point selection, original simultaneous-envelope VERA, and VERA-IUT.",
+    "power": "Deployment rate and safe deployment retention relative to measured external-oracle opportunities.",
+    "support": "Unsupported-environment abstention rate, reported separately from measured external contract violation.",
+    "theory": "Finite-sample false-acceptance control for the fixed deployment profile under the hierarchical shift model."
+  },
+  "pass_conditions": {
+    "type_i_control": "The exact synthetic study for VERA-IUT has simultaneous false-acceptance upper bound at or below delta in every registered cell.",
+    "nontrivial_power": "On the eight new seeds, VERA-IUT deploys safely in at least 30 percent of measured external-oracle opportunities and deploys in at least three of the four datasets without forced support mismatch.",
+    "external_check": "VERA-IUT measured external contract-violation rate is at most delta globally and in every dataset on the eight new seeds. This is a benchmark check, not proof that the external law is inside the ambiguity class.",
+    "naive_failure": "At least one preregistered always-deploy or point-selection regime has measured external contract violations of at least 20 percent.",
+    "inference": "The seed-block comparison against point selection is Holm-significant in at least three supported datasets, or the paper explicitly reports that this inferential gate failed.",
+    "honesty": "The original 0/1125 deployment result remains in the paper and artifact package; it is never overwritten by VERA-IUT."
+  }
+}
