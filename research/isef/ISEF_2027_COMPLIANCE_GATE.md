@@ -10,13 +10,32 @@ or bibliography. It must not be submitted as student-authored project material.
 - `https://www.societyforscience.org/isef/international-rules/`
 - `https://www.societyforscience.org/isef/international-rules/rules-for-all-projects/`
 - `https://www.societyforscience.org/isef/international-rules/human-participants/`
+- `https://www.societyforscience.org/isef/affiliated-fair-guidelines/requirements/`
 - `https://ruleswizard.societyforscience.org/`
+- `https://ba-leeds.org/science-fair/`
+- `https://ba-leeds.org/science-and-engineering-fair-deadlines/`
 
-The 2027 rules require independent student research, accurate attribution, the
-current forms, and all required approvals. They permit AI as an acknowledged
-resource, but prohibit using generative AI to write the fair research plan,
-abstract, poster, or citations. Those four materials are deliberately absent
-from this directory.
+The Society for Science 2027 rules page is live as of July 14, 2026. The rules
+require independent student research, accurate attribution, the current forms,
+and all required approvals. They permit AI as an acknowledged resource, but
+prohibit using generative AI to write the fair research plan, abstract, poster,
+or citations. Those four materials are deliberately absent from this directory.
+
+For Contra Costa County, the Bay Area LEEDS CCCSEF page says the fair is open
+to students attending school in Contra Costa County in grades 7-12. No school
+fair qualification is required for CCCSEF entry, but the student must still
+follow ISEF and CCCSEF paperwork. The 2026 page lists Los Medanos College as
+the venue and March 5-7, 2026 as the fair dates; 2027 dates were not yet posted
+on that page when checked. CCCSEF also states that appropriate ISEF forms and
+unique CCCSEF forms must be completed with required signatures, and that the SRC
+reviews the research plan before experimentation when pre-approval is required.
+
+The Society affiliated-fair requirements state that an SRC must have at least
+three members: a biomedical scientist, a science educator, and another member.
+They also state that students without the proper approvals or forms on the
+proper timeline may not qualify for ISEF. This repository therefore cannot
+declare ISEF eligibility until the Contra Costa SRC or Adult Sponsor records the
+required determinations in `research/private/isef_compliance_registry.json`.
 
 ## Immediate Human Actions
 
@@ -34,6 +53,18 @@ from this directory.
    Support Disclosure Form; the SRC determines additions.
 5. Create `research/private/isef_compliance_registry.json` from the template
    only after each statement is true and documented.
+
+Suggested first email subject: `CCCSEF SRC guidance request for software-only AI project using public datasets`.
+
+Suggested first email body:
+
+> I am preparing a software-only AI research project for the Contra Costa County
+> Science & Engineering Fair. It uses only preexisting public datasets and does
+> not recruit participants, run surveys, collect private data, diagnose disease,
+> or make clinical recommendations. I need written guidance on required ISEF and
+> CCCSEF forms, whether the public-data exemption applies, whether Form 4 or
+> other human-participant documentation is needed, and how to disclose work that
+> began before SRC review. I will not backdate any form or approval.
 
 ## Student Ownership Gate
 

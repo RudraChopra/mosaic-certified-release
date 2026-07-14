@@ -16,6 +16,7 @@ LEDGER = ROOT / "isef" / "AI_ASSISTANCE_LEDGER.md"
 COMPLIANCE = ROOT / "isef" / "ISEF_2027_COMPLIANCE_GATE.md"
 
 BOOLEAN_GATES = (
+    "contra_costa_school_attendance_confirmed",
     "adult_sponsor_engaged",
     "local_src_contacted",
     "local_src_written_eligibility_guidance_received",
@@ -68,11 +69,14 @@ def main() -> int:
     src_reference_present = bool(
         str(registry.get("src_determination_reference") or "").strip()
     )
+    grade_level = registry.get("student_grade_level")
+    grade_valid = isinstance(grade_level, int) and 7 <= grade_level <= 12
     technical = {
         "compliance_gate_present": COMPLIANCE.is_file(),
         "ai_assistance_ledger_present": LEDGER.is_file(),
         "official_start_date_in_2027_window": start_valid,
         "src_determination_reference_present": src_reference_present,
+        "student_grade_level_eligible_for_cccsef": grade_valid,
     }
     failures = [key for key, value in {**technical, **gate_status}.items() if not value]
     report = {
