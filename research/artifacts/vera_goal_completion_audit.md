@@ -1,6 +1,6 @@
 # VERA Exact Goal Completion Audit
 
-Generated at UTC: `2026-07-14T18:36:30.656386+00:00`
+Generated at UTC: `2026-07-14T19:23:28.339281+00:00`
 Goal complete: `False`
 Literal requested bar complete: `False`
 Registered protocol complete: `False`
@@ -16,7 +16,7 @@ Registered protocol complete: `False`
 | fail | `requested_goal_3_killer_experiment`: Requested strict false-acceptance study | grid_valid=True; naive_failure_datasets=2 (required >=1); vera_control=True; seed_blocked_significant=0; discordant_counts=True; retention_intervals=True | Meet the prespecified >=20% naive-failure, strict VERA-control, seed-blocked significance, and retention conditions without post-hoc tuning. |
 | pass | `requested_goal_4_zero_proxy_baselines`: Requested official baselines on untouched seeds | receipt_count=200/200; seeds=[5, 6, 7, 8, 9, 10, 11, 12]; requested_seeds=[5, 6, 7, 8, 9, 10, 11, 12]; proxies=0; invalid=0 | None. |
 | pass | `requested_goal_5_memorable_number`: Requested receipted headline or theory lead | X_Y_Z_pass=True; theory_forced_abstention_alternative=True; report_present=True; X=0.21875; Y=0.0; Z=0.3082191780821918; X_minus_Y=0.21875; verified=True; descriptive_caveat=True | None. |
-| fail | `requested_goal_6_presentation`: Requested seven-page presentation package | registered_presentation_pass=True; figure_1_panel_count=3; repository_forbidden_hits=460; oversized_unscanned=1; report_present=True; pages=7; verified_references=53; forbidden_hits=0; anonymous_clean=True; named_clean=True | Pass the full presentation audit, including an explicit three-panel Figure 1 check and zero forbidden-name hits. |
+| pass | `requested_goal_6_presentation`: Requested seven-page presentation package | registered_presentation_pass=True; figure_1_panel_count=3; repository_forbidden_hits=0; oversized_unscanned=0; report_present=True; pages=7; verified_references=53; forbidden_hits=0; anonymous_clean=True; named_clean=True | None. |
 | fail | `requested_goal_7_external_review`: Requested two human cold reviews | registered_external_review_pass=False; report_present=True; completed=0; ML_publishers=0; unresolved_critical=0; unresolved_major=0; unaddressed_LTT=0; unaddressed_PRC=0 | Obtain two real cold reviews from ML publishers and close every critical/major item in a response ledger. |
 
 ## Registered Scientific Protocol
@@ -33,7 +33,7 @@ Registered protocol complete: `False`
 
 ## Submission Machinery
 
-- **fail** `submission_machinery`: report_present=True; missing_or_unconfirmed=['openreview_account_human_confirmed', 'single_email_human_confirmed', 'anonymous_archive_reproduces_main_table', 'deadlines_human_confirmed', 'scientific_content_human_verified', 'authorship_criteria_human_confirmed', 'ai_assistance_disclosure_human_confirmed']
+- **fail** `submission_machinery`: report_present=True; missing_or_unconfirmed=['openreview_account_human_confirmed', 'single_email_human_confirmed', 'deadlines_human_confirmed', 'scientific_content_human_verified', 'authorship_criteria_human_confirmed', 'ai_assistance_disclosure_human_confirmed']
 
 ## Declared Replacements
 

@@ -12,6 +12,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_REGISTRY = ROOT / "private" / "external_review_registry.json"
+DEFAULT_TEMPLATE = ROOT / "external_review_registry.template.json"
 DEFAULT_OUTPUT = ROOT / "artifacts" / "external_review_audit.json"
 
 
@@ -97,6 +98,7 @@ def review_valid(
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--registry", type=Path, default=DEFAULT_REGISTRY)
+    parser.add_argument("--template", type=Path, default=DEFAULT_TEMPLATE)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     return parser.parse_args()
 
@@ -104,8 +106,14 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     args = parse_args()
     registry = load_json(args.registry)
+    template = load_json(args.template)
     frozen = registry.get("frozen_package", {})
     frozen = frozen if isinstance(frozen, dict) else {}
+    frozen_source = "private_registry"
+    if not frozen:
+        frozen = template.get("frozen_package", {})
+        frozen = frozen if isinstance(frozen, dict) else {}
+        frozen_source = "public_template"
     frozen_main_hash = str(frozen.get("anonymous_main_pdf_sha256", ""))
     reviews = registry.get("reviews", [])
     reviews = reviews if isinstance(reviews, list) else []
@@ -203,6 +211,8 @@ def main() -> int:
         "passed": passed,
         "registry_present": bool(registry),
         "registry_sha256": sha256(args.registry) if args.registry.is_file() else None,
+        "template_sha256": sha256(args.template) if args.template.is_file() else None,
+        "frozen_package_source": frozen_source if frozen else None,
         "frozen_files_verified": frozen_files_verified,
         "completed_review_count": len(valid_reviews),
         "ml_publisher_reviewer_count": sum(
