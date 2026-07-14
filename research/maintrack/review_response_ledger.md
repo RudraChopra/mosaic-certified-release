@@ -16,9 +16,11 @@ in the ignored private registry.
 
 | Artifact | Version | SHA-256 | Status |
 |---|---|---|---|
-| Anonymous main paper | pending final empirical build | pending | not frozen |
-| Anonymous supplement | pending final empirical build | pending | not frozen |
-| Anonymous code archive | pending final empirical build | pending | not frozen |
+| Anonymous main paper | `404f3b2` frozen package | `6c185279753aba5d35441c87ef2f2ded716ae587671ee8a494c30ffc2ba3cc83` | frozen, not yet reviewed |
+| Anonymous supplement | `404f3b2` frozen package | `a83c0008fd5c8794a3240e80003b506bbed299345e699cdfa1d740306fc75699` | frozen, not yet reviewed |
+| Anonymous code archive | `404f3b2` frozen package | `35c8bffee22c09a4849427f75baf28a931211053ec229380cc85e2dfa691bb88` | frozen, audit passed |
+
+Archive audit: `research/artifacts/vera_anonymous_archive_audit.json`.
 
 ## Reviewer Provenance
 

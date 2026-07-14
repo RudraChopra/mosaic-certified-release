@@ -11,9 +11,20 @@ feedback, not evidence that acceptance is guaranteed.
 Send only these finalized artifacts, recording each SHA-256 in the private
 review registry:
 
-- anonymous main paper PDF;
-- anonymous supplement PDF;
-- anonymous reproduction archive.
+- anonymous main paper PDF:
+  `research/maintrack/aaai2027_template/AuthorKit27/vera_aaai2027_anonymous.pdf`
+  SHA-256 `6c185279753aba5d35441c87ef2f2ded716ae587671ee8a494c30ffc2ba3cc83`;
+- anonymous supplement PDF:
+  `research/maintrack/aaai2027_template/AuthorKit27/vera_aaai2027_supplement_anonymous.pdf`
+  SHA-256 `a83c0008fd5c8794a3240e80003b506bbed299345e699cdfa1d740306fc75699`;
+- anonymous reproduction archive:
+  `dist/vera_anonymous_submission.zip`
+  SHA-256 `35c8bffee22c09a4849427f75baf28a931211053ec229380cc85e2dfa691bb88`,
+  source commit `404f3b2ef61e3df0a62578cf1e6ca9539e1f54f9`.
+
+The archive audit in `research/artifacts/vera_anonymous_archive_audit.json`
+records that the package had no identity hits, no legacy-name hits, and passed
+compact one-command reproduction.
 
 Do not send internal readiness audits, prior critiques, response drafts, author
 identity, or claimed target scores before the reviewer writes the cold review.
