@@ -64,6 +64,7 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
     methods = study.get("methods", {})
     datasets = datasets if isinstance(datasets, dict) else {}
     methods = methods if isinstance(methods, dict) else {}
+    heldout_attacker = study.get("heldout_attacker")
     seeds = [int(value) for value in study.get("seeds", [])]
     expected_hash = args.hash_file.read_text(encoding="utf-8").split()[0] if args.hash_file.is_file() else ""
     actual_hash = sha256(args.prereg) if args.prereg.is_file() else ""
@@ -109,6 +110,7 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
                     "claim_configuration_verified": True,
                     "external_labels_locked_during_edit_construction": True,
                     "store_manifest_sha256": dataset_config.get("manifest_sha256"),
+                    "heldout_attacker": heldout_attacker,
                 }
                 for key, expected in expected_values.items():
                     if receipt.get(key) != expected:
@@ -185,6 +187,13 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
                                     receipt_errors.append(
                                         f"candidate {candidate_index} attacker arrays differ from locked portfolio"
                                     )
+                                elif heldout_attacker is not None and not {
+                                    "heldout_leakage_correct_certification__boosted_tree",
+                                    "heldout_leakage_correct_external__boosted_tree",
+                                }.issubset(archive.files):
+                                    receipt_errors.append(
+                                        f"candidate {candidate_index} held-out attacker arrays missing"
+                                    )
                                 else:
                                     certification_n = int(receipt.get("indices", {}).get("certification", {}).get("n", -1))
                                     external_n = int(receipt.get("indices", {}).get("external", {}).get("n", -1))
@@ -219,6 +228,7 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
                                         name
                                         for name in archive.files
                                         if name.startswith("leakage_correct_")
+                                        or name.startswith("heldout_leakage_correct_")
                                     ]
                                     if any(
                                         not np.isin(archive[name], (0, 1)).all()
@@ -378,6 +388,7 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
             for config in methods.values()
         ),
         "shared_protocol_verified": not mismatched_splits and not invalid,
+        "heldout_attacker": heldout_attacker,
         "runner_commits": sorted(runner_commits),
         "runner_commit_contains_locked_preregistration": runner_commit_contains_prereg,
         "runner_material_files": list(MATERIAL_RUNNER_FILES),

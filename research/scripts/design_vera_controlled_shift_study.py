@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import subprocess
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -45,6 +46,16 @@ RULES = (
     "vera_common_radius",
     "external_oracle",
 )
+
+
+def git_commit() -> str:
+    return subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=ROOT.parent,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
 
 
 def array_sha256(values: np.ndarray) -> str:
@@ -685,7 +696,6 @@ def design(args: argparse.Namespace) -> dict[str, Any]:
                             + 1_000_003 * seed
                             + 10_007 * int(round(100 * requested_gamma))
                             + 101 * total_budget
-                            + (1 if allocation_name == "targeted" else 0)
                             + sum(map(ord, dataset))
                         )
                         decisions = evaluate_configuration(
@@ -730,12 +740,14 @@ def design(args: argparse.Namespace) -> dict[str, Any]:
         else None
     )
     return {
+        "schema_version": 2,
         "name": "VERA controlled-shift design analysis",
         "generated_at": datetime.now(timezone.utc).isoformat(),
+        "source_git_commit": git_commit(),
         "analysis_tier": "exploratory design on inspected seeds; not confirmatory evidence",
         "source_prereg_sha256": sha256(args.prereg),
         "design_seeds": seeds,
-        "future_seed_block": list(range(45, 77)),
+        "future_seed_block": list(range(45, 109)),
         "datasets": list(DATASETS),
         "gammas": args.gammas,
         "budgets": args.budgets,
@@ -761,6 +773,11 @@ def design(args: argparse.Namespace) -> dict[str, Any]:
             "their outcomes; external design outcomes set the prospective evidence "
             "allocation; certification and final deployment are independent random "
             "streams from the reference and shifted laws, respectively."
+        ),
+        "random_stream_policy": (
+            "Uniform and targeted allocations use the same prespecified random seed "
+            "within each dataset, design seed, Gamma, and total budget; allocation "
+            "changes only how many draws are assigned to each registered cell."
         ),
     }
 

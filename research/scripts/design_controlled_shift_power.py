@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import subprocess
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -15,6 +18,24 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DESIGN = ROOT / "artifacts" / "vera_controlled_shift_design.json"
 DEFAULT_OUTPUT = ROOT / "artifacts" / "vera_controlled_shift_power.json"
 DATASETS = ("Bios", "CivilComments-WILDS", "GaitPDB", "Waterbirds")
+
+
+def sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(8 * 1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def git_commit() -> str:
+    return subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=ROOT.parent,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
 
 
 def cp_upper(successes: int, n: int, alpha: float) -> float:
@@ -108,7 +129,7 @@ def retention_intervals(
                 )
         vector_retention = vector / opportunities
         common_retention = common / opportunities
-        ratio = float("inf") if common == 0 and vector > 0 else vector / max(common, 1)
+        ratio = float("nan") if common == 0 else vector / common
         return vector_retention, common_retention, ratio
 
     rng = np.random.default_rng(2_027_071_504)
@@ -117,6 +138,15 @@ def retention_intervals(
         for _ in range(bootstrap_replicates)
     ])
     point = statistic(seeds)
+    finite_ratios = bootstrap[:, 2][np.isfinite(bootstrap[:, 2])]
+    ratio_interval = (
+        [None, None]
+        if not len(finite_ratios)
+        else [
+            float(np.quantile(finite_ratios, 0.025)),
+            float(np.quantile(finite_ratios, 0.975)),
+        ]
+    )
     return {
         "bootstrap_unit": "seed cluster across all four supported datasets",
         "bootstrap_replicates": bootstrap_replicates,
@@ -130,11 +160,14 @@ def retention_intervals(
             float(np.quantile(bootstrap[:, 1], 0.025)),
             float(np.quantile(bootstrap[:, 1], 0.975)),
         ],
-        "vector_to_common_ratio": point[2],
-        "vector_to_common_ratio_ci95": [
-            float(np.quantile(bootstrap[:, 2], 0.025)),
-            float(np.quantile(bootstrap[:, 2], 0.975)),
-        ],
+        "vector_to_common_ratio": None if not np.isfinite(point[2]) else point[2],
+        "vector_positive_when_common_zero": bool(
+            point[0] > 0.0 and point[1] == 0.0
+        ),
+        "vector_to_common_ratio_ci95": ratio_interval,
+        "bootstrap_fraction_common_zero": float(
+            np.mean(~np.isfinite(bootstrap[:, 2]))
+        ),
     }
 
 
@@ -171,7 +204,11 @@ def main() -> int:
             "planned seeds must meet the zero-event safety bound and balance datasets"
         )
     payload = {
+        "schema_version": 2,
         "name": "VERA controlled-shift prospective power analysis",
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "source_git_commit": git_commit(),
+        "design_report_sha256": sha256(args.design),
         "analysis_tier": "exploratory design only; no fresh seeds read",
         "design_seeds": sorted(record["seed"] for record in clusters),
         "fresh_seed_block": list(range(45, 45 + planned)),

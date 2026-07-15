@@ -12,7 +12,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import numpy as np
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import HistGradientBoostingClassifier, RandomForestClassifier
 from sklearn.kernel_approximation import Nystroem
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import balanced_accuracy_score
@@ -78,6 +78,23 @@ METHOD_NAMES = {
     "rlace": "RLACE",
     "taco": "TaCo",
     "mance": "MANCE++",
+}
+HELDOUT_ATTACKER_CONFIG = {
+    "name": "boosted_tree",
+    "class": "sklearn.ensemble.HistGradientBoostingClassifier",
+    "learning_rate": 0.05,
+    "max_iter": 150,
+    "max_leaf_nodes": 31,
+    "min_samples_leaf": 20,
+    "l2_regularization": 0.01,
+    "max_features": 0.8,
+    "class_weight": "balanced",
+    "early_stopping": True,
+    "validation_fraction": 0.15,
+    "n_iter_no_change": 10,
+    "seed_offset": 29,
+    "formal_guarantee": False,
+    "usage": "external stress evaluation only; never used by certification or selection",
 }
 
 
@@ -288,11 +305,15 @@ def validate_claim_configuration(
         raise RuntimeError("target probe differs from the locked runner")
     if study.get("leakage_attackers") != expected_attackers:
         raise RuntimeError("attacker portfolio differs from the locked runner")
+    heldout_attacker = study.get("heldout_attacker")
+    if heldout_attacker is not None and heldout_attacker != HELDOUT_ATTACKER_CONFIG:
+        raise RuntimeError("held-out attacker differs from the locked runner")
     if int(store.manifest.get("n_examples", 0)) <= 0:
         raise RuntimeError("dataset manifest has no examples")
     return {
         "dataset_manifest_sha256": manifest_hash,
         "method": method,
+        "heldout_attacker": heldout_attacker,
         "runner_parameters": {
             "max_train": args.max_train,
             "max_construction": args.max_construction,
@@ -491,6 +512,22 @@ def make_attackers(seed: int, dimension: int) -> dict[str, object]:
     }
 
 
+def make_heldout_attacker(seed: int) -> HistGradientBoostingClassifier:
+    return HistGradientBoostingClassifier(
+        learning_rate=0.05,
+        max_iter=150,
+        max_leaf_nodes=31,
+        min_samples_leaf=20,
+        l2_regularization=0.01,
+        max_features=0.8,
+        class_weight="balanced",
+        early_stopping=True,
+        validation_fraction=0.15,
+        n_iter_no_change=10,
+        random_state=seed + 29,
+    )
+
+
 def balanced_correctness(source: np.ndarray, prediction: np.ndarray) -> float | None:
     if len(np.unique(source)) < 2:
         return None
@@ -514,6 +551,7 @@ def evaluate_candidate(
     seed: int,
     split_at: int,
     audit_path: Path,
+    include_heldout_attacker: bool,
 ) -> dict[str, object]:
     candidate_certification = candidate.external[:split_at]
     candidate_external = candidate.external[split_at:]
@@ -563,6 +601,28 @@ def evaluate_candidate(
                 s_external, external_prediction
             ),
         }
+    heldout_metrics: dict[str, object] | None = None
+    if include_heldout_attacker:
+        heldout = make_heldout_attacker(seed)
+        heldout.fit(candidate.train, s_train)
+        heldout_cert_prediction = heldout.predict(candidate_certification)
+        heldout_external_prediction = heldout.predict(candidate_external)
+        arrays["heldout_leakage_correct_certification__boosted_tree"] = (
+            heldout_cert_prediction == s_certification
+        ).astype(np.int8)
+        arrays["heldout_leakage_correct_external__boosted_tree"] = (
+            heldout_external_prediction == s_external
+        ).astype(np.int8)
+        heldout_metrics = {
+            "name": "boosted_tree",
+            "formal_guarantee": False,
+            "certification_balanced_accuracy": balanced_correctness(
+                s_certification, heldout_cert_prediction
+            ),
+            "external_balanced_accuracy": balanced_correctness(
+                s_external, heldout_external_prediction
+            ),
+        }
     audit_path.parent.mkdir(parents=True, exist_ok=True)
     np.savez_compressed(audit_path, **arrays)
     return {
@@ -582,6 +642,7 @@ def evaluate_candidate(
             "certification_mean_paired_target_harm": float(target_harm_certification.mean()),
             "external_mean_paired_target_harm": float(target_harm_external.mean()),
             "attackers": leakage_metrics,
+            "heldout_attacker_stress": heldout_metrics,
         },
     }
 
@@ -744,6 +805,10 @@ def main() -> None:
     if args.claim_grade:
         assert locked_configuration is not None
         validate_official_candidates(candidates, locked_configuration)
+    include_heldout_attacker = bool(
+        locked_configuration is not None
+        and locked_configuration.get("heldout_attacker") is not None
+    )
 
     run_key = f"{args.dataset}__{args.method}__seed-{args.seed}"
     audit_dir = args.external_output_dir / run_key
@@ -766,6 +831,7 @@ def main() -> None:
                 seed=args.seed,
                 split_at=len(certification),
                 audit_path=audit_dir / f"candidate-{index:02d}.npz",
+                include_heldout_attacker=include_heldout_attacker,
             )
         )
     receipt = {
@@ -783,6 +849,9 @@ def main() -> None:
         "prereg_sha256": prereg_hash,
         "claim_configuration_verified": bool(args.claim_grade),
         "locked_configuration": locked_configuration,
+        "heldout_attacker": (
+            HELDOUT_ATTACKER_CONFIG if include_heldout_attacker else None
+        ),
         "split_policy": "eraser train/construction are disjoint group-stratified partitions of official train; certification is untouched official validation",
         "external_labels_locked_during_edit_construction": True,
         "indices": {
