@@ -404,6 +404,32 @@ def evaluate_configuration(
                 "evaluation_target": evaluation_target,
                 "evaluation_leakage": evaluation_leakage,
                 "envelope_radius": envelope.deployment_common_radius,
+                "target_environment_radii": dict(
+                    envelope.target_environment_radii
+                ),
+                "source_class_radii": dict(envelope.source_class_radii),
+                "limiting_coordinates": tuple(
+                    sorted(
+                        key
+                        for key, value in {
+                            **{
+                                f"target::environment={group}": radius
+                                for group, radius in envelope.target_environment_radii.items()
+                            },
+                            **{
+                                f"source::{source_class}": radius
+                                for source_class, radius in envelope.source_class_radii.items()
+                            },
+                        }.items()
+                        if value
+                        <= min(
+                            *envelope.target_environment_radii.values(),
+                            *envelope.source_class_radii.values(),
+                        )
+                        + 1e-12
+                    )
+                ),
+                "fixed_profile_limiting_contracts": fixed.limiting_contracts,
             }
         )
     selections = {
@@ -436,6 +462,20 @@ def evaluate_configuration(
                 None if selected is None else selected["evaluation_leakage"]
             ),
             "certified_common_radius": 0.0 if selected is None else selected["envelope_radius"],
+            "target_environment_radii": (
+                {} if selected is None else selected["target_environment_radii"]
+            ),
+            "source_class_radii": (
+                {} if selected is None else selected["source_class_radii"]
+            ),
+            "limiting_coordinates": (
+                [] if selected is None else list(selected["limiting_coordinates"])
+            ),
+            "fixed_profile_limiting_contracts": (
+                []
+                if selected is None
+                else list(selected["fixed_profile_limiting_contracts"])
+            ),
         }
         for rule, selected in selections.items()
     }
