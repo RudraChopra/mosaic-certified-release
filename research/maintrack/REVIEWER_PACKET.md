@@ -39,14 +39,14 @@ Suggested request:
 
 - Anonymous main paper PDF:
   `research/maintrack/aaai2027_template/AuthorKit27/vera_aaai2027_anonymous.pdf`
-  SHA-256 `6c185279753aba5d35441c87ef2f2ded716ae587671ee8a494c30ffc2ba3cc83`.
+  SHA-256 `15de25583d7c55ae5af474224b494d2cf1e7f20543c0e18b20d734621ae06e0f`.
 - Anonymous supplement PDF:
   `research/maintrack/aaai2027_template/AuthorKit27/vera_aaai2027_supplement_anonymous.pdf`
-  SHA-256 `a83c0008fd5c8794a3240e80003b506bbed299345e699cdfa1d740306fc75699`.
+  SHA-256 `6824cb142cdad3d152012a41a35e7cfcfb415cf2d017be5c447b81977f7a89db`.
 - Anonymous code/data archive:
   `dist/vera_anonymous_submission.zip`
-  SHA-256 `35c8bffee22c09a4849427f75baf28a931211053ec229380cc85e2dfa691bb88`;
-  source commit `404f3b2ef61e3df0a62578cf1e6ca9539e1f54f9`.
+  SHA-256 `a87e06fc63409f788f7b9251eadf30cc73fc2593c7b5871eb37e916475eebd3a`;
+  source commit `919be4f8c2d398cc5efbda808da734f0eab8f070`.
 - One-command reproduction instructions.
 
 All materials must be frozen before a review is counted. If a critical
