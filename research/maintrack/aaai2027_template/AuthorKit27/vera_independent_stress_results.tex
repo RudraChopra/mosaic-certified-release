@@ -1,4 +1,24 @@
 \paragraph{Independent disjoint-seed replication.}
-The independent replication did not pass every preregistered endpoint: 3/4 supported datasets cleared the joint naive-failure, VERA-control, and Holm-corrected paired-test requirements. The locked outcome is reported without replacing thresholds, seeds, or tests.
+Across 128 preregistered decisions from 32 disjoint replication seeds per supported dataset, point selection deployed contract-violating edits in 35/128 decisions (27.3\%), versus 1/128 (0.8\%) for IID LTT/VERA-IUT.
 VERA retained 52/102 external-oracle opportunities (51.0\%). Camelyon17 forced abstention in all 64 registered VERA decisions because the deployment hospital remained outside certification support.
+All four dataset-level paired comparisons favored VERA after Holm correction. The composite preregistered endpoint nevertheless did not pass: 3/4 datasets cleared every condition because GaitPDB's point-selection violation rate was 5/32 (15.6\%), below the locked 20\% threshold.
 Dataset-level stress counts, Holm-adjusted paired tests, and the three-panel replication figure are generated as audited artifacts and included in the supplementary archive.
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3.2pt}
+\begin{tabular}{lrrrr}
+\toprule
+Dataset & Point viol. & VERA viol. & Holm $p$ & Safe kept \\
+\midrule
+Bios & 12/32 & 1/32 & 0.0020 & 4/7 \\
+CivilComments & 10/32 & 0/32 & 0.0029 & 16/32 \\
+GaitPDB & 5/32 & 0/32 & 0.0312 & 0/31 \\
+Waterbirds & 8/32 & 0/32 & 0.0078 & 32/32 \\
+\midrule
+Total & 35/128 & 1/128 & -- & 52/102 \\
+\bottomrule
+\end{tabular}
+\caption{Independent 32-seed replication on supported datasets. Violations use all registered decisions as the denominator; Safe kept is externally safe VERA deployments over external-oracle opportunities.}
+\label{tab:independent-stress}
+\end{table}

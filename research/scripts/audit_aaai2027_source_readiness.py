@@ -198,8 +198,8 @@ def collect_checks() -> tuple[list[Check], dict[str, Any]]:
             key="reference_boundary_present",
             status=status(
                 all(term in source for term in ("R-LACE", "TaCo", "LEACE", "MANCE++"))
-                and "No proxy row" in source
-                and "does not claim" in source
+                and "no proxy" in source.lower()
+                and "does not claim" in source.lower()
             ),
             evidence="source identifies pinned official baselines, excludes proxy rows, and states explicit non-novelty boundaries",
             requirement="AAAI source must not overclaim baseline or method novelty.",

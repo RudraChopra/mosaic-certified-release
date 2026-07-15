@@ -1,6 +1,6 @@
 # AAAI-27 Source Readiness Audit
 
-Generated at UTC: `2026-07-14T19:08:09.936882+00:00`
+Generated at UTC: `2026-07-15T04:25:20.539883+00:00`
 Source ready: `True`
 Warning count: `0`
 
@@ -19,5 +19,5 @@ Warning count: `0`
 | pass | `reviewer_attack_preempted` | source squarely attributes finite-family testing and distinguishes VERA from LTT and Prompt Risk Control | AAAI source should preempt the closest-prior-work objection. |
 | pass | `reference_boundary_present` | source identifies pinned official baselines, excludes proxy rows, and states explicit non-novelty boundaries | AAAI source must not overclaim baseline or method novelty. |
 | pass | `clinical_boundary_present` | source states Camelyon17/GaitPDB are not clinical deployment evidence | Medical benchmark language must not imply clinical deployment readiness. |
-| pass | `estimated_length_reasonable` | estimated_main_words=4035 | AAAI source should remain plausibly within the 7-page technical limit. |
+| pass | `estimated_length_reasonable` | estimated_main_words=4165 | AAAI source should remain plausibly within the 7-page technical limit. |
 | pass | `latex_engine_available` | latex_engine=/opt/homebrew/bin/tectonic | Local final AAAI PDF compilation requires PDFLaTeX or Tectonic. |

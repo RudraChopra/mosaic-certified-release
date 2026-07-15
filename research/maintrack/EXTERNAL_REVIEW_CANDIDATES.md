@@ -13,6 +13,7 @@ passes `audit_external_reviews.py`.
 | Edward Raff | LEACE and applied ML evaluation; useful for empirical and reproducibility attack | [LEACE, NeurIPS 2023](https://proceedings.neurips.cc/paper_files/paper/2023/hash/d066d21c619d0a78c5b557fa3291a8f4-Abstract-Conference.html) |
 | Anastasios Angelopoulos or Stephen Bates | Learn Then Test and risk-controlling prediction; highest-value test of overlap and novelty positioning | [Learn Then Test, AOAS 2025](https://doi.org/10.1214/24-AOAS1998); [risk-controlling prediction sets, JACM 2021](https://doi.org/10.1145/3478535) |
 
-Preferred first pair: one erasure-method author and one risk-control researcher
-who was not involved in a baseline paper. Using two coauthors from the same
-paper is less independent.
+Build a four-role panel: theory/statistics, distribution shift or risk control,
+erasure/fairness, and a general ML reader with no prior project involvement.
+Avoid filling multiple roles with coauthors from the same paper. Reserve a
+fifth, previously unused reader for the post-revision check.

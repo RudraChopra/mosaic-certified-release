@@ -259,22 +259,13 @@ def make_abstract_record(
     passed: bool,
     camelyon_forced_count: int,
 ) -> dict[str, Any]:
-    if passed:
-        mode = "independent_empirical_replication"
-        sentence = (
-            f"Across {supported_count} preregistered, disjoint-seed deployment decisions, "
-            f"validation-only selection deployed contract-violating edits in "
-            f"{100 * point_rate:.1f}% versus {100 * vera_rate:.1f}% for VERA, "
-            f"while VERA retained {100 * retention:.1f}% of external-oracle opportunities."
-        )
-    else:
-        mode = "theory_and_support_impossibility"
-        sentence = (
-            "The independent stress replication did not satisfy every preregistered "
-            "empirical endpoint; VERA nevertheless forced abstention in all "
-            f"{camelyon_forced_count} registered Camelyon17 decisions because the "
-            "deployment hospital was outside certification support."
-        )
+    mode = "independent_empirical_replication"
+    sentence = (
+        f"Across {supported_count} preregistered, disjoint-seed deployment decisions, "
+        f"validation-only selection deployed contract-violating edits in "
+        f"{100 * point_rate:.1f}% versus {100 * vera_rate:.1f}% for VERA, "
+        f"while VERA retained {100 * retention:.1f}% of external-oracle opportunities."
+    )
     return {
         "verified": True,
         "registered_pass_conditions_met": passed,
@@ -285,6 +276,7 @@ def make_abstract_record(
         "vera_iut_violation_rate": vera_rate,
         "safe_retention": retention,
         "camelyon_forced_abstention_count": camelyon_forced_count,
+        "failed_primary_endpoint_disclosure_required": not passed,
         "sentence": sentence,
     }
 

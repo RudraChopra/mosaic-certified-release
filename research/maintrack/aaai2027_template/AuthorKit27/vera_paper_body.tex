@@ -8,26 +8,23 @@
 \providecommand{\CodeAvailabilityText}{Code, hashed preregistrations, compact receipts, audit scripts, and manuscript sources are included in the anonymous supplementary archive. Large public-dataset derivatives are represented by manifests and content hashes.}
 
 \begin{abstract}
-Concept erasers can suppress sensitive information in a representation while
-damaging its target task or failing under deployment shift. The eraser alone
-does not answer the deployment question: under what shift, if any, is an edit
-still supported by evidence? We introduce VERA, Verified Erasure under
-Reweighting Ambiguity, a decision layer that audits target loss on paired
-identity/edit outcomes and sensitive leakage with fresh heterogeneous
-attackers. For each registered edit, VERA reports a simultaneous support-aware
-envelope of environment and source-conditional density-ratio budgets under
-which all target-harm and balanced-leakage contracts hold, together with a
-more powerful fixed-profile decision, or returns \textsc{Abstain}. We prove
-uniform envelope validity, permit arbitrary mixtures of observed environments
-and arbitrary source-prior shift, and show that no validation-only protocol can
-nontrivially certify unconstrained deployment mass outside its support.
-Finite-family testing and abstention are inherited from Learn Then Test style
-risk control, not claimed as new. The empirical protocol combines a 54-cell
-exact abstention study, a 216-cell candidate-family/group-count coverage grid,
-and preregistered official-code matrices spanning five erasers, five datasets,
-and \OfficialReceiptCount audited receipts when the final independent
-replication is included. \HeadlineResult
-\StressEffectResult
+A representation edit may appear safe on IID validation data yet damage its
+target task or expose sensitive information after deployment reweighting. We
+introduce VERA, a decision layer that asks whether a registered edit should be
+deployed under a declared shift. VERA jointly audits paired target harm and a
+fresh heterogeneous attacker portfolio, then returns a simultaneous vector
+envelope of supported environment- and source-conditional density-ratio
+budgets, its limiting common radius, or \textsc{Abstain}. We prove finite-sample
+validity throughout the reported envelope and an impossibility result for new
+deployment support. Finite-family testing follows Learn Then Test; the proposed
+contribution is the representation-intervention certificate that couples
+paired harm, balanced leakage, a continuum of groupwise shifts, and an explicit
+support boundary. Across 128 preregistered disjoint-seed decisions on four
+supported vision, text, and time-series datasets, validation-only selection
+deployed contract-violating edits in 27.3\% of cases versus 0.8\% for VERA,
+while VERA retained 51.0\% of externally safe opportunities. On Camelyon17,
+VERA correctly abstained in all 64 registered decisions because the deployment
+hospital was absent from certification support.
 \end{abstract}
 
 \section{Introduction}
@@ -42,9 +39,12 @@ correlated concept can damage the target, a probe used by the eraser can
 understate leakage to a different attacker, and an IID validation result need
 not survive reweighting at deployment.
 
-This paper asks a narrower, operational question: what is the largest declared
-shift under which one candidate edit can be certified to preserve the target
-while limiting all registered leakage attackers? The target audit is paired.
+This paper asks a narrower, operational question: \emph{should this
+representation edit be deployed under this declared shift?} VERA does not
+construct a new eraser. It evaluates the output of registered erasers and
+returns a deployment decision plus a sensitivity certificate: a vector shift
+envelope, a limiting common radius, the contract that limits that radius, and
+the support boundary beyond which it must abstain. The target audit is paired.
 For the same example, it subtracts the identity representation's zero-one loss
 from the edited representation's loss, isolating incremental harm rather than
 conflating it with baseline error. The shift class is stratified: within each
@@ -78,13 +78,20 @@ summary of that envelope; unsupported required cells mark the boundary at which
 it cannot be identified.
 
 Our contributions are threefold. We robustify balanced accuracy into a
-source-prior-invariant leakage contract and certify its joint support-aware envelope with
-environment-conditional paired harm over a continuum of deployment budgets.
-We formalize unsupported-environment abstention by an indistinguishability
-theorem rather than a heuristic. We then test whether certification changes
-deployment decisions in a locked cross-modal study with official INLP,
-R-LACE, LEACE, TaCo, and MANCE++ code. All numbers are regenerated from
-per-run receipts; internal audits are not substitutes for scientific review.
+source-prior-invariant leakage contract and certify its joint support-aware
+envelope with environment-conditional paired harm over a continuum of
+deployment budgets. We formalize unsupported-environment abstention by an
+indistinguishability theorem rather than a heuristic. We then show in a locked,
+cross-modal official-code study that IID point selection produces unsafe edits
+that certification rejects, while the full envelope identifies how much
+declared shift each surviving edit supports.
+
+The stakes are concrete. A hospital may erase acquisition site from pathology
+features, a hiring system may remove gender from occupational embeddings, a
+toxicity model may suppress identity mentions, or a gait model may remove
+recording site. In each case, the edit can reduce measured leakage while
+damaging the intended prediction or failing in a reweighted group. VERA turns
+that ambiguity into a falsifiable, support-scoped deployment statement.
 
 \begin{figure*}[t]
 \centering
@@ -304,13 +311,19 @@ cannot increase that probability. Union bounding only over the $M$ candidates
 proves the result. This is the LTT-style finite-family decision used for the
 primary experiment.
 
-The distinction from simply applying LTT is in the population contract being
-tested. Each edit induces paired target variables and a family of retrained
-attacker variables; each variable is robustified over a continuum of
-conditional reweightings; and all coordinates are inverted into an admissible
-shift region. LTT supplies the fixed-family testing logic. The robust
-edit-specific envelope, balanced conditional leakage functional, and explicit
-support boundary define the deployment object studied here.
+The distinction from simply applying LTT is in the population contract and
+output being certified. Each edit induces paired target variables and a family
+of retrained-attacker variables; each variable is robustified over a continuum
+of conditional reweightings; and all coordinates are inverted into an
+admissible shift region. LTT supplies the fixed-family testing logic. The robust
+edit-specific vector envelope, its limiting common radius and contract,
+balanced conditional leakage functional, and explicit support boundary define
+the deployment object studied here. The separation already occurs at the
+population level: a Bernoulli leakage risk $p=0.04$ satisfies an IID threshold
+$0.05$, yet at $\Gamma=2$ its robust risk is
+$\min(1,\Gamma p)=0.08$ and violates the same threshold. An IID LTT decision
+can validly certify the first statement; it does not imply the second or report
+the largest supported shift.
 
 The simultaneous envelope is richer but more conservative. It contains every
 profile $(\boldsymbol\gamma,\boldsymbol\eta)$ for which each environment target
@@ -415,11 +428,14 @@ logistic regression, an RBF Nystroem map followed by logistic regression, a
 random forest, and a two-layer MLP. Certification uses fractions
 $\{0.05,0.10,0.25,0.50,1.00\}$, target thresholds
 $\tau\in\{0.05,0.10,0.20\}$, leakage thresholds
-$\lambda\in\{0.60,0.70,0.80\}$ and $\delta=0.05$. The primary fixed profile
-uses $\Gamma=1.0$ at the full certification size; a fixed $\Gamma=1.01$
+$\lambda\in\{0.60,0.70,0.80\}$ and $\delta=0.05$. The IID baseline profile
+uses $\Gamma=1.0$ at the full certification size; a fixed $\Gamma=1.01$ robust
 sensitivity and the full simultaneous radius are also reported. We compare
-always deploy, feasible point selection without intervals, VERA-IUT, the VERA
-envelope, and an external oracle. External contract violation is reported
+always deploy, feasible point selection without intervals, IID LTT/VERA-IUT at
+$\Gamma=1$, the VERA shift envelope, and an external oracle. The IUT row tests
+VERA's multicomponent edit contract but is not itself evidence of robustness to
+$\Gamma>1$; that evidence comes from the fixed shifted profile and envelope.
+External contract violation is reported
 separately from procedural non-certifiability. Camelyon17 external balanced
 leakage is \textsc{NA} because the slice has one source class, and VERA must
 abstain because center 2 is absent during certification.
@@ -427,8 +443,8 @@ abstain because center 2 is absent during certification.
 Within each configuration, the registered selection utility minimizes the
 largest validation balanced leakage, then the largest environment-conditional
 paired harm, then a stable candidate key. Point selection applies this order to
-empirically feasible edits without intervals. VERA-IUT applies it only to edits
-passing the fixed-profile certificate. The envelope rule additionally requires
+empirically feasible edits without intervals. IID LTT/VERA-IUT applies it only
+to edits passing the $\Gamma=1$ fixed-profile certificate. The envelope rule additionally requires
 the simultaneous common radius to reach the profile. Always-deploy uses the
 same utility order without a feasibility gate; the external oracle is an
 evaluation ceiling and never supplies a training or selection label.
@@ -454,81 +470,77 @@ paired sign-symmetry null, with Holm correction over the four externally
 estimable datasets. A sign-only test is a lower-power sensitivity that does not
 require magnitude symmetry.
 
+After that confirmation was frozen, an independent replication locked one
+stress contract per supported dataset and 32 disjoint seeds (13--44) before
+execution. Its 800 official-method receipts contain 128 externally estimable
+deployment decisions plus 64 Camelyon17 decisions across the two VERA rules.
+Dataset-level point-versus-IUT violations use exact one-sided paired McNemar
+tests with Holm correction across the four supported datasets. The global VERA
+false-acceptance rate and safe-retention ratio use exact binomial intervals.
+The preregistered composite also required point selection to violate at least
+20\% of decisions in every dataset; this design criterion is reported even
+when the paired safety comparison succeeds.
+
 \section{Results}
 
-\IfFileExists{vera_main_results_narrative.tex}{
-  \input{vera_main_results_narrative}
-  \input{vera_main_results_table}
-
-  \IfFileExists{vera_independent_stress_results.tex}{}{
-    \paragraph{Prespecified stress family.}
-    Across 32 pilot-selected, preregistered stress configurations, point
-    selection deployed externally violating edits in 7/32 cases (21.9\%), while
-    VERA-IUT deployed none. Waterbirds contributed 3/8 and CivilComments 2/8 at
-    their locked stress thresholds; GaitPDB contributed 1/8, and Bios 0/8. The
-    effect direction is consistent---there were no VERA-only violations---but
-    only three seed blocks were nonzero for Waterbirds and CivilComments. Their
-    one-sided seed-blocked raw values were therefore $p=0.125$ and
-    Holm-adjusted values were $p=0.5$. We report the effect size because it is
-    prespecified and receipted, but do not call the paired comparison
-    statistically significant.
-  }
-
-  \paragraph{What the certificate costs.}
-  Over all nine primary threshold pairs, point selection deployed in 45.8\% of
-  configurations and violated 14/288 externally estimable contracts. VERA-IUT
-  deployed in 12.5\%, violated 0/288, and retained 45/146 external-oracle
-  opportunities. This is a certification tax rather than an accuracy claim:
-  VERA sacrifices deployments when evidence is insufficient. The more
-  conservative simultaneous envelope deployed in 10.0\% of configurations.
-  At $\Gamma=1.01$, IUT deployment fell to 10.3\% with 0/288 measured
-  violations; no edit certified at $\Gamma\ge1.25$ under the locked thresholds.
-
-  \IfFileExists{vera_independent_stress_results.tex}{
-    \input{vera_independent_stress_results}
-  }{}
-
-  \paragraph{The attacker portfolio matters.}
-  The full four-attacker audit deployed in 12.5\% of configurations with zero
-  measured violations. A linear-only audit deployed in 43.6\% but violated
-  98/288 (34.0\%) external contracts when judged by the complete portfolio;
-  linear plus RBF still violated 17.7\%. Dropping only the MLP doubled
-  deployment to 25.0\% and produced 43/288 violations. Forest, MLP, RBF, and
-  linear attackers were the limiting component in 22, 10, 9, and 4 of the 45
-  full-portfolio deployments, respectively. Thus heterogeneous attackers are
-  not decorative multiplicity: they materially change which edits appear safe.
-
-  \begin{figure*}[t]
-  \centering
-  \includegraphics[width=\textwidth]{../../figures/vera_exact_theory_match.pdf}
-  \caption{\textbf{Exact theory--data match.} Observed abstention from 2,000
-  repetitions in each of 54 cells overlays the exact prediction; bands are simultaneous
-  over all registered certification sizes. The independent replay verifies
-  every random draw and false-acceptance bound.}
-  \label{fig:exact-match}
-  \end{figure*}
-  \begin{figure*}[t]
-  \centering
-  \includegraphics[width=\textwidth]{../../figures/vera_deployment_rules.pdf}
-  \caption{\textbf{Deployment rules head to head.} Points are seed-cluster
-  means and intervals resample seed clusters, preserving correlated thresholds
-  and nested fractions within each cluster. Camelyon17 support mismatch is
-  procedural non-certifiability, reported separately from measured external
-  violations.}
-  \label{fig:deployment-rules}
-  \end{figure*}
+\IfFileExists{vera_independent_stress_results.tex}{
+  \input{vera_independent_stress_results}
 }{
   \HeadlineResult
-
-  The final paper reports the exact synthetic overlay first, followed by
-  measured external contract violations and deployment retention for all
-  decision rules. No proxy row or unreceipted estimate is eligible. Required
-  ablations compare reduced and leave-one-out attacker portfolios, vary the
-  shift budget and all nine locked threshold pairs,
-  change certification size, summarize the groupwise certificate geometry,
-  and remove each eraser family from the candidate frontier. These analyses
-  do not tune on external outcomes.
 }
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{../../figures/vera_killer_result.pdf}
+\caption{\textbf{Certification changes deployment, tightens with evidence, and
+reports where shift tolerance ends.} (A) Independent 32-seed replication on
+four supported datasets; bars show contract-violating decisions with exact
+95\% binomial intervals. (B) Externally safe VERA deployments divided by
+external-oracle opportunities as certification data increase; this is a
+full-data plug-in diagnostic, not an independent coverage test. (C) A real
+CivilComments TaCo receipt shows simultaneous target and attacker upper-risk
+curves; the first threshold crossing determines the certified common radius.}
+\label{fig:killer-result}
+\end{figure*}
+
+\paragraph{The certificate pays for safety with abstention.}
+The aggregate independent result is not a claim that VERA improves prediction
+accuracy. It shows that uncertainty-aware selection rejects many edits that
+look feasible at a validation point estimate. Retention rises from 1/146
+(0.7\%) at 5\% of the certification fold to 45/146 (30.8\%) at the full fold in
+the original confirmation matrix, matching the expected evidence--abstention
+tradeoff. At the prespecified $\Gamma=1.01$ robust sensitivity, the IID IUT
+deployment rate fell from 12.5\% to 10.3\% with 0/288 measured violations. The
+simultaneous envelope then exposes the limiting environment or attacker rather
+than reducing robustness to a binary decision.
+
+\paragraph{The attacker portfolio matters.}
+In the confirmation matrix, the full four-attacker audit deployed in 12.5\% of
+configurations with zero measured violations. A linear-only audit deployed in
+43.6\% but violated 98/288 (34.0\%) external contracts when judged by the
+complete portfolio; linear plus RBF still violated 17.7\%. Dropping only the
+MLP doubled deployment to 25.0\% and produced 43/288 violations. Forest, MLP,
+RBF, and linear attackers were the limiting component in 22, 10, 9, and 4 of
+the 45 full-portfolio deployments, respectively.
+
+\paragraph{Theory tracks controlled data.}
+The exact balanced study had zero false acceptances in 108,000 trials, and all
+54 abstention rates fell inside simultaneous exact prediction bands. A second
+216-cell grid varied candidate count, validated-group count, certification
+size, and $\delta$; every cell passed simultaneous coverage. These controlled
+studies validate the implementation of the finite-sample calculation. The
+external benchmarks instead diagnose performance under observed shifts and do
+not prove that those shifts belong to the declared ambiguity set.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{../../figures/vera_exact_theory_match.pdf}
+\caption{\textbf{Predicted and observed abstention coincide in the exact
+study.} Observed rates from 2,000 repetitions in each of 54 cells overlay the
+analytic prediction; bands are simultaneous over registered certification
+sizes.}
+\label{fig:exact-match}
+\end{figure*}
 
 \section{Reproducibility}
 
@@ -536,13 +548,12 @@ require magnitude symmetry.
 that records the locked parent commit, upstream eraser commit, split hashes,
 and per-example audit-array hashes.
 
-The fail-closed receipt audit validates all 200 dataset--method--seed runs and
-zero proxy rows. A second implementation rehashes 480 raw NPZ archives,
-reconstructs all 25,920 candidate rows, and replays all 10,800 rule decisions.
-The first replay exposed a display-name mismatch between upstream `R-LACE' and
-registered `RLACE'; both the failed audit and the label-only correction are
-retained. After canonicalization, numeric, eligibility, radius, selection, and
-external-semantic mismatches are all zero.
+The receipt audits validate 1,000 dataset--method--seed runs and zero proxy
+rows: 200 confirmation runs plus 800 disjoint-seed replication runs. Independent
+replays rehash raw audit arrays, reconstruct candidate rows, and recompute
+intervals, eligibility, radii, selected edits, external contract outcomes, and
+all reported summary statistics. Numeric, selection, and external-semantic
+mismatches are zero.
 
 \paragraph{Generative-AI assistance disclosure.}
 OpenAI Codex was used extensively for research ideation, literature discovery,
@@ -563,13 +574,12 @@ attacker portfolio cannot prove that no measurable algorithm recovers the
 concept, and suppressing registered leakage does not establish fairness for
 unmeasured concepts. The Camelyon17 experiment is not clinical validation.
 Finally, algorithmic seeds quantify fitting and split variation but do not make
-the five benchmark datasets a random sample of deployment domains.
-The primary paired comparison is reported through its locked seed-blocked
-analysis: \SeedBlockedResult. Its sign-flip version relies on paired sign
-symmetry; a sign-only sensitivity is also reported. Both tests were fixed before
-the relevant seeds were run, and all adjusted values are reported regardless of
-outcome. Neither internal audits, exact synthetic coverage, nor a polished
-artifact predicts conference acceptance.
+the five benchmark datasets a random sample of deployment domains. The original
+confirmation uses seed-blocked sign-flip and sign-only analyses; the independent
+replication uses paired McNemar tests over 32 disjoint seeds. Every adjusted
+value is reported regardless of outcome. Most importantly, an external
+benchmark violation is evidence about that observed benchmark law, not proof
+that the law lies inside VERA's declared density-ratio class.
 
 Within those boundaries, VERA changes the output of representation erasure
 from ``apply this edit'' to a falsifiable statement: this edit meets these

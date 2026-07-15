@@ -39,8 +39,9 @@ establish authorship, understanding, proof correctness, or research integrity.
 - Confirm that the paper does not claim invention of finite-family acceptance,
   generic risk control, generic robust fairness auditing, or guaranteed
   external-distribution validity.
-- Resolve all critical and major findings from two genuine external cold
-  reviewers who publish in machine learning.
+- Resolve all critical and major findings from four role-specific external cold
+  reviewers and one fresh post-revision reviewer who publish in machine
+  learning.
 
 ## Policy And Authorship
 

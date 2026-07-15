@@ -36,6 +36,7 @@ CORE_FILES = (
     "research/maintrack/CODE_AVAILABILITY_ANONYMOUS.md",
     "research/maintrack/CLAIM_LEDGER.md",
     "research/maintrack/NOVELTY_LOCK.md",
+    "research/maintrack/NOVELTY_MATRIX_2026-07-14.md",
     "research/maintrack/STATISTICAL_INTEGRITY.md",
     "research/maintrack/REPRODUCIBILITY_CHECKLIST.md",
 )
@@ -60,6 +61,7 @@ SCRIPT_FILES = (
     "research/scripts/audit_vera_independent_stress_replication.py",
     "research/scripts/audit_vera_independent_stress_compact.py",
     "research/scripts/build_vera_independent_stress_package.py",
+    "research/scripts/build_vera_killer_figure.py",
     "research/scripts/build_vera_confirmatory_results.py",
     "research/scripts/audit_frozen_references.py",
     "research/scripts/official_eraser_adapters.py",
@@ -93,6 +95,7 @@ ARTIFACT_FILES = (
     "research/artifacts/vera_independent_stress_analysis_audit.json",
     "research/artifacts/vera_independent_stress_compact_audit.json",
     "research/artifacts/vera_independent_stress_package_audit.json",
+    "research/artifacts/vera_killer_figure_audit.json",
     "research/artifacts/reference_verification_report.json",
 )
 
@@ -110,6 +113,7 @@ PAPER_FILES = (
     "research/maintrack/aaai2027_template/AuthorKit27/vera_ablation_results.tex",
     "research/maintrack/aaai2027_template/AuthorKit27/vera_family_grid_results.tex",
     "research/maintrack/aaai2027_template/AuthorKit27/vera_independent_stress_results.tex",
+    "research/maintrack/aaai2027_template/AuthorKit27/vera_novelty_matrix.tex",
     "research/maintrack/aaai2027_template/AuthorKit27/aaai2027.sty",
     "research/maintrack/aaai2027_template/AuthorKit27/aaai2027.bst",
 )
@@ -125,6 +129,8 @@ FIGURE_FILES = (
     "research/maintrack/figures/vera_real_learning_curve.png",
     "research/maintrack/figures/vera_independent_stress_replication.pdf",
     "research/maintrack/figures/vera_independent_stress_replication.png",
+    "research/maintrack/figures/vera_killer_result.pdf",
+    "research/maintrack/figures/vera_killer_result.png",
 )
 
 

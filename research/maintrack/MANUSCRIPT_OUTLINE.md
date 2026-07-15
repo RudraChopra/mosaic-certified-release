@@ -2,7 +2,7 @@
 
 ## Working Title
 
-**VERA: Support-Aware Shift Envelopes for Representation Erasure**
+**VERA: Support-Aware Certification of Representation Edits Under Deployment Shift**
 
 ## Abstract (170-190 words)
 

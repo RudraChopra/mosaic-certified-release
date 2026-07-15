@@ -2,9 +2,13 @@
 
 ## Purpose
 
-Two researchers with peer-reviewed machine-learning publications should review
-the same frozen anonymous package. The review gate is evidence of adversarial
-feedback, not evidence that acceptance is guaranteed.
+Four researchers with peer-reviewed machine-learning publications should review
+the frozen anonymous package. They must cover four distinct roles: theory and
+statistical validity; distribution shift or conformal risk; representation
+erasure or fairness; and general machine learning with no prior involvement in
+the project. After all major findings are resolved, a fifth, previously unused
+reviewer reads the revised package. This gate measures adversarial scrutiny; it
+cannot guarantee acceptance.
 
 ## Frozen Package
 
@@ -29,10 +33,26 @@ compact one-command reproduction.
 Do not send internal readiness audits, prior critiques, response drafts, author
 identity, or claimed target scores before the reviewer writes the cold review.
 
-## Unprompted Review
+## Review Form
 
-Ask the reviewer to assess the work as a conference submission and identify the
-strongest reasons to reject it. Request explicit comments on:
+Ask each reviewer to assess the work as a top-tier general machine-learning
+conference submission and identify the strongest reasons to reject it. The
+written review must contain all of the following fields:
+
+1. Summary
+2. Strengths
+3. Weaknesses
+4. Novelty score (1--7)
+5. Correctness score (1--7)
+6. Experimental-quality score (1--7)
+7. Clarity score (1--7)
+8. Overall score (1 strong reject, 2 reject, 3 weak reject, 4 borderline,
+   5 weak accept, 6 accept, 7 strong accept)
+9. Confidence (1--5)
+10. Most likely rejection reason
+11. One change most likely to raise the score
+
+The free-form review must explicitly address:
 
 1. correctness and scope of the external-distribution guarantee;
 2. novelty relative to Learn Then Test, Prompt Risk Control, conformal risk
@@ -42,20 +62,26 @@ strongest reasons to reject it. Request explicit comments on:
 5. whether any claim is stronger than its receipt-backed evidence;
 6. the single most important missing experiment or ablation.
 
-After the free-form review is complete, ask one binary follow-up: "Does the
+After the free-form review is complete, ask two binary follow-ups: "Does the
 paper explicitly and adequately address its overlap with Learn Then Test and
-Prompt Risk Control?"
+Prompt Risk Control?" and "Is the contribution merely Learn Then Test applied
+to representation erasure?"
 
 ## Required Attestations
 
-Each reviewer record must include a verifiable ML publication URL, conflict
-disclosure, confirmation that the review is human-authored and cold, the exact
-main-PDF hash reviewed, an explicit LTT/Prompt-Risk-Control overlap verdict,
-and confirmation that every finding was transcribed into the private registry.
+Each reviewer record must include its assigned role, a verifiable ML
+publication URL, conflict disclosure, confirmation that the review is
+human-authored and cold, all numeric scores, the exact main-PDF hash reviewed,
+explicit overlap verdicts, and confirmation that every finding was transcribed
+into the private registry.
 
 ## Resolution
 
 Transcribe every finding without softening it. Every critical or major item
 must be fixed in the paper/code or rebutted with a concrete location. Rebuild
-and re-audit the anonymous package after fixes; do not edit the original review
-files.
+and re-audit the anonymous package after fixes; do not edit original review
+files. The gate passes only if no reviewer reports a fatal correctness flaw,
+no reviewer says the contribution is merely LTT applied to erasure, at least
+three of the four role reviews score weak accept or better, at least two score
+accept or better, every critical/major finding is resolved in the submission,
+and a new reviewer completes a post-revision read.

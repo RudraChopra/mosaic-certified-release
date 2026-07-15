@@ -110,7 +110,8 @@ large derivatives but includes compact rows, all 200 balanced-confirmatory JSON
 receipts, all 800 independent-stress JSON receipts, hashes, analysis code,
 figures, paper sources, and one-command compact reproduction.
 
-Submission remains blocked until two genuine external ML-publisher reviews are
-closed, the human author completes the scientific/authorship verification gate,
-the official venue checklist and deadlines are personally confirmed, and the
-final anonymous package passes its content and metadata audits.
+Submission remains blocked until four role-specific external ML-publisher
+reviews and one fresh post-revision review are closed, the human author
+completes the scientific/authorship verification gate, the official venue
+checklist and deadlines are personally confirmed, and the final anonymous
+package passes its content and metadata audits.

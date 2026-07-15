@@ -1,4 +1,4 @@
-"""Fail-closed audit for two genuine external ML-publisher reviews."""
+"""Fail-closed audit for four role reviews plus a fresh revision review."""
 
 from __future__ import annotations
 
@@ -14,6 +14,12 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_REGISTRY = ROOT / "private" / "external_review_registry.json"
 DEFAULT_TEMPLATE = ROOT / "external_review_registry.template.json"
 DEFAULT_OUTPUT = ROOT / "artifacts" / "external_review_audit.json"
+REQUIRED_ROLES = {
+    "theory_statistical_validity",
+    "distribution_shift_or_conformal_risk",
+    "representation_erasure_or_fairness",
+    "general_machine_learning",
+}
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -38,6 +44,14 @@ def nonempty(value: Any) -> bool:
     return isinstance(value, str) and bool(value.strip())
 
 
+def integer_in_range(value: Any, lower: int, upper: int) -> bool:
+    return (
+        isinstance(value, int)
+        and not isinstance(value, bool)
+        and lower <= value <= upper
+    )
+
+
 def resolve_registry_path(value: Any) -> Path:
     path = Path(str(value or ""))
     return path if path.is_absolute() else ROOT.parent / path
@@ -49,6 +63,7 @@ def review_valid(
     failures: list[str] = []
     review_id = str(review.get("review_id", "unknown"))
     required_text = (
+        "review_role",
         "reviewer_name",
         "affiliation",
         "publication_url",
@@ -71,6 +86,21 @@ def review_valid(
         failures.append(f"{review_id}: conflict disclosure is absent")
     if review.get("human_authorship_attested") is not True:
         failures.append(f"{review_id}: human authorship is not attested")
+    for key in (
+        "novelty_score_1_to_7",
+        "correctness_score_1_to_7",
+        "experimental_quality_score_1_to_7",
+        "clarity_score_1_to_7",
+        "overall_score_1_to_7",
+    ):
+        if not integer_in_range(review.get(key), 1, 7):
+            failures.append(f"{review_id}: {key} is not an integer from 1 to 7")
+    if not integer_in_range(review.get("confidence_1_to_5"), 1, 5):
+        failures.append(f"{review_id}: confidence is not an integer from 1 to 5")
+    if review.get("fatal_correctness_flaw") is not False:
+        failures.append(f"{review_id}: fatal correctness flaw is present or unresolved")
+    if review.get("merely_ltt_applied_to_erasure") is not False:
+        failures.append(f"{review_id}: contribution is judged merely LTT applied to erasure")
     if review.get("ltt_overlap_explicitly_assessed") is not True:
         failures.append(f"{review_id}: LTT overlap was not explicitly assessed")
     if not isinstance(review.get("unaddressed_ltt_overlap"), bool):
@@ -87,6 +117,50 @@ def review_valid(
         failures.append(f"{review_id}: complete finding transcription is not attested")
     if frozen_main_hash and review.get("main_pdf_sha256_reviewed") != frozen_main_hash:
         failures.append(f"{review_id}: reviewed main PDF hash is not frozen hash")
+    review_file = Path(str(review.get("review_file", "")))
+    if review_file and not review_file.is_absolute():
+        review_file = ROOT.parent / review_file
+    if not review_file.is_file() or review_file.stat().st_size < 200:
+        failures.append(f"{review_id}: review file is absent or too short")
+    return not failures, failures
+
+
+def post_revision_review_valid(
+    review: dict[str, Any], frozen_main_hash: str
+) -> tuple[bool, list[str]]:
+    failures: list[str] = []
+    review_id = str(review.get("review_id", "post-revision-reviewer"))
+    for key in (
+        "reviewer_name",
+        "affiliation",
+        "publication_url",
+        "received_date",
+        "review_file",
+        "main_pdf_sha256_reviewed",
+    ):
+        if not nonempty(review.get(key)):
+            failures.append(f"{review_id}: missing {key}")
+    if review.get("publishes_in_machine_learning") is not True:
+        failures.append(f"{review_id}: ML publication qualification not verified")
+    for key in (
+        "cold_review_attested",
+        "conflict_disclosed",
+        "human_authorship_attested",
+        "all_major_fixes_completed_before_review",
+        "all_findings_transcribed",
+    ):
+        if review.get(key) is not True:
+            failures.append(f"{review_id}: {key} is not attested")
+    if review.get("fatal_correctness_flaw") is not False:
+        failures.append(f"{review_id}: fatal correctness flaw is present or unresolved")
+    if review.get("merely_ltt_applied_to_erasure") is not False:
+        failures.append(f"{review_id}: contribution is judged merely LTT applied to erasure")
+    if not integer_in_range(review.get("overall_score_1_to_7"), 1, 7):
+        failures.append(f"{review_id}: overall score is not an integer from 1 to 7")
+    if not integer_in_range(review.get("confidence_1_to_5"), 1, 5):
+        failures.append(f"{review_id}: confidence is not an integer from 1 to 5")
+    if frozen_main_hash and review.get("main_pdf_sha256_reviewed") != frozen_main_hash:
+        failures.append(f"{review_id}: reviewed main PDF hash is not the revised frozen hash")
     review_file = Path(str(review.get("review_file", "")))
     if review_file and not review_file.is_absolute():
         review_file = ROOT.parent / review_file
@@ -117,6 +191,10 @@ def main() -> int:
     frozen_main_hash = str(frozen.get("anonymous_main_pdf_sha256", ""))
     reviews = registry.get("reviews", [])
     reviews = reviews if isinstance(reviews, list) else []
+    post_revision_review = registry.get("post_revision_review", {})
+    post_revision_review = (
+        post_revision_review if isinstance(post_revision_review, dict) else {}
+    )
     findings = registry.get("findings", [])
     findings = findings if isinstance(findings, list) else []
 
@@ -145,13 +223,43 @@ def main() -> int:
         if valid:
             valid_reviews.append(value)
 
-    valid_ids = {str(review["review_id"]) for review in valid_reviews}
+    post_valid, post_failures = post_revision_review_valid(
+        post_revision_review, frozen_main_hash
+    )
+    failures.extend(post_failures)
+
     valid_names = {
         str(review["reviewer_name"]).strip().casefold() for review in valid_reviews
     }
     valid_publications = {
         str(review["publication_url"]).strip() for review in valid_reviews
     }
+    valid_roles = {str(review["review_role"]) for review in valid_reviews}
+    weak_accept_or_better = sum(
+        int(review["overall_score_1_to_7"]) >= 5 for review in valid_reviews
+    )
+    accept_or_better = sum(
+        int(review["overall_score_1_to_7"]) >= 6 for review in valid_reviews
+    )
+    fatal_correctness = sum(
+        review.get("fatal_correctness_flaw") is not False for review in valid_reviews
+    )
+    merely_ltt = sum(
+        review.get("merely_ltt_applied_to_erasure") is not False
+        for review in valid_reviews
+    )
+    post_name = str(post_revision_review.get("reviewer_name", "")).strip().casefold()
+    post_publication = str(post_revision_review.get("publication_url", "")).strip()
+    post_is_new_reviewer = (
+        post_valid
+        and post_name not in valid_names
+        and post_publication not in valid_publications
+    )
+    if post_valid and not post_is_new_reviewer:
+        failures.append("post-revision reviewer is not distinct from the four role reviewers")
+    valid_ids = {str(review["review_id"]) for review in valid_reviews}
+    if post_valid:
+        valid_ids.add(str(post_revision_review.get("review_id")))
     critical_major = [
         finding
         for finding in findings
@@ -186,7 +294,8 @@ def main() -> int:
         if str(finding.get("review_id")) not in valid_ids
     ]
     response_complete = (
-        len(valid_reviews) >= 2
+        len(valid_reviews) >= 4
+        and post_valid
         and not unresolved
         and not orphaned_critical_major
     )
@@ -194,9 +303,15 @@ def main() -> int:
         registry.get("reviewer_identity_evidence_human_verified") is True
     )
     passed = (
-        len(valid_reviews) >= 2
-        and len(valid_names) >= 2
-        and len(valid_publications) >= 2
+        len(valid_reviews) >= 4
+        and len(valid_names) >= 4
+        and len(valid_publications) >= 4
+        and valid_roles == REQUIRED_ROLES
+        and weak_accept_or_better >= 3
+        and accept_or_better >= 2
+        and fatal_correctness == 0
+        and merely_ltt == 0
+        and post_is_new_reviewer
         and unresolved_critical == 0
         and unresolved_major == 0
         and ltt_unaddressed == 0
@@ -215,6 +330,14 @@ def main() -> int:
         "frozen_package_source": frozen_source if frozen else None,
         "frozen_files_verified": frozen_files_verified,
         "completed_review_count": len(valid_reviews),
+        "required_role_count": len(REQUIRED_ROLES),
+        "completed_required_roles": sorted(valid_roles),
+        "weak_accept_or_better_count": weak_accept_or_better,
+        "accept_or_better_count": accept_or_better,
+        "fatal_correctness_review_count": fatal_correctness,
+        "merely_ltt_review_count": merely_ltt,
+        "post_revision_review_valid": post_valid,
+        "post_revision_reviewer_is_new": post_is_new_reviewer,
         "ml_publisher_reviewer_count": sum(
             review.get("publishes_in_machine_learning") is True
             for review in valid_reviews

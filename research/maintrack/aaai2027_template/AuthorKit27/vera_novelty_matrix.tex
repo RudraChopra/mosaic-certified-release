@@ -1,0 +1,85 @@
+\section{Closest-Work Capability Matrix}
+
+Tables~\ref{tab:novelty-a}--\ref{tab:novelty-b} compare reported outputs and
+guarantees, not components that could be assembled by combining papers. ``P''
+means partial, variant-specific, or materially different; ``--'' means that the
+capability is not reported. This conservative coding credits generic machinery
+to prior work and isolates the proposed scientific object.
+
+\begin{table*}[t]
+\centering\scriptsize
+\setlength{\tabcolsep}{3.0pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccccc}
+\toprule
+Method family & Finite select. & Multi-risk & Paired harm & Fresh portfolio & Bounded reweight. & Budget continuum & Safe-radius LB \\
+\midrule
+Learn Then Test \cite{angelopoulos2025ltt} & Y & Y & -- & -- & -- & -- & -- \\
+Conformal Risk Control \cite{angelopoulos2024crc} & P & P & -- & -- & P & -- & -- \\
+Pareto Testing \cite{laufer2023pareto} & Y & Y & -- & -- & -- & -- & -- \\
+Prompt Risk Control \cite{zollo2024prompt} & Y & Y & -- & -- & P & -- & -- \\
+Weighted risk control \cite{tibshirani2019covariate,almeida2025hprc} & P & P & -- & -- & P & -- & -- \\
+Robust validation \cite{cauchois2024robust,ai2024finegrained} & -- & P & -- & -- & Y & P & -- \\
+Group-conditional control \cite{huang2026conditional} & P & Y & -- & -- & P & -- & -- \\
+Selective prediction \cite{elyaniv2010foundations,geifman2019selectivenet} & P & P & -- & -- & -- & -- & -- \\
+Distributional fairness certificates \cite{kang2022certifying,ehyaei2025fragile} & -- & P & -- & -- & Y & P & -- \\
+FARE / MMD-B-Fair \cite{jovanovic2023fare,deka2023mmdbfair} & -- & P & -- & P & P & -- & -- \\
+Concept erasure and probing \cite{ravfogel2020null,ravfogel2022linear,belrose2023leace} & P & P & P & P & -- & -- & -- \\
+Robust representation learning \cite{sagawa2020groupdro,koh2021wilds} & P & P & -- & -- & Y & P & -- \\
+\textbf{VERA} & \textbf{Y} & \textbf{Y} & \textbf{Y} & \textbf{Y} & \textbf{Y} & \textbf{Y} & \textbf{Y} \\
+\bottomrule
+\end{tabular}%
+}
+\caption{Closest-work matrix, part I. VERA's edit construction is not a contribution; the claimed output is the certificate assembled across the last five columns and Table~\ref{tab:novelty-b}.}
+\label{tab:novelty-a}
+\end{table*}
+
+\begin{table*}[t]
+\centering\scriptsize
+\setlength{\tabcolsep}{3.2pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+Method family & Support boundary & Whole-edit abstain & Post-inspection valid & Environment mixtures & Source-prior invariant & No target sample \\
+\midrule
+Learn Then Test \cite{angelopoulos2025ltt} & -- & P & Y & -- & -- & Y \\
+Conformal Risk Control \cite{angelopoulos2024crc} & -- & -- & P & -- & -- & P \\
+Pareto Testing \cite{laufer2023pareto} & -- & P & Y & -- & -- & Y \\
+Prompt Risk Control \cite{zollo2024prompt} & -- & P & Y & -- & -- & P \\
+Weighted risk control \cite{tibshirani2019covariate,almeida2025hprc} & P & -- & P & -- & -- & -- \\
+Robust validation \cite{cauchois2024robust,ai2024finegrained} & -- & -- & P & -- & -- & Y \\
+Group-conditional control \cite{huang2026conditional} & P & -- & P & P & -- & Y \\
+Selective prediction \cite{elyaniv2010foundations,geifman2019selectivenet} & -- & -- & P & -- & -- & Y \\
+Distributional fairness certificates \cite{kang2022certifying,ehyaei2025fragile} & P & -- & P & P & P & Y \\
+FARE / MMD-B-Fair \cite{jovanovic2023fare,deka2023mmdbfair} & -- & -- & -- & -- & P & Y \\
+Concept erasure and probing \cite{ravfogel2020null,ravfogel2022linear,belrose2023leace} & -- & -- & -- & -- & P & Y \\
+Robust representation learning \cite{sagawa2020groupdro,koh2021wilds} & P & -- & -- & P & -- & Y \\
+\textbf{VERA} & \textbf{Y} & \textbf{Y} & \textbf{Y} & \textbf{Y} & \textbf{Y} & \textbf{Y} \\
+\bottomrule
+\end{tabular}%
+}
+\caption{Closest-work matrix, part II. ``Whole-edit abstain'' excludes selective-prediction methods that reject individual examples. ``No target sample'' refers to the shift certificate itself.}
+\label{tab:novelty-b}
+\end{table*}
+
+\paragraph{IID certification can accept an edit that VERA rejects.}
+Let leakage be Bernoulli with population recall $p=.04$ under a $.05$
+contract. Even without sampling uncertainty, the IID contract passes. At
+$\Gamma=2$, the bounded-reweighting risk is
+$\min(1,\Gamma p)=.08$, so VERA rejects the declared shift. The distinction is
+therefore in the population contract, not merely in confidence-interval width.
+
+\paragraph{Worst-group evaluation does not return the envelope.}
+Suppose two observed environments have Bernoulli harm rates $.04$ and $.03$
+under a $.05$ threshold. IID worst-group harm is $.04$, but the robust risks
+are $\min(1,.04\Gamma_1)$ and $\min(1,.03\Gamma_2)$. VERA returns coordinate
+radii $1.25$ and $1.67$, their common radius $1.25$, and the limiting
+environment. A scalar worst-group value cannot answer whether a later-declared
+profile such as $(\Gamma_1,\Gamma_2)=(1.2,1.5)$ is covered.
+
+\paragraph{A finite attacker portfolio is not universal erasure.}
+Let $U,V$ be independent fair bits and encode $S=U\mathbin{\mathrm{XOR}}V$ in
+the edited representation $(U,V)$. Linear attackers have balanced accuracy
+$1/2$, while an XOR attacker recovers $S$ perfectly. VERA simultaneously
+controls only the registered attacker portfolio and never converts that finite
+statement into absence of all sensitive information.

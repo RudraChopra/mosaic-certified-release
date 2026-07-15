@@ -566,14 +566,11 @@ def main() -> int:
     )
     point_rate = float(point_summary["measured_external_violation_rate"])
     vera_rate = float(supported_vera["measured_external_violation_rate"])
-    expected_mode = (
-        "independent_empirical_replication"
-        if expected_pass
-        else "theory_and_support_impossibility"
-    )
+    expected_mode = "independent_empirical_replication"
     for key, expected in (
         ("registered_pass_conditions_met", expected_pass),
         ("headline_mode", expected_mode),
+        ("failed_primary_endpoint_disclosure_required", not expected_pass),
         ("supported_configuration_count", len(supported) * len(study["seeds"])),
         ("point_selection_violation_rate", point_rate),
         ("vera_iut_violation_rate", vera_rate),

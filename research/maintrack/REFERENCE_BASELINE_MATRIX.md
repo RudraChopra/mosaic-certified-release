@@ -1,6 +1,6 @@
 # Reference Baseline Matrix
 
-Date: July 13, 2026
+Date: July 14, 2026
 
 ## Purpose
 
@@ -17,28 +17,25 @@ second category supports reference-parity claims.
 | Source-balanced ERM | Local reference | Shared frozen representations and locked splits | Source-reweighted linear baseline |
 | Group-reweighted ERM | Local reference | Shared target-source group weights | Robust linear-probe baseline |
 | GroupDRO-style probe | Local reference | Shared group-weighted solver | Strong robust probe baseline, not full deep GroupDRO training |
-| INLP projection | Local frozen-feature reference row | `research/artifacts/linear_eraser_reference_report.json` | Real INLP-style iterative nullspace row under locked frozen-feature splits |
-| LEACE erasure | Official upstream reference row | `research/artifacts/linear_eraser_reference_report.json` plus pinned `concept-erasure` upstream code | Official LEACE frozen-feature reference row under locked splits |
-| SPLINCE/SPLICE-style erasure | Scoped proxy | Local task-preserving erasure stress row | Proxy only; no reference-parity claim |
-| R-LACE/RLACE-style erasure | Official upstream pinned; current row scoped proxy | `research/artifacts/upstream_baseline_reference_inventory.json` plus local adversarial linear erasure stress row | Proxy only until an exact matched upstream receipt exists |
-| TaCo-style erasure | Official upstream pinned; current row scoped proxy | `research/artifacts/upstream_baseline_reference_inventory.json` plus local target-conditioned erasure stress row | Proxy only until an exact matched upstream receipt exists |
-| MANCE++ | Official upstream reference on Waterbirds | `research/artifacts/mance_reference_statistical_report.json` | Full official-code MANCE++ comparison on Waterbirds |
-| MANCE++ | Official upstream reference on Camelyon17 | `research/artifacts/camelyon17_mancepp_reference_full_nocap_receipt.json` | Full no-cap official-code MANCE++ comparison on Camelyon17 frozen representations |
-| MANCE++ | Large official-code diagnostics on Camelyon17 | `research/artifacts/camelyon17_mancepp_reference_80k_diagnostic_receipt.json` | Historical subset diagnostics only; superseded by full no-cap receipt |
+| INLP | Official upstream entry point | `independent_stress_replication_receipt_audit.json`; `official_eraser_adapters.py` | Official INLP candidate rows on every dataset and seed in the independent matrix |
+| LEACE | Official upstream entry point | Same receipt audit and adapter source | Official closed-form LEACE candidate rows on every dataset and seed |
+| R-LACE | Official upstream entry point | Same receipt audit and adapter source | Official `rlace.solve_adv_game` candidate rows on every dataset and seed |
+| TaCo | Official upstream entry points with registered protocol heads/PCA | Same receipt audit and adapter source | Official TaCo concept ranking/cropping rows under the shared frozen-feature protocol |
+| MANCE++ | Official upstream entry point | Same receipt audit and adapter source | Official MANCE++ candidate rows on every dataset and seed |
+| SPLINCE | Not run in the claim-grade matrix | Literature comparison only | No empirical or reference-parity claim |
 
 ## Reviewer-Facing Boundary
 
-The paper may claim that VERA is compared against matched robust probes, real
-frozen-feature INLP rows, official LEACE frozen-feature rows, and full
-official-code MANCE++ Waterbirds/Camelyon17 baselines. It may also say that
-official upstream repositories for MANCE++, R-LACE, TaCo, and LEACE are pinned
-locally. It must not claim universal erasure state of the art or reference
-parity for SPLINCE, R-LACE, or TaCo until those exact reference
-implementations are run under the same splits and audited.
+The independent matrix contains 800/800 official upstream run receipts across
+INLP, LEACE, R-LACE, TaCo, and MANCE++, five datasets, and 32 disjoint seeds;
+the audit reports zero proxy rows. The paper may claim this exact coverage. It
+must not claim universal erasure state of the art, implementation identity
+outside the recorded entry points, or empirical coverage of SPLINCE.
 
-## Next Baseline Work
+## Scope Note
 
-The highest-value next reference implementations are exact matched receipts for
-R-LACE and TaCo using the pinned upstream repositories, or an identified
-official SPLINCE/SPLICE implementation. VERA's main claim should remain the
-certified edit-or-abstain protocol rather than state-of-the-art erasure.
+TaCo's official feature-level functions are called inside registered protocol
+heads and randomized PCA so that every eraser shares the same frozen-feature
+splits and downstream audits. This is an explicit adaptation boundary, not a
+proxy row. VERA's empirical claim remains about the certification layer, not
+which eraser is intrinsically best.

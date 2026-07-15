@@ -2,7 +2,8 @@
 
 ## Status
 
-External reviews completed: **0 of 2**.
+Role reviews completed: **0 of 4**. Fresh post-revision reviews completed:
+**0 of 1**.
 
 This ledger is intentionally fail-closed. No reviewer identity, review, score,
 or resolution may be invented. Internal audits and automated critiques do not
@@ -28,6 +29,9 @@ Archive audit: `research/artifacts/vera_anonymous_archive_audit.json`.
 |---|---|---|---|---|---|---|
 | Reviewer 1 | pending | pending | pending | pending | pending | no |
 | Reviewer 2 | pending | pending | pending | pending | pending | no |
+| Reviewer 3 | pending | pending | pending | pending | pending | no |
+| Reviewer 4 | pending | pending | pending | pending | pending | no |
+| Fresh post-revision reviewer | pending | pending | pending | pending | pending | no |
 
 ## Findings
 
@@ -37,10 +41,16 @@ Archive audit: `research/artifacts/vera_anonymous_archive_audit.json`.
 
 ## Hard Checks
 
-- [ ] Two real reviewers each have verifiable peer-reviewed ML publications.
-- [ ] Both reviewers received a frozen anonymous package.
-- [ ] Both reviews explicitly considered the Learn Then Test overlap.
-- [ ] Both reviewers attest that every finding was transcribed without omission.
+- [ ] Four real reviewers cover theory/statistics, shift/risk control,
+      erasure/fairness, and general ML; each has a verifiable ML publication.
+- [ ] All four reviewers received a frozen anonymous package.
+- [ ] Every role review explicitly considered the Learn Then Test and Prompt
+      Risk Control overlap.
+- [ ] No reviewer reports a fatal correctness flaw or calls the work merely LTT
+      applied to erasure.
+- [ ] At least three overall scores are weak accept or better and at least two
+      are accept or better.
+- [ ] Every reviewer attests that all findings were transcribed without omission.
 - [ ] Every fatal and major finding is fixed or explicitly rebutted.
-- [ ] Neither reviewer identifies LTT overlap as unaddressed in the revised paper.
+- [ ] A fifth, previously unused reviewer reads the revised paper after fixes.
 - [ ] Revised PDFs and archive pass anonymity and reproducibility audits.

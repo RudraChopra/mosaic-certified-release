@@ -393,5 +393,47 @@ class CertificateTests(unittest.TestCase):
         self.assertIn("leakage", report.limiting_contracts)
 
 
+class AssumptionBoundaryTests(unittest.TestCase):
+    def test_shift_outside_declared_density_ratio_budget_is_not_covered(self) -> None:
+        validation = np.r_[np.ones(4), np.zeros(96)]
+        robust_bound_at_gamma_two = empirical_reweighting_risk(validation, 2.0)
+        deployment_positive_rate = 0.10
+        required_positive_density_ratio = deployment_positive_rate / 0.04
+
+        self.assertAlmostEqual(robust_bound_at_gamma_two, 0.08)
+        self.assertGreater(required_positive_density_ratio, 2.0)
+        self.assertGreater(deployment_positive_rate, robust_bound_at_gamma_two)
+
+    def test_unseen_group_safe_and_unsafe_worlds_are_observationally_identical(self) -> None:
+        observed_safe_world = np.zeros(1000)
+        observed_unsafe_world = np.zeros(1000)
+        unseen_safe_risk = 0.0
+        unseen_unsafe_risk = 1.0
+
+        np.testing.assert_array_equal(observed_safe_world, observed_unsafe_world)
+        self.assertNotEqual(unseen_safe_risk, unseen_unsafe_risk)
+        envelope = certify_discrete_group_shift_envelope(
+            {"seen": {"target": observed_safe_world}},
+            delta=0.05,
+            grouped_supports={"seen": {"target": (-1, 0, 1)}},
+            grouped_thresholds={"seen": {"target": 0.1}},
+            family_size=1,
+            registered_groups=["seen", "unseen"],
+            gamma_cap=4.0,
+        )
+        self.assertEqual(envelope.decision, "ABSTAIN")
+        self.assertEqual(envelope.group_radii["unseen"], 0.0)
+
+    def test_reusing_single_candidate_alpha_after_adaptive_search_is_invalid(self) -> None:
+        alpha = 0.05
+        candidate_count = 20
+        false_accept_probability = 1.0 - (1.0 - alpha) ** candidate_count
+
+        self.assertGreater(false_accept_probability, alpha)
+        self.assertGreater(false_accept_probability, 0.60)
+        bonferroni_bound = candidate_count * (alpha / candidate_count)
+        self.assertAlmostEqual(bonferroni_bound, alpha)
+
+
 if __name__ == "__main__":
     unittest.main()

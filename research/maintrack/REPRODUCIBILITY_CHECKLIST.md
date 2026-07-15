@@ -136,7 +136,8 @@ are represented by manifests and content hashes.
 Technical audits do not establish novelty, proof correctness, ethical
 eligibility, or likely acceptance. Before submission, the human author must
 verify every official checklist response, confirm the venue deadline and
-OpenReview account, inspect the anonymous archive, and close two genuine cold
-reviews from researchers who publish in machine learning. The manuscript's
+OpenReview account, inspect the anonymous archive, and close four role-specific
+cold reviews plus one fresh post-revision review from researchers who publish
+in machine learning. The manuscript's
 generative-AI disclosure must remain present and must accurately describe the
 full scope of assistance.

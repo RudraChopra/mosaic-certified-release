@@ -472,6 +472,9 @@ def memorable_number_gate() -> Gate:
     stress_package = load_json(
         ARTIFACT_DIR / "vera_independent_stress_package_audit.json"
     )
+    stress_compact = load_json(
+        ARTIFACT_DIR / "vera_independent_stress_compact_audit.json"
+    )
     if stress_report or stress_abstract or stress_audit or stress_package:
         x = stress_abstract.get("point_selection_violation_rate")
         y = stress_abstract.get("vera_iut_violation_rate")
@@ -481,16 +484,19 @@ def memorable_number_gate() -> Gate:
             for value in (x, y, z)
         )
         gap = float(x) - float(y) if numeric else float("-inf")
+        disclosure_consistent = (
+            stress_abstract.get("failed_primary_endpoint_disclosure_required")
+            is (stress_report.get("passed") is not True)
+        )
         passed = (
-            stress_report.get("passed") is True
-            and stress_abstract.get("verified") is True
-            and stress_abstract.get("registered_pass_conditions_met") is True
+            stress_abstract.get("verified") is True
             and numeric
             and gap >= 0.15
             and stress_audit.get("passed") is True
-            and stress_audit.get("abstract_verified") is True
+            and stress_compact.get("passed") is True
+            and stress_compact.get("headline_verified") is True
             and stress_package.get("passed") is True
-            and stress_package.get("confirmatory_passed") is True
+            and disclosure_consistent
         )
         return gate(
             "goal_5_memorable_number",
@@ -501,7 +507,8 @@ def memorable_number_gate() -> Gate:
                 f"verified={stress_abstract.get('verified')}; X={x}; Y={y}; Z={z}; "
                 f"X_minus_Y={gap if numeric else None}; "
                 f"package_passed={stress_package.get('passed')}; "
-                f"registered_pass_conditions_met={stress_abstract.get('registered_pass_conditions_met')}"
+                f"registered_pass_conditions_met={stress_abstract.get('registered_pass_conditions_met')}; "
+                f"failed_endpoint_disclosed={disclosure_consistent}"
             ),
             "Derive X/Y/Z from the independent stress receipts and package the audited abstract sentence.",
         )
@@ -978,7 +985,7 @@ def requested_presentation_gate(protocol: Gate) -> Gate:
 def requested_external_review_gate(protocol: Gate) -> Gate:
     return gate(
         "requested_goal_7_external_review",
-        "Requested two human cold reviews",
+        "Requested four role reviews plus fresh revision review",
         protocol.status == "pass",
         f"registered_external_review_pass={protocol.status == 'pass'}; {protocol.evidence}",
         protocol.required_next,

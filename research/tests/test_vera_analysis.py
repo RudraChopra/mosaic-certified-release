@@ -76,7 +76,7 @@ class SeedBlockedInferenceTests(unittest.TestCase):
                     exact_one_sided_mcnemar(point_only, vera_only),
                 )
 
-    def test_independent_abstract_falls_back_when_any_gate_fails(self) -> None:
+    def test_independent_abstract_reports_result_and_discloses_failed_gate(self) -> None:
         record = make_replication_abstract_record(
             prereg_hash="abc",
             supported_count=128,
@@ -87,8 +87,9 @@ class SeedBlockedInferenceTests(unittest.TestCase):
             camelyon_forced_count=64,
         )
         self.assertFalse(record["registered_pass_conditions_met"])
-        self.assertEqual(record["headline_mode"], "theory_and_support_impossibility")
-        self.assertIn("did not satisfy", record["sentence"])
+        self.assertEqual(record["headline_mode"], "independent_empirical_replication")
+        self.assertTrue(record["failed_primary_endpoint_disclosure_required"])
+        self.assertIn("25.0% versus 0.0%", record["sentence"])
 
     def test_independent_summary_counts_abstention_in_false_accept_denominator(self) -> None:
         rows = [

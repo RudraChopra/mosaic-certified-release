@@ -71,8 +71,9 @@ inferential claims. Corrections are recorded in
 The source of truth is [`VERA_AIRTIGHT_SPEC.md`](VERA_AIRTIGHT_SPEC.md), and the
 machine-readable decision is produced by
 `research/scripts/audit_goal_completion.py`. Submission readiness requires all
-scientific gates, a complete anonymous and named paper package, and two genuine
-cold reviews from researchers who publish in machine learning. Internal scripts
+scientific gates, a complete anonymous and named paper package, four
+role-specific cold reviews, and one fresh post-revision review from researchers
+who publish in machine learning. Internal scripts
 cannot substitute for those reviews or guarantee acceptance. OpenAI Codex's
 extensive assistance is disclosed in the manuscript; every listed human author
 must complete [`HUMAN_AUTHOR_VERIFICATION_GATE.md`](HUMAN_AUTHOR_VERIFICATION_GATE.md)
