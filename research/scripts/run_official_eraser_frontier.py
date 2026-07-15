@@ -534,6 +534,24 @@ def balanced_correctness(source: np.ndarray, prediction: np.ndarray) -> float | 
     return float(balanced_accuracy_score(source, prediction))
 
 
+def paired_target_error_arrays(
+    identity_prediction: np.ndarray,
+    edited_prediction: np.ndarray,
+    target: np.ndarray,
+) -> dict[str, np.ndarray]:
+    if not (
+        identity_prediction.shape == edited_prediction.shape == target.shape
+    ):
+        raise ValueError("target predictions and labels must have matching shapes")
+    identity_error = (identity_prediction != target).astype(np.int8)
+    edited_error = (edited_prediction != target).astype(np.int8)
+    return {
+        "identity": identity_error,
+        "edited": edited_error,
+        "harm": edited_error - identity_error,
+    }
+
+
 def evaluate_candidate(
     candidate: EditedCandidate,
     identity_train: np.ndarray,
@@ -563,18 +581,20 @@ def evaluate_candidate(
     candidate_target.fit(candidate.train, y_train)
     candidate_cert_prediction = candidate_target.predict(candidate_certification)
     candidate_external_prediction = candidate_target.predict(candidate_external)
-    target_harm_certification = (
-        (candidate_cert_prediction != y_certification).astype(np.int8)
-        - (identity_cert_prediction != y_certification).astype(np.int8)
+    certification_target_errors = paired_target_error_arrays(
+        identity_cert_prediction, candidate_cert_prediction, y_certification
     )
-    target_harm_external = (
-        (candidate_external_prediction != y_external).astype(np.int8)
-        - (identity_external_prediction != y_external).astype(np.int8)
+    external_target_errors = paired_target_error_arrays(
+        identity_external_prediction, candidate_external_prediction, y_external
     )
 
     arrays: dict[str, np.ndarray] = {
-        "target_harm_certification": target_harm_certification,
-        "target_harm_external": target_harm_external,
+        "target_harm_certification": certification_target_errors["harm"],
+        "target_harm_external": external_target_errors["harm"],
+        "identity_target_error_certification": certification_target_errors["identity"],
+        "identity_target_error_external": external_target_errors["identity"],
+        "edited_target_error_certification": certification_target_errors["edited"],
+        "edited_target_error_external": external_target_errors["edited"],
         "source_certification": s_certification.astype(np.int16),
         "source_external": s_external.astype(np.int16),
         "environment_certification": g_certification.astype(np.int16),
@@ -639,8 +659,12 @@ def evaluate_candidate(
             "external_target_balanced_accuracy": float(
                 balanced_accuracy_score(y_external, candidate_external_prediction)
             ),
-            "certification_mean_paired_target_harm": float(target_harm_certification.mean()),
-            "external_mean_paired_target_harm": float(target_harm_external.mean()),
+            "certification_mean_paired_target_harm": float(
+                certification_target_errors["harm"].mean()
+            ),
+            "external_mean_paired_target_harm": float(
+                external_target_errors["harm"].mean()
+            ),
             "attackers": leakage_metrics,
             "heldout_attacker_stress": heldout_metrics,
         },

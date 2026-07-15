@@ -65,6 +65,9 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
     datasets = datasets if isinstance(datasets, dict) else {}
     methods = methods if isinstance(methods, dict) else {}
     heldout_attacker = study.get("heldout_attacker")
+    paired_components_required = bool(
+        study.get("paired_harm_component_arrays_required", False)
+    )
     seeds = [int(value) for value in study.get("seeds", [])]
     expected_hash = args.hash_file.read_text(encoding="utf-8").split()[0] if args.hash_file.is_file() else ""
     actual_hash = sha256(args.prereg) if args.prereg.is_file() else ""
@@ -169,6 +172,14 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
                                     "target_certification",
                                     "target_external",
                                 }
+                                paired_components = {
+                                    "identity_target_error_certification",
+                                    "identity_target_error_external",
+                                    "edited_target_error_certification",
+                                    "edited_target_error_external",
+                                }
+                                if paired_components_required:
+                                    required |= paired_components
                                 leakage_certification = {
                                     name.removeprefix("leakage_correct_certification__")
                                     for name in archive.files
@@ -224,6 +235,26 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
                                         receipt_errors.append(
                                             f"candidate {candidate_index} paired harm leaves declared support"
                                         )
+                                    if paired_components_required:
+                                        if any(
+                                            not np.isin(archive[name], (0, 1)).all()
+                                            for name in paired_components
+                                        ):
+                                            receipt_errors.append(
+                                                f"candidate {candidate_index} target-error component is non-binary"
+                                            )
+                                        for split in ("certification", "external"):
+                                            reconstructed = (
+                                                archive[f"edited_target_error_{split}"]
+                                                - archive[f"identity_target_error_{split}"]
+                                            )
+                                            if not np.array_equal(
+                                                reconstructed,
+                                                archive[f"target_harm_{split}"],
+                                            ):
+                                                receipt_errors.append(
+                                                    f"candidate {candidate_index} paired harm reconstruction mismatch on {split}"
+                                                )
                                     leakage_names = [
                                         name
                                         for name in archive.files
@@ -389,6 +420,7 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
         ),
         "shared_protocol_verified": not mismatched_splits and not invalid,
         "heldout_attacker": heldout_attacker,
+        "paired_harm_component_arrays_required": paired_components_required,
         "runner_commits": sorted(runner_commits),
         "runner_commit_contains_locked_preregistration": runner_commit_contains_prereg,
         "runner_material_files": list(MATERIAL_RUNNER_FILES),

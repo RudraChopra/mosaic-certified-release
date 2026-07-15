@@ -13,6 +13,7 @@ sys.path.insert(0, str(SCRIPTS))
 from run_official_eraser_frontier import (  # noqa: E402
     HELDOUT_ATTACKER_CONFIG,
     make_heldout_attacker,
+    paired_target_error_arrays,
 )
 
 
@@ -31,6 +32,17 @@ class HeldoutAttackerTests(unittest.TestCase):
         second = make_heldout_attacker(13).fit(features, labels).predict(features)
 
         np.testing.assert_array_equal(first, second)
+
+    def test_paired_harm_reconstructs_from_component_errors(self) -> None:
+        target = np.asarray([0, 0, 1, 1])
+        identity = np.asarray([0, 1, 1, 0])
+        edited = np.asarray([1, 0, 1, 0])
+
+        arrays = paired_target_error_arrays(identity, edited, target)
+
+        np.testing.assert_array_equal(arrays["identity"], [0, 1, 0, 1])
+        np.testing.assert_array_equal(arrays["edited"], [1, 0, 0, 1])
+        np.testing.assert_array_equal(arrays["harm"], [1, -1, 0, 0])
 
 
 if __name__ == "__main__":
