@@ -1,0 +1,108 @@
+# Three-Rule Contract-Threshold Stress Specification
+
+This supplementary analysis was fixed during receipt generation and before any
+candidate, decision, risk, radius, violation, retention, or aggregate outcome
+from seeds 45--108 was viewed. It uses existing audit arrays and requires no
+new model fit. It changes no preregistered threshold, primary endpoint, gate,
+candidate, deployment rule, shift law, evidence allocation, or random stream.
+
+## Question
+
+Does the central deployment story persist across stricter and more permissive
+contracts when always deploying, validation point selection, and the VERA
+vector envelope are compared on exactly the same fitted candidates and shifted
+finite laws?
+
+## Frozen Threshold Family
+
+Let `(tau_d, lambda_d)` be dataset `d`'s registered target-harm and balanced-
+leakage thresholds. For
+
+`kappa in {0.75, 1.00, 1.25}`,
+
+define
+
+- `tau_d(kappa) = kappa * tau_d`; and
+- `lambda_d(kappa) = 0.5 + kappa * (lambda_d - 0.5)`.
+
+The leakage transformation scales distance from binary balanced chance, 0.5,
+rather than multiplying raw accuracy. For the four registered datasets and
+these three multipliers, every transformed leakage threshold lies in `[0.5,1]`.
+`kappa=1` is the registered contract. The other two rows are supplementary
+sensitivity analyses and may not replace it.
+
+## Frozen Comparison
+
+At requested global cap `Gamma=1.1`, evidence budget 4,000, the registered 15%
+floor-constrained allocation, and the exact induced conditional shift profile,
+recompute only threshold comparisons for:
+
+1. `always_deploy`;
+2. `validation_point_selection`; and
+3. `vera_vector_envelope`.
+
+Use the same 12 candidates, target and attacker arrays, confidence bounds,
+candidate-family corrections, exact shifted-law expectations, utility tie-break,
+and 64 whole-seed clusters as the registered analysis. Compute the design-fold
+scores, pilot candidate, integer per-cell allocation, and certification sample
+indices once at the registered `kappa=1` contract, then reuse those exact
+objects at `kappa=0.75` and `kappa=1.25`. Robust-risk bounds are therefore
+identical across severity rows; only threshold comparisons, eligibility, and
+the exact shifted-law opportunity label are recomputed. Do not refit a model,
+redraw a stream, alter a confidence level, reallocate evidence, or screen a candidate. For each of
+the 36 rule-by-dataset-by-threshold cells, report decisions, deployments,
+violations per all decisions, violations per deployment, exact shifted-law safe
+opportunities, retained safe opportunities, and whole-seed intervals. Report
+all cells, including zero-deployment and unfavorable cells.
+
+## Supporting Readiness Condition
+
+This is not a fifth primary gate. It is a pre-outcome condition for making the
+paper's requested three-rule headline and for calling the main-track empirical
+story complete. It passes only if all of the following hold:
+
+1. At the registered `kappa=1` contract, `always_deploy` has an all-decision
+   violation rate of at least 20% on at least one supported dataset.
+2. At the registered `kappa=1` contract, `validation_point_selection` has an
+   all-decision violation rate of at least 20% on at least one supported
+   dataset.
+3. For every supported dataset and all three `kappa` values, the VERA vector
+   envelope's measured all-decision violation rate is at most 5%.
+4. The registered rotating-sentinel primary safety gate passes.
+5. The registered safe-retention primary gate passes, preventing an empty-
+   deployment safety story.
+
+The two naive severity conditions are evaluated separately; one rule cannot
+satisfy the other rule's condition. The naive dataset may differ by rule, but
+it is selected only by the prespecified maximum over the four fully reported
+dataset rows. No supplementary `kappa` may satisfy or rescue either naive
+severity condition.
+
+If any condition fails, record a negative result named
+`three_rule_threshold_stress_failed`, report every component condition, and do
+not use a cherry-picked threshold headline. The registered four-gate decision
+is still reported according to its own preregistration; this supplementary
+condition cannot change or rescue it.
+
+## Figure and Abstract Interface
+
+The supplementary figure has contract severity on the horizontal axis and
+all-decision violation rate on the vertical axis, with separate dataset panels
+and the three fixed rules. Show a horizontal 5% line, 95% whole-seed intervals,
+and deployment rate in an aligned lower strip so abstention is visible.
+
+The abstract's memorable deployment-rule sentence may be generated only when
+the supporting readiness condition passes. It must use the registered
+`kappa=1` validation-selection and VERA values, state the denominator and
+retained-safe-opportunity rate, and describe zero observed events through an
+upper confidence bound rather than as zero risk.
+
+## Validation
+
+The analyzer and manifest validator must reject a missing or duplicate cell, a
+threshold not generated by the formulas above, any denominator other than 64
+for a per-dataset all-decision row, a changed candidate, allocation, or stream
+hash, a
+headline based on `kappa` other than 1, a naive condition pooled across rules,
+or an overall supporting pass when any component condition fails. Deliberate
+corruption fixtures must cover each failure class.

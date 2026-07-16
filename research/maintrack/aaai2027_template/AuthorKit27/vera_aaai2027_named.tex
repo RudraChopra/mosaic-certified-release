@@ -5,10 +5,7 @@
 \urlstyle{rm}
 \def\UrlFont{\rm}
 \usepackage{natbib}
-\usepackage{caption}
 \frenchspacing
-\usepackage{algorithm}
-\usepackage{algorithmic}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
@@ -16,23 +13,25 @@
 
 \newtheorem{theorem}{Theorem}
 \setcounter{secnumdepth}{1}
+\providecommand{\VERAPaperPDFTitle}{VERA: Evidence-Efficient Certification of Representation Edits Under Deployment Shift}
+\providecommand{\VERAPaperDisplayTitle}{VERA: Evidence-Efficient Certification of Representation Edits\\Under Deployment Shift}
+\providecommand{\VERAPaperPDFSubject}{Evidence-efficient certification of representation edits under deployment shift}
+\InputIfFileExists{vera_shared_controlled_results.tex}{}{}
 \pdfinfo{
 /TemplateVersion (2027.1)
-/Title (VERA: Support-Aware Certification of Representation Edits Under Deployment Shift)
-/Subject (Support-aware certification of representation edits under deployment shift)
+/Title (\VERAPaperPDFTitle)
+/Subject (\VERAPaperPDFSubject)
 /Author (Rudra Chopra)
 }
 
-\title{VERA: Support-Aware Certification of Representation Edits\\Under Deployment Shift}
+\title{\VERAPaperDisplayTitle}
 \author{Rudra Chopra}
 \affiliations{Independent Researcher\\Contra Costa County, California, USA}
 \newcommand{\CodeAvailabilityText}{Code, hashed preregistrations, compact receipts, audit scripts, and manuscript sources are available at \url{https://github.com/RudraChopra/vera-edit-or-abstain}. Large public-dataset derivatives remain off GitHub; manifests and content hashes identify them.}
 
 \begin{document}
 \maketitle
-\InputIfFileExists{vera_results_macros.tex}{}{}
 \input{vera_paper_body}
 \label{vera-last-content-page}
-\clearpage
 \bibliography{../../references_verified}
 \end{document}

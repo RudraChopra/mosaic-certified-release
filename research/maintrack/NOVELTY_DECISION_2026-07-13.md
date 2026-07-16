@@ -22,9 +22,25 @@ observed environment cells to scope target guarantees and source-class cells
 to define prevalence-invariant balanced leakage; it does not claim to discover
 latent environments.
 
-## New Name
+## Submission Name
 
-VERA now expands to **Verified Erasure under Reweighting Ambiguity**.
+Use **VERA: Evidence-Efficient Certification of Representation Edits Under
+Deployment Shift**. The evidence-efficiency claim is scoped to prospective
+minimax allocation of certification observations for additive contracts across
+supported audit cells; its square-score and two-thirds-power formulas are
+special cases, not generic novelty claims. It is not a claim of globally
+optimal data collection. Leave VERA unexpanded
+in the paper: the formal guarantee covers a finite registered attacker
+portfolio, not all measurable recovery algorithms.
+
+## Scope Escalation Completed After This Decision
+
+The project now adds a support-aware vector envelope, sample-complexity upper
+and lower bounds, prospective additive multi-cell evidence allocation, exact
+small-case enumeration, and a 64-seed controlled `Gamma>1` study with known
+ambiguity membership. This is the minimum expanded scope used for the current
+submission. The finite-family acceptance rule remains inherited from Learn Then
+Test.
 
 ## Required Delta Over Prior Work
 

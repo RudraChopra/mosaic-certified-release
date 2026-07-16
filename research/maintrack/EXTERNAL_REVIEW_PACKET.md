@@ -9,6 +9,8 @@ erasure or fairness; and general machine learning with no prior involvement in
 the project. After all major findings are resolved, a fifth, previously unused
 reviewer reads the revised package. This gate measures adversarial scrutiny; it
 cannot guarantee acceptance.
+Human authors may use `EXTERNAL_REVIEW_OUTREACH.md` to request these reviews;
+an invitation or automated review never counts as a completed role review.
 
 ## Frozen Package
 
@@ -16,19 +18,20 @@ Send only these finalized artifacts, recording each SHA-256 in the private
 review registry:
 
 - anonymous main paper PDF:
-  `research/maintrack/aaai2027_template/AuthorKit27/vera_aaai2027_anonymous.pdf`
-  SHA-256 `15de25583d7c55ae5af474224b494d2cf1e7f20543c0e18b20d734621ae06e0f`;
+  `dist/private-review/vera_aaai2027_anonymous.pdf`;
 - anonymous supplement PDF:
-  `research/maintrack/aaai2027_template/AuthorKit27/vera_aaai2027_supplement_anonymous.pdf`
-  SHA-256 `6824cb142cdad3d152012a41a35e7cfcfb415cf2d017be5c447b81977f7a89db`;
+  `dist/private-review/vera_aaai2027_supplement_anonymous.pdf`;
 - anonymous reproduction archive:
-  `dist/vera_anonymous_submission.zip`
-  SHA-256 `a87e06fc63409f788f7b9251eadf30cc73fc2593c7b5871eb37e916475eebd3a`,
-  source commit `919be4f8c2d398cc5efbda808da734f0eab8f070`.
+  `dist/private-review/vera_anonymous_submission_v2.zip`.
 
-The archive audit in `research/artifacts/vera_anonymous_archive_audit.json`
-records that the package had no identity hits, no legacy-name hits, and passed
-compact one-command reproduction.
+The private registry must record hashes from the final rebuilt package. Earlier
+draft hashes are invalid review provenance.
+
+Regenerate the final private archive audit from the V2 archive. A counted
+package must have zero identity, path, commit-linkage, and legacy-name hits and
+must pass compact one-command reproduction from extraction; an audit of an
+earlier archive does not satisfy this gate. Keep the private audit and frozen
+package outside the named branch.
 
 Do not send internal readiness audits, prior critiques, response drafts, author
 identity, or claimed target scores before the reviewer writes the cold review.
@@ -46,11 +49,12 @@ written review must contain all of the following fields:
 5. Correctness score (1--7)
 6. Experimental-quality score (1--7)
 7. Clarity score (1--7)
-8. Overall score (1 strong reject, 2 reject, 3 weak reject, 4 borderline,
+8. Significance score (1--7)
+9. Overall score (1 strong reject, 2 reject, 3 weak reject, 4 borderline,
    5 weak accept, 6 accept, 7 strong accept)
-9. Confidence (1--5)
-10. Most likely rejection reason
-11. One change most likely to raise the score
+10. Confidence (1--5)
+11. Most likely rejection reason
+12. One change most likely to raise the score
 
 The free-form review must explicitly address:
 
@@ -60,7 +64,25 @@ The free-form review must explicitly address:
 3. whether the unsupported-support impossibility result is meaningful;
 4. whether the experiments demonstrate a need for certification;
 5. whether any claim is stronger than its receipt-backed evidence;
-6. the single most important missing experiment or ablation.
+6. the single most important missing experiment or ablation;
+7. whether the controlled `Gamma>1` design genuinely establishes ambiguity
+   membership and whether its finite-reference claim boundary is clear;
+8. whether the additive multi-cell evidence allocation is correctly derived and
+   novel enough after accounting for Neyman/stratified allocation, active
+   testing, shared-observation experimental design, and adaptive sampling;
+   specifically, whether the paper clearly separates its general allocator from
+   the locked square-score primary study;
+9. whether the rotating-sentinel average-risk claim and the supplementary
+   any-dataset/per-dataset bounds rule out hidden safety concentration without
+   overstating simultaneous control;
+10. whether the predefined always-deploy/validation/VERA comparison at all
+    three contract severities demonstrates a real deployment problem without
+    selecting a favorable severity, and whether useful retention rules out
+    trivial safety by universal abstention; and
+11. whether the cap-4/cap-8 implementation correction is disclosed clearly,
+    cap 8 is unmistakably the preregistered authority, and the independent
+    replay plus protocol-compliant analyzer agreement is enough to restore
+    confidence in the result.
 
 After the free-form review is complete, ask two binary follow-ups: "Does the
 paper explicitly and adequately address its overlap with Learn Then Test and

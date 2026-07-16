@@ -1,0 +1,490 @@
+% Style-independent scientific content. Official ICLR 2027 wrapper pending.
+% Controlled-study values must be supplied by the shared audited result source.
+\providecommand{\ControlledShiftAbstractResult}{The prospectively registered controlled-shift analysis is pending; no fresh outcome is claimed in this source state.}
+\providecommand{\ControlledPrimaryResult}{The controlled-shift primary result is pending completion of the locked matrix, receipt audit, and confirmatory replay.}
+\providecommand{\ControlledSafetyResult}{The registered controlled-shift safety result is pending.}
+\providecommand{\ControlledRetentionResult}{The registered safe-retention and vector-versus-common results are pending.}
+\providecommand{\ControlledAllocationResult}{The prospectively frozen allocation comparison is pending.}
+\providecommand{\ControlledEvidenceResult}{The inverse evidence-requirement diagnostic is pending.}
+\providecommand{\ControlledGaitResult}{The registered GaitPDB evidence diagnosis is pending.}
+\providecommand{\ControlledHeldoutResult}{The held-out boosted-tree stress result is pending.}
+\providecommand{\ControlledNegativeResults}{All failed gates and negative controlled results will be inserted from the audited shared result source.}
+\providecommand{\ControlledMainResultTable}{}
+\providecommand{\ControlledMainResultFigure}{}
+\providecommand{\VERAMethodOverviewPath}{../figures/vera_method_overview.pdf}
+
+\begin{abstract}
+Representation editing changes what downstream models can recover from a
+frozen representation, but an edit that looks acceptable on IID validation
+data may damage its target task or expose a source concept after deployment
+reweighting. We introduce VERA, a decision layer for a registered edit and a
+declared supported shift. VERA audits paired target harm and a heterogeneous
+portfolio of freshly retrained attackers, returning a simultaneous vector
+envelope of environment- and source-conditional density-ratio budgets, its
+limiting common radius, or \textsc{Abstain}. Finite-family testing follows
+Learn Then Test; our contribution is the representation-intervention contract
+that couples paired harm, balanced recovery, a continuum of groupwise shifts,
+and an explicit support boundary. We prove finite-sample validity throughout
+the reported envelope, derive prospective evidence allocations for additive
+multi-cell contracts, and show that no certification-data-only protocol can certify a
+required cell absent from its support without extra assumptions. In a prior IID
+study, validation-only selection violated 35 of 128 contracts, compared with 1
+of 128 for fixed-profile certification; this does not establish robustness for
+non-IID shifts. \ControlledShiftAbstractResult
+\end{abstract}
+
+\section{Representation Edits Need Deployment Decisions}
+\label{iclr:sec:intro}
+
+Methods such as INLP, R-LACE, LEACE, kernel erasure, TaCo, SPLINCE, and MANCE++
+construct interventions intended to remove a concept while preserving useful
+information
+\cite{ravfogel2020null,ravfogel2022linear,belrose2023leace,ravfogel2022kernel,jourdan2023taco,holstege2025splince,avitan2026mance}.
+Their outputs are candidates, not complete deployment decisions. A target label
+may be correlated with the erased concept, an eraser's native probe may miss
+information recoverable by another hypothesis class, and group prevalence may
+change after validation. A useful audit must therefore answer more than whether
+one probe's average accuracy fell.
+
+We ask: \emph{should this registered representation edit be deployed under this
+declared shift?} VERA fits no new eraser. It evaluates edits produced without
+certification data, retrains downstream target and leakage models after every
+edit, and either certifies one edit within a supported shift class or abstains.
+Its target quantity is incremental paired harm relative to the identity
+representation. Its leakage quantity is equal-weight source-class recall for
+each registered attacker, preventing source prevalence from creating apparent
+erasure. Its output is anisotropic: it reports which environment, source class,
+or attacker limits a deployment statement instead of hiding all constraints in
+one average score.
+
+We make four contributions. First, we define a support-aware certificate for a
+representation intervention that couples paired target harm with balanced
+recovery by a retrained attacker portfolio. Second, we obtain simultaneous
+finite-sample validity over registered edits, contracts, and a continuum of
+supported reweighting profiles, and derive prospective evidence allocations
+for additive multi-cell contracts. Third, a two-world impossibility theorem
+shows why the certificate must collapse on required support absent from
+certification. Fourth, we conduct a preregistered controlled cross-modal study that
+separates eraser construction from nine matched deployment rules and measures
+unsafe deployment, useful retention, envelope geometry, and abstention.
+
+The scope is deliberately narrower than universal erasure. Passing VERA does
+not prove that all measurable information about a concept is gone, that a
+representation is fair or private, or that an unobserved deployment belongs to
+the declared ambiguity class. It states that one registered intervention meets
+specific target and attacker contracts over a supported reweighting set.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{\VERAMethodOverviewPath}
+\caption{\textbf{VERA allocates evidence, audits one profile, and exposes its
+support boundary.} (A) Independent design-fold margins determine disjoint
+certification-stream counts before certification outcomes are observed. Paired
+identity/edit predictions measure target harm, while one source-class draw
+evaluates every registered fresh attacker. The primary controlled study uses
+the preregistered square-score allocator; the disjoint-stream additive
+comparison is a separately, prospectively specified secondary analysis. (B)
+The candidate IUT decides the registered profile, while simultaneous schematic
+upper-risk curves provide an inspectable envelope and limiting common radius.
+(C) The guarantee cannot cross new support: Camelyon17 certification centers
+are 0, 1, 3, and 4, whereas external center 2 is absent from that support, so
+VERA abstains without an additional cross-center assumption. This is an
+identification boundary, not evidence of clinical harm.}
+\label{iclr:fig:overview}
+\end{figure*}
+
+\section{Closest Work}
+\label{iclr:sec:related}
+
+\paragraph{Erasure and probing.}
+Linear erasure includes iterative nullspace projection, adversarial projection,
+and closed-form LEACE
+\cite{ravfogel2020null,ravfogel2022linear,belrose2023leace}. Nonlinear and
+structure-aware approaches broaden the candidate class
+\cite{ravfogel2022kernel,chowdhury2023kram,shao2023unaligned,jourdan2023taco,holstege2025splince,avitan2026mance}.
+These methods differ in what interventions they can construct; VERA instead
+compares their outputs under one downstream audit. Probe conclusions depend on
+the hypothesis class and retraining protocol
+\cite{hewitt2019control,pimentel2020probing,voita2020mdl,elazar2021amnesic},
+which motivates a registered heterogeneous portfolio rather than the eraser's
+native linear objective alone. Fundamental utility limits and residual
+nonlinear recoverability also caution against treating optimization success as
+a deployment guarantee \cite{chowdhury2025limits,akbari2025obliviator}.
+FARE and MMD-B-Fair provide certificates for restricted fair-representation
+objectives \cite{jovanovic2023fare,deka2023mmdbfair}; VERA does not supersede
+those objectives or certify universal guardedness.
+
+\paragraph{Risk control and selection.}
+Risk-controlling prediction sets, Learn Then Test (LTT), Conformal Risk Control,
+and Pareto Testing provide the finite-family testing foundation
+\cite{bates2021rcps,angelopoulos2025ltt,angelopoulos2024crc,laufer2023pareto}.
+Prompt Risk Control is a close application template for selecting prompts under
+multiple risks and estimated shift \cite{zollo2024prompt}; joint and
+group-conditional certificates further show that finite-family, multi-risk,
+and grouped acceptance are not themselves new
+\cite{yu2026joint,huang2026conditional}. VERA inherits candidate-wise testing.
+Its proposed delta is the audited population object: paired intervention harm,
+source-balanced recovery by retrained attackers, a vector of supported shift
+budgets, and an explicit missing-support outcome.
+
+\paragraph{Shift and abstention.}
+Known weights and robust validation can control risk under stated covariate or
+ambiguity models
+\cite{tibshirani2019covariate,almeida2025hprc,cauchois2024robust,ai2024finegrained}.
+Robust evaluation, CVaR concentration, and distributional fairness
+certificates are close technical and application neighbors
+\cite{najafi2025federated,thomas2019cvar,kang2022certifying,ehyaei2025fragile}.
+Group DRO and distribution-shift benchmarks motivate conditional rather than
+globally averaged evaluation \cite{sagawa2020groupdro,koh2021wilds}, while
+domain-adaptation impossibility and robustness-evaluation work motivate the
+explicit support boundary \cite{bendavid2010impossibility,subbaswamy2021evaluation}.
+Selective classification rejects individual predictions
+\cite{elyaniv2010foundations,geifman2017selective,geifman2019selectivenet}; VERA
+rejects an entire intervention before deployment. Three distinctions matter in
+practice. IID certification is only the radius-one slice of the proposed
+object; scalar pooling can accept while one target environment or attacker
+fails; and no confidence interval can identify an omitted required cell.
+
+\section{Representation-Intervention Contract}
+\label{iclr:sec:contract}
+
+Let $Z\in\mathbb R^d$ be a frozen representation, $Y$ a target, $S\in\{0,1\}$
+a source concept, and $G$ an observed environment. A registered edit
+$e\in\mathcal E$ maps $Z$ to $Z^e$ and is fitted without certification data.
+Fresh target learners $f_0$ and $f_e$ are fitted for identity and edited
+representations. On certification example $i$, define paired harm
+\begin{equation}
+H_{e,i}=\mathbf 1\{f_e(Z_i^e)\ne Y_i\}-
+\mathbf 1\{f_0(Z_i)\ne Y_i\}\in\{-1,0,1\}.
+\label{iclr:eq:harm}
+\end{equation}
+Pairing subtracts baseline difficulty on the same example. For attacker
+$a\in\mathcal A$, retrained after edit $e$, let
+$L_{e,a,i}=\mathbf 1\{a_e(Z_i^e)=S_i\}$.
+
+For a reference law $P$ and cap $\Gamma\ge1$, define
+\begin{equation}
+\mathcal Q_\Gamma(P)=\left\{Q\ll P:
+0\le\frac{\mathrm dQ}{\mathrm dP}\le\Gamma\right\},\qquad
+\rho_{\Gamma,P}(V)=\sup_{Q\in\mathcal Q_\Gamma(P)}\mathbb E_Q[V].
+\label{iclr:eq:robust-risk}
+\end{equation}
+For environment $g$, the target contract is
+$\rho_{\gamma_g,P_g}(H_e)\le\tau$. Leakage uses the standardized robust
+balanced accuracy
+\begin{equation}
+B_{e,a}(\eta_0,\eta_1)=\frac12\sum_{s\in\{0,1\}}
+\rho_{\eta_s,P_s}(L_{e,a})\le\lambda.
+\label{iclr:eq:balanced}
+\end{equation}
+Equal source-class weighting makes the contract invariant to deployment source
+prevalence; conditioning harm on $G$ prevents a favorable environment mixture
+from hiding damage. The target and leakage conditionals need not form one
+factorized joint model. Each declared conditional law must satisfy its own cap.
+
+The contract is fixed before certification: candidate family, target learner,
+attacker portfolio, thresholds, support cells, and deployment profile are all
+registered. Identity is the paired comparator, not silently added as another
+selectable action. If identity can be selected, it belongs in the corrected
+finite family.
+
+\section{VERA Envelope and Decision}
+\label{iclr:sec:method}
+
+The bounded-reweighting risk has the CVaR representation
+\begin{equation}
+\rho_{\Gamma,P}(V)=\inf_{t}
+\{t+\Gamma\mathbb E_P[(V-t)_+]\}.
+\label{iclr:eq:cvar}
+\end{equation}
+A simultaneous distribution-function band therefore gives an upper risk curve
+for every $\Gamma\ge1$. The audit variables here admit exact simplifications.
+For Bernoulli leakage with mean $p$,
+$\rho_{\Gamma,P}(L)=\min(1,\Gamma p)$. For paired harm with probabilities
+$(p_-,p_0,p_+)$ on $(-1,0,1)$, write $a=\Gamma p_+$ and
+$b=\Gamma(1-p_-)$. Then
+\begin{equation}
+\rho_{\Gamma,P}(H)=
+\begin{cases}
+1,&a\ge1,\\
+a,&a<1\le b,\\
+a+b-1,&b<1.
+\end{cases}
+\label{iclr:eq:ternary}
+\end{equation}
+VERA substitutes one-sided exact binomial bounds, preserving the probability
+simplex for the two harm tails and splitting component error across source
+classes for balanced leakage.
+
+At one declared profile, each candidate is an intersection--union test (IUT):
+every target and leakage component must clear its threshold using candidate
+error $\delta/|\mathcal E|$. If an unsafe candidate is accepted, at least one
+fixed violated component must undercover; intersecting additional components
+does not require another union bound. A separate simultaneous construction
+covers every curve for every candidate and contract because the curves remain
+available for post-certification inspection.
+
+Let $U^T_{e,g}(\gamma_g)$ be the simultaneous target upper curve and
+$U^L_{e,a,s}(\eta_s)$ the source-class attacker curve. VERA reports
+\begin{equation}
+\widehat{\mathcal E}_e=\left\{(\boldsymbol\gamma,\boldsymbol\eta):
+U^T_{e,g}(\gamma_g)\le\tau\ \forall g,\quad
+\frac12\sum_sU^L_{e,a,s}(\eta_s)\le\lambda\ \forall a\right\}.
+\label{iclr:eq:envelope}
+\end{equation}
+An unsupported required coordinate has radius zero. The common radius is the
+largest diagonal profile inside this set, right-censored at the registered
+computational cap. The full vector reveals which constraint limits the edit;
+the diagonal is only a summary.
+
+\begin{theorem}[Supported intervention certificate]
+\label{iclr:thm:certificate}
+Conditional on construction and all registered audit objects, the fixed-profile
+IUT deploys no contract-violating candidate with probability at least
+$1-\delta$. Under simultaneous candidate--contract coverage, the same event
+ensures that every profile in every reported $\widehat{\mathcal E}_e$ satisfies all registered
+target and balanced-leakage contracts.
+\end{theorem}
+
+The proof is inherited finite-family testing applied to intervention-specific
+components. The continuum does not incur an uncountable union bound: one
+simultaneous distribution-function event implies the entire monotone robust-risk
+curve. Environment mixtures remain controlled by linearity, and source
+prevalence is absent from the standardized leakage functional. Utility may be
+used to choose among candidates already contained in the same coverage event.
+
+\section{Guarantees and Evidence Design}
+\label{iclr:sec:evidence}
+
+For a bounded component with range $R$, profile cap $\Gamma_0$, and population
+margin $m>0$, a DKW construction has power at least $1-\beta/J$ when
+\begin{equation}
+n\ge \frac{\Gamma_0^2R^2}{2m^2}
+\left(\sqrt{\log\frac{2}{\alpha}}+
+\sqrt{\log\frac{2J}{\beta}}\right)^2.
+\label{iclr:eq:sample-size}
+\end{equation}
+This makes abstention an evidence diagnosis rather than an opaque failure.
+
+For additive contracts, let $a_{jc}$ collect cell $c$'s range, budget,
+confidence, and margin factors in contract $j$. Under the registered separate
+target-environment and source-class streams, VERA solves
+\begin{equation}
+\min_{\boldsymbol n}\max_j\sum_c\frac{a_{jc}}{\sqrt{n_c}}
+\quad\text{s.t.}\quad \sum_cn_c=N,\quad n_c\ge n_c^{\min}.
+\label{iclr:eq:allocation}
+\end{equation}
+The program is convex. For one additive contract with inactive floors,
+$n_c\propto a_{1c}^{2/3}$; when each contract uses one cell, the solution
+reduces to square-score allocation after shared-cell maxima are taken. Margins
+are estimated on an independent design fold for its max-min-margin edit, so the
+allocation targets one registered power surrogate without affecting
+certificate validity for the whole candidate family.
+
+The matching statement is local, not universal. Within its stated independent
+Bernoulli comparison experiment, the exact-KL lower bound needs no interior
+restriction; the familiar $\Gamma^2/m^2$ scaling requires safe and unsafe
+probabilities inside a fixed compact subset of $(0,1)$. Allocation
+optimality is restricted to the DKW surrogate and the registered separate-stream
+architecture. It does not cover a fully joint environment--source design that
+reuses every observation across target and leakage contracts.
+
+\begin{theorem}[Unsupported-cell impossibility]
+\label{iclr:thm:impossibility}
+If a required cell has zero certification probability and the model class
+contains safe and unsafe worlds that induce identical protocol observations but
+disagree on that cell's contract, any certification-data-only protocol with uniform
+false-acceptance control $\delta$ accepts in the safe world with probability at
+most $\delta$ whenever deployment may concentrate on that cell.
+\end{theorem}
+
+Identical observations force identical acceptance probabilities in the two
+worlds. Safety in the unsafe world therefore forces abstention in the safe one.
+More optimization cannot remove this boundary; the remedies are new support or
+an explicit structural assumption linking observed and omitted cells.
+
+\section{Controlled Cross-Modal Study}
+\label{iclr:sec:protocol}
+
+The prospective study crosses four supported datasets, five eraser families,
+and 64 fresh seeds (45--108), yielding 1,280 dataset--method runs and 3,072
+candidate-edit evaluations. Waterbirds provides vision; CivilComments and Bios
+provide text; GaitPDB provides time series. Camelyon17 is reserved for the
+unsupported hospital boundary because deployment center 2 is absent from
+certification support
+\cite{koh2021wilds,sagawa2020groupdro,borkan2019civilcomments,dearteaga2019bios}.
+The supported study concerns exact reweightings of finite benchmark reference
+laws, not new people, images, comments, or recordings.
+
+The candidate frontier has 12 edit configurations per dataset--seed block:
+INLP ranks $\{1,2,4,8\}$, R-LACE ranks $\{1,4\}$, one LEACE solution, TaCo
+removal counts $\{1,2,3,5\}$, and one MANCE++ configuration. Every method uses a
+pinned upstream entry point under one frozen-feature protocol. This is entry-
+point parity, not reproduction of every upstream paper's full pipeline or
+eraser state of the art; no proxy implementation contributes a candidate or
+result. After each edit, the study retrains a logistic target
+learner and four leakage attackers:
+logistic regression, RBF--Nystroem logistic regression, random forest, and a
+two-layer MLP. A boosted tree is fitted on the training partition but withheld
+from edit construction, selection, and certification.
+
+The official training split is divided into eraser-training and construction
+partitions. Pinned edit adapters use them as required, while fresh target and
+attacker models fit only the eraser-training partition. A disjoint design fold chooses the targeted
+supported cell and evidence allocation. Independent certification draws form
+confidence bounds. Primary exact shifted-law labels use expectations under a
+known finite reweighting, with a separate 50,000-draw Monte Carlo replay. Every
+receipt records support, probability, profile, split, upstream-code, and audit-
+array hashes. The primary requests global cap $\Gamma=1.1$ and uses the exact
+induced conditional profile, with $\delta=0.05$ and 4,000 contract observations.
+The fixed $(\tau,\lambda)$ values are $(0.40,0.70)$ for
+Bios, $(0.075,0.80)$ for CivilComments, $(0.20,0.55)$ for GaitPDB, and
+$(0.10,0.90)$ for Waterbirds. They come from an earlier design-only seed block
+and are benchmark operating points, not normative safety tolerances. The
+targeted primary gives every registered evidence cell at least 15\% of the
+budget; uniform allocation is matched. Secondary profiles vary the requested
+global cap over $\Gamma\in\{1.1,1.25,1.5\}$ and
+$N\in\{1000,2000,4000,8000\}$. Common radii are right-censored at
+$\Gamma_{\max}=8$.
+The preregistration sets the inversion cap to 8, whereas an earlier analysis
+implementation used cap 4. Receipt generation and fixed-profile certification
+are unaffected. We treat cap 8 as the prespecified analysis, retain the
+unchanged cap-4 output as a sensitivity, require agreement with an independent
+cap-8 replay, and report every resulting decision or gate difference.
+
+The 64-seed sample size was fixed from the disjoint seeds 13--44 design block.
+Its 14 favorable, zero adverse, and 18 tied seed-level differences gave
+Jeffreys-smoothed exact-sign-test power above 0.999 at 64 seeds. Sixty-four also
+provides 16 rotating sentinel decisions per dataset and exceeds the exact
+59-seed minimum needed for a zero-event one-sided 95\% upper bound of 0.05.
+
+Nine rules share candidates, audit variables, thresholds, shifted laws, and
+seed clusters: always deploy, validation point selection, IID LTT, robust point
+selection, a generic scalar robust certificate, VERA fixed-profile IUT, the
+vector envelope, the common-radius restriction, and an exact shifted-law
+opportunity oracle. The scalar rule averages normalized robust upper bounds, whereas VERA
+requires each coordinate to pass. The independent unit is the entire seed
+cluster, not datasets, candidates, attackers, or profiles within a seed.
+
+A predefined supporting stress recomputes always deploy, validation point
+selection, and the vector envelope at
+$\kappa\in\{0.75,1,1.25\}$ using
+$\tau_d(\kappa)=\kappa\tau_d$ and
+$\lambda_d(\kappa)=0.5+\kappa(\lambda_d-0.5)$. It reports all 36 cells and
+cannot change a primary gate. Its main-track supporting condition requires
+both naive rules to reach 20\% violations somewhere at the registered
+$\kappa=1$, VERA to remain at or below 5\% in every dataset--severity cell,
+and the registered safety and usefulness gates to pass.
+
+The primary efficacy endpoint is the within-seed reduction in violations from
+point selection to the vector rule, tested by a two-sided exact sign test on
+nonzero seed differences. The rotating-dataset safety sentinel uses one
+prespecified decision per seed and a one-sided exact 95\% Clopper--Pearson upper
+bound; any observed VERA false acceptance fails. Useful abstention requires a
+95\% percentile-bootstrap lower bound of at least 20\% safe retention from
+20,000 whole-seed resamples with fixed seed 2027071601, and vector retention
+must be at least twice common-radius retention. These are an IUT: every gate
+must pass. Per-dataset tests are secondary and Holm adjusted.
+
+\section{Deployment Safety and Useful Abstention}
+\label{iclr:sec:results}
+
+\paragraph{Controlled primary result.}
+\ControlledPrimaryResult
+
+\paragraph{Safety and usefulness.}
+\ControlledSafetyResult\ \ControlledRetentionResult
+
+\ControlledMainResultTable
+\ControlledMainResultFigure
+
+\paragraph{Prior IID uncertainty-control result.}
+In a disjoint 32-seed study, validation point selection violated 35/128
+contracts (27.3\%), while the $\Gamma=1$ fixed-profile certificate violated
+1/128 (0.8\%) and retained 52/102 oracle-safe opportunities (51.0\%). All four
+dataset-level paired comparisons favored certification after Holm correction,
+but the composite gate failed because GaitPDB's point violation rate, 5/32,
+missed a registered 20\% baseline-severity floor. This supports uncertainty-
+aware selection only; it is not evidence for $\Gamma>1$ robustness.
+
+\paragraph{Negative results.}
+\ControlledNegativeResults
+
+\section{What Parts of VERA Matter?}
+\label{iclr:sec:ablations}
+
+The frozen ablation family isolates paired versus unpaired target loss;
+balanced versus ordinary leakage; native versus retrained attackers; attacker
+portfolio composition; IID versus shifted certification; scalar versus vector
+eligibility; common versus anisotropic profiles; support checking;
+multiplicity; evidence allocation; candidate screening and family size;
+environment count; evidence size; exact versus generic bounds; and targeted
+versus untargeted collection. Every ablation reuses registered objects or a
+separate frozen stream and reports failed or null effects. None may replace a
+failed primary endpoint.
+
+\paragraph{Attacker stress.}
+\ControlledHeldoutResult{} The held-out attacker provides stress evidence outside
+the registered portfolio and is not part of the finite-sample certificate.
+Failure against it limits portfolio scope; success does not imply resistance to
+every learner.
+
+\section{Evidence Growth and Failure Diagnosis}
+\label{iclr:sec:diagnosis}
+
+\ControlledAllocationResult{} The final analysis compares uniform allocation,
+the locked square-score primary, and the additive program on disjoint common
+random streams. It reports the continuous objective, deterministic integer
+rounding gap, contract-level power surrogate, safety events, and safe retention.
+The title retains ``Evidence-Efficient'' only if the frozen literature and
+empirical rules permit it.
+
+\ControlledEvidenceResult{} The inverse planning diagnostic reports continuous
+and integer evidence requirements, per-cell top-ups, cap censoring, and the
+provenance of every design-fold or oracle-only margin.
+
+\ControlledGaitResult{} The GaitPDB analysis identifies limiting target or
+attacker cells, current evidence, continuous and integer evidence requirements,
+and recommended top-ups under fixed contracts. A top-up is a planning
+diagnostic, not a post hoc threshold change and not a way to rescue a failed
+confirmatory gate.
+
+\section{Limitations, Responsible Use, and Conclusion}
+\label{iclr:sec:limits}
+
+VERA assumes bounded audit variables, independence between construction and
+certification, a registered candidate and attacker family, and deployment
+support covered by certification. Its density-ratio cap is declared rather than
+learned from an unknown deployment. A finite attacker portfolio cannot certify
+absence of all recoverable information. Target control applies to the
+registered downstream learner and task, not every future use. Thresholds are
+benchmark operating points. Algorithmic seeds measure fitting and split
+variation but do not turn benchmark datasets into random deployment domains.
+The controlled experiment is a finite-reference replay, and Camelyon17 is not
+clinical validation.
+
+The allocation result is restricted to separate target-environment and source-
+class streams; a joint stratified design may reuse observations differently.
+The support theorem is a boundary, not evidence that an unsupported cell is
+unsafe. These distinctions are central to the claim rather than caveats added
+after inspection.
+
+\paragraph{Responsible use.}
+Concept removal can hide a measured attribute without correcting structural
+bias. A VERA certificate must not be represented as privacy, legal fairness, or
+fitness for high-stakes deployment. It is a conditional decision statement:
+this registered edit meets these paired target and attacker contracts for this
+supported shift profile. When available evidence cannot justify that statement,
+abstention is the scientifically correct output. The experiments use previously
+released secondary benchmark data and recruit no new participants. The release
+excludes raw biographies, comments, medical images, gait recordings,
+participant-linked identifiers, and derivatives whose terms do not permit
+redistribution.
+
+\paragraph{AI assistance.}
+OpenAI Codex was used extensively for ideation, literature discovery, theorem
+and proof drafting, implementation, experiment orchestration, statistical code,
+figures, manuscript drafting, and editing. No AI system is an author or a
+citable source. Human authors are responsible for independently verifying every
+claim, proof, implementation, reference, data right, and policy obligation
+before submission.

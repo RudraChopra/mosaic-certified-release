@@ -1,27 +1,46 @@
 # VERA Figure Plan
 
-## Figure 1: Method Overview
+This plan follows the controlled-shift reporting and Figure 1 revision
+specifications. Figures are generated from audited records; no venue variant may
+choose a different example or omit an unfavorable rule.
 
-Show frozen representations, candidate edits, target probe, source probe,
-frontier estimation, certified safe set, selected edit, and abstention output.
+## Main Figure 1: Method Overview
 
-## Figure 2: Frontier Geometry
+Use the frozen three-panel teaching figure in `FIGURE1_REVISION_SPEC.md` and its
+interpretation. Panel A shows design-fold additive evidence allocation and
+paired target/registered-attacker audits. Panel B distinguishes the fixed-profile
+IUT from the simultaneous supported shift envelope and common radius. Panel C
+shows the Camelyon17 unseen-support boundary and required abstention without
+implying measured or clinical harm.
 
-Plot target utility versus source leakage with confidence intervals. Mark safe
-candidates, rejected candidates, and the VERA selected point.
+## Main Figure 2: Controlled Result
 
-## Figure 3: Official Benchmark Summary
+Use the frozen three-panel result figure in
+`CONTROLLED_SHIFT_REPORTING_SPEC.md`.
 
-Show Waterbirds and Camelyon17-WILDS results with paired confidence intervals.
-Separate method wins from abstention or failure-analysis rows.
+1. Plot exact shifted-law contract violations for all nine matched deployment
+   rules, with seed-cluster intervals and deployment rates.
+2. Plot vector and common-radius safe retention across all registered evidence
+   budgets and both locked allocations, preserving zero denominators.
+3. Show the certificate anatomy for the deterministically selected candidate,
+   including coordinate curves, thresholds, radii, limiting contracts, and
+   certified/not-certified status.
 
-## Figure 4: Abstention Certificate
+## Supplementary Figures
 
-Show the synthetic overlap case where every candidate violates either target
-preservation or source reduction, forcing `ABSTAIN`.
+- Exact finite-law theory/data agreement and the candidate/group-count grid.
+- Prior IID uncertainty-control and independent stress-replication results,
+  explicitly separated from the controlled `Gamma>1` study.
+- Complete registered ablations, including null and unfavorable effects.
+- Uniform, square-score, and additive allocation comparisons with continuous,
+  integer, primal-dual, and safety diagnostics.
+- Inverse evidence requirements and cell-level top-ups, with design-fold versus
+  oracle-only labels.
+- GaitPDB limiting-contract and evidence-growth diagnosis.
+- Registered-attacker complementarity and held-out boosted-tree stress.
+- Camelyon17 support coverage as an impossibility-boundary illustration, not an
+  efficacy or clinical-safety result.
 
-## Figure 5: MANCE++ Reference Context
-
-Report the full Waterbirds official-code MANCE++ result and the Camelyon17
-diagnostic boundary so reviewers see that the closest 2026 baseline was handled
-honestly.
+No eraser leaderboard or method-specific promotional figure enters the main
+paper. AAAI, ICLR, and NeurIPS variants use the same audited data and deterministic
+selection rules even when layout differs.

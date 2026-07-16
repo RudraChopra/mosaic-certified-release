@@ -1,7 +1,8 @@
 \section{Shift-Robust Paired Certification}
 \label{app:shift-robust-theory}
 
-Let $P$ denote the validation distribution and let $V:\mathcal{X}\to[a,b]$
+Let $P$ denote the certification reference distribution and let
+$V:\mathcal{X}\to[a,b]$
 be a bounded audit variable.  In the target-preservation application,
 $V=H_e$ is the paired increase in loss caused by edit $e$ relative to the
 identity edit on the same example.  For $\Gamma\geq 1$, define the ambiguity
@@ -45,7 +46,8 @@ $w\equiv1$ is feasible and the bounded linear program has a finite optimum.
 The optimizer places the largest permitted mass on the upper tail of $V$.
 \end{proof}
 
-Given independent validation observations $V_1,\ldots,V_n$, let $\widehat P_n$
+Given independent certification observations $V_1,\ldots,V_n$, let
+$\widehat P_n$
 be their empirical distribution and let
 \begin{equation}
   \widehat\rho_{\Gamma,n}(V)
@@ -199,8 +201,9 @@ $\alpha=\delta/M$. For paired target harm, the positive- and negative-count
 bounds split this $\alpha$ equally; for balanced leakage, its two class-recall
 bounds do the same. Accept candidate $e$ only if
 $U_{e,j}\leq c_j$ for every $j$, then select any accepted candidate by a
-fixed utility rule. The probability of deploying any candidate that violates
-at least one component contract is at most $\delta$.
+prespecified measurable utility rule, which may use certification values. The
+probability of deploying any candidate that violates at least one component
+contract is at most $\delta$.
 If identity is itself a selectable deployment action, it is included among the
 $M$ candidates; using identity only to define paired harm does not add a
 selection hypothesis.
@@ -218,7 +221,7 @@ Selection among accepted candidates is contained in the same event.
 
 \begin{corollary}[Worst-group mixture shift]
 \label{cor:mixture}
-Let $P_g$ be validated group-conditional distributions for
+Let $P_g$ be certified group-conditional reference distributions for
 $g\in\mathcal{G}$. If
 $\rho_{\Gamma,P_g}(V_e)\leq c$ is simultaneously certified for every edit
 $e$ and group $g$, then for every collection
@@ -234,7 +237,7 @@ $\mathbb{E}_{Q_{\pi}}[V_e]=\sum_g\pi_g\mathbb{E}_{Q_g}[V_e]\leq
 
 Let $U^T_{e,g}(\gamma_g)$ be a simultaneous upper curve for paired target harm
 in observed environment $g$, and let $U^L_{e,a,s}(\eta_s)$ be one for attacker
-$a$'s class-$s$ recall. The \emph{support-aware erasure shift envelope} is
+$a$'s class-$s$ recall. The \emph{support-aware representation-edit shift envelope} is
 \begin{equation}
 \begin{split}
  \widehat{\mathcal E}_e=\{(\boldsymbol\gamma,\boldsymbol\eta):
@@ -248,7 +251,7 @@ Profiles that place deployment mass on an unobserved required environment are
 excluded. A missing source class excludes balanced-leakage certification
 unless a structural assumption identifies its conditional recall.
 
-\begin{theorem}[Support-aware erasure shift envelope]
+\begin{theorem}[Support-aware representation-edit shift envelope]
 \label{thm:shift-envelope}
 With probability at least $1-\delta$, simultaneously for every registered edit
 $e$, every deployment profile in its certified envelope satisfies every
@@ -298,7 +301,7 @@ $\delta$.
 \end{corollary}
 
 For edit $e$, let $\mathcal{K}_e$ index its paired target-harm and registered
-leakage contracts, with thresholds $c_k$. Define the population erasure shift
+leakage contracts, with thresholds $c_k$. Define the population representation-edit shift
 radius
 \begin{equation}
  \Gamma_e^\star=\sup\{\Gamma\geq1:
@@ -308,7 +311,7 @@ with $\Gamma_e^\star=0$ when a contract fails at $\Gamma=1$. Let
 $\widehat\Gamma_e$ replace each population robust risk by the upper bound in
 Theorem~\ref{thm:robust-paired}, and use the same zero convention.
 
-\begin{theorem}[Certified erasure shift radius]
+\begin{theorem}[Certified representation-edit shift radius]
 \label{thm:shift-radius}
 With probability at least $1-\delta$, simultaneously for every registered edit
 $e$, $\widehat\Gamma_e\leq\Gamma_e^\star$. The statement holds uniformly over
@@ -365,46 +368,220 @@ Solving gives Eq.~\eqref{eq:sample-complexity-upper}; a union bound over the
 $J$ power events proves the joint statement.
 \end{proof}
 
-\begin{theorem}[Bernoulli lower bound]
-\label{thm:sample-complexity-lower}
-Let $L\sim\mathrm{Bernoulli}(p)$ and choose $0<p_0<p_1<1$ such that
-$\Gamma_0p_1\leq1$, $\Gamma_0p_0\leq c$, and
-$\Gamma_0p_1>c$. Consider any possibly randomized protocol based on $n$ i.i.d.
-observations that accepts with probability at least $1-\beta$ at $p_0$ and
-falsely accepts with probability at most $\alpha$ at $p_1$. If
-$\alpha+\beta<1/2$, then
+\begin{corollary}[Minimax prospective evidence allocation]
+\label{cor:evidence-allocation}
+Fix $J$ components with range lengths $R_j$, declared budgets $\Gamma_j$,
+positive margins $m_j$, and component undercoverage probabilities $\alpha_j$.
+For joint power $1-\beta$, define the sufficient evidence scores
 \begin{equation}
- n\geq
+ A_j=\frac{\Gamma_j^2R_j^2}{2m_j^2}
+ \left(\sqrt{\log\frac{2}{\alpha_j}}+
+       \sqrt{\log\frac{2J}{\beta}}\right)^2.
+ \label{eq:evidence-score}
+\end{equation}
+Prospective counts $n_j\geq A_j$ for every component are sufficient for all
+components to pass with probability at least $1-\beta$. More generally, among
+positive real allocations with $\sum_j n_j=N$, the allocation minimizing the
+largest normalized evidence deficit $\max_j A_j/n_j$ is
+\begin{equation}
+ n_j^\star=N\frac{A_j}{\sum_{\ell=1}^J A_\ell},
+ \qquad
+ \min_{\boldsymbol n}\max_j\frac{A_j}{n_j}
+ =\frac{\sum_j A_j}{N}.
+ \label{eq:minimax-allocation}
+\end{equation}
+Thus, when confidence factors and ranges are shared, the minimax
+sufficient-evidence score is proportional to $\Gamma_j^2/m_j^2$. Replacing
+unknown margins by estimates from
+an independent design fold, imposing prespecified evidence floors, and rounding
+to integer counts can change power but not certification validity: conditional
+on the design fold, the allocation remains fixed before certification.
+If one sampled evidence cell informs several components, replace its score by
+the maximum $A_j$ among components sharing that cell and allocate over cells.
+Meeting the cellwise maxima meets every componentwise sufficient condition, and
+the same minimax argument applies to these aggregated scores.
+\end{corollary}
+
+\begin{proof}
+The joint sufficient condition follows by applying
+Theorem~\ref{thm:sample-complexity-upper} to each component and union bounding
+the $J$ power events. For any allocation, if
+$r=\max_j A_j/n_j$, then $A_j\leq r n_j$ for every $j$, so
+$\sum_j A_j\leq rN$. Hence $r\geq\sum_j A_j/N$. The displayed allocation makes
+every ratio $A_j/n_j$ equal to this lower bound. Conditional validity under a
+design-dependent allocation follows from the probability-space contract in
+Theorem~\ref{thm:robust-paired}; averaging the conditional guarantee gives the
+same unconditional guarantee.
+\end{proof}
+
+Corollary~\ref{cor:evidence-allocation} treats each contract as depending on one
+evidence cell. Balanced leakage is additive across two source-class cells, and
+one source-class sample can simultaneously evaluate several attackers. The next
+result handles both directions of sharing.
+
+\begin{theorem}[Additive multi-cell evidence allocation]
+\label{thm:additive-allocation}
+Let $c=1,\ldots,C$ index independently sampled evidence cells and
+$j=1,\ldots,J$ index contracts. Contract $j$ has nonnegative weights $w_{jc}$,
+population risk
+\begin{equation}
+ R_j=\sum_{c=1}^C w_{jc}\rho_{\Gamma_{jc},P_{jc}}(V_{jc}),
+ \qquad R_j\leq q_j-m_j,
+ \label{eq:additive-contract}
+\end{equation}
+where $m_j>0$, $V_{jc}$ has range length $R_{jc}$, and terms with
+$w_{jc}=0$ are omitted. Samples inside a cell may be reused across contracts and
+need not produce independent audit variables. Let $D$ be the number of distinct
+nonzero cell-risk curves, assign each distinct curve one DKW undercoverage
+probability $\alpha_{jc}$ (shared wherever that curve is reused), require the
+sum of those $D$ distinct-curve probabilities to be at most the global
+certification error budget $\delta$, and define
+\begin{equation}
+ b_{jc}=\frac{w_{jc}\Gamma_{jc}R_{jc}}{\sqrt{2}}
+ \left(
+   \sqrt{\log\frac{2}{\alpha_{jc}}}
+   +\sqrt{\log\frac{2D}{\beta}}
+ \right).
+ \label{eq:additive-coefficient}
+\end{equation}
+If prospective cell counts satisfy
+\begin{equation}
+ \sum_{c=1}^C\frac{b_{jc}}{\sqrt{n_c}}\leq m_j
+ \quad\text{for every }j,
+ \label{eq:additive-power-condition}
+\end{equation}
+then every contract passes its additive DKW upper bound with probability at
+least $1-\beta$.
+
+For any positive design-fold margins $\widetilde m_j$, put
+$a_{jc}=b_{jc}/\widetilde m_j$. Given budget $N$ and positive floors $\ell_c$
+with $N\geq\sum_c\ell_c$,
+the prospective surrogate allocation is the convex program
+\begin{equation}
+ \begin{aligned}
+  \underset{\boldsymbol n,t}{\operatorname{minimize}}\quad &t\\
+  \text{subject to}\quad
+  &\sum_c a_{jc}n_c^{-1/2}\leq t &&\forall j,\\
+  &\sum_c n_c=N,\qquad n_c\geq\ell_c &&\forall c.
+ \end{aligned}
+ \label{eq:additive-allocation}
+\end{equation}
+It exactly minimizes the worst normalized additive DKW slack for the fixed
+design-fold coefficients. With one contract and inactive floors, its solution is
+\begin{equation}
+ n_c^\star=N\frac{a_{1c}^{2/3}}{\sum_d a_{1d}^{2/3}},
+ \qquad
+ \min_{\boldsymbol n}\sum_c\frac{a_{1c}}{\sqrt{n_c}}
+ =\frac{(\sum_c a_{1c}^{2/3})^{3/2}}{\sqrt N}.
+ \label{eq:additive-single-contract}
+\end{equation}
+If every contract depends on exactly one cell, every optimized cell appears in
+at least one contract, and the floors are inactive, define
+$\bar a_c=\max_{j:w_{jc}>0}a_{jc}$. Then
+$n_c^\star=N\bar a_c^2/\sum_d\bar a_d^2$, recovering the shared-cell
+square-score allocation in Corollary~\ref{cor:evidence-allocation}. Design-fold
+margin substitution, floors, and deterministic integer rounding can change
+power and exact optimality after rounding, but not certification validity.
+\end{theorem}
+
+\begin{proof}
+For every distinct nonzero cell-risk curve represented by a pair $(j,c)$, the
+DKW coverage penalty contributes
+\begin{equation*}
+w_{jc}\Gamma_{jc}R_{jc}
+\sqrt{\frac{\log(2/\alpha_{jc})}{2n_c}}
+\end{equation*}
+to the reported additive upper bound. A second
+DKW event at error $\beta/D$ upper-bounds the corresponding empirical robust
+risk above its population value by
+\begin{equation*}
+\Gamma_{jc}R_{jc}\sqrt{\frac{\log(2D/\beta)}{2n_c}}.
+\end{equation*}
+A union bound over the $D$
+power events is valid despite shared samples or dependent audit variables. On
+their intersection, the reported bound for contract $j$ is at most
+$R_j+\sum_cb_{jc}/\sqrt{n_c}$, which is no greater than $q_j$ under
+Eq.~\eqref{eq:additive-power-condition}.
+The distinct-curve $\alpha$ budget separately makes all reported additive
+upper bounds valid with probability at least $1-\delta$; reuse of one curve
+across contracts spends its undercoverage probability only once.
+
+For fixed positive coefficients, $n\mapsto n^{-1/2}$ is convex on
+$(0,\infty)$. Each contract constraint in Eq.~\eqref{eq:additive-allocation} is
+therefore convex, and the budget and floor constraints are affine. The epigraph
+program exactly represents the maximum normalized slack and attains a minimizer
+on its compact feasible set. With one contract and inactive floors, the
+Lagrange stationarity condition is
+$-a_{1c}/(2n_c^{3/2})+\nu=0$, so $n_c\propto a_{1c}^{2/3}$; normalizing by $N$
+and substituting gives Eq.~\eqref{eq:additive-single-contract}. If contract $j$
+uses only cell $c(j)$ and every cell is represented, the objective is
+$\max_c\bar a_c/\sqrt{n_c}$. Squaring it gives the normalized deficit problem
+with scores $\bar a_c^2$, so Corollary~\ref{cor:evidence-allocation} yields the
+last formula when the floors are inactive. Conditioning on the independent
+design fold fixes all allocation
+choices before certification; validity follows from the same conditional
+probability argument used above.
+\end{proof}
+
+\begin{theorem}[Prospective multi-component lower bound]
+\label{thm:sample-complexity-lower}
+For $j=1,\ldots,J$, choose $0<p_{0j}<p_{1j}<1$ such that
+$\Gamma_jp_{1j}\leq1$, $\Gamma_jp_{0j}\leq c_j$, and
+$\Gamma_jp_{1j}>c_j$. A prospective protocol observes $n_j$ independent
+Bernoulli samples from each component. Let $P_0$ denote the world in which all
+components have parameters $p_{0j}$, and let $P_j$ differ only by replacing
+$p_{0j}$ with $p_{1j}$. If a possibly randomized protocol accepts with
+probability at least $1-\beta$ under $P_0$ and falsely accepts with probability
+at most $\alpha$ under every $P_j$, where $\alpha+\beta<1/2$, then
+\begin{equation}
+ n_j\geq
  \frac{\log\{1/[2(\alpha+\beta)]\}}
- {d_{\mathrm{KL}}(\mathrm{Bern}(p_0)\Vert
-                  \mathrm{Bern}(p_1))}.
+ {d_{\mathrm{KL}}(\mathrm{Bern}(p_{0j})\Vert
+                  \mathrm{Bern}(p_{1j}))}
+ \quad\text{for every }j.
  \label{eq:sample-complexity-lower}
 \end{equation}
-In particular, taking robust-risk-separated alternatives
-$p_0=(c-m)/\Gamma_0$ and $p_1=(c+m)/\Gamma_0$ in an interior parameter region
-requires $n=\Omega(\Gamma_0^2m^{-2}\log(1/(\alpha+\beta)))$.
-Thus the quadratic dependence on the shift budget and inverse margin in
-Theorem~\ref{thm:sample-complexity-upper} cannot generally be improved.
+Consequently, the total evidence $N=\sum_jn_j$ is at least the sum of these
+bounds. Fix $\kappa\in(0,1/2)$. Taking
+$p_{0j}=(c_j-m_j)/\Gamma_j$ and
+$p_{1j}=(c_j+m_j)/\Gamma_j$ in a compact interior regime where both
+probabilities lie in $[\kappa,1-\kappa]$ requires
+\begin{equation}
+ N=\Omega\left(
+ \log\frac{1}{\alpha+\beta}
+ \sum_{j=1}^J\frac{\Gamma_j^2}{m_j^2}
+ \right).
+\end{equation}
+Thus, locally in such compact interior regimes, the quadratic shift-budget and
+inverse-margin allocation in Corollary~\ref{cor:evidence-allocation} is
+unavoidable up to confidence and $\kappa$-dependent constants for prospective
+independent-cell designs. This scaling statement is not uniform as probabilities
+approach zero or one; the exact KL bound above remains the global statement.
 \end{theorem}
 
 \begin{proof}
 Let $A$ be the event that the protocol accepts. The two testing errors satisfy
-$P_{p_0}(A^c)\leq\beta$ and $P_{p_1}(A)\leq\alpha$. The
-Bretagnolle--Huber inequality applied to the product Bernoulli laws gives
+$P_0(A^c)\leq\beta$ and $P_j(A)\leq\alpha$. The
+Bretagnolle--Huber inequality applied to $P_0$ and $P_j$ gives
 \begin{equation}
- P_{p_0}(A^c)+P_{p_1}(A)
- \geq\tfrac12\exp\{-n\,d_{\mathrm{KL}}(p_0\Vert p_1)\}.
+ P_0(A^c)+P_j(A)
+ \geq\tfrac12\exp\{-n_j\,d_{\mathrm{KL}}(p_{0j}\Vert p_{1j})\},
 \end{equation}
-Rearranging proves Eq.~\eqref{eq:sample-complexity-lower}. In an interior
-region Bernoulli KL is quadratic in $p_1-p_0=2m/\Gamma_0$, proving the stated
-order lower bound.
+because the two product laws differ in only the $n_j$ observations from
+component $j$. Rearranging proves Eq.~\eqref{eq:sample-complexity-lower} for
+every $j$, and summing gives the total lower bound. On
+$[\kappa,1-\kappa]$, Bernoulli KL is bounded above by a
+$\kappa$-dependent constant times
+$(p_{1j}-p_{0j})^2=(2m_j/\Gamma_j)^2$, proving the stated local order. Near the
+boundary, that uniform quadratic comparison need not hold, which is why the
+theorem retains the exact KL denominator.
 \end{proof}
 
 \begin{theorem}[Unsupported-cell impossibility]
 \label{thm:unsupported}
 Fix an edit $e$, a contract threshold $c$, and let $O_n$ contain every random
-quantity available to a validation-only protocol. Suppose an audit cell
-$A$ has zero validation probability, the allowed deployment class contains a
+quantity available to a certification-data-only protocol. Suppose an audit cell
+$A$ has zero certification probability, the allowed deployment class contains a
 law $Q_A$ supported on $A$, and the nonparametric model class contains two
 worlds $M_0,M_1$ such that
 \begin{enumerate}

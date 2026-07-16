@@ -64,7 +64,7 @@ deployment readiness.
 
 ## Locked Boundary
 
-Allowed: VERA proposes the paired multi-contract erasure shift envelope, its
+Allowed: VERA proposes the paired multi-contract representation-edit shift envelope, its
 common-radius summary, and a support-scoped method for lower-certifying both
 over registered edit frontiers.
 

@@ -1,65 +1,125 @@
 \section{Closest-Work Capability Matrix}
 
-Tables~\ref{tab:novelty-a}--\ref{tab:novelty-b} compare reported outputs and
+Tables~\ref{tab:novelty-a}--\ref{tab:novelty-d} compare reported outputs and
 guarantees, not components that could be assembled by combining papers. ``P''
 means partial, variant-specific, or materially different; ``--'' means that the
 capability is not reported. This conservative coding credits generic machinery
 to prior work and isolates the proposed scientific object.
+The evidence-allocation extension is deliberately not coded as another binary
+column: its additive fixed-budget minimax DKW-slack objective must be positioned
+separately against active testing, stratified and Neyman allocation,
+shared-observation experimental design, and generic convex resource allocation.
+Its square-score and two-thirds-power special cases are not claimed as generic
+allocation novelty.
+
+The columns are finite selection (FS), multiple risks (MR), paired intervention
+harm (PH), fresh attacker retraining (FR), multiple attacker families (MA),
+environment-conditional robustness (EC), source-conditional robustness (SC),
+arbitrary environment mixtures (EM), source-prevalence invariance (SP), a
+continuum of budgets (CB), a vector profile (VP), a common radius (CR), support
+mismatch detection (SM), whole-intervention abstention (WA), post-inspection
+validity (PI), and no target-deployment sample (NT).
 
 \begin{table*}[t]
 \centering\scriptsize
-\setlength{\tabcolsep}{3.0pt}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{lccccccc}
+\begin{tabular}{@{}lcccc@{}}
 \toprule
-Method family & Finite select. & Multi-risk & Paired harm & Fresh portfolio & Bounded reweight. & Budget continuum & Safe-radius LB \\
+Method family & FS & MR & PH & FR \\
 \midrule
-Learn Then Test \cite{angelopoulos2025ltt} & Y & Y & -- & -- & -- & -- & -- \\
-Conformal Risk Control \cite{angelopoulos2024crc} & P & P & -- & -- & P & -- & -- \\
-Pareto Testing \cite{laufer2023pareto} & Y & Y & -- & -- & -- & -- & -- \\
-Prompt Risk Control \cite{zollo2024prompt} & Y & Y & -- & -- & P & -- & -- \\
-Weighted risk control \cite{tibshirani2019covariate,almeida2025hprc} & P & P & -- & -- & P & -- & -- \\
-Robust validation \cite{cauchois2024robust,ai2024finegrained} & -- & P & -- & -- & Y & P & -- \\
-Group-conditional control \cite{huang2026conditional} & P & Y & -- & -- & P & -- & -- \\
-Selective prediction \cite{elyaniv2010foundations,geifman2019selectivenet} & P & P & -- & -- & -- & -- & -- \\
-Distributional fairness certificates \cite{kang2022certifying,ehyaei2025fragile} & -- & P & -- & -- & Y & P & -- \\
-FARE / MMD-B-Fair \cite{jovanovic2023fare,deka2023mmdbfair} & -- & P & -- & P & P & -- & -- \\
-Concept erasure and probing \cite{ravfogel2020null,ravfogel2022linear,belrose2023leace} & P & P & P & P & -- & -- & -- \\
-Robust representation learning \cite{sagawa2020groupdro,koh2021wilds} & P & P & -- & -- & Y & P & -- \\
-\textbf{VERA} & \textbf{Y} & \textbf{Y} & \textbf{Y} & \textbf{Y} & \textbf{Y} & \textbf{Y} & \textbf{Y} \\
+Learn Then Test \cite{angelopoulos2025ltt} & Y & Y & -- & -- \\
+Pareto Testing \cite{laufer2023pareto} & Y & Y & -- & -- \\
+Conformal Risk Control \cite{angelopoulos2024crc} & P & P & -- & -- \\
+Prompt Risk Control \cite{zollo2024prompt} & Y & Y & -- & -- \\
+Robust validation \cite{cauchois2024robust} & -- & P & -- & -- \\
+Robust conformal inference \cite{ai2024finegrained} & P & P & -- & -- \\
+CVaR risk certification \cite{thomas2019cvar} & P & P & -- & -- \\
+Distributional fairness certification \cite{kang2022certifying} & -- & P & -- & P \\
+Wasserstein fairness auditing \cite{ehyaei2025fragile} & -- & P & -- & P \\
+Selective prediction \cite{elyaniv2010foundations,geifman2019selectivenet} & P & P & -- & -- \\
+Group-robust evaluation \cite{sagawa2020groupdro,koh2021wilds} & -- & P & -- & -- \\
+Representation erasure \cite{ravfogel2020null,ravfogel2022linear,belrose2023leace} & P & P & P & P \\
+\textbf{VERA} & \textbf{Y} & \textbf{Y} & \textbf{Y} & \textbf{Y} \\
 \bottomrule
-\end{tabular}%
-}
-\caption{Closest-work matrix, part I. VERA's edit construction is not a contribution; the claimed output is the certificate assembled across the last five columns and Table~\ref{tab:novelty-b}.}
+\end{tabular}
+\caption{Closest-work matrix, part I: selection and intervention structure.}
 \label{tab:novelty-a}
 \end{table*}
 
 \begin{table*}[t]
 \centering\scriptsize
-\setlength{\tabcolsep}{3.2pt}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{lcccccc}
+\begin{tabular}{@{}lcccc@{}}
 \toprule
-Method family & Support boundary & Whole-edit abstain & Post-inspection valid & Environment mixtures & Source-prior invariant & No target sample \\
+Method family & MA & EC & SC & EM \\
 \midrule
-Learn Then Test \cite{angelopoulos2025ltt} & -- & P & Y & -- & -- & Y \\
-Conformal Risk Control \cite{angelopoulos2024crc} & -- & -- & P & -- & -- & P \\
-Pareto Testing \cite{laufer2023pareto} & -- & P & Y & -- & -- & Y \\
-Prompt Risk Control \cite{zollo2024prompt} & -- & P & Y & -- & -- & P \\
-Weighted risk control \cite{tibshirani2019covariate,almeida2025hprc} & P & -- & P & -- & -- & -- \\
-Robust validation \cite{cauchois2024robust,ai2024finegrained} & -- & -- & P & -- & -- & Y \\
-Group-conditional control \cite{huang2026conditional} & P & -- & P & P & -- & Y \\
-Selective prediction \cite{elyaniv2010foundations,geifman2019selectivenet} & -- & -- & P & -- & -- & Y \\
-Distributional fairness certificates \cite{kang2022certifying,ehyaei2025fragile} & P & -- & P & P & P & Y \\
-FARE / MMD-B-Fair \cite{jovanovic2023fare,deka2023mmdbfair} & -- & -- & -- & -- & P & Y \\
-Concept erasure and probing \cite{ravfogel2020null,ravfogel2022linear,belrose2023leace} & -- & -- & -- & -- & P & Y \\
-Robust representation learning \cite{sagawa2020groupdro,koh2021wilds} & P & -- & -- & P & -- & Y \\
-\textbf{VERA} & \textbf{Y} & \textbf{Y} & \textbf{Y} & \textbf{Y} & \textbf{Y} & \textbf{Y} \\
+Learn Then Test \cite{angelopoulos2025ltt} & -- & -- & -- & -- \\
+Pareto Testing \cite{laufer2023pareto} & -- & -- & -- & -- \\
+Conformal Risk Control \cite{angelopoulos2024crc} & -- & P & -- & -- \\
+Prompt Risk Control \cite{zollo2024prompt} & -- & P & -- & -- \\
+Robust validation \cite{cauchois2024robust} & -- & P & -- & -- \\
+Robust conformal inference \cite{ai2024finegrained} & -- & P & -- & -- \\
+CVaR risk certification \cite{thomas2019cvar} & -- & P & P & P \\
+Distributional fairness certification \cite{kang2022certifying} & P & P & P & P \\
+Wasserstein fairness auditing \cite{ehyaei2025fragile} & P & P & P & P \\
+Selective prediction \cite{elyaniv2010foundations,geifman2019selectivenet} & -- & -- & -- & -- \\
+Group-robust evaluation \cite{sagawa2020groupdro,koh2021wilds} & -- & Y & P & Y \\
+Representation erasure \cite{ravfogel2020null,ravfogel2022linear,belrose2023leace} & P & -- & P & -- \\
+\textbf{VERA} & \textbf{Y} & \textbf{Y} & \textbf{Y} & \textbf{Y} \\
 \bottomrule
-\end{tabular}%
-}
-\caption{Closest-work matrix, part II. ``Whole-edit abstain'' excludes selective-prediction methods that reject individual examples. ``No target sample'' refers to the shift certificate itself.}
+\end{tabular}
+\caption{Closest-work matrix, part II: attacker and conditional-shift structure.}
 \label{tab:novelty-b}
+\end{table*}
+
+\begin{table*}[t]
+\centering\scriptsize
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Method family & SP & CB & VP & CR \\
+\midrule
+Learn Then Test \cite{angelopoulos2025ltt} & -- & -- & -- & -- \\
+Pareto Testing \cite{laufer2023pareto} & -- & -- & -- & -- \\
+Conformal Risk Control \cite{angelopoulos2024crc} & -- & -- & -- & -- \\
+Prompt Risk Control \cite{zollo2024prompt} & -- & -- & -- & -- \\
+Robust validation \cite{cauchois2024robust} & -- & P & -- & -- \\
+Robust conformal inference \cite{ai2024finegrained} & -- & P & -- & -- \\
+CVaR risk certification \cite{thomas2019cvar} & -- & P & -- & P \\
+Distributional fairness certification \cite{kang2022certifying} & P & P & -- & -- \\
+Wasserstein fairness auditing \cite{ehyaei2025fragile} & P & P & -- & -- \\
+Selective prediction \cite{elyaniv2010foundations,geifman2019selectivenet} & -- & -- & -- & -- \\
+Group-robust evaluation \cite{sagawa2020groupdro,koh2021wilds} & P & -- & -- & -- \\
+Representation erasure \cite{ravfogel2020null,ravfogel2022linear,belrose2023leace} & P & -- & -- & -- \\
+\textbf{VERA} & \textbf{Y} & \textbf{Y} & \textbf{Y} & \textbf{Y} \\
+\bottomrule
+\end{tabular}
+\caption{Closest-work matrix, part III: prevalence, budget continuum, and envelope geometry.}
+\label{tab:novelty-c}
+\end{table*}
+
+\begin{table*}[t]
+\centering\scriptsize
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Method family & SM & WA & PI & NT \\
+\midrule
+Learn Then Test \cite{angelopoulos2025ltt} & -- & P & Y & Y \\
+Pareto Testing \cite{laufer2023pareto} & -- & P & Y & Y \\
+Conformal Risk Control \cite{angelopoulos2024crc} & -- & -- & P & P \\
+Prompt Risk Control \cite{zollo2024prompt} & P & P & Y & P \\
+Robust validation \cite{cauchois2024robust} & -- & -- & P & Y \\
+Robust conformal inference \cite{ai2024finegrained} & P & -- & P & P \\
+CVaR risk certification \cite{thomas2019cvar} & -- & P & P & Y \\
+Distributional fairness certification \cite{kang2022certifying} & P & -- & P & Y \\
+Wasserstein fairness auditing \cite{ehyaei2025fragile} & P & -- & P & Y \\
+Selective prediction \cite{elyaniv2010foundations,geifman2019selectivenet} & -- & -- & P & Y \\
+Group-robust evaluation \cite{sagawa2020groupdro,koh2021wilds} & P & -- & -- & Y \\
+Representation erasure \cite{ravfogel2020null,ravfogel2022linear,belrose2023leace} & -- & P & -- & Y \\
+\textbf{VERA} & \textbf{Y} & \textbf{Y} & \textbf{Y} & \textbf{Y} \\
+\bottomrule
+\end{tabular}
+\caption{Closest-work matrix, part IV. WA excludes methods that reject only
+individual examples. NT refers to the shift guarantee; methods requiring an
+unlabeled target sample receive P rather than Y.}
+\label{tab:novelty-d}
 \end{table*}
 
 \paragraph{IID certification can accept an edit that VERA rejects.}

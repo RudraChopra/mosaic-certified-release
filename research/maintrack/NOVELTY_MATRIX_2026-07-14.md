@@ -12,6 +12,19 @@ converted to abstention when a required support cell is absent. The guarantee
 does not require a target-deployment sample and does not claim universal
 erasure.
 
+The evidence-efficiency extension is narrower than the 16-column certificate
+comparison. It allocates a fixed prospective certification budget across
+supported evidence cells to minimize the worst normalized additive DKW slack
+for the registered max-min-margin candidate, using margins estimated on an
+independent design fold. The one-cell special case reduces to square scores;
+balanced leakage uses the full multi-cell convex program. The manuscript
+may claim the stated minimax objective, the exact-KL lower bound, and locally
+matching shift--margin scaling in compact independent-cell regimes. It
+may not claim that inverse-margin allocation, active data collection, or
+optimal experimental design is new in general.
+It also may not claim simultaneous power optimality over the entire candidate
+frontier; the finite-sample validity statement still covers that frontier.
+
 The finite-candidate testing layer is inherited from Learn Then Test. Bounded
 density-ratio robustness, exact binomial intervals, CVaR duality, balanced
 accuracy, and union bounds are also prior machinery. The claimed contribution
@@ -25,31 +38,46 @@ backward/forward citations for the queries `representation erasure
 certification deployment shift`, `robust risk control bounded density ratio`,
 `distributional fairness certification`, `concept erasure attacker portfolio`,
 and the names of all methods below. Inclusion required a primary paper that
-could plausibly provide at least one of the 13 capabilities. A row records what
-the cited method reports, not what could be built by combining it with another
-paper.
+could plausibly provide at least one of the 16 requested capabilities. A row
+records what the cited method reports, not what could be built by combining it
+with another paper.
 
 Legend: `Y` = explicit capability; `P` = partial, variant-specific, or a related
 but materially different capability; `-` = not reported as an output or
 guarantee. `P` is intentionally conservative: it prevents the matrix from
 turning differences of application into false novelty claims.
 
-| Method family | Finite selection | Multiple risks | Paired harm | Fresh attacker portfolio | Bounded reweighting | Continuum budgets | Lower bound on safe radius | Support mismatch | Whole-edit abstention | Valid after inspection | Environment mixtures | Source-prior invariance | No target sample |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Learn Then Test | Y | Y | - | - | - | - | - | - | P | Y | - | - | Y |
-| Conformal Risk Control | P | P | - | - | P | - | - | - | - | P | - | - | P |
-| Pareto Testing | Y | Y | - | - | - | - | - | - | P | Y | - | - | Y |
-| Prompt Risk Control | Y | Y | - | - | P | - | - | - | P | Y | - | - | P |
-| Weighted risk control | P | P | - | - | P | - | - | P | - | P | - | - | - |
-| Distributionally robust validation | - | P | - | - | Y | P | - | - | - | P | - | - | Y |
-| Group-conditional risk control | P | Y | - | - | P | - | - | P | - | P | P | - | Y |
-| Selective prediction | P | P | - | - | - | - | - | - | - | P | - | - | Y |
-| Distributional fairness certification | - | P | - | - | Y | P | - | P | - | P | P | P | Y |
-| FARE | - | P | - | P | - | - | - | - | - | - | - | P | Y |
-| MMD-based fairness certification | - | P | - | P | P | - | - | - | - | - | - | P | Y |
-| Concept erasure and probing | P | P | P | P | - | - | - | - | - | - | - | P | Y |
-| Robust representation learning | P | P | - | - | Y | P | - | P | - | - | P | - | Y |
-| **VERA** | **Y** | **Y** | **Y** | **Y** | **Y** | **Y** | **Y** | **Y** | **Y** | **Y** | **Y** | **Y** | **Y** |
+The compact headers are: `FS`, finite candidate selection; `MR`, multiple
+simultaneous risks; `PH`, paired intervention harm; `FR`, fresh attacker
+retraining; `MA`, multiple attacker families; `EC`, environment-conditional
+robustness; `SC`, source-conditional robustness; `EM`, arbitrary environment
+mixtures; `SP`, source-prevalence invariance; `CB`, continuum of density-ratio
+budgets; `VP`, vector shift profile; `CR`, common certified radius; `SM`, support
+mismatch detection; `WA`, whole-intervention abstention; `PI`, validity after
+inspecting the reported object; and `NT`, no target-deployment sample.
+
+| Method family | FS | MR | PH | FR | MA | EC | SC | EM | SP | CB | VP | CR | SM | WA | PI | NT |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Learn Then Test | Y | Y | - | - | - | - | - | - | - | - | - | - | - | P | Y | Y |
+| Pareto Testing | Y | Y | - | - | - | - | - | - | - | - | - | - | - | P | Y | Y |
+| Conformal Risk Control | P | P | - | - | - | P | - | - | - | - | - | - | - | - | P | P |
+| Prompt Risk Control | Y | Y | - | - | - | P | - | - | - | - | - | - | P | P | Y | P |
+| Robust validation | - | P | - | - | - | P | - | - | - | P | - | - | - | - | P | Y |
+| Robust conformal inference | P | P | - | - | - | P | - | - | - | P | - | - | P | - | P | P |
+| CVaR risk certification | P | P | - | - | - | P | P | P | - | P | - | P | - | P | P | Y |
+| Distributional fairness certification | - | P | - | P | P | P | P | P | P | P | - | - | P | - | P | Y |
+| Wasserstein fairness auditing | - | P | - | P | P | P | P | P | P | P | - | - | P | - | P | Y |
+| Selective prediction | P | P | - | - | - | - | - | - | - | - | - | - | - | - | P | Y |
+| Group-robust evaluation | - | P | - | - | - | Y | P | Y | P | - | - | - | P | - | - | Y |
+| Representation erasure methods | P | P | P | P | P | - | P | - | P | - | - | - | - | P | - | Y |
+| **VERA** | **Y** | **Y** | **Y** | **Y** | **Y** | **Y** | **Y** | **Y** | **Y** | **Y** | **Y** | **Y** | **Y** | **Y** | **Y** | **Y** |
+
+`WA` is deliberately strict: example-level rejection in selective prediction
+does not count as abstaining from an entire representation intervention. `NT`
+refers to the guarantee being evaluated; methods whose shifted guarantee uses
+unlabeled target data receive `P` rather than `Y`. The `P` entries also make the
+matrix conservative about variants: they acknowledge a neighboring capability
+without claiming that the cited family returns VERA's full certificate.
 
 ## Three Separating Examples
 
@@ -98,17 +126,31 @@ submission gate still requires cold reviews from risk-control, distribution
 shift, representation-erasure, and general-ML researchers, each naming the
 closest paper and judging whether the combination is nonobvious.
 
+Before the final title is frozen, the literature refresh must separately test
+the evidence-allocation claim against active hypothesis testing, sequential
+risk certification, Neyman and optimal-computing-budget allocation, best-arm
+identification, stratified sampling, and experimental-design work for multiple
+constraints. Any closer allocation result must be cited and the claim narrowed;
+the title remains justified only if the complete certificate-plus-allocation
+object is supported, not because the elementary fixed-budget minimax algebra is
+presented in isolation.
+
 ## Primary Sources
 
 - Angelopoulos et al., *Learn Then Test*, arXiv:2110.01052 and AOAS (2025).
 - Angelopoulos et al., *Conformal Risk Control*, ICLR 2024, arXiv:2208.02814.
-- Laufer-Goldshtein et al., *Efficiently Controlling Multiple Risks with Pareto Testing*, ICLR 2023, arXiv:2210.10800.
+- Laufer-Goldshtein et al., *Efficiently Controlling Multiple Risks with Pareto Testing*, ICLR 2023, arXiv:2210.07913.
 - Zollo et al., *Prompt Risk Control*, ICLR 2024, arXiv:2311.14084.
 - Tibshirani et al., *Conformal Prediction Under Covariate Shift*, NeurIPS 2019, arXiv:1904.06019.
 - Cauchois et al., *Robust Validation: Confident Predictions Even When Distributions Shift*, JASA 2024, arXiv:2008.04267.
+- Ai and Ren, *Not All Distributional Shifts Are Equal: Fine-Grained Robust Conformal Inference*, ICML 2024.
+- Thomas and Learned-Miller, *Concentration Inequalities for Conditional Value at Risk*, ICML 2019.
 - Kang et al., *Certifying Some Distributional Fairness with Subpopulation Decomposition*, NeurIPS 2022, arXiv:2205.15494.
-- Jovanovic et al., *FARE: Provably Fair Representation Learning*, ICLR 2023.
-- Deka et al., *MMD-B-Fair: Learning Fair Representations with Statistical Testing*, NeurIPS 2023.
+- Ehyaei, Farnadi, and Samadi, *From Fragile to Certified: Wasserstein Audits of Group Fairness Under Distribution Shift*, arXiv:2509.26241.
+- Jovanovic et al., *FARE: Provably Fair Representation Learning with Practical Certificates*, ICML 2023.
+- Deka and Sutherland, *MMD-B-Fair: Learning Fair Representations with Statistical Testing*, AISTATS 2023.
+- El-Yaniv and Wiener, *On the Foundations of Noise-Free Selective Classification*, JMLR 2010; Geifman and El-Yaniv, *SelectiveNet*, ICML 2019.
+- Sagawa et al., *Distributionally Robust Neural Networks for Group Shifts*, ICLR 2020; Koh et al., *WILDS*, ICML 2021.
 - Ravfogel et al., *Null It Out* (ACL 2020) and *Linear Adversarial Concept Erasure* (ICML 2022).
 - Belrose et al., *LEACE: Perfect Linear Concept Erasure in Closed Form*, NeurIPS 2023.
 - Jourdan et al., *TaCo: Targeted Concept Removal*, NeurIPS 2023 workshop/arXiv.

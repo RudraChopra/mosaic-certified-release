@@ -3,40 +3,53 @@ This supplement provides full proofs, protocol details, implementation audits,
 and receipt-level reporting for VERA. It follows the claims and terminology of
 the main paper. Standard finite-family testing, exact binomial intervals, CVaR
 duality, and bounded-density-ratio robustness are credited as prior machinery;
-the proposed object is the support-aware erasure shift envelope for paired
-representation interventions and a registered retrained-attacker portfolio.
+the proposed object is the support-aware representation-edit shift envelope for paired
+representation interventions and a registered retrained-attacker portfolio,
+together with prospective evidence allocation across its limiting supported
+audit cells.
 \end{abstract}
 
 \section{Scope and Reproducibility Contract}
 
-The exploratory parent preregistration is identified by SHA-256
-\texttt{4c9343207f940220d762e230023531af}\allowbreak
+The exploratory parent preregistration is identified by SHA-256\\
+\texttt{4c9343207f940220d762e230023531af}\\
 \texttt{353cc0886a982f133ff7794c87f13ab7}. It governs seeds 0--4, which
 were used only for estimand and power diagnostics. The untouched-seed balanced
-confirmatory preregistration is identified by SHA-256
-\texttt{2767b64f1fa844f512026c5cc4d5e81b}\allowbreak
+confirmatory preregistration is identified by SHA-256\\
+\texttt{2767b64f1fa844f512026c5cc4d5e81b}\\
 \texttt{ca4ed92bef9c8dfd5287dec2918395aa} and immutable Git tag
-\texttt{vera-balanced-confirmatory-}\allowbreak
+\texttt{vera-balanced-confirmatory-}\\
 \texttt{locked-2026-07-14}.
-The untouched-seed secondary-ablation protocol is identified by SHA-256
-\texttt{389b32fe926bf427abc80b4b249c6e9f}\allowbreak
+The untouched-seed secondary-ablation protocol is identified by SHA-256\\
+\texttt{389b32fe926bf427abc80b4b249c6e9f}\\
 \texttt{27342b1ade3ecfc19e71fee32b1362a6}.
-The descriptive real learning-curve diagnostic is separately fixed by SHA-256
-\texttt{b2f0a5c66c5fa55c84aeeaa30f397820}\allowbreak
+The descriptive real learning-curve diagnostic is separately fixed by SHA-256\\
+\texttt{b2f0a5c66c5fa55c84aeeaa30f397820}\\
 \texttt{4a4217d8c50e60973a671a21d316e824}.
-The candidate-family/group-count coverage extension is fixed by SHA-256
-\texttt{c63a4a5b68ab194dd52bbaea1f1d3266}\allowbreak
+The candidate-family/group-count coverage extension is fixed by SHA-256\\
+\texttt{c63a4a5b68ab194dd52bbaea1f1d3266}\\
 \texttt{a450147349e9994a51cd0566fdf61b2e}.
-The independent disjoint-seed stress replication is fixed by SHA-256
-\texttt{348c2784ec8d6bc9cef3c8449dccd4a0}\allowbreak
+The independent disjoint-seed stress replication is fixed by SHA-256\\
+\texttt{348c2784ec8d6bc9cef3c8449dccd4a0}\\
 \texttt{7c394f1e3b54f8231b7c9c88b52caad3}; it repeats the official-code
 matrix on seeds 13--44 with one locked stress contract per supported dataset.
-The confirmatory lock fixes datasets, methods, candidates, seeds 5--12, splits,
-thresholds, attackers, validation fractions, the primary IUT at $\Gamma=1$,
+The prospective controlled-shift study is fixed by SHA-256\\
+\texttt{ffcb4d44d556e8acab720b8df55ff291}\\
+\texttt{78e7b2d3d36d20f9bb686906f864dfee}; it uses fresh seeds 45--108,
+disjoint from every design and prior confirmatory seed.
+A prospectively frozen interpretation note, SHA-256\\
+\texttt{7fcbdd47c80112dd5a995f60c9a04f03}\\
+\texttt{8aaf4e715b19a68f68594c65cbfb6590}, identifies parent-study keys that
+were retained by the JSON generator but are inactive for seeds 45--108. It
+changes no controlled-study setting or success condition.
+The earlier balanced confirmatory lock fixes datasets, methods, candidates,
+seeds 5--12, splits,
+thresholds, attackers, validation fractions, that study's primary IUT at
+$\Gamma=1$,
 the $\Gamma=1.01$ sensitivity, the simultaneous envelope, and every pass
 condition before the first new-seed run.
 
-All claim-grade real runs are tied to one parent repository commit and one
+All reported real runs are tied to one parent repository commit and one
 pinned upstream eraser commit. Each compact JSON receipt names its split
 indices, preprocessing policy, official upstream entry point, candidate
 strengths, and the SHA-256 digest of every external-drive audit archive. The
@@ -50,11 +63,16 @@ identity. A missing, proxy, dirty, or hash-mismatched row fails closed.
 
 \section{Exact Finite-Sample Study}
 
-The exact study was locked before execution. It crosses certification sizes
-$n\in\{250,500,1000,2000,5000,10000\}$ with
-$\delta\in\{0.01,0.05,0.10\}$ and
-$\Gamma\in\{1,1.01,1.25\}$, using 2,000 independent replicates in each of
-54 cells. Twelve candidates trade paired target harm in three environments
+The exact study was locked before execution. Its grid is
+\begin{equation*}
+\begin{split}
+n&\in\{250,500,1000,2000,5000,10000\},\\
+\delta&\in\{0.01,0.05,0.10\},\qquad
+\Gamma\in\{1,1.01,1.25\}.
+\end{split}
+\end{equation*}
+It uses 2,000 independent replicates in each of 54 cells. Twelve candidates
+trade paired target harm in three environments
 against four attackers, each measured by two source-class recalls. The
 fixed-profile IUT allocates $\delta/12$ to each candidate; paired harm and
 balanced leakage split each component allocation between their two exact
@@ -76,85 +94,206 @@ cells. Bands are simultaneous over the registered grid.}
 \label{fig:supp-exact}
 \end{figure*}
 
-\IfFileExists{vera_family_grid_results.tex}{
-\input{vera_family_grid_results}
-}{}
+\section{Official Real-Study Protocols}
 
-\IfFileExists{../../figures/vera_real_learning_curve.pdf}{
-\begin{figure*}[t]
+\begin{table*}[t]
 \centering
-\includegraphics[width=0.96\textwidth]{../../figures/vera_real_learning_curve.pdf}
-\caption{Observed real-data abstention versus a full-certification empirical
-plug-in bootstrap. Resampling preserves registered strata and aligned
-dependence across candidates and attackers. Unlike Fig.~\ref{fig:supp-exact},
-this is a descriptive calibration diagnostic because the same full
-certification fold estimates its bootstrap law.}
-\label{fig:supp-real-learning}
-\end{figure*}
-}{}
+\scriptsize
+\begin{tabular}{@{}lllll@{}}
+\toprule
+Dataset & Modality & Target $Y$ & Erased/audited source $S$ & Target environment/support \\
+\midrule
+Waterbirds & vision & bird type & background/place & place; supported \\
+Camelyon17-WILDS & medical vision & tumor status & center 0 vs. centers 1--4 & hospital; center 2 unseen \\
+CivilComments-WILDS & text & toxicity & identity mention & identity mention; supported \\
+Bios & text & profession (28-way) & gender label & gender label; supported \\
+GaitPDB & time series & Parkinson status & recording site & recording site; supported \\
+\bottomrule
+\end{tabular}
+\caption{Cross-modal protocol and support scope. The four supported rows enter
+the prospective $\Gamma>1$ study. Camelyon17 is a separate identification
+boundary: center 2 is absent during certification, so it cannot enter a
+supported reweighting law. This is not a clinical claim.}
+\label{tab:datasets}
+\end{table*}
 
-\section{Official Real-Study Protocol}
+The threshold-design study uses untouched seeds 5--12. Its five erasers are INLP,
+R-LACE, LEACE, TaCo, and MANCE++; its datasets are Waterbirds,
+Camelyon17-WILDS, CivilComments-WILDS, Bios, and GaitPDB. Candidate construction
+uses at most 8,000 eraser-training examples and 2,000 construction examples;
+certification and external evaluation each use at most 8,000 examples.
+Standardization and randomized PCA are fitted on eraser-training data only.
+Every edit retrains a balanced logistic target probe and four leakage attackers:
+linear logistic, RBF-Nystroem logistic, random forest, and a two-layer MLP.
+Those fresh probes and attackers fit only the eraser-training partition; the
+separate construction partition is supplied only to pinned edit adapters that
+require a validation or development input.
 
-The real study crosses INLP, R-LACE, LEACE, TaCo, and MANCE++ with Waterbirds,
-Camelyon17-WILDS, CivilComments-WILDS, Bios, and GaitPDB at untouched seeds
-5--12. Candidate construction uses at most 8,000 eraser-training examples and 2,000 construction
-examples; certification and external evaluation each use at most 8,000
-examples. Standardization and randomized PCA are fitted on eraser-training data
-only. Every edit retrains a balanced logistic target probe and four leakage
-attackers: linear logistic, RBF-Nystroem logistic, random forest, and a two-layer
-MLP.
+\begin{table*}[t]
+\centering
+\footnotesize
+\begin{tabular}{@{}p{0.10\textwidth}p{0.25\textwidth}p{0.39\textwidth}p{0.16\textwidth}@{}}
+\toprule
+Family & Pinned upstream entry point & Shared-protocol adaptation & Candidate strengths \\
+\midrule
+INLP & \texttt{src.debias.}\newline\texttt{get\_debiasing\_}\newline\texttt{projection} & Official nullspace directions; the removed scikit-learn loss alias \texttt{log} is replaced by its \texttt{log\_loss} name. & ranks 1, 2, 4, 8 \\
+R-LACE & \texttt{rlace.}\newline\texttt{solve\_adv\_game} & Official adversarial projection with the same loss-name compatibility change; train/construction splits replace the upstream train/dev inputs. & ranks 1, 4 \\
+LEACE & \texttt{concept\_erasure.}\newline\texttt{LeaceFitter.fit} & Closed-form \texttt{method=leace} map fitted to one-hot source labels on eraser-training representations. & one closed-form map \\
+TaCo & \texttt{sobol\_importance\_}\newline\texttt{from\_sample};\newline\texttt{crop\_concepts};\newline\texttt{build\_gender\_neutral\_}\newline\texttt{features} & PCA and target/source heads are fitted only on eraser-train/construction data; official Sobol scoring and concept cropping build each edit. & remove 1, 2, 3, or 5 of 20 components \\
+MANCE++ & \texttt{mance.MANCE(...)}\newline\texttt{.fit\_erase} & Three fixed steps with \texttt{stop\_at\_floor=False}. Dummy deployment labels satisfy the upstream logging interface; pinned source review confirms that labels enter evaluation history, not the edit update. & one $\epsilon=0.05$ map \\
+\bottomrule
+\end{tabular}
+\caption{Official-entry-point parity under the common frozen-feature protocol.
+The adapters do not claim to reproduce every upstream paper's full training
+pipeline. Receipts pin the remote, commit, entry point, configuration, split
+hashes, and edited-array hash, and the audit rejects dirty upstream trees or
+proxy-marked candidates.}
+\label{tab:official-adapters}
+\end{table*}
 
 The registered grid uses certification fractions
 $\{0.05,0.10,0.25,0.50,1.00\}$, paired target-harm thresholds
 $\tau\in\{0.05,0.10,0.20\}$, leakage thresholds
-$\lambda\in\{0.60,0.70,0.80\}$, $\delta=0.05$, primary budget $\Gamma=1$,
+$\lambda\in\{0.60,0.70,0.80\}$, $\delta=0.05$, that study's primary budget
+$\Gamma=1$,
 shifted sensitivity $\Gamma=1.01$, and radius cap $\Gamma_{\max}=8$. The
 decision rules are always deploy, point-feasible validation selection,
-VERA-IUT, the VERA simultaneous envelope, and an external oracle used only for
-evaluation.
+VERA-IUT, the VERA simultaneous envelope, and that study's external oracle used
+only for evaluation.
 
 Camelyon17 center 2 is absent from certification, while centers 0, 1, 3, and 4
 are observed. Its center-0-versus-other binary source label is constant in the
-center-2 external slice. The primary protocol therefore assigns center 2 a
+center-2 external slice. That earlier balanced protocol therefore assigns center 2 a
 zero envelope coordinate and abstains for a declared five-center deployment.
 This is procedural non-certifiability, not by itself a measured external
 contract violation.
 
+The prospective controlled-shift study addresses a different question under a
+fully specified finite-reference model. For each of Waterbirds,
+CivilComments, Bios, and GaitPDB, the official validation audit atoms define
+$P$. Independent certification and deployment streams are sampled with
+replacement from $P$ and from exact registered alternatives $Q$ satisfying
+$Q_i/P_i\leq\Gamma$. The primary cell requests global cap $\Gamma=1.1$ and
+uses its exact induced conditional profile, an evidence budget of 4,000, and a
+targeted allocation with a 15\% floor. Secondary cells cross requested global
+caps $\Gamma\in\{1.1,1.25,1.5\}$, budgets
+$\{1000,2000,4000,8000\}$, and uniform versus targeted allocation. Five
+official erasers, nine deployment rules, 12 candidate strengths, and 64 fresh
+seeds yield 1,280 method runs and 3,072 primary candidate evaluations. The
+deployment outcomes are new draws from a known finite law, not new people,
+images, or comments; population extrapolation beyond that law remains outside
+the guarantee.
+
+Primary contract status and the exact shifted-law opportunity denominator are
+evaluated by the exact $Q$-weighted mean over all finite-reference atoms. The independent
+50,000-draw deployment stream is retained as a Monte Carlo replay and
+sampling-diagnostic endpoint; it cannot change a primary violation label or
+candidate selection.
+
+Allocation operates over target-environment and source-class evidence cells.
+A candidate is selected on the independent design fold by the registered
+largest-minimum-normalized-margin rule. A source-class draw evaluates every
+registered attacker, so its score uses the worst attacker leakage margin for
+that selected candidate; it does not pretend that attacker-specific samples are
+independent. Thus the allocation targets the stated sufficient-evidence
+objective for one design-fold candidate, while the subsequent certificate
+remains valid for every registered candidate. The registered primary uses the
+shared-cell square-score construction in
+Corollary~\ref{cor:evidence-allocation}; because balanced leakage adds two
+source-class cells, the prospectively frozen extension solves the full additive convex
+program in Theorem~\ref{thm:additive-allocation}. It uses disjoint certification
+streams and cannot alter any primary decision.
+
+The dataset-specific target and leakage thresholds were selected before these
+fresh seeds by a deterministic Cartesian-grid search on the completed seeds
+5--12 block, which was used only as design data for the later disjoint blocks.
+The design first sought zero certificate-selected external violations
+and at least 20\% point-selection violations, then used fixed utility and
+threshold tie-breaks. The selected thresholds were frozen before the disjoint
+seeds 13--44 replication and inherited unchanged by seeds 45--108. They are
+benchmark operating points for comparing matched decision rules, not clinical,
+legal, or stakeholder-derived definitions of acceptable harm or leakage.
+
 \section{Statistical Integrity}
 
-Threshold pairs and nested fractions share the same eight seed-level fits and
-examples. Configuration-level Clopper--Pearson and McNemar calculations are
-retained as preregistered diagnostics, not treated as independent-trial
-inference. The primary comparison averages each rule's nine outcomes within
-seed and applies the preregistered exact one-sided sign-flip test over eight
-seed blocks, with Holm correction over four externally estimable datasets.
-All adjusted values are reported regardless of outcome. Seeds 0--4 contribute
-to none of these estimates or tests.
+For the earlier seeds 5--12 threshold-design study, threshold pairs and nested
+fractions share the same eight seed-level fits and examples. Its
+configuration-level Clopper--Pearson and McNemar calculations are retained as
+preregistered diagnostics, not treated as independent trial inference. That
+study averages each rule's nine outcomes within seed and applies its locked
+one-sided sign-flip test over eight seed blocks, with Holm correction over four
+externally estimable datasets. All adjusted values are reported regardless of
+outcome. Seeds 0--4 contribute to none of those estimates or tests.
 
-External labels are unused by edit construction and candidate selection.
-The unattended runner nevertheless computes external arrays run by run after
-each candidate is fixed; aggregate analysis is deferred until the entire
-official matrix and receipt audit finish. The paper does not claim that
-external labels were physically inaccessible throughout execution.
+For the prospective controlled-shift study, the seed is the independent
+cluster. The primary safety endpoint uses a rotating held-out dataset sentinel
+and the registered one-sided Clopper--Pearson gate for false acceptance. The
+four rotating dataset laws need not have a common event probability. This does
+not invalidate the primary decision: at 64 sentinels the gate passes only when
+there are zero events, and
+$\Pr(S=0)=\prod_i(1-p_i)\leq(1-\bar p)^{64}$ by AM--GM. Thus its zero-event
+upper limit is conservative for the average sentinel risk $\bar p$ under
+independence. If any event occurs, the gate fails; nonzero-event binomial
+intervals are reported only as descriptive diagnostics, alongside a
+heterogeneity-robust supplementary bound. The separately frozen safety
+sensitivity also reports a seed-familywise any-dataset-violation bound and
+per-dataset ordinary one-sided 95\% Clopper--Pearson bounds. A simultaneous
+four-dataset confidence set uses Bonferroni component level $0.05/4$; separate
+exact lower-tail tests against 5\% are Holm adjusted within rule and are not
+called confidence bounds. The vector rule additionally reports the symmetric
+within-seed dataset co-occurrence matrix and counts of seeds with zero through
+four violating datasets. None treats the four decisions within a seed as
+independent, and none can replace the registered sentinel gate. The
+primary usefulness endpoint bootstraps whole seed clusters and requires the
+lower confidence bound for vector-certificate retention to be at least 20\%.
+It uses 20,000 percentile-bootstrap replicates and random seed 2027071601.
+The registered paired comparison aggregates all four datasets within each seed
+and uses an exact sign test; per-dataset secondary tests use Holm correction.
+The vector/common point ratio remains the registered gate. A frozen
+supplementary interval retains zero-common bootstrap samples and also reports
+the division-free $(V-2C)/O$ contrast, where $V$ and $C$ are vector and common
+safe-retention counts and $O$ is the opportunity count; it cannot change the
+gate. Its 20,000 resamples are partitioned exactly once among
+$(O>0,C>0)$, $(O>0,C=0,V>0)$, $(O>0,C=0,V=0)$, and $(O=0,V=C=0)$;
+a positive-infinite extended-ratio endpoint is serialized explicitly rather
+than clipped or dropped.
+All confidence intervals, adjusted values, limiting coordinates, and effect
+sizes are reported whether favorable or not.
 
-\IfFileExists{vera_supplement_results.tex}{
-  \input{vera_supplement_results}
+\paragraph{Three-rule contract-severity stress.}
+Using the same candidates, arrays, exact shifted laws, confidence bounds, and
+utility tie-break, a predefined sensitivity recomputes always deploy,
+validation point selection, and the vector envelope at
+$\kappa\in\{0.75,1,1.25\}$. Dataset thresholds are
+$\tau_d(\kappa)=\kappa\tau_d$ and
+$\lambda_d(\kappa)=0.5+\kappa(\lambda_d-0.5)$, so $\kappa=1$ is exactly the
+registered contract. Every rule--dataset--severity row is reported with 64
+all-decision trials, deployment and deployed-only violation rates, exact
+shifted-law safe opportunities, retention, and whole-seed intervals. A
+supporting main-track headline is allowed only if both naive rules separately
+reach 20\% violations on a registered-threshold dataset, VERA remains at or
+below 5\% in every cell, and the registered safety and usefulness gates pass.
+Failure is a required negative result and cannot be rescued by another
+severity; this sensitivity does not alter the primary decision.
+
+External labels are excluded from edit construction and candidate selection.
+The runner computes external arrays only after each candidate is fixed; those
+arrays enter post-selection evaluation, not construction. This is a procedural
+separation rather than a claim that labels were physically inaccessible during
+execution.
+
+\IfFileExists{vera_controlled_shift_supplement_results.tex}{
+  \input{vera_controlled_shift_supplement_results}
 }{
-  \section{Receipt-Level Results}
-  The locked official matrix and fail-closed aggregate analysis are still in
-  progress in this source state. No placeholder value is a scientific result.
+  \section{Controlled-Shift Results}
+  The sealed controlled-study result layer is intentionally absent from this
+  outcome-blind source build.
 }
-
-\IfFileExists{vera_ablation_results.tex}{
-  \input{vera_ablation_results}
-}{}
 
 \section{Claim Boundary}
 
 VERA does not prove perfect erasure, security against every measurable
 attacker, fairness for unmeasured concepts, clinical safety, or validity on new
 support. The density-ratio budgets are declared sensitivity parameters, not
-facts estimated from an external test set. Internal audits check consistency
-and provenance but cannot establish novelty, proof correctness, or conference
-acceptance. Two cold reviews from researchers who publish in machine learning
-remain a mandatory submission gate.
+facts estimated from an external test set. Receipt consistency and code replay
+do not by themselves establish novelty or proof correctness.

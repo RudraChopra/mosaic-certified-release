@@ -17,11 +17,13 @@ in the ignored private registry.
 
 | Artifact | Version | SHA-256 | Status |
 |---|---|---|---|
-| Anonymous main paper | `919be4f` frozen package | `15de25583d7c55ae5af474224b494d2cf1e7f20543c0e18b20d734621ae06e0f` | frozen, not yet reviewed |
-| Anonymous supplement | `919be4f` frozen package | `6824cb142cdad3d152012a41a35e7cfcfb415cf2d017be5c447b81977f7a89db` | frozen, not yet reviewed |
-| Anonymous code archive | `919be4f` frozen package | `a87e06fc63409f788f7b9251eadf30cc73fc2593c7b5871eb37e916475eebd3a` | frozen, audit passed |
+| Anonymous main paper | final candidate pending | pending | current draft is not review-countable |
+| Anonymous supplement | final candidate pending | pending | current draft is not review-countable |
+| Anonymous code archive | final candidate pending | pending | current archive is not review-countable |
 
-Archive audit: `research/artifacts/vera_anonymous_archive_audit.json`.
+Regenerate `research/artifacts/vera_anonymous_archive_audit.json` after the final
+candidate is frozen. An audit or review of an earlier package does not satisfy
+this gate.
 
 ## Reviewer Provenance
 
@@ -44,6 +46,9 @@ Archive audit: `research/artifacts/vera_anonymous_archive_audit.json`.
 - [ ] Four real reviewers cover theory/statistics, shift/risk control,
       erasure/fairness, and general ML; each has a verifiable ML publication.
 - [ ] All four reviewers received a frozen anonymous package.
+- [ ] Every counted review contains all 12 required fields, including
+      significance, overall recommendation, confidence, and strongest
+      rejection reason.
 - [ ] Every role review explicitly considered the Learn Then Test and Prompt
       Risk Control overlap.
 - [ ] No reviewer reports a fatal correctness flaw or calls the work merely LTT

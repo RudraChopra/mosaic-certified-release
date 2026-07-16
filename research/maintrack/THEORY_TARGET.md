@@ -44,7 +44,7 @@ negative masses and the closed-form worst reweighting allocation. The shared
 confidence event is independent of `Gamma`, so the exact curves remain uniform
 over the full radius.
 
-## Theorem B: Certified Erasure Shift Radius
+## Theorem B: Certified Representation-Edit Shift Radius
 
 For edit `e`, define its population shift radius as the largest `Gamma >= 1`
 for which paired target harm is at most `tau` and every registered leakage

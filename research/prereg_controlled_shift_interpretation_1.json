@@ -1,0 +1,48 @@
+{
+  "base_preregistration_path": "research/prereg_controlled_shift.json",
+  "base_preregistration_sha256": "ffcb4d44d556e8acab720b8df55ff29178e7b2d3d36d20f9bb686906f864dfee",
+  "created_at_utc": "2026-07-15T07:19:54Z",
+  "fresh_outcome_access_at_creation": {
+    "aggregate_or_candidate_metrics_inspected": false,
+    "controlled_shift_analysis_executed": false,
+    "per_example_arrays_inspected": false,
+    "process_information_seen": [
+      "task completion status",
+      "elapsed run time",
+      "candidate count in one structural receipt check"
+    ]
+  },
+  "interpretation": {
+    "active_controlled_study_fields": [
+      "real_study.controlled_shift_protocol",
+      "real_study.evidence_allocation",
+      "real_study.exclusions_and_missingness",
+      "real_study.locked_dataset_contracts",
+      "real_study.primary_endpoints",
+      "real_study.primary_multiplicity",
+      "real_study.registered_ablations",
+      "real_study.secondary_endpoints"
+    ],
+    "inactive_inherited_parent_fields": [
+      "real_study.external_evaluation",
+      "real_study.leakage_thresholds",
+      "real_study.pass_conditions",
+      "real_study.primary_validation_fraction",
+      "real_study.shifted_sensitivity_gamma",
+      "real_study.split_policy",
+      "real_study.statistical_tests",
+      "real_study.target_harm_thresholds",
+      "real_study.threshold_pair_count",
+      "real_study.validation_fractions"
+    ],
+    "precedence_rule": "For seeds 45-108 and every controlled-shift claim, the active controlled-study fields listed above govern. The inactive fields are unmodified lineage metadata copied from the parent 32-seed study and do not define, filter, or replace a controlled-study endpoint.",
+    "reason": "The generator copied the parent real_study object before adding the controlled-study protocol. It did not delete several parent-only keys, leaving two study generations in one JSON object. The locked analyzer already uses only the active controlled-study fields."
+  },
+  "no_scientific_change": [
+    "No dataset, seed, candidate, attacker, contract, Gamma value, evidence budget, allocation, deployment rule, exclusion, endpoint, statistical test, multiplicity rule, or success condition is changed.",
+    "The primary setting remains Gamma 1.1, budget 4000, targeted allocation with a 15 percent floor, and the four intersection-union success gates.",
+    "The controlled-shift analyzer remains the outcome-blind implementation committed before fresh aggregate analysis."
+  ],
+  "schema_version": 1,
+  "status": "outcome_blind_interpretation_only"
+}

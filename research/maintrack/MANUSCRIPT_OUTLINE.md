@@ -1,174 +1,185 @@
 # VERA Seven-Page Manuscript Outline
 
-## Working Title
+## Title
 
-**VERA: Support-Aware Certification of Representation Edits Under Deployment Shift**
+**VERA: Evidence-Efficient Certification of Representation Edits Under Deployment Shift**
 
-## Abstract (170-190 words)
+The title describes the actual guarantee. Leave VERA unexpanded in
+submission-facing text because the guarantee covers a registered attacker
+portfolio, not all recovery algorithms.
 
-- Problem: an eraser can reduce measured leakage while damaging the target task
-  or failing under deployment reweighting.
-- Prior boundary: finite candidate testing and abstention are Learn Then Test
-  style risk control, not the contribution.
-- Method: paired target-harm variables, four fresh leakage attackers, bounded
-  density-ratio ambiguity, simultaneous upper curves, and inversion into a
-  support-aware groupwise shift envelope with a common-radius summary.
-- Theory: uniform shift guarantee, arbitrary observed-group mixtures, and
-  unsupported-cell impossibility.
-- Evidence: exact 54-cell fixed-profile study, exact 216-cell family-size study,
-  and the 5-dataset x 5-eraser x 8-seed official matrix.
-- One receipted sentence with point-selection violations, VERA violations, and
-  retained safe deployments. The sentence remains absent until the final audit
-  matches it byte-for-byte to regenerated artifacts.
+## Abstract (180-210 words)
+
+Open with the deployment problem: an edit that appears useful on IID validation
+data can damage its target or leak a source concept after reweighting. State the
+output, not the machinery: a support-aware vector of environment- and
+source-conditional shift budgets, a common-radius summary, limiting dimensions,
+or abstention. Attribute finite-candidate testing to Learn Then Test in the
+abstract. Name the support impossibility result.
+
+Report two empirical claims separately. The prior 32-seed IID study measures
+uncertainty control and must disclose its failed auxiliary baseline-severity
+gate. The prospective 64-seed controlled study measures robustness at
+`Gamma=1.1` under deployment laws whose ambiguity membership is known. Its
+single memorable sentence is generated only after all four primary gates and
+the receipt audit are evaluated, and only if the separately frozen three-rule
+threshold stress passes without selecting a supplementary severity.
 
 ## 1. Introduction (0.8 page)
 
-Open with the deployment decision, not a catalog of erasers. A representation
-edit is an intervention; average IID utility and one native probe do not state
-where that intervention remains acceptable. Explain paired harm using the same
-example under identity and edited representations. Define the desired output
-in one sentence: the largest declared reweighting budget under which target
-harm and every registered leakage contract certify.
+Define a representation edit as an intervention and ask one question: should
+this edit be deployed under this declared supported shift? Explain why average
+target accuracy and one native probe do not answer it. State the thesis in one
+sentence:
 
-Address the closest overlap in the introduction. Learn Then Test, risk-control
-prediction sets, Conformal Risk Control, and Pareto Testing already provide
-finite-family calibration and multiple-risk selection. VERA uses that machinery
-and does not claim it. Robust Validation and covariate-shift risk control also
-preclude a generic “first shift-aware validation” claim. State the proposed
-delta as the erasure-specific paired multi-contract shift radius, its limiting
-contract, and its support-identification boundary.
+> VERA certifies whether a representation edit can be deployed under a
+> declared, supported reweighting shift while jointly controlling incremental
+> target harm and recovery by a registered attacker portfolio.
 
-End with three contributions in prose: the object and guarantee, the
-unsupported-support theorem, and the official cross-modal deployment study.
+State exactly four contributions: a support-aware vector certificate for paired
+interventions; simultaneous validity across edits, environments, attackers,
+source classes, and a continuum of budgets together with prospective evidence
+allocation for additive multi-cell contracts and its locally matching
+compact-interior independent-cell lower bound; an
+unsupported-support impossibility result; and a preregistered cross-modal study
+of safety and useful retention.
 
-## Figure 1: Method in Ten Seconds (0.65 page, two columns)
+## Figure 1: Method in Ten Seconds (0.65 page)
 
-Panel A shows identity and edited predictions on the same examples, producing
-paired harm in `{-1,0,1}`, alongside four post-edit attacker correctness
-variables. Panel B shows validation mass reweighted under `0 <= dQ/dP <= Gamma`
-and simultaneous target/leakage upper-risk curves. Panel C shows curve inversion:
-one candidate has a nonzero certified radius, another reaches `ABSTAIN`, and an
-unsupported environment is outside the guarantee. The final panel includes one
-real receipt only after the matrix audit passes.
+Panel A shows independent-fold additive evidence allocation, then pairs identity
+and edited predictions on the same examples and trains fresh heterogeneous
+attackers. Panel B shows component upper curves, the fixed
+profile decision, and their inversion into an envelope with a limiting common
+radius. Panel C contrasts certification on observed support with abstention at
+new support. Curves must be labeled schematic unless they come from a receipt.
 
 ## 2. Related Work (0.75 page)
 
-Concept erasure: INLP, R-LACE, LEACE, kernel erasure, TaCo, KRaM, SPLINCE,
-Obliviator, MANCE++, FARE, MMD-B-Fair, and fundamental erasure limits. Distinguish
-edit construction from decision certification and avoid any state-of-the-art
-eraser claim.
+Concept erasure covers INLP, R-LACE, LEACE, kernel methods, TaCo, SPLINCE,
+MANCE++, and fundamental limits. The paper compares candidate construction but
+does not claim eraser state of the art.
 
-Risk control and selective prediction: distribution-free risk-controlling
-prediction sets, Learn Then Test, Conformal Risk Control, Pareto Testing,
-selective classification, and recent joint selective certificates. State that
-edit-level abstention is a domain application, not a new abstention mechanism.
+Risk control covers risk-controlling prediction sets, Learn Then Test,
+Conformal Risk Control, Pareto Testing, Prompt Risk Control, group-conditional
+control, and selective prediction. Explicitly state that VERA does not invent
+finite-family acceptance, multiple-risk testing, or abstention.
 
-Distribution shift: conformal prediction under covariate shift, high-probability
-weighted risk control, robust validation, fine-grained robust conformal
-inference, CVaR concentration, robust evaluation, group DRO, WILDS, and domain
-adaptation impossibility. Distinguish one known target weighting from uniform
-control over all unknown bounded reweightings.
+Shift work covers covariate-shift weighting, robust validation,
+distributionally robust evaluation, distributional fairness certification,
+group DRO, and support/transport impossibility. Evidence allocation must be
+positioned against active testing and adaptive sampling. The narrow delta is
+the paired representation-intervention vector under supported conditional
+reweighting, together with its evidence requirement and support boundary.
 
 ## 3. Problem and Method (1.15 pages)
 
-Define frozen representation `Z`, target `Y`, sensitive/source concept `S`,
-optional observed group `G`, identity edit, registered edit family, and an
-independent certification fold. Every candidate edit and attacker is fixed
-without certification outcomes. Define paired target harm as edited zero-one
-loss minus identity zero-one loss. Define leakage as correctness of each fresh
-attacker, conditioned on registered audit strata where applicable.
+Define the frozen representation, target, source concept, observed environment,
+identity edit, registered edit family, and independent certification stream.
+Define paired target harm in `{-1,0,1}` and per-attacker correctness in `{0,1}`.
+Define the bounded density-ratio ambiguity set, environment-conditional target
+risk, and source-prior-invariant balanced leakage.
 
-Define the ambiguity set `Q_Gamma(P)` and robust risk. For each candidate,
-require target robust risk at most `tau` and every attacker robust risk at most
-`lambda`. Define the population and certified erasure shift radii. Explain the
-zero convention, right censoring at `Gamma_max`, limiting contracts, and
-`ABSTAIN`.
+Present the full vector envelope first. The common radius is its diagonal
+summary, not the method's only output. Explain the candidate-wise fixed-profile
+intersection-union test and the separately simultaneous post-inspection
+envelope. State that unsupported required cells receive zero deployable radius.
 
-Give concise algorithm pseudocode. Construction data produce edits and probes;
-certification data produce simultaneous exact discrete curves; external data
-are never used by the selection rule. Selection among certified edits minimizes
-registered validation leakage, then paired harm, then a fixed key.
+## 4. Guarantees and Evidence Requirements (0.95 page)
 
-## 4. Guarantees and Boundary (0.95 page)
+State the fixed-profile false-acceptance theorem and attribute its finite-family
+logic to Learn Then Test. State the simultaneous vector-envelope theorem and
+why one coverage event is uniform over a continuum of budgets. Give the DKW
+sufficient evidence bound, additive multi-cell convex allocation, and Bernoulli
+lower bound, emphasizing the unavoidable local quadratic dependence on shift
+and inverse margin in compact interior regimes and the exact-KL lower bound for
+the stated independent Bernoulli comparison experiment without an interior
+restriction. State the two-world
+unsupported-cell impossibility theorem. Full derivations remain in the
+supplement, but every assumption and conclusion needed for the main claim must
+appear in the paper.
 
-State the reweighting-CVaR identity with attribution. State the uniform paired
-certificate over all candidates, contracts, and `Gamma >= 1`. Present the exact
-Clopper--Pearson specialization for Bernoulli leakage and paired
-`{-1,0,1}` harm. State the shift-radius theorem and arbitrary mixture of
-within-group shifted distributions.
+## 5. Experimental Protocol (0.9 page)
 
-State unsupported-cell impossibility with the two indistinguishable worlds.
-Connect it to Camelyon17 center 2 only after stating the general theorem. Keep
-full proofs in the supplement and identify which ingredients are standard.
+The central matrix contains four supported datasets, five pinned official
+eraser families, 12 candidates per dataset-seed block, and 64 fresh seeds
+(45--108): 1,280 method runs and 3,072 candidate archives. Construction data fit
+edits, target probes, and four registered attackers. A boosted tree is held out
+for stress evaluation only.
 
-## 5. Experimental Protocol (0.85 page)
+Official validation audit atoms define the finite reference law. A disjoint
+design fold chooses the rare supported focus cell from metadata and computes a
+prospective evidence allocation. Independent certification and 50,000-draw
+final streams are generated from the reference and exact shifted laws. Every
+profile has a machine-verified density-ratio membership receipt.
+Primary violation labels and oracle opportunities use exact shifted finite-law
+expectations; the 50,000-draw stream is a Monte Carlo replay.
 
-Describe the locked preregistration and the 200 official-code receipts. Methods:
-INLP, R-LACE, LEACE, TaCo, MANCE++. Datasets: Waterbirds, Camelyon17-WILDS,
-CivilComments-WILDS, Bios, and GaitPDB. State frozen representation sources,
-split sizes, caps, target/source/group meanings, and the support mismatch.
+The primary setting is `Gamma=1.1`, `delta=0.05`, 4,000 contract observations,
+and a targeted allocation with a 15% per-cell floor. Compare always deploy,
+validation point selection, IID LTT, robust point estimation, scalar robust
+certification, VERA fixed profile, VERA vector envelope, VERA common radius,
+and the exact shifted-law opportunity oracle (machine key `external_oracle`).
+All rules share candidates, outcomes, thresholds, shifts, and seed clusters.
 
-Every candidate retrains one target probe and four leakage attackers: linear,
-RBF-Nystroem, random forest, and MLP. State all `tau`, `lambda`, `Gamma`, `delta`,
-validation fractions, candidate strengths, and multiplicity family. Explain the
-five deployment rules: always deploy, point selection, IID LTT, VERA, and
-external oracle.
+Report the predefined always-deploy/validation/VERA stress at
+`kappa={0.75,1,1.25}` using the same registered allocation and certification
+draws. Both naive rules must separately reach 20% violations on a registered-
+contract dataset, VERA must remain at or below 5% in every cell, and registered
+safety/usefulness must pass before the memorable three-rule sentence is legal.
+This supporting condition cannot change the four-gate primary result.
 
-Define two external endpoints separately: measured contract violation and
-procedurally uncertifiable deployment. State that configuration-level tests are
-dependent diagnostics and seed-blocked inference governs claims.
+Label the primary allocator as the registered square-score rule. Separately
+report the pre-outcome additive envelope-aware extension against uniform and
+square-score allocation on disjoint certification streams; it cannot replace a
+failed primary gate.
 
-## 6. Results (1.25 pages)
+Primary gates are the seed-cluster exact sign test, the rotating-sentinel
+zero-event safety gate that is conservative for average heterogeneous risk,
+the seed-cluster lower bound on safe retention, and at least twofold
+vector/common retention. Per-dataset tests use Holm correction. A separately
+frozen sensitivity reports both per-dataset safety and the probability of any
+violation among the four dataset decisions within a seed; it cannot replace the
+primary sentinel.
 
-Lead with the exact synthetic overlay and false-acceptance coverage. Then report
-the head-to-head deployment experiment, not raw eraser accuracy. Show violation
-and abstention rates by dataset, validation size, and rule. Report the
-support-mismatch abstention as an identification result, not an observed outcome
-violation.
+## 6. Results (1.2 pages)
 
-The main table contains all five official erasers with target harm, worst
-registered attacker leakage, certified radius, limiting contract, and external
-contract status. Every estimate includes seed dispersion or a justified exact
-interval and links to receipt counts in the supplement.
+Lead with the prospective `Gamma=1.1` result whether it passes or fails. Report
+absolute and relative violation reduction, exact safety bound, safe-retention
+interval, deployment interval, vector/common ratio, and the count of vector
+deployments that the common radius would reject. Follow with per-dataset effects
+and limiting-coordinate frequencies.
 
-Required ablations: IID versus `Gamma=1.25`; paired versus unpaired target
-analysis; each attacker removed from the portfolio; Bonferroni family size;
-threshold sensitivity across all nine locked pairs; validation size; and
-leave-one-eraser-family-out frontier granularity. No ablation may reuse the
-external split for tuning.
+The sole main table compares deployment rules, not erasers. The main result
+figure has three panels: violations by rule and dataset; safe retention versus
+evidence budget for vector and common rules; and the upper curves, coordinate
+radii, threshold crossings, and limiting dimensions for the deterministically
+selected certificate-anatomy example fixed by
+`CONTROLLED_SHIFT_REPORTING_SPEC.md`.
+The supplement includes the complete four-panel three-rule threshold-stress
+curve and deployment-rate strip, including a mandatory negative result if its
+supporting condition fails.
+Report held-out boosted-tree stress in one clearly non-guaranteed supplement
+panel or main-text paragraph.
 
-## Figure 2: Theory and Data (0.45 page, two columns)
-
-Use the independently replayed exact synthetic figure as the primary theory
-check. A smaller real-data panel may show observed curves against the explicitly
-labeled full-certification plug-in bootstrap diagnostic. Do not call the latter
-independent validation.
-
-## Figure 3: Deployment Rules (0.55 page, two columns)
-
-For each dataset, plot measured contract-violation rate and deployment retention
-for always deploy, point selection, IID LTT, and VERA. Use seed points and
-cluster-respecting intervals. Mark Camelyon17 unsupported support separately
-from measured failures.
+Then give the prior IID uncertainty-control result and its failed auxiliary
+gate. Keep Camelyon17 as the support-boundary case. Controlled exact studies
+validate implementation; observed benchmark shifts remain stress tests unless
+ambiguity membership is proven.
 
 ## 7. Limitations and Conclusion (0.45 page)
 
-The guarantee assumes bounded outcomes, certification independence, correct
-support scope, and a finite registered attacker portfolio. It does not imply
-perfect erasure, fairness for unmeasured concepts, clinical safety, or validity
-under new support. Density-ratio budgets are user-declared sensitivity
-parameters, not estimated facts. Eight-seed evidence still has limited power for
-two-sided seed-blocked inference; report exact tests and dependence-aware
-diagnostics without treating nested configuration rows as independent replicates.
-
-Conclude with the practical contribution: VERA turns “apply this eraser” into a
-falsifiable, support-scoped deployment statement and makes insufficient evidence
-an explicit output.
+The guarantee covers bounded audit variables, registered candidates and
+attackers, supported deployment laws, and an independent certification stream.
+It is not universal erasure, causal transport, clinical safety, or proof that an
+unmodeled real deployment lies in the ambiguity class. Algorithmic seeds do not
+make four datasets a random sample of domains. Conclude with the practical
+output: a falsifiable supported-shift deployment statement or abstention.
 
 ## Supplement
 
-Include full proofs, exact certificate derivations, all 200 receipt rows, every
-candidate and threshold result, dataset/store provenance, upstream commit
-proofs, attacker details, timing, sensitivity analyses, reference-verification
-records, negative results, correction ledger, and the anonymous one-command
-reproduction instructions.
+Include one authoritative theory source, exact small-case enumeration, the full
+theorem-to-code mapping, all profile and allocation receipts, every candidate
+margin, the GaitPDB evidence analysis, all registered ablations, held-out
+attacker diagnostics, upstream and data-license records, clean-clone commands,
+negative results, the complete threshold-stress grid and reuse hashes, and the
+anonymous reproducibility package.

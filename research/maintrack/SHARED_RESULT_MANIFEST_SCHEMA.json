@@ -1,0 +1,4748 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/vera/shared-result-manifest-v2.schema.json",
+  "title": "VERA shared three-venue result manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "release_format_version",
+    "analysis_status",
+    "protocol_sha256",
+    "study_design",
+    "receipt_audit",
+    "radius_cap_correction",
+    "candidate_key_correction",
+    "safety_sensitivity",
+    "threshold_stress",
+    "primary",
+    "rule_results",
+    "secondary_coverage",
+    "allocation",
+    "evidence_diagnostic",
+    "ablations",
+    "gait_diagnostic",
+    "heldout_attacker_result",
+    "figure_candidate",
+    "historical_iid",
+    "support_boundary",
+    "negative_results",
+    "title_decision",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "vera-shared-result-v2"
+    },
+    "release_format_version": {
+      "const": 2
+    },
+    "analysis_status": {
+      "enum": [
+        "complete",
+        "invalid"
+      ]
+    },
+    "protocol_sha256": {
+      "const": "ffcb4d44d556e8acab720b8df55ff29178e7b2d3d36d20f9bb686906f864dfee"
+    },
+    "study_design": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "seeds",
+        "datasets",
+        "erasers",
+        "candidate_count_per_dataset_seed",
+        "decision_rules",
+        "registered_attackers",
+        "heldout_attacker",
+        "primary_gamma",
+        "primary_budget",
+        "primary_allocation",
+        "minimum_cell_fraction",
+        "delta",
+        "gamma_cap",
+        "thresholds",
+        "independent_unit"
+      ],
+      "properties": {
+        "seeds": {
+          "type": "array",
+          "minItems": 64,
+          "maxItems": 64,
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "minimum": 45,
+            "maximum": 108
+          }
+        },
+        "datasets": {
+          "const": [
+            "Waterbirds",
+            "CivilComments-WILDS",
+            "Bios",
+            "GaitPDB"
+          ]
+        },
+        "erasers": {
+          "const": [
+            "inlp",
+            "rlace",
+            "leace",
+            "taco",
+            "mance"
+          ]
+        },
+        "candidate_count_per_dataset_seed": {
+          "const": 12
+        },
+        "decision_rules": {
+          "const": [
+            "always_deploy",
+            "validation_point_selection",
+            "iid_ltt",
+            "robust_point_estimate",
+            "generic_scalar_robust_certificate",
+            "vera_fixed_profile",
+            "vera_vector_envelope",
+            "vera_common_radius",
+            "external_oracle"
+          ]
+        },
+        "registered_attackers": {
+          "const": [
+            "linear",
+            "rbf",
+            "forest",
+            "mlp"
+          ]
+        },
+        "heldout_attacker": {
+          "const": "boosted_tree"
+        },
+        "primary_gamma": {
+          "const": 1.1
+        },
+        "primary_budget": {
+          "const": 4000
+        },
+        "primary_allocation": {
+          "const": "targeted_floor_0.15"
+        },
+        "minimum_cell_fraction": {
+          "const": 0.15
+        },
+        "delta": {
+          "const": 0.05
+        },
+        "gamma_cap": {
+          "const": 8.0
+        },
+        "thresholds": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "Bios",
+            "CivilComments-WILDS",
+            "GaitPDB",
+            "Waterbirds"
+          ],
+          "properties": {
+            "Bios": {
+              "$ref": "#/$defs/bios_threshold"
+            },
+            "CivilComments-WILDS": {
+              "$ref": "#/$defs/civil_threshold"
+            },
+            "GaitPDB": {
+              "$ref": "#/$defs/gait_threshold"
+            },
+            "Waterbirds": {
+              "$ref": "#/$defs/waterbirds_threshold"
+            }
+          }
+        },
+        "independent_unit": {
+          "const": "whole_seed_four_dataset_cluster"
+        }
+      }
+    },
+    "receipt_audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expected",
+        "valid",
+        "missing",
+        "invalid",
+        "proxy",
+        "runner_revisions",
+        "upstream_repositories",
+        "report_sha256"
+      ],
+      "properties": {
+        "expected": {
+          "const": 1280
+        },
+        "valid": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1280
+        },
+        "missing": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1280
+        },
+        "invalid": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1280
+        },
+        "proxy": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1280
+        },
+        "runner_revisions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/hash"
+          }
+        },
+        "upstream_repositories": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "report_sha256": {
+          "$ref": "#/$defs/hash"
+        }
+      }
+    },
+    "radius_cap_correction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "registered_cap",
+        "locked_analyzer_cap",
+        "discovered_before_outcome_access",
+        "receipt_generation_affected",
+        "scientific_authority",
+        "locked_cap4_analyzer_preserved",
+        "protocol_compliant_cap8_status",
+        "independent_cap8_replay_status",
+        "cap_independent_mismatch_count",
+        "cap_dependent_candidate_differences",
+        "cap_dependent_decision_differences",
+        "primary_gate_differences",
+        "disclosure_required"
+      ],
+      "properties": {
+        "registered_cap": {
+          "const": 8.0
+        },
+        "locked_analyzer_cap": {
+          "const": 4.0
+        },
+        "discovered_before_outcome_access": {
+          "const": true
+        },
+        "receipt_generation_affected": {
+          "const": false
+        },
+        "scientific_authority": {
+          "const": "preregistered_cap8"
+        },
+        "locked_cap4_analyzer_preserved": {
+          "const": true
+        },
+        "protocol_compliant_cap8_status": {
+          "enum": [
+            "pass",
+            "fail"
+          ]
+        },
+        "independent_cap8_replay_status": {
+          "enum": [
+            "pass",
+            "fail"
+          ]
+        },
+        "cap_independent_mismatch_count": {
+          "const": 0
+        },
+        "cap_dependent_candidate_differences": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cap_dependent_decision_differences": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "primary_gate_differences": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "efficacy",
+              "sentinel_safety",
+              "safe_retention",
+              "vector_common_advantage",
+              "overall"
+            ]
+          }
+        },
+        "disclosure_required": {
+          "const": true
+        }
+      }
+    },
+    "safety_sensitivity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dataset_bound_method",
+        "dataset_unadjusted_alpha",
+        "dataset_bound_familywise_alpha",
+        "dataset_bound_component_alpha",
+        "dataset_threshold_test_method",
+        "dataset_threshold_null_rate",
+        "dataset_threshold_alternative",
+        "holm_family_size",
+        "vector_dataset_order",
+        "vector_violation_cooccurrence",
+        "violating_dataset_count_order",
+        "vector_violating_dataset_count_by_seed",
+        "semantic_consistency_verified",
+        "can_change_primary_gate"
+      ],
+      "properties": {
+        "dataset_bound_method": {
+          "const": "bonferroni_one_sided_clopper_pearson"
+        },
+        "dataset_unadjusted_alpha": {
+          "const": 0.05
+        },
+        "dataset_bound_familywise_alpha": {
+          "const": 0.05
+        },
+        "dataset_bound_component_alpha": {
+          "const": 0.0125
+        },
+        "dataset_threshold_test_method": {
+          "const": "holm_exact_binomial_lower_tail_at_0.05"
+        },
+        "dataset_threshold_null_rate": {
+          "const": 0.05
+        },
+        "dataset_threshold_alternative": {
+          "const": "less"
+        },
+        "holm_family_size": {
+          "const": 4
+        },
+        "vector_dataset_order": {
+          "const": [
+            "Waterbirds",
+            "CivilComments-WILDS",
+            "Bios",
+            "GaitPDB"
+          ]
+        },
+        "vector_violation_cooccurrence": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "type": "array",
+            "minItems": 4,
+            "maxItems": 4,
+            "items": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 64
+            }
+          }
+        },
+        "violating_dataset_count_order": {
+          "const": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "vector_violating_dataset_count_by_seed": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 64
+          }
+        },
+        "semantic_consistency_verified": {
+          "const": true
+        },
+        "can_change_primary_gate": {
+          "const": false
+        }
+      }
+    },
+    "threshold_stress": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "spec_sha256",
+        "kappa_order",
+        "rule_order",
+        "dataset_order",
+        "registered_candidate_manifest_sha256",
+        "registered_allocation_manifest_sha256",
+        "registered_certification_stream_manifest_sha256",
+        "registered_objects_reused_across_profiles",
+        "profiles",
+        "readiness",
+        "semantic_consistency_verified",
+        "can_change_primary_gate"
+      ],
+      "properties": {
+        "spec_sha256": {
+          "const": "dbb4e0364768bf82440ac956756e7ae184a89baeefb58bdcced8837582c36a7c"
+        },
+        "kappa_order": {
+          "const": [
+            0.75,
+            1.0,
+            1.25
+          ]
+        },
+        "rule_order": {
+          "const": [
+            "always_deploy",
+            "validation_point_selection",
+            "vera_vector_envelope"
+          ]
+        },
+        "dataset_order": {
+          "const": [
+            "Waterbirds",
+            "CivilComments-WILDS",
+            "Bios",
+            "GaitPDB"
+          ]
+        },
+        "registered_candidate_manifest_sha256": {
+          "$ref": "#/$defs/hash"
+        },
+        "registered_allocation_manifest_sha256": {
+          "$ref": "#/$defs/hash"
+        },
+        "registered_certification_stream_manifest_sha256": {
+          "$ref": "#/$defs/hash"
+        },
+        "registered_objects_reused_across_profiles": {
+          "const": true
+        },
+        "profiles": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/threshold_stress_profile"
+                },
+                {
+                  "properties": {
+                    "kappa": {
+                      "const": 0.75
+                    },
+                    "thresholds": {
+                      "$ref": "#/$defs/threshold_stress_thresholds_075"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/threshold_stress_profile"
+                },
+                {
+                  "properties": {
+                    "kappa": {
+                      "const": 1.0
+                    },
+                    "thresholds": {
+                      "$ref": "#/$defs/threshold_stress_thresholds_100"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/threshold_stress_profile"
+                },
+                {
+                  "properties": {
+                    "kappa": {
+                      "const": 1.25
+                    },
+                    "thresholds": {
+                      "$ref": "#/$defs/threshold_stress_thresholds_125"
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "items": false
+        },
+        "readiness": {
+          "$ref": "#/$defs/threshold_stress_readiness"
+        },
+        "semantic_consistency_verified": {
+          "const": true
+        },
+        "can_change_primary_gate": {
+          "const": false
+        }
+      }
+    },
+    "primary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "efficacy",
+        "sentinel_safety",
+        "safe_retention",
+        "vector_common_advantage",
+        "overall"
+      ],
+      "properties": {
+        "efficacy": {
+          "$ref": "#/$defs/efficacy_gate"
+        },
+        "sentinel_safety": {
+          "$ref": "#/$defs/sentinel_safety_gate"
+        },
+        "safe_retention": {
+          "$ref": "#/$defs/safe_retention_gate"
+        },
+        "vector_common_advantage": {
+          "$ref": "#/$defs/vector_common_gate"
+        },
+        "overall": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "failed_gates"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pass",
+                "fail",
+                "invalid"
+              ]
+            },
+            "failed_gates": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "enum": [
+                  "efficacy",
+                  "sentinel_safety",
+                  "safe_retention",
+                  "vector_common_advantage"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "rule_results": {
+      "type": "array",
+      "minItems": 9,
+      "maxItems": 9,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/rule_result"
+      },
+      "allOf": [
+        {
+          "contains": {
+            "properties": {
+              "rule": {
+                "const": "always_deploy"
+              }
+            },
+            "required": [
+              "rule"
+            ]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "rule": {
+                "const": "validation_point_selection"
+              }
+            },
+            "required": [
+              "rule"
+            ]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "rule": {
+                "const": "iid_ltt"
+              }
+            },
+            "required": [
+              "rule"
+            ]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "rule": {
+                "const": "robust_point_estimate"
+              }
+            },
+            "required": [
+              "rule"
+            ]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "rule": {
+                "const": "generic_scalar_robust_certificate"
+              }
+            },
+            "required": [
+              "rule"
+            ]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "rule": {
+                "const": "vera_fixed_profile"
+              }
+            },
+            "required": [
+              "rule"
+            ]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "rule": {
+                "const": "vera_vector_envelope"
+              }
+            },
+            "required": [
+              "rule"
+            ]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "rule": {
+                "const": "vera_common_radius"
+              }
+            },
+            "required": [
+              "rule"
+            ]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "rule": {
+                "const": "external_oracle"
+              }
+            },
+            "required": [
+              "rule"
+            ]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      ]
+    },
+    "secondary_coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "gammas",
+        "budgets",
+        "allocations",
+        "datasets",
+        "erasers",
+        "ablation_count",
+        "missing_cells",
+        "zero_denominator_records",
+        "right_censored_records"
+      ],
+      "properties": {
+        "gammas": {
+          "const": [
+            1.1,
+            1.25,
+            1.5
+          ]
+        },
+        "budgets": {
+          "const": [
+            1000,
+            2000,
+            4000,
+            8000
+          ]
+        },
+        "allocations": {
+          "const": [
+            "uniform",
+            "targeted_floor_0.15",
+            "additive_floor_0.15"
+          ]
+        },
+        "datasets": {
+          "const": [
+            "Waterbirds",
+            "CivilComments-WILDS",
+            "Bios",
+            "GaitPDB"
+          ]
+        },
+        "erasers": {
+          "const": [
+            "inlp",
+            "rlace",
+            "leace",
+            "taco",
+            "mance"
+          ]
+        },
+        "ablation_count": {
+          "const": 16
+        },
+        "missing_cells": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reason_record"
+          }
+        },
+        "zero_denominator_records": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reason_record"
+          }
+        },
+        "right_censored_records": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reason_record"
+          }
+        }
+      }
+    },
+    "allocation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "uniform",
+        "square_score",
+        "additive",
+        "pairwise_contrasts",
+        "record_count",
+        "records_sha256",
+        "solver_checks_passed",
+        "title_empirical_condition",
+        "safety_not_worse"
+      ],
+      "properties": {
+        "uniform": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/allocation_result"
+            },
+            {
+              "properties": {
+                "allocation": {
+                  "const": "uniform"
+                }
+              }
+            }
+          ]
+        },
+        "square_score": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/allocation_result"
+            },
+            {
+              "properties": {
+                "allocation": {
+                  "const": "square_score"
+                }
+              }
+            }
+          ]
+        },
+        "additive": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/allocation_result"
+            },
+            {
+              "properties": {
+                "allocation": {
+                  "const": "additive"
+                }
+              }
+            }
+          ]
+        },
+        "pairwise_contrasts": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/allocation_contrast"
+          },
+          "allOf": [
+            {
+              "contains": {
+                "properties": {
+                  "contrast": {
+                    "const": "additive_vs_uniform"
+                  }
+                },
+                "required": [
+                  "contrast"
+                ]
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "properties": {
+                  "contrast": {
+                    "const": "additive_vs_square_score"
+                  }
+                },
+                "required": [
+                  "contrast"
+                ]
+              },
+              "minContains": 1,
+              "maxContains": 1
+            }
+          ]
+        },
+        "record_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "records_sha256": {
+          "$ref": "#/$defs/hash"
+        },
+        "solver_checks_passed": {
+          "const": true
+        },
+        "title_empirical_condition": {
+          "type": "boolean"
+        },
+        "safety_not_worse": {
+          "type": "boolean"
+        }
+      }
+    },
+    "evidence_diagnostic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "datasets",
+        "planning_source",
+        "oracle_benchmark_labeled",
+        "integer_cap"
+      ],
+      "properties": {
+        "datasets": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/evidence_dataset"
+          },
+          "allOf": [
+            {
+              "contains": {
+                "properties": {
+                  "dataset": {
+                    "const": "Waterbirds"
+                  }
+                },
+                "required": [
+                  "dataset"
+                ]
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "properties": {
+                  "dataset": {
+                    "const": "CivilComments-WILDS"
+                  }
+                },
+                "required": [
+                  "dataset"
+                ]
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "properties": {
+                  "dataset": {
+                    "const": "Bios"
+                  }
+                },
+                "required": [
+                  "dataset"
+                ]
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "properties": {
+                  "dataset": {
+                    "const": "GaitPDB"
+                  }
+                },
+                "required": [
+                  "dataset"
+                ]
+              },
+              "minContains": 1,
+              "maxContains": 1
+            }
+          ]
+        },
+        "planning_source": {
+          "const": "independent_design_fold"
+        },
+        "oracle_benchmark_labeled": {
+          "const": true
+        },
+        "integer_cap": {
+          "const": 1000000
+        }
+      }
+    },
+    "historical_iid": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "point_violations",
+        "certificate_violations",
+        "safe_retention",
+        "gait_floor"
+      ],
+      "properties": {
+        "point_violations": {
+          "$ref": "#/$defs/point_35_128"
+        },
+        "certificate_violations": {
+          "$ref": "#/$defs/point_1_128"
+        },
+        "safe_retention": {
+          "$ref": "#/$defs/point_52_102"
+        },
+        "gait_floor": {
+          "$ref": "#/$defs/gait_5_32"
+        }
+      }
+    },
+    "support_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dataset",
+        "missing_environment",
+        "supported_endpoint_inclusion",
+        "interpretation"
+      ],
+      "properties": {
+        "dataset": {
+          "const": "Camelyon17-WILDS"
+        },
+        "missing_environment": {
+          "const": 2
+        },
+        "supported_endpoint_inclusion": {
+          "const": false
+        },
+        "interpretation": {
+          "const": "procedural_nonidentifiability_not_measured_safety_or_violation"
+        }
+      }
+    },
+    "negative_results": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "scope",
+          "statement",
+          "manifest_paths"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "scope": {
+            "enum": [
+              "primary",
+              "secondary",
+              "ablation",
+              "heldout_attacker",
+              "historical",
+              "support_boundary",
+              "data_or_provenance"
+            ]
+          },
+          "statement": {
+            "type": "string",
+            "minLength": 1
+          },
+          "manifest_paths": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "candidate_key_correction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "legacy_prefix",
+        "canonical_prefix",
+        "crosswalk",
+        "order_preserved",
+        "raw_normalization_count",
+        "selection_difference_count",
+        "row_difference_count",
+        "aggregate_difference_count",
+        "gate_difference_count",
+        "comparator_verified"
+      ],
+      "properties": {
+        "legacy_prefix": {
+          "const": "RLACE::"
+        },
+        "canonical_prefix": {
+          "const": "R-LACE::"
+        },
+        "crosswalk": {
+          "const": [
+            {
+              "legacy": "RLACE::rank=1",
+              "canonical": "R-LACE::rank=1"
+            },
+            {
+              "legacy": "RLACE::rank=4",
+              "canonical": "R-LACE::rank=4"
+            }
+          ]
+        },
+        "order_preserved": {
+          "const": true
+        },
+        "raw_normalization_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "selection_difference_count": {
+          "const": 0
+        },
+        "row_difference_count": {
+          "const": 0
+        },
+        "aggregate_difference_count": {
+          "const": 0
+        },
+        "gate_difference_count": {
+          "const": 0
+        },
+        "comparator_verified": {
+          "const": true
+        }
+      }
+    },
+    "ablations": {
+      "type": "array",
+      "minItems": 16,
+      "maxItems": 16,
+      "prefixItems": [
+        {
+          "allOf": [
+            {"$ref": "#/$defs/ablation_result"},
+            {"properties": {"id": {"const": "paired_harm_vs_edited_only_error"}}}
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/ablation_result"},
+            {"properties": {"id": {"const": "balanced_leakage_vs_ordinary_accuracy"}}}
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/ablation_result"},
+            {"properties": {"id": {"const": "attacker_portfolio"}}}
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/ablation_result"},
+            {"properties": {"id": {"const": "iid_vs_shifted_certification"}}}
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/ablation_result"},
+            {"properties": {"id": {"const": "scalar_vs_vector_contracts"}}}
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/ablation_result"},
+            {"properties": {"id": {"const": "common_radius_vs_anisotropic_profile"}}}
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/ablation_result"},
+            {"properties": {"id": {"const": "uniform_vs_prospective_allocation"}}}
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/ablation_result"},
+            {"properties": {"id": {"const": "full_frontier_vs_construction_screen"}}}
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/ablation_result"},
+            {"properties": {"id": {"const": "five_vs_twelve_candidates"}}}
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/ablation_result"},
+            {"properties": {"id": {"const": "one_vs_all_target_environments"}}}
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/ablation_result"},
+            {"properties": {"id": {"const": "evidence_budget"}}}
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/ablation_result"},
+            {"properties": {"id": {"const": "exact_vs_generic_bounds"}}}
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/ablation_result"},
+            {"properties": {"id": {"const": "registered_vs_heldout_attacker"}}}
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/ablation_result"},
+            {"properties": {"id": {"const": "native_eraser_probe_vs_fresh_attackers"}}}
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/ablation_result"},
+            {"properties": {"id": {"const": "no_multiplicity_correction"}}}
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/ablation_result"},
+            {"properties": {"id": {"const": "no_support_check"}}}
+          ]
+        }
+      ],
+      "items": false
+    },
+    "gait_diagnostic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "dataset",
+        "seed_count",
+        "candidate_count",
+        "gammas",
+        "budgets",
+        "allocations",
+        "doubled_evidence_reported",
+        "oracle_safe_candidates",
+        "primary_retained_opportunities",
+        "doubled_evidence_retained_opportunities",
+        "limiting_contract_counts",
+        "dominant_limitation",
+        "planning_record_count",
+        "oracle_only_record_count",
+        "right_censored_record_count",
+        "causal_claim",
+        "records_sha256"
+      ],
+      "properties": {
+        "status": {"const": "complete"},
+        "dataset": {"const": "GaitPDB"},
+        "seed_count": {"const": 64},
+        "candidate_count": {"const": 768},
+        "gammas": {"const": [1.0, 1.1, 1.25, 1.5]},
+        "budgets": {"const": [1000, 2000, 4000, 8000]},
+        "allocations": {"const": ["uniform", "targeted_floor_0.15"]},
+        "doubled_evidence_reported": {"const": true},
+        "oracle_safe_candidates": {"type": "integer", "minimum": 0},
+        "primary_retained_opportunities": {"type": "integer", "minimum": 0},
+        "doubled_evidence_retained_opportunities": {"type": "integer", "minimum": 0},
+        "limiting_contract_counts": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {"type": "integer", "minimum": 0}
+        },
+        "dominant_limitation": {
+          "enum": [
+            "target_harm",
+            "registered_attacker",
+            "source_class",
+            "candidate_multiplicity",
+            "evidence_scarcity",
+            "declared_shift",
+            "tie"
+          ]
+        },
+        "planning_record_count": {"type": "integer", "minimum": 1},
+        "oracle_only_record_count": {"type": "integer", "minimum": 0},
+        "right_censored_record_count": {"type": "integer", "minimum": 0},
+        "causal_claim": {"const": false},
+        "records_sha256": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "heldout_attacker_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "attacker",
+        "formal_guarantee",
+        "vector_deployments",
+        "portfolio_safe_deployments",
+        "heldout_violation_count",
+        "heldout_safe_fraction",
+        "most_predictive_registered_attacker",
+        "per_dataset_violation_counts",
+        "records_sha256"
+      ],
+      "properties": {
+        "status": {"const": "complete"},
+        "attacker": {"const": "boosted_tree"},
+        "formal_guarantee": {"const": false},
+        "vector_deployments": {"type": "integer", "minimum": 0, "maximum": 256},
+        "portfolio_safe_deployments": {"type": "integer", "minimum": 0, "maximum": 256},
+        "heldout_violation_count": {"type": "integer", "minimum": 0, "maximum": 256},
+        "heldout_safe_fraction": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "most_predictive_registered_attacker": {
+          "type": ["string", "null"],
+          "enum": ["linear", "rbf", "forest", "mlp", null]
+        },
+        "per_dataset_violation_counts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["Waterbirds", "CivilComments-WILDS", "Bios", "GaitPDB"],
+          "properties": {
+            "Waterbirds": {"type": "integer", "minimum": 0, "maximum": 64},
+            "CivilComments-WILDS": {"type": "integer", "minimum": 0, "maximum": 64},
+            "Bios": {"type": "integer", "minimum": 0, "maximum": 64},
+            "GaitPDB": {"type": "integer", "minimum": 0, "maximum": 64}
+          }
+        },
+        "records_sha256": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "figure_candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "selection_branch",
+        "stable_rank",
+        "dataset",
+        "seed",
+        "canonical_candidate_key",
+        "selected_by_vector",
+        "oracle_safe",
+        "common_radius",
+        "right_censored",
+        "determinism_verified",
+        "record_sha256"
+      ],
+      "properties": {
+        "selection_branch": {
+          "enum": [
+            "vector_lower_median",
+            "oracle_safe_fallback",
+            "stable_first_fallback"
+          ]
+        },
+        "stable_rank": {"type": "integer", "minimum": 0},
+        "dataset": {"enum": ["Waterbirds", "CivilComments-WILDS", "Bios", "GaitPDB"]},
+        "seed": {"type": "integer", "minimum": 45, "maximum": 108},
+        "canonical_candidate_key": {"type": "string", "minLength": 1},
+        "selected_by_vector": {"type": "boolean"},
+        "oracle_safe": {"type": "boolean"},
+        "common_radius": {"type": "number", "minimum": 0, "maximum": 8},
+        "right_censored": {"type": "boolean"},
+        "determinism_verified": {"const": true},
+        "record_sha256": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "title_decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title_branch",
+        "literature_condition",
+        "allocation_condition",
+        "reason"
+      ],
+      "properties": {
+        "title_branch": {
+          "enum": [
+            "evidence_efficient",
+            "support_aware"
+          ]
+        },
+        "literature_condition": {
+          "type": "boolean"
+        },
+        "allocation_condition": {
+          "type": "boolean"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "title_branch": {
+              "const": "evidence_efficient"
+            },
+            "literature_condition": {
+              "const": true
+            },
+            "allocation_condition": {
+              "const": true
+            }
+          }
+        },
+        {
+          "properties": {
+            "title_branch": {
+              "const": "support_aware"
+            }
+          },
+          "anyOf": [
+            {
+              "properties": {
+                "literature_condition": {
+                  "const": false
+                }
+              }
+            },
+            {
+              "properties": {
+                "allocation_condition": {
+                  "const": false
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "input_sha256",
+        "output_sha256",
+        "first_outcome_access_utc",
+        "locked_analyzer_unchanged",
+        "independent_replay_status",
+        "specification_sha256",
+        "artifact_sha256"
+      ],
+      "properties": {
+        "input_sha256": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/hash"
+          }
+        },
+        "output_sha256": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/hash"
+          }
+        },
+        "first_outcome_access_utc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "locked_analyzer_unchanged": {
+          "const": true
+        },
+        "independent_replay_status": {
+          "enum": [
+            "pass",
+            "fail"
+          ]
+        },
+        "specification_sha256": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/hash"
+          }
+        },
+        "artifact_sha256": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "controlled_interpretation",
+            "sensitivity_interpretation",
+            "receipt_audit",
+            "locked_analyzer_source",
+            "locked_analyzer_output",
+            "protocol_compliant_analyzer_source",
+            "protocol_compliant_analyzer_output",
+            "independent_replay",
+            "radius_cap_correction",
+            "three_way_comparator",
+            "safety_sensitivity",
+            "threshold_stress",
+            "usefulness_sensitivity",
+            "ratio_sensitivity",
+            "ablations",
+            "gait_diagnostic",
+            "heldout_attacker",
+            "allocation_extension",
+            "evidence_diagnostic",
+            "shared_schema",
+            "shared_manifest_spec",
+            "result_builder_source"
+          ],
+          "properties": {
+            "controlled_interpretation": {
+              "$ref": "#/$defs/hash"
+            },
+            "sensitivity_interpretation": {
+              "const": "583cd054d3fa24511c86c15d083489440b3bcc1a076e4a65fd4bd8df0b244608"
+            },
+            "receipt_audit": {
+              "$ref": "#/$defs/hash"
+            },
+            "locked_analyzer_source": {
+              "$ref": "#/$defs/hash"
+            },
+            "locked_analyzer_output": {
+              "$ref": "#/$defs/hash"
+            },
+            "protocol_compliant_analyzer_source": {
+              "$ref": "#/$defs/hash"
+            },
+            "protocol_compliant_analyzer_output": {
+              "$ref": "#/$defs/hash"
+            },
+            "independent_replay": {
+              "$ref": "#/$defs/hash"
+            },
+            "radius_cap_correction": {
+              "$ref": "#/$defs/hash"
+            },
+            "three_way_comparator": {
+              "$ref": "#/$defs/hash"
+            },
+            "safety_sensitivity": {
+              "$ref": "#/$defs/hash"
+            },
+            "threshold_stress": {
+              "$ref": "#/$defs/hash"
+            },
+            "usefulness_sensitivity": {
+              "$ref": "#/$defs/hash"
+            },
+            "ratio_sensitivity": {
+              "$ref": "#/$defs/hash"
+            },
+            "ablations": {
+              "$ref": "#/$defs/hash"
+            },
+            "gait_diagnostic": {
+              "$ref": "#/$defs/hash"
+            },
+            "heldout_attacker": {
+              "$ref": "#/$defs/hash"
+            },
+            "allocation_extension": {
+              "$ref": "#/$defs/hash"
+            },
+            "evidence_diagnostic": {
+              "$ref": "#/$defs/hash"
+            },
+            "shared_schema": {
+              "$ref": "#/$defs/hash"
+            },
+            "shared_manifest_spec": {
+              "$ref": "#/$defs/hash"
+            },
+            "result_builder_source": {
+              "$ref": "#/$defs/hash"
+            }
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "analysis_status": {
+            "const": "complete"
+          }
+        },
+        "required": [
+          "analysis_status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "ablations": {
+            "items": {
+              "properties": {
+                "status": {
+                  "const": "complete"
+                }
+              },
+              "required": [
+                "status"
+              ]
+            }
+          },
+          "receipt_audit": {
+            "properties": {
+              "valid": {
+                "const": 1280
+              },
+              "missing": {
+                "const": 0
+              },
+              "invalid": {
+                "const": 0
+              },
+              "proxy": {
+                "const": 0
+              }
+            }
+          },
+          "provenance": {
+            "properties": {
+              "independent_replay_status": {
+                "const": "pass"
+              }
+            }
+          },
+          "radius_cap_correction": {
+            "properties": {
+              "protocol_compliant_cap8_status": {
+                "const": "pass"
+              },
+              "independent_cap8_replay_status": {
+                "const": "pass"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "analysis_status": {
+            "const": "invalid"
+          }
+        },
+        "required": [
+          "analysis_status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "primary": {
+            "properties": {
+              "efficacy": {
+                "properties": {
+                  "status": {
+                    "const": "invalid"
+                  }
+                }
+              },
+              "sentinel_safety": {
+                "properties": {
+                  "status": {
+                    "const": "invalid"
+                  }
+                }
+              },
+              "safe_retention": {
+                "properties": {
+                  "status": {
+                    "const": "invalid"
+                  }
+                }
+              },
+              "vector_common_advantage": {
+                "properties": {
+                  "status": {
+                    "const": "invalid"
+                  }
+                }
+              },
+              "overall": {
+                "properties": {
+                  "status": {
+                    "const": "invalid"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "radius_cap_correction": {
+            "properties": {
+              "primary_gate_differences": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "negative_results": {
+            "contains": {
+              "properties": {
+                "id": {
+                  "const": "radius_cap_changes_primary_gate"
+                }
+              },
+              "required": [
+                "id"
+              ]
+            },
+            "minContains": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "primary": {
+            "properties": {
+              "overall": {
+                "properties": {
+                  "status": {
+                    "const": "pass"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "primary": {
+            "properties": {
+              "efficacy": {
+                "properties": {
+                  "status": {
+                    "const": "pass"
+                  }
+                }
+              },
+              "sentinel_safety": {
+                "properties": {
+                  "status": {
+                    "const": "pass"
+                  }
+                }
+              },
+              "safe_retention": {
+                "properties": {
+                  "status": {
+                    "const": "pass"
+                  }
+                }
+              },
+              "vector_common_advantage": {
+                "properties": {
+                  "status": {
+                    "const": "pass"
+                  }
+                }
+              },
+              "overall": {
+                "properties": {
+                  "failed_gates": {
+                    "maxItems": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "primary": {
+            "properties": {
+              "safe_retention": {
+                "properties": {
+                  "status": {
+                    "const": "pass"
+                  },
+                  "zero_opportunity_sensitivity": {
+                    "properties": {
+                      "supports_registered_threshold": {
+                        "const": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "negative_results": {
+            "contains": {
+              "properties": {
+                "id": {
+                  "const": "safe_retention_zero_opportunity_sensitivity_disagrees"
+                }
+              },
+              "required": [
+                "id"
+              ]
+            },
+            "minContains": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "primary": {
+            "properties": {
+              "efficacy": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "fail",
+                      "invalid"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "primary": {
+            "properties": {
+              "overall": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "fail",
+                      "invalid"
+                    ]
+                  },
+                  "failed_gates": {
+                    "contains": {
+                      "const": "efficacy"
+                    },
+                    "minContains": 1
+                  }
+                }
+              }
+            }
+          },
+          "negative_results": {
+            "contains": {
+              "properties": {
+                "id": {
+                  "const": "primary_efficacy_failed"
+                }
+              },
+              "required": [
+                "id"
+              ]
+            },
+            "minContains": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "primary": {
+            "properties": {
+              "sentinel_safety": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "fail",
+                      "invalid"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "primary": {
+            "properties": {
+              "overall": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "fail",
+                      "invalid"
+                    ]
+                  },
+                  "failed_gates": {
+                    "contains": {
+                      "const": "sentinel_safety"
+                    },
+                    "minContains": 1
+                  }
+                }
+              }
+            }
+          },
+          "negative_results": {
+            "contains": {
+              "properties": {
+                "id": {
+                  "const": "primary_sentinel_safety_failed"
+                }
+              },
+              "required": [
+                "id"
+              ]
+            },
+            "minContains": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "primary": {
+            "properties": {
+              "safe_retention": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "fail",
+                      "invalid"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "primary": {
+            "properties": {
+              "overall": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "fail",
+                      "invalid"
+                    ]
+                  },
+                  "failed_gates": {
+                    "contains": {
+                      "const": "safe_retention"
+                    },
+                    "minContains": 1
+                  }
+                }
+              }
+            }
+          },
+          "negative_results": {
+            "contains": {
+              "properties": {
+                "id": {
+                  "const": "primary_safe_retention_failed"
+                }
+              },
+              "required": [
+                "id"
+              ]
+            },
+            "minContains": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "primary": {
+            "properties": {
+              "vector_common_advantage": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "fail",
+                      "invalid"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "primary": {
+            "properties": {
+              "overall": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "fail",
+                      "invalid"
+                    ]
+                  },
+                  "failed_gates": {
+                    "contains": {
+                      "const": "vector_common_advantage"
+                    },
+                    "minContains": 1
+                  }
+                }
+              }
+            }
+          },
+          "negative_results": {
+            "contains": {
+              "properties": {
+                "id": {
+                  "const": "primary_vector_common_advantage_failed"
+                }
+              },
+              "required": [
+                "id"
+              ]
+            },
+            "minContains": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "primary": {
+            "properties": {
+              "efficacy": {
+                "properties": {
+                  "status": {
+                    "const": "pass"
+                  }
+                }
+              },
+              "sentinel_safety": {
+                "properties": {
+                  "status": {
+                    "const": "pass"
+                  }
+                }
+              },
+              "safe_retention": {
+                "properties": {
+                  "status": {
+                    "const": "pass"
+                  }
+                }
+              },
+              "vector_common_advantage": {
+                "properties": {
+                  "status": {
+                    "const": "pass"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "primary": {
+            "properties": {
+              "overall": {
+                "properties": {
+                  "status": {
+                    "const": "pass"
+                  },
+                  "failed_gates": {
+                    "maxItems": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "primary": {
+            "properties": {
+              "sentinel_safety": {
+                "properties": {
+                  "status": {
+                    "const": "pass"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "threshold_stress": {
+            "properties": {
+              "readiness": {
+                "properties": {
+                  "registered_vera_sentinel_pass": {
+                    "const": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "threshold_stress": {
+            "properties": {
+              "readiness": {
+                "properties": {
+                  "registered_vera_sentinel_pass": {
+                    "const": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "primary": {
+            "properties": {
+              "safe_retention": {
+                "properties": {
+                  "status": {
+                    "const": "pass"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "threshold_stress": {
+            "properties": {
+              "readiness": {
+                "properties": {
+                  "registered_vera_usefulness_pass": {
+                    "const": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "threshold_stress": {
+            "properties": {
+              "readiness": {
+                "properties": {
+                  "registered_vera_usefulness_pass": {
+                    "const": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "threshold_stress": {
+            "properties": {
+              "readiness": {
+                "properties": {
+                  "overall_submission_readiness_support_pass": {
+                    "const": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "negative_results": {
+            "contains": {
+              "properties": {
+                "id": {
+                  "const": "three_rule_threshold_stress_failed"
+                }
+              },
+              "required": [
+                "id"
+              ]
+            },
+            "minContains": 1,
+            "maxContains": 1
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "negative_results": {
+            "contains": {
+              "properties": {
+                "id": {
+                  "const": "three_rule_threshold_stress_failed"
+                }
+              },
+              "required": [
+                "id"
+              ]
+            },
+            "minContains": 0,
+            "maxContains": 0
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "allocation": {
+            "properties": {
+              "title_empirical_condition": {
+                "const": true
+              },
+              "safety_not_worse": {
+                "const": true
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "title_decision": {
+            "properties": {
+              "allocation_condition": {
+                "const": true
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "title_decision": {
+            "properties": {
+              "allocation_condition": {
+                "const": false
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "properties": {
+        "negative_results": {
+          "allOf": [
+            {
+              "contains": {
+                "properties": {
+                  "id": {
+                    "const": "historical_gait_floor_failed"
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "properties": {
+                  "id": {
+                    "const": "camelyon17_unsupported_support"
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              },
+              "minContains": 1,
+              "maxContains": 1
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "ablation_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "status",
+        "secondary",
+        "record_count",
+        "artifact_sha256",
+        "observed_consequence",
+        "summary",
+        "missing_cells",
+        "can_change_primary_gate"
+      ],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "status": {"enum": ["complete", "invalid"]},
+        "secondary": {"const": true},
+        "record_count": {"type": "integer", "minimum": 1},
+        "artifact_sha256": {"$ref": "#/$defs/hash"},
+        "observed_consequence": {
+          "enum": [
+            "more_false_acceptance",
+            "lower_safe_retention",
+            "invalid_familywise_coverage",
+            "smaller_radius",
+            "heldout_attacker_failure",
+            "unsupported_extrapolation",
+            "source_prevalence_sensitivity",
+            "no_detectable_change",
+            "mixed"
+          ]
+        },
+        "summary": {"type": "string", "minLength": 1},
+        "missing_cells": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/reason_record"}
+        },
+        "can_change_primary_gate": {"const": false}
+      }
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "threshold_pair": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tau",
+        "lambda"
+      ],
+      "properties": {
+        "tau": {
+          "type": "number"
+        },
+        "lambda": {
+          "type": "number"
+        }
+      }
+    },
+    "bios_threshold": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/threshold_pair"
+        },
+        {
+          "properties": {
+            "tau": {
+              "const": 0.4
+            },
+            "lambda": {
+              "const": 0.7
+            }
+          }
+        }
+      ]
+    },
+    "civil_threshold": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/threshold_pair"
+        },
+        {
+          "properties": {
+            "tau": {
+              "const": 0.075
+            },
+            "lambda": {
+              "const": 0.8
+            }
+          }
+        }
+      ]
+    },
+    "gait_threshold": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/threshold_pair"
+        },
+        {
+          "properties": {
+            "tau": {
+              "const": 0.2
+            },
+            "lambda": {
+              "const": 0.55
+            }
+          }
+        }
+      ]
+    },
+    "waterbirds_threshold": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/threshold_pair"
+        },
+        {
+          "properties": {
+            "tau": {
+              "const": 0.1
+            },
+            "lambda": {
+              "const": 0.9
+            }
+          }
+        }
+      ]
+    },
+    "probability": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "fraction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "numerator",
+        "denominator",
+        "estimate"
+      ],
+      "properties": {
+        "numerator": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "denominator": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "estimate": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "undefined_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "fraction_256": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/fraction"
+        },
+        {
+          "properties": {
+            "denominator": {
+              "const": 256
+            }
+          }
+        }
+      ]
+    },
+    "fraction_64": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/fraction"
+        },
+        {
+          "properties": {
+            "denominator": {
+              "const": 64
+            }
+          }
+        }
+      ]
+    },
+    "interval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "level",
+        "lower",
+        "upper",
+        "method",
+        "independent_unit"
+      ],
+      "properties": {
+        "level": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 1
+        },
+        "lower": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "upper": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "method": {
+          "type": "string",
+          "minLength": 1
+        },
+        "independent_unit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "undefined_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "extended_interval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "level",
+        "lower",
+        "upper",
+        "method",
+        "independent_unit"
+      ],
+      "properties": {
+        "level": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 1
+        },
+        "lower": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "const": "+infinity"
+            }
+          ]
+        },
+        "upper": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "const": "+infinity"
+            }
+          ]
+        },
+        "method": {
+          "const": "whole_seed_extended_ratio_percentile_bootstrap"
+        },
+        "independent_unit": {
+          "const": "whole_seed_four_dataset_cluster"
+        }
+      }
+    },
+    "seed_familywise_safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "events",
+        "decisions",
+        "rate",
+        "one_sided_cp95_upper",
+        "interval_method",
+        "independent_unit",
+        "can_change_primary_gate"
+      ],
+      "properties": {
+        "events": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 64
+        },
+        "decisions": {
+          "const": 64
+        },
+        "rate": {
+          "$ref": "#/$defs/fraction_64"
+        },
+        "one_sided_cp95_upper": {
+          "$ref": "#/$defs/probability"
+        },
+        "interval_method": {
+          "const": "one_sided_clopper_pearson_alpha_0.05"
+        },
+        "independent_unit": {
+          "const": "whole_seed_four_dataset_cluster"
+        },
+        "can_change_primary_gate": {
+          "const": false
+        }
+      }
+    },
+    "per_dataset_safety_sensitivity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "unadjusted_alpha",
+        "simultaneous_component_alpha",
+        "unadjusted_cp95_upper",
+        "simultaneous_bonferroni_cp95_upper",
+        "threshold_null_rate",
+        "raw_exact_threshold_p",
+        "holm_adjusted_threshold_p",
+        "threshold_alternative",
+        "simultaneous_bound_method",
+        "threshold_test_method",
+        "can_change_primary_gate"
+      ],
+      "properties": {
+        "unadjusted_alpha": {
+          "const": 0.05
+        },
+        "simultaneous_component_alpha": {
+          "const": 0.0125
+        },
+        "unadjusted_cp95_upper": {
+          "$ref": "#/$defs/probability"
+        },
+        "simultaneous_bonferroni_cp95_upper": {
+          "$ref": "#/$defs/probability"
+        },
+        "threshold_null_rate": {
+          "const": 0.05
+        },
+        "raw_exact_threshold_p": {
+          "$ref": "#/$defs/probability"
+        },
+        "holm_adjusted_threshold_p": {
+          "$ref": "#/$defs/probability"
+        },
+        "threshold_alternative": {
+          "const": "less"
+        },
+        "simultaneous_bound_method": {
+          "const": "bonferroni_one_sided_clopper_pearson"
+        },
+        "threshold_test_method": {
+          "const": "holm_exact_binomial_lower_tail_at_0.05"
+        },
+        "can_change_primary_gate": {
+          "const": false
+        }
+      }
+    },
+    "threshold_stress_thresholds_075": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Waterbirds",
+        "CivilComments-WILDS",
+        "Bios",
+        "GaitPDB"
+      ],
+      "properties": {
+        "Waterbirds": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/threshold_pair"
+            },
+            {
+              "properties": {
+                "tau": {
+                  "const": 0.075
+                },
+                "lambda": {
+                  "const": 0.8
+                }
+              }
+            }
+          ]
+        },
+        "CivilComments-WILDS": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/threshold_pair"
+            },
+            {
+              "properties": {
+                "tau": {
+                  "const": 0.05625
+                },
+                "lambda": {
+                  "const": 0.725
+                }
+              }
+            }
+          ]
+        },
+        "Bios": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/threshold_pair"
+            },
+            {
+              "properties": {
+                "tau": {
+                  "const": 0.3
+                },
+                "lambda": {
+                  "const": 0.65
+                }
+              }
+            }
+          ]
+        },
+        "GaitPDB": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/threshold_pair"
+            },
+            {
+              "properties": {
+                "tau": {
+                  "const": 0.15
+                },
+                "lambda": {
+                  "const": 0.5375
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "threshold_stress_thresholds_100": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Waterbirds",
+        "CivilComments-WILDS",
+        "Bios",
+        "GaitPDB"
+      ],
+      "properties": {
+        "Waterbirds": {
+          "$ref": "#/$defs/waterbirds_threshold"
+        },
+        "CivilComments-WILDS": {
+          "$ref": "#/$defs/civil_threshold"
+        },
+        "Bios": {
+          "$ref": "#/$defs/bios_threshold"
+        },
+        "GaitPDB": {
+          "$ref": "#/$defs/gait_threshold"
+        }
+      }
+    },
+    "threshold_stress_thresholds_125": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Waterbirds",
+        "CivilComments-WILDS",
+        "Bios",
+        "GaitPDB"
+      ],
+      "properties": {
+        "Waterbirds": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/threshold_pair"
+            },
+            {
+              "properties": {
+                "tau": {
+                  "const": 0.125
+                },
+                "lambda": {
+                  "const": 1.0
+                }
+              }
+            }
+          ]
+        },
+        "CivilComments-WILDS": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/threshold_pair"
+            },
+            {
+              "properties": {
+                "tau": {
+                  "const": 0.09375
+                },
+                "lambda": {
+                  "const": 0.875
+                }
+              }
+            }
+          ]
+        },
+        "Bios": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/threshold_pair"
+            },
+            {
+              "properties": {
+                "tau": {
+                  "const": 0.5
+                },
+                "lambda": {
+                  "const": 0.75
+                }
+              }
+            }
+          ]
+        },
+        "GaitPDB": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/threshold_pair"
+            },
+            {
+              "properties": {
+                "tau": {
+                  "const": 0.25
+                },
+                "lambda": {
+                  "const": 0.5625
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "threshold_stress_dataset_row": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dataset",
+        "decisions",
+        "deployments",
+        "violations_all_decisions",
+        "violations_deployed",
+        "safe_opportunities",
+        "retained_opportunities",
+        "deployment_interval",
+        "violation_interval",
+        "retention_interval"
+      ],
+      "properties": {
+        "dataset": {
+          "enum": [
+            "Waterbirds",
+            "CivilComments-WILDS",
+            "Bios",
+            "GaitPDB"
+          ]
+        },
+        "decisions": {
+          "const": 64
+        },
+        "deployments": {
+          "$ref": "#/$defs/fraction_64"
+        },
+        "violations_all_decisions": {
+          "$ref": "#/$defs/fraction_64"
+        },
+        "violations_deployed": {
+          "$ref": "#/$defs/fraction"
+        },
+        "safe_opportunities": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 64
+        },
+        "retained_opportunities": {
+          "$ref": "#/$defs/fraction"
+        },
+        "deployment_interval": {
+          "$ref": "#/$defs/interval"
+        },
+        "violation_interval": {
+          "$ref": "#/$defs/interval"
+        },
+        "retention_interval": {
+          "$ref": "#/$defs/interval"
+        }
+      }
+    },
+    "threshold_stress_rule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rule",
+        "per_dataset"
+      ],
+      "properties": {
+        "rule": {
+          "enum": [
+            "always_deploy",
+            "validation_point_selection",
+            "vera_vector_envelope"
+          ]
+        },
+        "per_dataset": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "prefixItems": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/threshold_stress_dataset_row"
+                },
+                {
+                  "properties": {
+                    "dataset": {
+                      "const": "Waterbirds"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/threshold_stress_dataset_row"
+                },
+                {
+                  "properties": {
+                    "dataset": {
+                      "const": "CivilComments-WILDS"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/threshold_stress_dataset_row"
+                },
+                {
+                  "properties": {
+                    "dataset": {
+                      "const": "Bios"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/threshold_stress_dataset_row"
+                },
+                {
+                  "properties": {
+                    "dataset": {
+                      "const": "GaitPDB"
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "threshold_stress_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kappa",
+        "thresholds",
+        "rules"
+      ],
+      "properties": {
+        "kappa": {
+          "enum": [
+            0.75,
+            1.0,
+            1.25
+          ]
+        },
+        "thresholds": {
+          "type": "object"
+        },
+        "rules": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/threshold_stress_rule"
+                },
+                {
+                  "properties": {
+                    "rule": {
+                      "const": "always_deploy"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/threshold_stress_rule"
+                },
+                {
+                  "properties": {
+                    "rule": {
+                      "const": "validation_point_selection"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/threshold_stress_rule"
+                },
+                {
+                  "properties": {
+                    "rule": {
+                      "const": "vera_vector_envelope"
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "threshold_stress_readiness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "always_deploy_max_registered_rate",
+        "always_deploy_max_registered_dataset",
+        "always_deploy_severity_pass",
+        "validation_selection_max_registered_rate",
+        "validation_selection_max_registered_dataset",
+        "validation_selection_severity_pass",
+        "vera_max_all_cells_rate",
+        "vera_all_cells_measured_safety_pass",
+        "registered_vera_sentinel_pass",
+        "registered_vera_usefulness_pass",
+        "overall_submission_readiness_support_pass",
+        "headline_kappa",
+        "headline_eligible",
+        "negative_result_required",
+        "can_change_primary_gate"
+      ],
+      "properties": {
+        "always_deploy_max_registered_rate": {
+          "$ref": "#/$defs/probability"
+        },
+        "always_deploy_max_registered_dataset": {
+          "enum": [
+            "Waterbirds",
+            "CivilComments-WILDS",
+            "Bios",
+            "GaitPDB"
+          ]
+        },
+        "always_deploy_severity_pass": {
+          "type": "boolean"
+        },
+        "validation_selection_max_registered_rate": {
+          "$ref": "#/$defs/probability"
+        },
+        "validation_selection_max_registered_dataset": {
+          "enum": [
+            "Waterbirds",
+            "CivilComments-WILDS",
+            "Bios",
+            "GaitPDB"
+          ]
+        },
+        "validation_selection_severity_pass": {
+          "type": "boolean"
+        },
+        "vera_max_all_cells_rate": {
+          "$ref": "#/$defs/probability"
+        },
+        "vera_all_cells_measured_safety_pass": {
+          "type": "boolean"
+        },
+        "registered_vera_sentinel_pass": {
+          "type": "boolean"
+        },
+        "registered_vera_usefulness_pass": {
+          "type": "boolean"
+        },
+        "overall_submission_readiness_support_pass": {
+          "type": "boolean"
+        },
+        "headline_kappa": {
+          "const": 1.0
+        },
+        "headline_eligible": {
+          "type": "boolean"
+        },
+        "negative_result_required": {
+          "type": "boolean"
+        },
+        "can_change_primary_gate": {
+          "const": false
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "always_deploy_max_registered_rate": {
+                "minimum": 0.2
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "always_deploy_severity_pass": {
+                "const": true
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "always_deploy_severity_pass": {
+                "const": false
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "validation_selection_max_registered_rate": {
+                "minimum": 0.2
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "validation_selection_severity_pass": {
+                "const": true
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "validation_selection_severity_pass": {
+                "const": false
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "vera_max_all_cells_rate": {
+                "maximum": 0.05
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "vera_all_cells_measured_safety_pass": {
+                "const": true
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "vera_all_cells_measured_safety_pass": {
+                "const": false
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "always_deploy_severity_pass": {
+                "const": true
+              },
+              "validation_selection_severity_pass": {
+                "const": true
+              },
+              "vera_all_cells_measured_safety_pass": {
+                "const": true
+              },
+              "registered_vera_sentinel_pass": {
+                "const": true
+              },
+              "registered_vera_usefulness_pass": {
+                "const": true
+              }
+            },
+            "required": [
+              "always_deploy_severity_pass",
+              "validation_selection_severity_pass",
+              "vera_all_cells_measured_safety_pass",
+              "registered_vera_sentinel_pass",
+              "registered_vera_usefulness_pass"
+            ]
+          },
+          "then": {
+            "properties": {
+              "overall_submission_readiness_support_pass": {
+                "const": true
+              },
+              "headline_eligible": {
+                "const": true
+              },
+              "negative_result_required": {
+                "const": false
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "overall_submission_readiness_support_pass": {
+                "const": false
+              },
+              "headline_eligible": {
+                "const": false
+              },
+              "negative_result_required": {
+                "const": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    "gate_status": {
+      "enum": [
+        "pass",
+        "fail",
+        "invalid"
+      ]
+    },
+    "efficacy_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "criterion",
+        "effect",
+        "interval",
+        "test"
+      ],
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/gate_status"
+        },
+        "criterion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effect": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "point_violations",
+            "vector_violations",
+            "decision_denominator",
+            "seed_clusters",
+            "paired_difference_estimate"
+          ],
+          "properties": {
+            "point_violations": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 256
+            },
+            "vector_violations": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 256
+            },
+            "decision_denominator": {
+              "const": 256
+            },
+            "seed_clusters": {
+              "const": 64
+            },
+            "paired_difference_estimate": {
+              "type": "number"
+            }
+          }
+        },
+        "interval": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/interval"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "test": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "positive_seed_differences",
+            "negative_seed_differences",
+            "ties",
+            "nonzero_denominator",
+            "p_value",
+            "alternative",
+            "independent_unit"
+          ],
+          "properties": {
+            "name": {
+              "const": "exact_sign_test"
+            },
+            "positive_seed_differences": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 64
+            },
+            "negative_seed_differences": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 64
+            },
+            "ties": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 64
+            },
+            "nonzero_denominator": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 64
+            },
+            "p_value": {
+              "$ref": "#/$defs/probability"
+            },
+            "alternative": {
+              "const": "two_sided"
+            },
+            "independent_unit": {
+              "const": "whole_seed_four_dataset_cluster"
+            }
+          }
+        }
+      }
+    },
+    "sentinel_safety_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "criterion",
+        "effect",
+        "interval",
+        "test"
+      ],
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/gate_status"
+        },
+        "criterion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effect": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "false_acceptances",
+            "seed_denominator",
+            "observed_rate",
+            "zero_events_required"
+          ],
+          "properties": {
+            "false_acceptances": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 64
+            },
+            "seed_denominator": {
+              "const": 64
+            },
+            "observed_rate": {
+              "$ref": "#/$defs/probability"
+            },
+            "zero_events_required": {
+              "const": true
+            }
+          }
+        },
+        "interval": {
+          "$ref": "#/$defs/interval"
+        },
+        "test": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "alpha",
+            "registered_upper_limit",
+            "upper_bound",
+            "heterogeneous_average_bound",
+            "independent_unit"
+          ],
+          "properties": {
+            "name": {
+              "const": "one_sided_exact_zero_event_bound"
+            },
+            "alpha": {
+              "const": 0.05
+            },
+            "registered_upper_limit": {
+              "const": 0.05
+            },
+            "upper_bound": {
+              "$ref": "#/$defs/probability"
+            },
+            "heterogeneous_average_bound": {
+              "const": true
+            },
+            "independent_unit": {
+              "const": "rotating_dataset_per_seed"
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "effect": {
+                "properties": {
+                  "false_acceptances": {
+                    "const": 0
+                  }
+                }
+              },
+              "test": {
+                "properties": {
+                  "upper_bound": {
+                    "maximum": 0.05
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "status": {
+                "const": "pass"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "fail",
+                  "invalid"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "safe_retention_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "criterion",
+        "effect",
+        "interval",
+        "test",
+        "zero_opportunity_sensitivity"
+      ],
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/gate_status"
+        },
+        "criterion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effect": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "safe_opportunities",
+            "retained_opportunities",
+            "retention"
+          ],
+          "properties": {
+            "safe_opportunities": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 256
+            },
+            "retained_opportunities": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 256
+            },
+            "retention": {
+              "$ref": "#/$defs/fraction"
+            }
+          }
+        },
+        "interval": {
+          "$ref": "#/$defs/interval"
+        },
+        "test": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "resamples",
+            "seed",
+            "registered_lower_limit",
+            "independent_unit"
+          ],
+          "properties": {
+            "name": {
+              "const": "whole_seed_percentile_bootstrap"
+            },
+            "resamples": {
+              "const": 20000
+            },
+            "seed": {
+              "const": 2027071601
+            },
+            "registered_lower_limit": {
+              "const": 0.2
+            },
+            "independent_unit": {
+              "const": "whole_seed_four_dataset_cluster"
+            }
+          }
+        },
+        "zero_opportunity_sensitivity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "resamples",
+            "seed",
+            "positive_opportunity_resamples",
+            "zero_opportunity_resamples",
+            "impossible_positive_retention_zero_opportunity_resamples",
+            "all_resamples_accounted",
+            "completed_statistic_interval",
+            "division_free_margin_interval",
+            "completed_statistic_lower_target",
+            "division_free_lower_target",
+            "supports_registered_threshold",
+            "can_change_gate"
+          ],
+          "properties": {
+            "resamples": {
+              "const": 20000
+            },
+            "seed": {
+              "const": 2027071601
+            },
+            "positive_opportunity_resamples": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 20000
+            },
+            "zero_opportunity_resamples": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 20000
+            },
+            "impossible_positive_retention_zero_opportunity_resamples": {
+              "const": 0
+            },
+            "all_resamples_accounted": {
+              "const": true
+            },
+            "completed_statistic_interval": {
+              "$ref": "#/$defs/interval"
+            },
+            "division_free_margin_interval": {
+              "$ref": "#/$defs/interval"
+            },
+            "completed_statistic_lower_target": {
+              "const": 0.2
+            },
+            "division_free_lower_target": {
+              "const": 0
+            },
+            "supports_registered_threshold": {
+              "type": "boolean"
+            },
+            "can_change_gate": {
+              "const": false
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "interval": {
+                "properties": {
+                  "lower": {
+                    "type": "number",
+                    "minimum": 0.2
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "status": {
+                "const": "pass"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "fail",
+                  "invalid"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "vector_common_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "criterion",
+        "effect",
+        "interval",
+        "test"
+      ],
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/gate_status"
+        },
+        "criterion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effect": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "vector_retention",
+            "common_retention",
+            "ratio",
+            "ratio_status",
+            "registered_ratio_interval",
+            "zero_denominator_sensitivity_interval",
+            "division_free_contrast",
+            "division_free_interval"
+          ],
+          "properties": {
+            "vector_retention": {
+              "$ref": "#/$defs/fraction"
+            },
+            "common_retention": {
+              "$ref": "#/$defs/fraction"
+            },
+            "ratio": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "ratio_status": {
+              "enum": [
+                "finite",
+                "zero_common_positive_vector",
+                "zero_both",
+                "undefined"
+              ]
+            },
+            "registered_ratio_interval": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/interval"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "zero_denominator_sensitivity_interval": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/extended_interval"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "division_free_contrast": {
+              "type": "number"
+            },
+            "division_free_interval": {
+              "$ref": "#/$defs/interval"
+            }
+          }
+        },
+        "interval": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/interval"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "test": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "registered_ratio",
+            "registered_status_source",
+            "zero_common_primary_behavior",
+            "resamples",
+            "seed",
+            "zero_common_samples_retained",
+            "zero_denominator_cases",
+            "infinite_endpoint_serialization",
+            "division_free_rule_reported",
+            "sensitivity_can_change_gate",
+            "independent_unit"
+          ],
+          "properties": {
+            "name": {
+              "const": "vector_at_least_twice_common"
+            },
+            "registered_ratio": {
+              "const": 2.0
+            },
+            "registered_status_source": {
+              "const": "locked_point_ratio"
+            },
+            "zero_common_primary_behavior": {
+              "const": "undefined_and_fail"
+            },
+            "resamples": {
+              "const": 20000
+            },
+            "seed": {
+              "const": 2027071601
+            },
+            "zero_common_samples_retained": {
+              "const": true
+            },
+            "zero_denominator_cases": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "positive_opportunity_positive_common",
+                "positive_opportunity_zero_common_positive_vector",
+                "positive_opportunity_zero_common_zero_vector",
+                "zero_opportunity",
+                "total_resamples",
+                "impossible_nonzero_retention_zero_opportunity",
+                "all_resamples_accounted"
+              ],
+              "properties": {
+                "positive_opportunity_positive_common": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 20000
+                },
+                "positive_opportunity_zero_common_positive_vector": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 20000
+                },
+                "positive_opportunity_zero_common_zero_vector": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 20000
+                },
+                "zero_opportunity": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 20000
+                },
+                "total_resamples": {
+                  "const": 20000
+                },
+                "impossible_nonzero_retention_zero_opportunity": {
+                  "const": 0
+                },
+                "all_resamples_accounted": {
+                  "const": true
+                }
+              }
+            },
+            "infinite_endpoint_serialization": {
+              "const": "+infinity"
+            },
+            "division_free_rule_reported": {
+              "const": true
+            },
+            "sensitivity_can_change_gate": {
+              "const": false
+            },
+            "independent_unit": {
+              "const": "whole_seed_four_dataset_cluster"
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "effect": {
+                "properties": {
+                  "ratio": {
+                    "type": "number",
+                    "minimum": 2.0
+                  },
+                  "ratio_status": {
+                    "const": "finite"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "status": {
+                "const": "pass"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "fail",
+                  "invalid"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "common_radius_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "median",
+        "q1",
+        "q3",
+        "defined_denominator",
+        "right_censored",
+        "cap",
+        "undefined_reason"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "defined",
+            "undefined",
+            "not_applicable"
+          ]
+        },
+        "median": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 8
+        },
+        "q1": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 8
+        },
+        "q3": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 8
+        },
+        "defined_denominator": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 256
+        },
+        "right_censored": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 256
+        },
+        "cap": {
+          "const": 8.0
+        },
+        "undefined_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "per_dataset_rule_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dataset",
+        "decisions",
+        "deployments",
+        "violations_all_decisions",
+        "violations_deployed",
+        "safe_opportunities",
+        "retained_opportunities",
+        "deployment_interval",
+        "retention_interval",
+        "common_radius",
+        "safety_sensitivity"
+      ],
+      "properties": {
+        "dataset": {
+          "enum": [
+            "Waterbirds",
+            "CivilComments-WILDS",
+            "Bios",
+            "GaitPDB"
+          ]
+        },
+        "decisions": {
+          "const": 64
+        },
+        "deployments": {
+          "$ref": "#/$defs/fraction_64"
+        },
+        "violations_all_decisions": {
+          "$ref": "#/$defs/fraction_64"
+        },
+        "violations_deployed": {
+          "$ref": "#/$defs/fraction"
+        },
+        "safe_opportunities": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 64
+        },
+        "retained_opportunities": {
+          "$ref": "#/$defs/fraction"
+        },
+        "deployment_interval": {
+          "$ref": "#/$defs/interval"
+        },
+        "retention_interval": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/interval"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "common_radius": {
+          "$ref": "#/$defs/common_radius_summary"
+        },
+        "safety_sensitivity": {
+          "$ref": "#/$defs/per_dataset_safety_sensitivity"
+        }
+      }
+    },
+    "rule_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rule",
+        "decisions",
+        "deployments",
+        "violations_all_decisions",
+        "violations_deployed",
+        "safe_opportunities",
+        "retained_opportunities",
+        "deployment_interval",
+        "retention_interval",
+        "common_radius",
+        "seed_familywise_safety",
+        "per_dataset"
+      ],
+      "properties": {
+        "rule": {
+          "enum": [
+            "always_deploy",
+            "validation_point_selection",
+            "iid_ltt",
+            "robust_point_estimate",
+            "generic_scalar_robust_certificate",
+            "vera_fixed_profile",
+            "vera_vector_envelope",
+            "vera_common_radius",
+            "external_oracle"
+          ]
+        },
+        "decisions": {
+          "const": 256
+        },
+        "deployments": {
+          "$ref": "#/$defs/fraction_256"
+        },
+        "violations_all_decisions": {
+          "$ref": "#/$defs/fraction_256"
+        },
+        "violations_deployed": {
+          "$ref": "#/$defs/fraction"
+        },
+        "safe_opportunities": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 256
+        },
+        "retained_opportunities": {
+          "$ref": "#/$defs/fraction"
+        },
+        "deployment_interval": {
+          "$ref": "#/$defs/interval"
+        },
+        "retention_interval": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/interval"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "common_radius": {
+          "$ref": "#/$defs/common_radius_summary"
+        },
+        "seed_familywise_safety": {
+          "$ref": "#/$defs/seed_familywise_safety"
+        },
+        "per_dataset": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/per_dataset_rule_result"
+          },
+          "allOf": [
+            {
+              "contains": {
+                "properties": {
+                  "dataset": {
+                    "const": "Waterbirds"
+                  }
+                },
+                "required": [
+                  "dataset"
+                ]
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "properties": {
+                  "dataset": {
+                    "const": "CivilComments-WILDS"
+                  }
+                },
+                "required": [
+                  "dataset"
+                ]
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "properties": {
+                  "dataset": {
+                    "const": "Bios"
+                  }
+                },
+                "required": [
+                  "dataset"
+                ]
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "properties": {
+                  "dataset": {
+                    "const": "GaitPDB"
+                  }
+                },
+                "required": [
+                  "dataset"
+                ]
+              },
+              "minContains": 1,
+              "maxContains": 1
+            }
+          ]
+        }
+      }
+    },
+    "allocation_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allocation",
+        "objective",
+        "safe_retention",
+        "retention_interval",
+        "deployment_rate",
+        "safety_events",
+        "safety_decisions",
+        "continuous_integer_gap",
+        "stream_namespace",
+        "stream_manifest_sha256",
+        "limiting_contracts",
+        "solver_status",
+        "per_dataset"
+      ],
+      "properties": {
+        "allocation": {
+          "enum": [
+            "uniform",
+            "square_score",
+            "additive"
+          ]
+        },
+        "objective": {
+          "type": "number",
+          "minimum": 0
+        },
+        "safe_retention": {
+          "$ref": "#/$defs/fraction"
+        },
+        "retention_interval": {
+          "$ref": "#/$defs/interval"
+        },
+        "deployment_rate": {
+          "$ref": "#/$defs/fraction_256"
+        },
+        "safety_events": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 256
+        },
+        "safety_decisions": {
+          "const": 256
+        },
+        "continuous_integer_gap": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "stream_namespace": {
+          "type": "string",
+          "minLength": 1
+        },
+        "stream_manifest_sha256": {
+          "$ref": "#/$defs/hash"
+        },
+        "limiting_contracts": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "solver_status": {
+          "enum": [
+            "verified",
+            "not_applicable"
+          ]
+        },
+        "per_dataset": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/allocation_dataset_result"
+          },
+          "allOf": [
+            {
+              "contains": {
+                "properties": {
+                  "dataset": {
+                    "const": "Waterbirds"
+                  }
+                },
+                "required": [
+                  "dataset"
+                ]
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "properties": {
+                  "dataset": {
+                    "const": "CivilComments-WILDS"
+                  }
+                },
+                "required": [
+                  "dataset"
+                ]
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "properties": {
+                  "dataset": {
+                    "const": "Bios"
+                  }
+                },
+                "required": [
+                  "dataset"
+                ]
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "properties": {
+                  "dataset": {
+                    "const": "GaitPDB"
+                  }
+                },
+                "required": [
+                  "dataset"
+                ]
+              },
+              "minContains": 1,
+              "maxContains": 1
+            }
+          ]
+        }
+      }
+    },
+    "allocation_dataset_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dataset",
+        "objective",
+        "safe_retention",
+        "deployment_rate",
+        "safety_events",
+        "safety_decisions"
+      ],
+      "properties": {
+        "dataset": {
+          "enum": [
+            "Waterbirds",
+            "CivilComments-WILDS",
+            "Bios",
+            "GaitPDB"
+          ]
+        },
+        "objective": {
+          "type": "number",
+          "minimum": 0
+        },
+        "safe_retention": {
+          "$ref": "#/$defs/fraction"
+        },
+        "deployment_rate": {
+          "$ref": "#/$defs/fraction_64"
+        },
+        "safety_events": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 64
+        },
+        "safety_decisions": {
+          "const": 64
+        }
+      }
+    },
+    "allocation_contrast": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contrast",
+        "positive_seed_differences",
+        "negative_seed_differences",
+        "ties",
+        "nonzero_denominator",
+        "raw_p_value",
+        "holm_adjusted_p_value",
+        "median_paired_difference",
+        "independent_unit"
+      ],
+      "properties": {
+        "contrast": {
+          "enum": [
+            "additive_vs_uniform",
+            "additive_vs_square_score"
+          ]
+        },
+        "positive_seed_differences": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 64
+        },
+        "negative_seed_differences": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 64
+        },
+        "ties": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 64
+        },
+        "nonzero_denominator": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 64
+        },
+        "raw_p_value": {
+          "$ref": "#/$defs/probability"
+        },
+        "holm_adjusted_p_value": {
+          "$ref": "#/$defs/probability"
+        },
+        "median_paired_difference": {
+          "type": "number"
+        },
+        "independent_unit": {
+          "const": "whole_seed_four_dataset_cluster"
+        }
+      }
+    },
+    "evidence_dataset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dataset",
+        "cells",
+        "continuous_total_summary",
+        "integer_total_summary",
+        "operational_top_up_summary",
+        "record_count",
+        "records_sha256",
+        "no_positive_margin_records",
+        "right_censored_records"
+      ],
+      "properties": {
+        "dataset": {
+          "enum": [
+            "Waterbirds",
+            "CivilComments-WILDS",
+            "Bios",
+            "GaitPDB"
+          ]
+        },
+        "cells": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/evidence_cell"
+          }
+        },
+        "continuous_total_summary": {
+          "$ref": "#/$defs/nonnegative_summary"
+        },
+        "integer_total_summary": {
+          "$ref": "#/$defs/nonnegative_summary"
+        },
+        "operational_top_up_summary": {
+          "$ref": "#/$defs/nonnegative_summary"
+        },
+        "record_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "records_sha256": {
+          "$ref": "#/$defs/hash"
+        },
+        "no_positive_margin_records": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "right_censored_records": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "nonnegative_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "count",
+        "minimum",
+        "q1",
+        "median",
+        "q3",
+        "maximum"
+      ],
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "minimum": {
+          "type": "number",
+          "minimum": 0
+        },
+        "q1": {
+          "type": "number",
+          "minimum": 0
+        },
+        "median": {
+          "type": "number",
+          "minimum": 0
+        },
+        "q3": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maximum": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "evidence_cell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cell_key",
+        "cell_type",
+        "provenance_label",
+        "gamma",
+        "current_budget",
+        "current_count",
+        "recommended_count",
+        "top_up",
+        "contracts",
+        "normalized_slack",
+        "receives_next_observation",
+        "driver",
+        "no_positive_margin"
+      ],
+      "properties": {
+        "cell_key": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cell_type": {
+          "enum": [
+            "target_environment",
+            "source_class"
+          ]
+        },
+        "provenance_label": {
+          "enum": [
+            "design_fold_planning",
+            "oracle_only"
+          ]
+        },
+        "gamma": {
+          "enum": [
+            1.1,
+            1.25,
+            1.5
+          ]
+        },
+        "current_budget": {
+          "enum": [
+            1000,
+            2000,
+            4000,
+            8000
+          ]
+        },
+        "current_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "recommended_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "top_up": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "contracts": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "normalized_slack": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "receives_next_observation": {
+          "type": "boolean"
+        },
+        "driver": {
+          "enum": [
+            "target_harm",
+            "attacker",
+            "source_class",
+            "multiplicity",
+            "declared_shift",
+            "registered_floor",
+            "mixed",
+            "no_positive_margin"
+          ]
+        },
+        "no_positive_margin": {
+          "type": "boolean"
+        }
+      }
+    },
+    "reason_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "reason_code"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason_code": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "point_35_128": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/fraction"
+        },
+        {
+          "properties": {
+            "numerator": {
+              "const": 35
+            },
+            "denominator": {
+              "const": 128
+            }
+          }
+        }
+      ]
+    },
+    "point_1_128": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/fraction"
+        },
+        {
+          "properties": {
+            "numerator": {
+              "const": 1
+            },
+            "denominator": {
+              "const": 128
+            }
+          }
+        }
+      ]
+    },
+    "point_52_102": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/fraction"
+        },
+        {
+          "properties": {
+            "numerator": {
+              "const": 52
+            },
+            "denominator": {
+              "const": 102
+            }
+          }
+        }
+      ]
+    },
+    "gait_5_32": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "violations",
+        "decisions",
+        "registered_floor",
+        "status"
+      ],
+      "properties": {
+        "violations": {
+          "const": 5
+        },
+        "decisions": {
+          "const": 32
+        },
+        "registered_floor": {
+          "const": 0.2
+        },
+        "status": {
+          "const": "fail"
+        }
+      }
+    }
+  }
+}

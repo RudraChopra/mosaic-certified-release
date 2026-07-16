@@ -1,16 +1,27 @@
-# VERA: Verified Erasure under Reweighting Ambiguity
+# VERA: Evidence-Efficient Certification of Representation Edits Under Deployment Shift
 
 VERA is a shift-aware decision layer for representation editing. Given a
-registered frontier of edits, it lower-certifies the largest bounded
-density-ratio shift under which one edit simultaneously satisfies paired target
-harm and post-edit leakage contracts. VERA returns `ABSTAIN` when even the IID
-contract cannot be certified or when deployment includes an environment absent
-from certification.
+registered frontier of edits, it certifies a supported vector of bounded
+density-ratio shifts under which one edit simultaneously satisfies paired
+target-harm and post-edit leakage contracts. It also reports a conservative
+common shift radius and prospectively allocates certification evidence toward
+limiting supported cells. VERA returns `ABSTAIN` when even the IID contract
+cannot be certified or when deployment requires support absent from
+certification.
 
 The finite-candidate selection mechanism follows Learn Then Test and related
 risk-control work; it is not claimed as new. The proposed object is the paired,
-multi-attacker **support-aware erasure shift envelope**, its common-radius
-summary, and its support-mismatch boundary.
+multi-attacker **support-aware edit shift envelope**, its common-radius summary,
+its prospective additive multi-cell evidence-allocation rule, and its
+support-mismatch boundary. The locked controlled primary uses the earlier
+square-score allocator; a separately frozen prospective extension evaluates the
+full additive allocator without replacing a primary gate.
+The formal leakage guarantee covers only the registered attacker portfolio;
+the acronym is intentionally left unexpanded, and the method does not claim
+universal concept removal.
+Some immutable early preregistrations retain the retired record label
+`Verified Erasure under Reweighting Ambiguity`. That historical label is not
+the current title, acronym expansion, or scientific claim.
 
 OpenAI Codex assisted extensively with research ideation, literature discovery,
 theorem and proof drafting, implementation, experiment orchestration,
@@ -29,7 +40,14 @@ Included:
   `research/prereg_exact_family_grid.json`
 - The locked disjoint-seed independent stress replication in
   `research/prereg_independent_stress_replication.json`
+- The prospective 64-seed controlled supported-shift lock in
+  `research/prereg_controlled_shift.json`, with its separately committed
+  SHA-256 sidecar, preregistered cap-8 analysis contract, independent cap-8
+  replay requirement, and byte-unchanged cap-4 implementation sensitivity
 - The shift-aware theory and manuscript material under `research/maintrack/`
+- One shared cross-venue scientific record, result-manifest schema, and
+  section-level claim map under `research/maintrack/`; venue-specific formats
+  remain conditional on their verified official materials and policies
 - Official-code adapters, analysis, and fail-closed audits under
   `research/scripts/`
 - Per-run JSON receipts and small verification artifacts under
@@ -82,8 +100,9 @@ python research/scripts/audit_goal_completion.py --no-fail
 The five claim-grade eraser families are INLP, R-LACE, LEACE, TaCo, and MANCE++.
 The real study spans Waterbirds, Camelyon17-WILDS, CivilComments-WILDS, Bios,
 and GaitPDB. Seeds 0--4 are disclosed pilot evidence; the locked 200-run
-confirmation uses untouched seeds 5--12, and the independent stress replication
-uses disjoint seeds 13--44. Large third-party datasets, frozen
+confirmation uses untouched seeds 5--12, the independent stress replication
+uses disjoint seeds 13--44, and the prospective controlled-shift study uses
+fresh seeds 45--108. Large third-party datasets, frozen
 embedding stores, generated audit arrays, and local environments are
 intentionally kept off GitHub; their hashes and compact receipts remain
 auditable here.
@@ -92,3 +111,7 @@ This repository does not claim that conference acceptance is guaranteed. The
 completion audit remains fail-closed until every empirical, presentation, and
 human-review gate has evidence. Every listed human author must also complete
 `research/maintrack/HUMAN_AUTHOR_VERIFICATION_GATE.md` before submission.
+
+The authoritative current status is
+`research/maintrack/GOAL_1_58_STATUS.md`. Older generated readiness artifacts
+describe earlier source states and cannot override that tracker.

@@ -1,10 +1,15 @@
-# VERA: Verified Erasure under Reweighting Ambiguity
+# VERA: Evidence-Efficient Certification of Representation Edits Under Deployment Shift
 
-This repository contains the reproducibility-safe public release for VERA,
+This repository contains the reproducibility record for VERA,
 a shift-aware decision layer for representation editing. It certifies paired
 target-harm and retrained-attacker leakage contracts under a declared
 support-aware reweighting envelope, or returns abstention when the evidence does
 not support deployment.
+
+VERA is a project name, not an acronym or a claim of universal concept erasure.
+Some hash-locked early preregistrations retain a retired expansion; those
+historical record labels are preserved only to keep their registration hashes
+verifiable.
 
 Included:
 

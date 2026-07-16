@@ -6,27 +6,31 @@ evidence of novelty, scientific importance, or acceptance probability.
 
 The claim-grade study has a preregistered scientific ledger. In particular:
 
-- Seeds 0-4 became exploratory when they informed protocol design. The locked
-  claim-grade matrix therefore uses untouched seeds 5-12.
+- Seeds 0-4 became exploratory when they informed protocol design. The original
+  balanced matrix uses seeds 5-12, the disjoint IID replication uses seeds
+  13--44, and the controlled supported-shift study uses seeds 45--108.
 - Configuration-level McNemar tests reuse seeds, threshold families, and
   nested validation samples. The claim-grade test is instead an exact
   seed-blocked sign-flip test with Holm correction; McNemar is descriptive.
 - A 20% naive failure rate is required in at least one prespecified supported
   dataset/threshold regime. Confirmatory outcomes cannot be changed to
   manufacture that result.
+- Seeds 13--44 are the completed disjoint IID replication. Seeds 45--108 are
+  the separately locked controlled supported-shift study and are analyzed only
+  at its preregistered profiles, budgets, and seed-cluster endpoints.
 
 `audit_goal_completion.py` reports every scientific, presentation, submission,
 and human gate independently.
 
 ## Scientific Contribution
 
-VERA means Verified Erasure under Reweighting Ambiguity. Given identity and
-edited representations for the same examples, VERA certifies the incremental
+VERA is submission-facing shorthand, not a universal-erasure claim. Given
+identity and edited representations for the same examples, VERA certifies the incremental
 target harm and post-edit sensitive leakage over a declared deployment-shift
 class. Its primary class is all distributions with a bounded density ratio
-relative to validation. Annotated worst-group mixtures are a corollary. VERA
-returns the largest jointly certifiable reweighting radius for each edit and
-`ABSTAIN` when even the IID contract cannot be established.
+relative to the certification reference law. Annotated worst-group mixtures are a corollary. VERA
+returns a support-aware vector envelope, its common-radius summary and limiting
+dimensions, or `ABSTAIN` when the declared profile cannot be established.
 
 The finite-candidate testing layer is explicitly attributed to Learn Then Test
 and related risk-control work. It is not claimed as novel.
@@ -41,13 +45,17 @@ and related risk-control work. It is not claimed as novel.
   certificate is observed.
 - Derive worst-group mixture certification as a corollary.
 - Prove support-mismatch impossibility with a two-world or Le Cam argument.
+- Derive a sufficient evidence bound, a minimax prospective cell allocation,
+  an additive multi-cell extension for balanced leakage, an exact-KL
+  independent-cell lower bound, and locally matching shift--margin scaling in
+  compact interior regimes.
 - Derive false-acceptance control at level `delta`.
 - Validate coverage for every tested `(n, m, attackers, shift cap, delta)` cell.
 - Hash and commit `prereg.json` before claim-grade certification runs.
 
 ## Gate 2: Theory Matched By Data
 
-- Run 2,000 synthetic replicates at six validation sizes, three delta levels,
+- Run 2,000 synthetic replicates at six certification sizes, three delta levels,
   and three shift budgets (54 cells).
 - Run and independently replay a 216-cell extension over candidate-family and
   validated-environment counts.
@@ -68,6 +76,9 @@ and related risk-control work. It is not claimed as novel.
 - Require VERA false acceptance at or below `delta` in every claim-grade cell.
 - Report exact paired McNemar tests with Holm correction and discordant counts.
 - Quantify deployment retention relative to the oracle with intervals.
+- Separately compare nine matched deployment rules on 64 fresh seeds under
+  exact supported laws at `Gamma=1.1`; require the locked paired, safety,
+  usefulness, and vector-advantage gates without substituting secondary results.
 
 ## Gate 4: Zero-Proxy Baselines
 
@@ -77,6 +88,8 @@ and related risk-control work. It is not claimed as novel.
   within each dataset.
 - Emit one JSON receipt per run.
 - Fail table generation if any cell lacks a receipt or uses proxy code.
+- Repeat the zero-proxy receipt requirement for all 1,280 controlled-shift
+  dataset--eraser--seed runs.
 
 ## Gate 5: Abstract Number
 
@@ -87,8 +100,9 @@ and related risk-control work. It is not claimed as novel.
 
 ## Gate 6: Presentation
 
-- Figure 1 must teach the method in three panels: paired edit harm under
-  reweighting, the certified shift radius versus abstention, and a real receipt.
+- Figure 1 must teach the method in three panels: paired harm and fresh
+  attackers, fixed-profile curves and the vector/common envelope, and
+  certification versus abstention at a real support boundary.
 - Use vector, colorblind-safe figures readable at 50% zoom.
 - Fill the venue's permitted content pages without formatting hacks.
 - Include at least 40 verified references spanning erasure, risk control,
@@ -99,11 +113,14 @@ and related risk-control work. It is not claimed as novel.
 
 ## Gate 7: External Adversarial Review
 
-- Obtain two completed cold reviews from researchers who publish in machine
-  learning.
+- Obtain four role-specific cold reviews from researchers who publish in
+  machine learning, followed by a fifth previously unused post-revision
+  reviewer.
 - Record every critical and major finding in `review_response_ledger.md`.
 - Fix or rebut each finding in the paper itself.
-- Require both reviewers to agree that LTT overlap is explicitly addressed.
+- Require every reviewer to address LTT and Prompt Risk Control overlap; at
+  least three must score weak accept or better and at least two accept or
+  better, with no fatal correctness finding.
 
 ## Submission Machinery
 
