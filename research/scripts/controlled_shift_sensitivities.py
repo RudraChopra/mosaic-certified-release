@@ -47,6 +47,18 @@ THRESHOLDS = {
 }
 
 
+def configure_from_replay(replay: Mapping[str, Any]) -> None:
+    global SEEDS, PRIMARY_GAMMA, PRIMARY_BUDGET, PRIMARY_ALLOCATION
+    if "fresh_seeds" in replay:
+        SEEDS = tuple(int(seed) for seed in replay["fresh_seeds"])
+    setting = replay.get("primary_setting", {})
+    if isinstance(setting, dict) and setting:
+        PRIMARY_GAMMA = float(setting.get("requested_gamma", PRIMARY_GAMMA))
+        PRIMARY_BUDGET = int(setting.get("total_budget", PRIMARY_BUDGET))
+        PRIMARY_ALLOCATION = str(setting.get("allocation", PRIMARY_ALLOCATION))
+    bootstrap_indices.cache_clear()
+
+
 def sha256(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:
@@ -974,6 +986,7 @@ def validate_report(
 
 
 def analyze(replay: Mapping[str, Any]) -> dict[str, Any]:
+    configure_from_replay(replay)
     rows = primary_rows(replay)
     details = primary_details(replay)
     rule_results, safety = build_rule_results(rows)

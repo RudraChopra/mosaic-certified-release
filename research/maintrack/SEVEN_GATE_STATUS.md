@@ -79,7 +79,11 @@ A separately frozen supporting stress compares always deploy, validation point
 selection, and VERA across three exact contract severities. At the registered
 contract, naive rules show severe failures and VERA has 0.0% measured
 violations in every stress cell, but the stress headline is ineligible because
-registered usefulness failed.
+registered usefulness failed. An independent follow-up protocol is now locked
+on seeds 109--172, with the primary budget increased to the previously
+registered 8,000-observation sensitivity setting. That follow-up cannot rescue
+or replace the failed first primary; it may only become a separately reported
+post-failure confirmation if its own sealed run passes.
 
 Authoritative evidence after completion:
 
@@ -91,6 +95,8 @@ Authoritative evidence after completion:
   registered sensitivity analyses
 - `THREE_RULE_THRESHOLD_STRESS_SPEC.md` and its complete 36-cell result
 - `CONTROLLED_SHIFT_RESULT_SUMMARY.json`
+- `prereg_controlled_shift_followup.json` and its SHA-256 sidecar for the
+  pending post-failure follow-up
 
 ## Gate 4: Official Baselines and Cross-Modal Coverage
 

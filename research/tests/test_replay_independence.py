@@ -38,6 +38,10 @@ def main() -> None:
     report = audit_source(replay, FORBIDDEN)
     assert report["passed"], report["errors"]
     print("PASS isolated replay source")
+    followup = ROOT / "research" / "scripts" / "independent_replay_followup.py"
+    report = audit_source(followup, FORBIDDEN)
+    assert report["passed"], report["errors"]
+    print("PASS isolated follow-up replay source")
     rejected(
         "import analyze_controlled_shift_confirmatory\n",
         "forbidden import",
