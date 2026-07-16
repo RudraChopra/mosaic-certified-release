@@ -165,13 +165,15 @@ metric is displayed.
 
 | 2026-07-15 18:55:43 PDT | The full repository `research/tests/test_*.py` loop passed with the required Homebrew expat library path and repository script/test Python paths, and `git diff --check` passed after the ledger update. No candidate metric, deployment decision, risk, radius, violation rate, retention value, gate result, or aggregate scientific outcome was viewed. | No |
 
-## Pending First Outcome Access
+| 2026-07-15 21:28:45 PDT | The sealed controlled-shift analysis rerun completed at source commit `a9623c9a596035f02107f69ab4c0db04529562e4`; its manifest is `/Volumes/Backups/FARO/artifacts/vera_controlled_shift_sealed_20260715_1856/seal_manifest.json` with SHA-256 `37598834868f85c8d2ea142d41ef7cce02228f81c3acc791a370ffff7ee4d88a`, and the runner reported `scientific_values_printed=false`. The first permitted aggregate scientific outcome access was performed by the committed comparator command `research/scripts/compare_three_way.py --replay /Volumes/Backups/FARO/artifacts/vera_controlled_shift_sealed_20260715_1856/independent_cap8_replay.json --cap8 /Volumes/Backups/FARO/artifacts/vera_controlled_shift_sealed_20260715_1856/protocol_cap8_analyzer.json --cap4 /Volumes/Backups/FARO/artifacts/vera_controlled_shift_sealed_20260715_1856/locked_cap4_analyzer.json --output /Volumes/Backups/FARO/artifacts/vera_controlled_shift_sealed_20260715_1856/first_read_three_way_comparison.json`. Comparator source SHA-256 was `11c3fd140c1d5f4064b03e1316a5d69ad2362e733b42a72882b9a01c95c0ea81`; input SHA-256 values were replay `f592da68a64a350b7516f21809cd34bb20250a34b7fe5eeb32b8660784820f35`, protocol cap-8 `885b33df2cf461844e8f27c48e5a70755797b8c0e9aad0713676bbd205e1be78`, and locked cap-4 `61fe1e9ed4fe5ddba6a9fef468465cad2e949de3931178a2ce28e4a319747473`; the comparison report SHA-256 was `2be84fe0bfb85f2c3d5cb23892576745fcd695104a2fb01ff72373676ca28b9d`. The comparator passed with zero cap-8 mismatches and zero disallowed cap-4 differences. | Yes |
 
-The first aggregate scientific outcome access must occur only after all 1,280
+## Completed First Outcome Access
+
+The first aggregate scientific outcome access occurred only after all 1,280
 receipts exist, the full receipt audit passes, every outcome-blind
 interpretation and analysis implementation is committed, pushed, and hash
 verified, and the independent cap-8 replay, protocol-compliant cap-8 analyzer,
 and unchanged cap-4 sensitivity have generated sealed, hashed outputs without
 printing scientific values. The committed three-way comparator must perform
-the first permitted read. Record that time, command, source/input/output hashes,
-and comparison-report hash here when it occurs.
+the first permitted read. The time, command, source/input/output hashes,
+and comparison-report hash are recorded above.
