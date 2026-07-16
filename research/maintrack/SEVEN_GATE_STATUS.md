@@ -64,24 +64,22 @@ Authoritative evidence:
 
 ## Gate 3: Deployment-Rule Experiment
 
-**Status: RUNNING, OUTCOME BLIND.** The locked 1,280-run matrix compares nine
-matched deployment rules on the same candidate edits, including always deploy,
-validation point selection, IID LTT, robust point selection, scalar robust
-certification, VERA, common radius, and the exact shifted-law opportunity
-oracle. Its four primary
-gates are immutable. No secondary result may replace a failed primary gate.
-Static pre-outcome review found an envelope-cap implementation mismatch (locked
-analyzer 4 versus preregistered 8). Receipt generation is unaffected. Cap 8 is
-frozen as protocol authority, cap 4 remains a required disclosed sensitivity,
-and two independent cap-8 paths must agree before this gate can pass.
-The independent path must also preserve full coupled-envelope curve statistics
-and distinguish coordinate intercepts from common-radius limiting contracts.
+**Status: FAILED PRIMARY USEFULNESS GATE.** The locked 1,280-run matrix compares
+nine matched deployment rules on the same candidate edits, including always
+deploy, validation point selection, IID LTT, robust point selection, scalar
+robust certification, VERA, common radius, and the exact shifted-law
+opportunity oracle. The matrix completed, the strict receipt audit passed, the
+protocol-compliant cap-8 analyzer and independent cap-8 replay agreed exactly,
+and the unchanged cap-4 sensitivity had zero disallowed differences. The
+primary result is mixed: VERA vector had 0/38 deployed shifted-contract
+violations and passed safety, paired-reduction, and vector/common gates, but
+safe retention was 38/187 with a 95% lower bound of 15.1%, below the registered
+20% usefulness gate. No secondary result may replace this failed primary gate.
 A separately frozen supporting stress compares always deploy, validation point
-selection, and VERA across three exact contract severities. It requires both
-naive rules to reach 20% violations somewhere at the registered contract, VERA
-to remain at or below 5% in every dataset--severity cell, and registered safety
-and usefulness to pass. It cannot change a primary gate and must be reported as
-a negative result if it fails.
+selection, and VERA across three exact contract severities. At the registered
+contract, naive rules show severe failures and VERA has 0.0% measured
+violations in every stress cell, but the stress headline is ineligible because
+registered usefulness failed.
 
 Authoritative evidence after completion:
 
@@ -92,14 +90,17 @@ Authoritative evidence after completion:
 - unchanged cap-4 sensitivity output, three-way comparison report, and
   registered sensitivity analyses
 - `THREE_RULE_THRESHOLD_STRESS_SPEC.md` and its complete 36-cell result
+- `CONTROLLED_SHIFT_RESULT_SUMMARY.json`
 
 ## Gate 4: Official Baselines and Cross-Modal Coverage
 
-**Status: RUNNING.** The prior five-dataset studies have 1,000 audited official
-method receipts across INLP, R-LACE, LEACE, TaCo, and MANCE++. The controlled
-supported-shift matrix is still running on Waterbirds, CivilComments, Bios, and
-GaitPDB; Camelyon17 remains the separate unseen-support impossibility study. This
-gate passes only after all 1,280 new receipts pass the full provenance audit.
+**Status: PASS FOR COVERAGE, FAIL FOR PRIMARY READINESS.** The prior
+five-dataset studies have 1,000 audited official method receipts across INLP,
+R-LACE, LEACE, TaCo, and MANCE++. The controlled supported-shift matrix
+completed on Waterbirds, CivilComments, Bios, and GaitPDB with 1,280 additional
+official-method receipts and 3,072 closed audit-array archives. Camelyon17
+remains the separate unseen-support impossibility study. Coverage is no longer
+the blocker; the failed primary usefulness gate is.
 
 Authoritative evidence:
 
@@ -111,14 +112,13 @@ Authoritative evidence:
 
 ## Gate 5: One Memorable Receipted Number
 
-**Status: PENDING OUTCOME ACCESS.** The final abstract sentence must report naive
-contract violation, VERA false acceptance, and retained certifiable opportunity
-directly from audited receipts. If the controlled primary gates fail, the
-abstract must lead with the theory and the failure or forced-abstention result;
-it may not substitute a favorable secondary profile.
-The three-rule sentence is additionally forbidden unless the frozen threshold-
-stress supporting condition passes at the registered contract without a
-supplementary-severity rescue.
+**Status: FAIL AS HEADLINE, PASS AS DISCLOSURE.** The final abstract sentence
+now reports the audited controlled result directly: validation selection
+violated 19/186 deployed decisions, VERA vector deployed 38 edits with zero
+shifted-contract violations, and the overall primary result failed because the
+safe-retention lower bound was 15.1% rather than at least 20%. The favorable
+threshold-stress sentence is forbidden as a headline because the registered
+usefulness gate failed.
 
 Authoritative evidence:
 
@@ -129,20 +129,15 @@ Authoritative evidence:
 
 ## Gate 6: Main-Track Presentation
 
-**Status: PENDING FINAL RESULTS AND FORMAT CHECKS.** The manuscript is a full
-draft with a dedicated related-work section, more than 40 active references,
-one deterministic three-panel teaching figure included identically in all
-three venue sources, one planned main result table, explicit constants, and
-named and anonymous wrappers. It still requires result insertion, exact page
-fit, clean compilation, visual inspection, archive anonymization, and official
-venue-policy checks. The working AAAI sources are modular and still require the
-official-kit-compliant single-TeX finalization gate. Outcome-blind ICLR and
-NeurIPS scientific-content bodies now exist and pass neutral syntax builds, but
-they still require shared controlled results, result-dependent supplement
-sections, the result figure and table, review, and exact formatting after their official
-2027 materials exist. The shared supplement core passes a neutral syntax build
-and visual inspection; that is not an official-format pass. All three are bound
-to the strict V2 result schema and one section-level claim map.
+**Status: NOT MAIN-TRACK READY.** The manuscript is a full draft with a
+dedicated related-work section, more than 40 active references, the teaching
+figure, controlled result table, controlled budget figure, explicit constants,
+and named and anonymous wrappers. Controlled results are inserted and the final
+three-source audit passes. It still requires exact page fit, pdfTeX
+compilation, rendered inspection, archive anonymization, official venue-policy
+checks, and human/external review. More importantly, the registered primary
+usefulness gate failed, so presentation polish cannot make this an AAAI/ICLR/
+NeurIPS main-ready success without new independent evidence.
 
 Authoritative evidence:
 

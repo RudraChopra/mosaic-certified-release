@@ -2,7 +2,7 @@
 
 ## Identity
 
-**VERA: Evidence-Efficient Certification of Representation Edits Under Deployment Shift**
+**VERA: Support-Aware Certification of Representation Edits Under Deployment Shift**
 
 VERA is a general machine-learning method for deciding whether a proposed
 representation edit remains acceptable under a declared deployment shift. It is

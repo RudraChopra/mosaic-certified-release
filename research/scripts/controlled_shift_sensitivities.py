@@ -542,6 +542,17 @@ def leakage_upper(
     )
 
 
+def profile_lookup(profile: Mapping[str, float], curve_key: str) -> float:
+    if curve_key in profile:
+        return float(profile[curve_key])
+    prefix = "target::environment="
+    if curve_key.startswith(prefix):
+        environment = curve_key.removeprefix(prefix)
+        if environment in profile:
+            return float(profile[environment])
+    raise KeyError(curve_key)
+
+
 def vector_eligible(
     candidate: Mapping[str, Any], target_threshold: float, leakage_threshold: float
 ) -> bool:
@@ -551,7 +562,7 @@ def vector_eligible(
         if key.startswith("balanced_leakage::"):
             if leakage_upper(curve, source_profile) > leakage_threshold:
                 return False
-        elif target_upper(curve, float(target_profile[key])) > target_threshold:
+        elif target_upper(curve, profile_lookup(target_profile, key)) > target_threshold:
             return False
     return True
 

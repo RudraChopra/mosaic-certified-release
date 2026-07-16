@@ -1,17 +1,21 @@
-\begin{table}[t]
+\begin{table*}[t]
 \centering
 \small
-\begin{tabular}{@{}lrrr@{}}
+\begin{tabular}{@{}lrrrr@{}}
 \toprule
-Rule & Deploy & Viol./estimable & Conditional \\
+Rule & Deployments & Viol./deployed & Safe retention & Median radius \\
 \midrule
-Always deploy & 100.0\% & 166/288 (57.6\%) & 57.6\% \\
-Point selection & 45.8\% & 14/288 (4.9\%) & 9.9\% \\
-VERA-IUT & 12.5\% & 0/288 (0.0\%) & 0.0\% \\
-VERA envelope & 10.0\% & 0/288 (0.0\%) & 0.0\% \\
-External oracle & 40.6\% & 0/288 (0.0\%) & 0.0\% \\
+Always deploy & 256/256 (100.0\%) & 126/256 (49.2\%) & 130/187 (69.5\%) & NA \\
+Validation selection & 186/256 (72.7\%) & 19/186 (10.2\%) & 167/187 (89.3\%) & NA \\
+IID LTT & 87/256 (34.0\%) & 0/87 (0.0\%) & 87/187 (46.5\%) & NA \\
+Robust point estimate & 94/256 (36.7\%) & 1/94 (1.1\%) & 93/187 (49.7\%) & NA \\
+Scalar robust certificate & 245/256 (95.7\%) & 125/245 (51.0\%) & 120/187 (64.2\%) & NA \\
+VERA fixed profile & 48/256 (18.8\%) & 0/48 (0.0\%) & 48/187 (25.7\%) & 1.03 \\
+VERA vector envelope & 38/256 (14.8\%) & 0/38 (0.0\%) & 38/187 (20.3\%) & 1.03 \\
+VERA common radius & 6/256 (2.3\%) & 0/6 (0.0\%) & 6/187 (3.2\%) & 1.12 \\
+External oracle & 187/256 (73.0\%) & 0/187 (0.0\%) & 187/187 (100.0\%) & NA \\
 \bottomrule
 \end{tabular}
-\caption{Earlier balanced full-certification results over all nine locked threshold pairs and seeds 5--12. These are design evidence, not outcomes from the prospective 64-seed controlled-shift study. Violation rates include abstentions in the denominator; the conditional column is descriptive. Camelyon17 external balanced leakage is non-estimable and excluded from measured-violation denominators.}
-\label{tab:main-rules}
-\end{table}
+\caption{Primary controlled-shift results at $\Gamma=1.1$, budget 4,000, and targeted allocation with a 15\% evidence floor. Safe retention is retained oracle-safe opportunities over all oracle-safe opportunities. The primary result is mixed: VERA has zero deployed violations, but the preregistered usefulness lower bound is below the 20\% gate.}
+\label{tab:controlled-main}
+\end{table*}

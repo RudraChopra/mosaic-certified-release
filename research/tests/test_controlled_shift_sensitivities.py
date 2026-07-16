@@ -40,7 +40,7 @@ def candidate(dataset: str, seed: int, key: str) -> dict:
         "requested_target_profile": {"0": 1.1},
         "requested_source_profile": {"0": 1.1, "1": 1.1},
         "curve_parameters": {
-            "0": {
+            "target::environment=0": {
                 "positive_probability_upper": 0.01,
                 "negative_probability_lower": 0.10,
             },

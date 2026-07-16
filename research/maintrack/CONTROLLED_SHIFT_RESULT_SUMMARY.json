@@ -1,0 +1,3097 @@
+{
+  "analysis_status": "complete_primary_mixed",
+  "budget_sensitivity_gamma_1_1": [
+    {
+      "allocation": "targeted_floor_0.15",
+      "budget": 1000,
+      "common": {
+        "deploy": 0,
+        "oracle": 187,
+        "safe": 0,
+        "viol": 0
+      },
+      "vector": {
+        "deploy": 4,
+        "oracle": 187,
+        "safe": 4,
+        "viol": 0
+      }
+    },
+    {
+      "allocation": "targeted_floor_0.15",
+      "budget": 2000,
+      "common": {
+        "deploy": 3,
+        "oracle": 187,
+        "safe": 3,
+        "viol": 0
+      },
+      "vector": {
+        "deploy": 18,
+        "oracle": 187,
+        "safe": 18,
+        "viol": 0
+      }
+    },
+    {
+      "allocation": "targeted_floor_0.15",
+      "budget": 4000,
+      "common": {
+        "deploy": 6,
+        "oracle": 187,
+        "safe": 6,
+        "viol": 0
+      },
+      "vector": {
+        "deploy": 38,
+        "oracle": 187,
+        "safe": 38,
+        "viol": 0
+      }
+    },
+    {
+      "allocation": "targeted_floor_0.15",
+      "budget": 8000,
+      "common": {
+        "deploy": 19,
+        "oracle": 187,
+        "safe": 19,
+        "viol": 0
+      },
+      "vector": {
+        "deploy": 49,
+        "oracle": 187,
+        "safe": 49,
+        "viol": 0
+      }
+    },
+    {
+      "allocation": "uniform",
+      "budget": 1000,
+      "common": {
+        "deploy": 0,
+        "oracle": 187,
+        "safe": 0,
+        "viol": 0
+      },
+      "vector": {
+        "deploy": 1,
+        "oracle": 187,
+        "safe": 1,
+        "viol": 0
+      }
+    },
+    {
+      "allocation": "uniform",
+      "budget": 2000,
+      "common": {
+        "deploy": 2,
+        "oracle": 187,
+        "safe": 2,
+        "viol": 0
+      },
+      "vector": {
+        "deploy": 8,
+        "oracle": 187,
+        "safe": 8,
+        "viol": 0
+      }
+    },
+    {
+      "allocation": "uniform",
+      "budget": 4000,
+      "common": {
+        "deploy": 6,
+        "oracle": 187,
+        "safe": 6,
+        "viol": 0
+      },
+      "vector": {
+        "deploy": 35,
+        "oracle": 187,
+        "safe": 35,
+        "viol": 0
+      }
+    },
+    {
+      "allocation": "uniform",
+      "budget": 8000,
+      "common": {
+        "deploy": 16,
+        "oracle": 187,
+        "safe": 16,
+        "viol": 0
+      },
+      "vector": {
+        "deploy": 51,
+        "oracle": 187,
+        "safe": 51,
+        "viol": 0
+      }
+    }
+  ],
+  "cap8_sha256": "885b33df2cf461844e8f27c48e5a70755797b8c0e9aad0713676bbd205e1be78",
+  "comparison_sha256": "2be84fe0bfb85f2c3d5cb23892576745fcd695104a2fb01ff72373676ca28b9d",
+  "failed_primary_gates": [
+    "usefulness"
+  ],
+  "name": "VERA controlled-shift paper summary",
+  "overall_confirmatory_success": false,
+  "primary_inference": {
+    "common_limiting_contract_counts": {
+      "balanced_leakage::forest": 1,
+      "balanced_leakage::linear": 2,
+      "balanced_leakage::mlp": 2,
+      "balanced_leakage::rbf": 5,
+      "target::environment=0": 27,
+      "target::environment=1": 1
+    },
+    "common_radius_distribution_on_vector_deployments": {
+      "count": 38,
+      "maximum": 1.1816329956054688,
+      "median": 1.0304412841796875,
+      "minimum": 1.0010147094726562
+    },
+    "effect_sizes": {
+      "confidence_intervals_95": {
+        "absolute_violation_reduction": [
+          0.046875,
+          0.10546875
+        ],
+        "common_safe_retention": [
+          0.010526315789473684,
+          0.0582010582010582
+        ],
+        "point_deployment_rate": [
+          0.6796875,
+          0.7734375
+        ],
+        "point_violation_rate": [
+          0.046875,
+          0.10546875
+        ],
+        "vector_deployment_rate": [
+          0.109375,
+          0.18759765624999147
+        ],
+        "vector_safe_retention": [
+          0.15104166666666666,
+          0.2554347826086957
+        ],
+        "vector_to_common_ratio": [
+          3.5,
+          18.5
+        ],
+        "vector_violation_rate": [
+          0.0,
+          0.0
+        ]
+      },
+      "point_estimates": {
+        "absolute_violation_reduction": 0.07421875,
+        "common_safe_retention": 0.03208556149732621,
+        "point_deployment_rate": 0.7265625,
+        "point_violation_rate": 0.07421875,
+        "vector_deployment_rate": 0.1484375,
+        "vector_safe_retention": 0.20320855614973263,
+        "vector_to_common_ratio": 6.333333333333333,
+        "vector_violation_rate": 0.0
+      },
+      "random_seed": 2027071601,
+      "relative_violation_reduction": 1.0,
+      "replicates": 20000,
+      "unit": "seed cluster across all supported datasets"
+    },
+    "heldout_attacker_stress": {
+      "all_vector_deployment_count": 38,
+      "formal_guarantee": false,
+      "heldout_safe_fraction": 0.9473684210526316,
+      "heldout_violation_count": 2,
+      "portfolio_safe_deployment_count": 38
+    },
+    "limiting_coordinate_counts": {
+      "source::0": 9,
+      "target::environment=0": 27,
+      "target::environment=1": 2
+    },
+    "overall_confirmatory_success": false,
+    "paired_reduction": {
+      "adverse_seed_clusters": 0,
+      "exact_two_sided_p": 7.62939453125e-06,
+      "favorable_seed_clusters": 18,
+      "passed": true,
+      "ties": 46
+    },
+    "per_dataset_paired_effects": {
+      "Bios": {
+        "holm_adjusted_p": 1.0,
+        "point_only_violation_seeds": 1,
+        "raw_exact_p": 1.0,
+        "vector_only_violation_seeds": 0
+      },
+      "CivilComments-WILDS": {
+        "holm_adjusted_p": 0.0001220703125,
+        "point_only_violation_seeds": 16,
+        "raw_exact_p": 3.0517578125e-05,
+        "vector_only_violation_seeds": 0
+      },
+      "GaitPDB": {
+        "holm_adjusted_p": 1.0,
+        "point_only_violation_seeds": 1,
+        "raw_exact_p": 1.0,
+        "vector_only_violation_seeds": 0
+      },
+      "Waterbirds": {
+        "holm_adjusted_p": 1.0,
+        "point_only_violation_seeds": 1,
+        "raw_exact_p": 1.0,
+        "vector_only_violation_seeds": 0
+      }
+    },
+    "safety": {
+      "exact_two_sided_interval": [
+        0.0,
+        0.05600908938663656
+      ],
+      "one_sided_cp95_upper": 0.04572970233076244,
+      "passed": true,
+      "sentinel_decision_count": 64,
+      "sentinel_event_count": 0
+    },
+    "usefulness": {
+      "confidence_interval_95": [
+        0.15104166666666666,
+        0.2554347826086957
+      ],
+      "passed": false,
+      "point_estimate": 0.20320855614973263
+    },
+    "vector_advantage": {
+      "confidence_interval_95": [
+        3.5,
+        18.5
+      ],
+      "passed": true,
+      "point_ratio": 6.333333333333333,
+      "vector_deploys_when_common_abstains": 32
+    }
+  },
+  "primary_rule_results": [
+    {
+      "common_radius": {
+        "cap": 8.0,
+        "defined_denominator": 0,
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "right_censored": 0,
+        "status": "not_applicable",
+        "undefined_reason": "rule_does_not_return_vera_envelope"
+      },
+      "decisions": 256,
+      "deployment_interval": {
+        "independent_unit": "whole_seed_four_dataset_cluster",
+        "level": 0.95,
+        "lower": 1.0,
+        "method": "whole_seed_percentile_bootstrap",
+        "upper": 1.0
+      },
+      "deployments": {
+        "denominator": 256,
+        "estimate": 1.0,
+        "numerator": 256
+      },
+      "per_dataset": [
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "not_applicable",
+            "undefined_reason": "rule_does_not_return_vera_envelope"
+          },
+          "dataset": "Waterbirds",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 1.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 1.0
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 1.0,
+            "numerator": 64
+          },
+          "retained_opportunities": {
+            "denominator": 64,
+            "estimate": 0.703125,
+            "numerator": 45
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.59375,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.8125
+          },
+          "safe_opportunities": 64,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 1.0,
+            "raw_exact_threshold_p": 0.9999999999780093,
+            "simultaneous_bonferroni_cp95_upper": 0.4418444069742408,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.4045049300603701
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.296875,
+            "numerator": 19
+          },
+          "violations_deployed": {
+            "denominator": 64,
+            "estimate": 0.296875,
+            "numerator": 19
+          }
+        },
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "not_applicable",
+            "undefined_reason": "rule_does_not_return_vera_envelope"
+          },
+          "dataset": "CivilComments-WILDS",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 1.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 1.0
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 1.0,
+            "numerator": 64
+          },
+          "retained_opportunities": {
+            "denominator": 59,
+            "estimate": 0.3559322033898305,
+            "numerator": 21
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.23728813559322035,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.4827586206896552
+          },
+          "safe_opportunities": 59,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 1.0,
+            "raw_exact_threshold_p": 1.0,
+            "simultaneous_bonferroni_cp95_upper": 0.7976225973484786,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.7684860664081433
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.671875,
+            "numerator": 43
+          },
+          "violations_deployed": {
+            "denominator": 64,
+            "estimate": 0.671875,
+            "numerator": 43
+          }
+        },
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "not_applicable",
+            "undefined_reason": "rule_does_not_return_vera_envelope"
+          },
+          "dataset": "Bios",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 1.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 1.0
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 1.0,
+            "numerator": 64
+          },
+          "retained_opportunities": {
+            "denominator": 35,
+            "estimate": 1.0,
+            "numerator": 35
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 1.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 1.0
+          },
+          "safe_opportunities": 35,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 1.0,
+            "raw_exact_threshold_p": 1.0,
+            "simultaneous_bonferroni_cp95_upper": 0.5995732381374941,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.5632488461403797
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.453125,
+            "numerator": 29
+          },
+          "violations_deployed": {
+            "denominator": 64,
+            "estimate": 0.453125,
+            "numerator": 29
+          }
+        },
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "not_applicable",
+            "undefined_reason": "rule_does_not_return_vera_envelope"
+          },
+          "dataset": "GaitPDB",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 1.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 1.0
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 1.0,
+            "numerator": 64
+          },
+          "retained_opportunities": {
+            "denominator": 29,
+            "estimate": 1.0,
+            "numerator": 29
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 1.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 1.0
+          },
+          "safe_opportunities": 29,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 1.0,
+            "raw_exact_threshold_p": 1.0,
+            "simultaneous_bonferroni_cp95_upper": 0.6877005716370594,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.6536353116460533
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.546875,
+            "numerator": 35
+          },
+          "violations_deployed": {
+            "denominator": 64,
+            "estimate": 0.546875,
+            "numerator": 35
+          }
+        }
+      ],
+      "retained_opportunities": {
+        "denominator": 187,
+        "estimate": 0.6951871657754011,
+        "numerator": 130
+      },
+      "retention_interval": {
+        "independent_unit": "whole_seed_four_dataset_cluster",
+        "level": 0.95,
+        "lower": 0.6404494382022472,
+        "method": "whole_seed_percentile_bootstrap",
+        "upper": 0.7486338797814208
+      },
+      "rule": "always_deploy",
+      "safe_opportunities": 187,
+      "seed_familywise_safety": {
+        "can_change_primary_gate": false,
+        "decisions": 64,
+        "events": 60,
+        "independent_unit": "whole_seed_four_dataset_cluster",
+        "interval_method": "one_sided_clopper_pearson_alpha_0.05",
+        "one_sided_cp95_upper": 0.9783717686090432,
+        "rate": {
+          "denominator": 64,
+          "estimate": 0.9375,
+          "numerator": 60
+        }
+      },
+      "violations_all_decisions": {
+        "denominator": 256,
+        "estimate": 0.4921875,
+        "numerator": 126
+      },
+      "violations_deployed": {
+        "denominator": 256,
+        "estimate": 0.4921875,
+        "numerator": 126
+      }
+    },
+    {
+      "common_radius": {
+        "cap": 8.0,
+        "defined_denominator": 0,
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "right_censored": 0,
+        "status": "not_applicable",
+        "undefined_reason": "rule_does_not_return_vera_envelope"
+      },
+      "decisions": 256,
+      "deployment_interval": {
+        "independent_unit": "whole_seed_four_dataset_cluster",
+        "level": 0.95,
+        "lower": 0.6796875,
+        "method": "whole_seed_percentile_bootstrap",
+        "upper": 0.7734375
+      },
+      "deployments": {
+        "denominator": 256,
+        "estimate": 0.7265625,
+        "numerator": 186
+      },
+      "per_dataset": [
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "not_applicable",
+            "undefined_reason": "rule_does_not_return_vera_envelope"
+          },
+          "dataset": "Waterbirds",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 1.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 1.0
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 1.0,
+            "numerator": 64
+          },
+          "retained_opportunities": {
+            "denominator": 64,
+            "estimate": 0.984375,
+            "numerator": 63
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.953125,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 1.0
+          },
+          "safe_opportunities": 64,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.6556849588468694,
+            "raw_exact_threshold_p": 0.16392123971171735,
+            "simultaneous_bonferroni_cp95_upper": 0.095611957618952,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.07198975489470939
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.015625,
+            "numerator": 1
+          },
+          "violations_deployed": {
+            "denominator": 64,
+            "estimate": 0.015625,
+            "numerator": 1
+          }
+        },
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "not_applicable",
+            "undefined_reason": "rule_does_not_return_vera_envelope"
+          },
+          "dataset": "CivilComments-WILDS",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.921875,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 1.0
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 0.96875,
+            "numerator": 62
+          },
+          "retained_opportunities": {
+            "denominator": 59,
+            "estimate": 0.7796610169491526,
+            "numerator": 46
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.6721311475409836,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.8813559322033898
+          },
+          "safe_opportunities": 59,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.9999999890701591,
+            "raw_exact_threshold_p": 0.9999999890701591,
+            "simultaneous_bonferroni_cp95_upper": 0.39149452630197945,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.35461785202439106
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.25,
+            "numerator": 16
+          },
+          "violations_deployed": {
+            "denominator": 62,
+            "estimate": 0.25806451612903225,
+            "numerator": 16
+          }
+        },
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "not_applicable",
+            "undefined_reason": "rule_does_not_return_vera_envelope"
+          },
+          "dataset": "Bios",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.390625,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.640625
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 0.515625,
+            "numerator": 33
+          },
+          "retained_opportunities": {
+            "denominator": 35,
+            "estimate": 0.9142857142857143,
+            "numerator": 32
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.8095238095238095,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 1.0
+          },
+          "safe_opportunities": 35,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.6556849588468694,
+            "raw_exact_threshold_p": 0.16392123971171735,
+            "simultaneous_bonferroni_cp95_upper": 0.095611957618952,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.07198975489470939
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.015625,
+            "numerator": 1
+          },
+          "violations_deployed": {
+            "denominator": 33,
+            "estimate": 0.030303030303030304,
+            "numerator": 1
+          }
+        },
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "not_applicable",
+            "undefined_reason": "rule_does_not_return_vera_envelope"
+          },
+          "dataset": "GaitPDB",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.296875,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.546875
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 0.421875,
+            "numerator": 27
+          },
+          "retained_opportunities": {
+            "denominator": 29,
+            "estimate": 0.896551724137931,
+            "numerator": 26
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.7692307692307693,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 1.0
+          },
+          "safe_opportunities": 29,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.6556849588468694,
+            "raw_exact_threshold_p": 0.16392123971171735,
+            "simultaneous_bonferroni_cp95_upper": 0.095611957618952,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.07198975489470939
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.015625,
+            "numerator": 1
+          },
+          "violations_deployed": {
+            "denominator": 27,
+            "estimate": 0.037037037037037035,
+            "numerator": 1
+          }
+        }
+      ],
+      "retained_opportunities": {
+        "denominator": 187,
+        "estimate": 0.893048128342246,
+        "numerator": 167
+      },
+      "retention_interval": {
+        "independent_unit": "whole_seed_four_dataset_cluster",
+        "level": 0.95,
+        "lower": 0.8473684210526315,
+        "method": "whole_seed_percentile_bootstrap",
+        "upper": 0.9347826086956522
+      },
+      "rule": "validation_point_selection",
+      "safe_opportunities": 187,
+      "seed_familywise_safety": {
+        "can_change_primary_gate": false,
+        "decisions": 64,
+        "events": 18,
+        "independent_unit": "whole_seed_four_dataset_cluster",
+        "interval_method": "one_sided_clopper_pearson_alpha_0.05",
+        "one_sided_cp95_upper": 0.38800823220505204,
+        "rate": {
+          "denominator": 64,
+          "estimate": 0.28125,
+          "numerator": 18
+        }
+      },
+      "violations_all_decisions": {
+        "denominator": 256,
+        "estimate": 0.07421875,
+        "numerator": 19
+      },
+      "violations_deployed": {
+        "denominator": 186,
+        "estimate": 0.10215053763440861,
+        "numerator": 19
+      }
+    },
+    {
+      "common_radius": {
+        "cap": 8.0,
+        "defined_denominator": 0,
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "right_censored": 0,
+        "status": "not_applicable",
+        "undefined_reason": "rule_does_not_return_vera_envelope"
+      },
+      "decisions": 256,
+      "deployment_interval": {
+        "independent_unit": "whole_seed_four_dataset_cluster",
+        "level": 0.95,
+        "lower": 0.3046875,
+        "method": "whole_seed_percentile_bootstrap",
+        "upper": 0.375
+      },
+      "deployments": {
+        "denominator": 256,
+        "estimate": 0.33984375,
+        "numerator": 87
+      },
+      "per_dataset": [
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "not_applicable",
+            "undefined_reason": "rule_does_not_return_vera_envelope"
+          },
+          "dataset": "Waterbirds",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 1.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 1.0
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 1.0,
+            "numerator": 64
+          },
+          "retained_opportunities": {
+            "denominator": 64,
+            "estimate": 1.0,
+            "numerator": 64
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 1.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 1.0
+          },
+          "safe_opportunities": 64,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.15009655684446452,
+            "raw_exact_threshold_p": 0.03752413921111613,
+            "simultaneous_bonferroni_cp95_upper": 0.06617774702077084,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.04572970233076244
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "violations_deployed": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          }
+        },
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "not_applicable",
+            "undefined_reason": "rule_does_not_return_vera_envelope"
+          },
+          "dataset": "CivilComments-WILDS",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.0625,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.234375
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 0.140625,
+            "numerator": 9
+          },
+          "retained_opportunities": {
+            "denominator": 59,
+            "estimate": 0.15254237288135594,
+            "numerator": 9
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.06779661016949153,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.25
+          },
+          "safe_opportunities": 59,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.15009655684446452,
+            "raw_exact_threshold_p": 0.03752413921111613,
+            "simultaneous_bonferroni_cp95_upper": 0.06617774702077084,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.04572970233076244
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "violations_deployed": {
+            "denominator": 9,
+            "estimate": 0.0,
+            "numerator": 0
+          }
+        },
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "not_applicable",
+            "undefined_reason": "rule_does_not_return_vera_envelope"
+          },
+          "dataset": "Bios",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.046875
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 0.015625,
+            "numerator": 1
+          },
+          "retained_opportunities": {
+            "denominator": 35,
+            "estimate": 0.02857142857142857,
+            "numerator": 1
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.09375
+          },
+          "safe_opportunities": 35,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.15009655684446452,
+            "raw_exact_threshold_p": 0.03752413921111613,
+            "simultaneous_bonferroni_cp95_upper": 0.06617774702077084,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.04572970233076244
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "violations_deployed": {
+            "denominator": 1,
+            "estimate": 0.0,
+            "numerator": 0
+          }
+        },
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "not_applicable",
+            "undefined_reason": "rule_does_not_return_vera_envelope"
+          },
+          "dataset": "GaitPDB",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.109375,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.3125
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 0.203125,
+            "numerator": 13
+          },
+          "retained_opportunities": {
+            "denominator": 29,
+            "estimate": 0.4482758620689655,
+            "numerator": 13
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.26666666666666666,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.6296296296296297
+          },
+          "safe_opportunities": 29,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.15009655684446452,
+            "raw_exact_threshold_p": 0.03752413921111613,
+            "simultaneous_bonferroni_cp95_upper": 0.06617774702077084,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.04572970233076244
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "violations_deployed": {
+            "denominator": 13,
+            "estimate": 0.0,
+            "numerator": 0
+          }
+        }
+      ],
+      "retained_opportunities": {
+        "denominator": 187,
+        "estimate": 0.46524064171123,
+        "numerator": 87
+      },
+      "retention_interval": {
+        "independent_unit": "whole_seed_four_dataset_cluster",
+        "level": 0.95,
+        "lower": 0.42105263157894735,
+        "method": "whole_seed_percentile_bootstrap",
+        "upper": 0.5138121546961326
+      },
+      "rule": "iid_ltt",
+      "safe_opportunities": 187,
+      "seed_familywise_safety": {
+        "can_change_primary_gate": false,
+        "decisions": 64,
+        "events": 0,
+        "independent_unit": "whole_seed_four_dataset_cluster",
+        "interval_method": "one_sided_clopper_pearson_alpha_0.05",
+        "one_sided_cp95_upper": 0.04572970233076244,
+        "rate": {
+          "denominator": 64,
+          "estimate": 0.0,
+          "numerator": 0
+        }
+      },
+      "violations_all_decisions": {
+        "denominator": 256,
+        "estimate": 0.0,
+        "numerator": 0
+      },
+      "violations_deployed": {
+        "denominator": 87,
+        "estimate": 0.0,
+        "numerator": 0
+      }
+    },
+    {
+      "common_radius": {
+        "cap": 8.0,
+        "defined_denominator": 0,
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "right_censored": 0,
+        "status": "not_applicable",
+        "undefined_reason": "rule_does_not_return_vera_envelope"
+      },
+      "decisions": 256,
+      "deployment_interval": {
+        "independent_unit": "whole_seed_four_dataset_cluster",
+        "level": 0.95,
+        "lower": 0.33203125,
+        "method": "whole_seed_percentile_bootstrap",
+        "upper": 0.40234375
+      },
+      "deployments": {
+        "denominator": 256,
+        "estimate": 0.3671875,
+        "numerator": 94
+      },
+      "per_dataset": [
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "not_applicable",
+            "undefined_reason": "rule_does_not_return_vera_envelope"
+          },
+          "dataset": "Waterbirds",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 1.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 1.0
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 1.0,
+            "numerator": 64
+          },
+          "retained_opportunities": {
+            "denominator": 64,
+            "estimate": 0.984375,
+            "numerator": 63
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.953125,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 1.0
+          },
+          "safe_opportunities": 64,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.16392123971171735,
+            "raw_exact_threshold_p": 0.16392123971171735,
+            "simultaneous_bonferroni_cp95_upper": 0.095611957618952,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.07198975489470939
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.015625,
+            "numerator": 1
+          },
+          "violations_deployed": {
+            "denominator": 64,
+            "estimate": 0.015625,
+            "numerator": 1
+          }
+        },
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "not_applicable",
+            "undefined_reason": "rule_does_not_return_vera_envelope"
+          },
+          "dataset": "CivilComments-WILDS",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.015625,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.125
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 0.0625,
+            "numerator": 4
+          },
+          "retained_opportunities": {
+            "denominator": 59,
+            "estimate": 0.06779661016949153,
+            "numerator": 4
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.01639344262295082,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.13793103448275862
+          },
+          "safe_opportunities": 59,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.15009655684446452,
+            "raw_exact_threshold_p": 0.03752413921111613,
+            "simultaneous_bonferroni_cp95_upper": 0.06617774702077084,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.04572970233076244
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "violations_deployed": {
+            "denominator": 4,
+            "estimate": 0.0,
+            "numerator": 0
+          }
+        },
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "not_applicable",
+            "undefined_reason": "rule_does_not_return_vera_envelope"
+          },
+          "dataset": "Bios",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.109375
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 0.046875,
+            "numerator": 3
+          },
+          "retained_opportunities": {
+            "denominator": 35,
+            "estimate": 0.08571428571428572,
+            "numerator": 3
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.1891891891891892
+          },
+          "safe_opportunities": 35,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.15009655684446452,
+            "raw_exact_threshold_p": 0.03752413921111613,
+            "simultaneous_bonferroni_cp95_upper": 0.06617774702077084,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.04572970233076244
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "violations_deployed": {
+            "denominator": 3,
+            "estimate": 0.0,
+            "numerator": 0
+          }
+        },
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "not_applicable",
+            "undefined_reason": "rule_does_not_return_vera_envelope"
+          },
+          "dataset": "GaitPDB",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.25,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.484375
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 0.359375,
+            "numerator": 23
+          },
+          "retained_opportunities": {
+            "denominator": 29,
+            "estimate": 0.7931034482758621,
+            "numerator": 23
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.6363636363636364,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.9310344827586207
+          },
+          "safe_opportunities": 29,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.15009655684446452,
+            "raw_exact_threshold_p": 0.03752413921111613,
+            "simultaneous_bonferroni_cp95_upper": 0.06617774702077084,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.04572970233076244
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "violations_deployed": {
+            "denominator": 23,
+            "estimate": 0.0,
+            "numerator": 0
+          }
+        }
+      ],
+      "retained_opportunities": {
+        "denominator": 187,
+        "estimate": 0.49732620320855614,
+        "numerator": 93
+      },
+      "retention_interval": {
+        "independent_unit": "whole_seed_four_dataset_cluster",
+        "level": 0.95,
+        "lower": 0.4583333333333333,
+        "method": "whole_seed_percentile_bootstrap",
+        "upper": 0.5393258426966292
+      },
+      "rule": "robust_point_estimate",
+      "safe_opportunities": 187,
+      "seed_familywise_safety": {
+        "can_change_primary_gate": false,
+        "decisions": 64,
+        "events": 1,
+        "independent_unit": "whole_seed_four_dataset_cluster",
+        "interval_method": "one_sided_clopper_pearson_alpha_0.05",
+        "one_sided_cp95_upper": 0.07198975489470939,
+        "rate": {
+          "denominator": 64,
+          "estimate": 0.015625,
+          "numerator": 1
+        }
+      },
+      "violations_all_decisions": {
+        "denominator": 256,
+        "estimate": 0.00390625,
+        "numerator": 1
+      },
+      "violations_deployed": {
+        "denominator": 94,
+        "estimate": 0.010638297872340425,
+        "numerator": 1
+      }
+    },
+    {
+      "common_radius": {
+        "cap": 8.0,
+        "defined_denominator": 0,
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "right_censored": 0,
+        "status": "not_applicable",
+        "undefined_reason": "rule_does_not_return_vera_envelope"
+      },
+      "decisions": 256,
+      "deployment_interval": {
+        "independent_unit": "whole_seed_four_dataset_cluster",
+        "level": 0.95,
+        "lower": 0.93359375,
+        "method": "whole_seed_percentile_bootstrap",
+        "upper": 0.98046875
+      },
+      "deployments": {
+        "denominator": 256,
+        "estimate": 0.95703125,
+        "numerator": 245
+      },
+      "per_dataset": [
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "not_applicable",
+            "undefined_reason": "rule_does_not_return_vera_envelope"
+          },
+          "dataset": "Waterbirds",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 1.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 1.0
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 1.0,
+            "numerator": 64
+          },
+          "retained_opportunities": {
+            "denominator": 64,
+            "estimate": 0.703125,
+            "numerator": 45
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.59375,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.8125
+          },
+          "safe_opportunities": 64,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 1.0,
+            "raw_exact_threshold_p": 0.9999999999780093,
+            "simultaneous_bonferroni_cp95_upper": 0.4418444069742408,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.4045049300603701
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.296875,
+            "numerator": 19
+          },
+          "violations_deployed": {
+            "denominator": 64,
+            "estimate": 0.296875,
+            "numerator": 19
+          }
+        },
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "not_applicable",
+            "undefined_reason": "rule_does_not_return_vera_envelope"
+          },
+          "dataset": "CivilComments-WILDS",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.734375,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.921875
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 0.828125,
+            "numerator": 53
+          },
+          "retained_opportunities": {
+            "denominator": 59,
+            "estimate": 0.6440677966101694,
+            "numerator": 38
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.5172413793103449,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.7627349768875172
+          },
+          "safe_opportunities": 59,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 1.0,
+            "raw_exact_threshold_p": 0.9999999255163422,
+            "simultaneous_bonferroni_cp95_upper": 0.3743378834239305,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.3377097239066899
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.234375,
+            "numerator": 15
+          },
+          "violations_deployed": {
+            "denominator": 53,
+            "estimate": 0.2830188679245283,
+            "numerator": 15
+          }
+        },
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "not_applicable",
+            "undefined_reason": "rule_does_not_return_vera_envelope"
+          },
+          "dataset": "Bios",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 1.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 1.0
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 1.0,
+            "numerator": 64
+          },
+          "retained_opportunities": {
+            "denominator": 35,
+            "estimate": 0.22857142857142856,
+            "numerator": 8
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.09375,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.375
+          },
+          "safe_opportunities": 35,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 1.0,
+            "raw_exact_threshold_p": 1.0,
+            "simultaneous_bonferroni_cp95_upper": 0.9511511468192184,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.9362554524574609
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.875,
+            "numerator": 56
+          },
+          "violations_deployed": {
+            "denominator": 64,
+            "estimate": 0.875,
+            "numerator": 56
+          }
+        },
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "not_applicable",
+            "undefined_reason": "rule_does_not_return_vera_envelope"
+          },
+          "dataset": "GaitPDB",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 1.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 1.0
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 1.0,
+            "numerator": 64
+          },
+          "retained_opportunities": {
+            "denominator": 29,
+            "estimate": 1.0,
+            "numerator": 29
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 1.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 1.0
+          },
+          "safe_opportunities": 29,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 1.0,
+            "raw_exact_threshold_p": 1.0,
+            "simultaneous_bonferroni_cp95_upper": 0.6877005716370594,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.6536353116460533
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.546875,
+            "numerator": 35
+          },
+          "violations_deployed": {
+            "denominator": 64,
+            "estimate": 0.546875,
+            "numerator": 35
+          }
+        }
+      ],
+      "retained_opportunities": {
+        "denominator": 187,
+        "estimate": 0.6417112299465241,
+        "numerator": 120
+      },
+      "retention_interval": {
+        "independent_unit": "whole_seed_four_dataset_cluster",
+        "level": 0.95,
+        "lower": 0.5794871794871795,
+        "method": "whole_seed_percentile_bootstrap",
+        "upper": 0.7025641025641025
+      },
+      "rule": "generic_scalar_robust_certificate",
+      "safe_opportunities": 187,
+      "seed_familywise_safety": {
+        "can_change_primary_gate": false,
+        "decisions": 64,
+        "events": 62,
+        "independent_unit": "whole_seed_four_dataset_cluster",
+        "interval_method": "one_sided_clopper_pearson_alpha_0.05",
+        "one_sided_cp95_upper": 0.9944191925817084,
+        "rate": {
+          "denominator": 64,
+          "estimate": 0.96875,
+          "numerator": 62
+        }
+      },
+      "violations_all_decisions": {
+        "denominator": 256,
+        "estimate": 0.48828125,
+        "numerator": 125
+      },
+      "violations_deployed": {
+        "denominator": 245,
+        "estimate": 0.5102040816326531,
+        "numerator": 125
+      }
+    },
+    {
+      "common_radius": {
+        "cap": 8.0,
+        "defined_denominator": 48,
+        "median": 1.0338859558105469,
+        "q1": 1.0178909301757812,
+        "q3": 1.080709457397461,
+        "right_censored": 0,
+        "status": "defined",
+        "undefined_reason": null
+      },
+      "decisions": 256,
+      "deployment_interval": {
+        "independent_unit": "whole_seed_four_dataset_cluster",
+        "level": 0.95,
+        "lower": 0.1484375,
+        "method": "whole_seed_percentile_bootstrap",
+        "upper": 0.2265625
+      },
+      "deployments": {
+        "denominator": 256,
+        "estimate": 0.1875,
+        "numerator": 48
+      },
+      "per_dataset": [
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 38,
+            "median": 1.0304412841796875,
+            "q1": 1.0163288116455078,
+            "q3": 1.0751285552978516,
+            "right_censored": 0,
+            "status": "defined",
+            "undefined_reason": null
+          },
+          "dataset": "Waterbirds",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.46875,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.71875
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 0.59375,
+            "numerator": 38
+          },
+          "retained_opportunities": {
+            "denominator": 64,
+            "estimate": 0.59375,
+            "numerator": 38
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.46875,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.71875
+          },
+          "safe_opportunities": 64,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.15009655684446452,
+            "raw_exact_threshold_p": 0.03752413921111613,
+            "simultaneous_bonferroni_cp95_upper": 0.06617774702077084,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.04572970233076244
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "violations_deployed": {
+            "denominator": 38,
+            "estimate": 0.0,
+            "numerator": 0
+          }
+        },
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "undefined",
+            "undefined_reason": "rule_never_deployed"
+          },
+          "dataset": "CivilComments-WILDS",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.0
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "retained_opportunities": {
+            "denominator": 59,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.0
+          },
+          "safe_opportunities": 59,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.15009655684446452,
+            "raw_exact_threshold_p": 0.03752413921111613,
+            "simultaneous_bonferroni_cp95_upper": 0.06617774702077084,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.04572970233076244
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "violations_deployed": {
+            "denominator": 0,
+            "estimate": null,
+            "numerator": 0,
+            "undefined_reason": "zero_denominator"
+          }
+        },
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "undefined",
+            "undefined_reason": "rule_never_deployed"
+          },
+          "dataset": "Bios",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.0
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "retained_opportunities": {
+            "denominator": 35,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.0
+          },
+          "safe_opportunities": 35,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.15009655684446452,
+            "raw_exact_threshold_p": 0.03752413921111613,
+            "simultaneous_bonferroni_cp95_upper": 0.06617774702077084,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.04572970233076244
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "violations_deployed": {
+            "denominator": 0,
+            "estimate": null,
+            "numerator": 0,
+            "undefined_reason": "zero_denominator"
+          }
+        },
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 10,
+            "median": 1.0498275756835938,
+            "q1": 1.0242328643798828,
+            "q3": 1.0796947479248047,
+            "right_censored": 0,
+            "status": "defined",
+            "undefined_reason": null
+          },
+          "dataset": "GaitPDB",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.078125,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.25
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 0.15625,
+            "numerator": 10
+          },
+          "retained_opportunities": {
+            "denominator": 29,
+            "estimate": 0.3448275862068966,
+            "numerator": 10
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.1724137931034483,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.5217391304347826
+          },
+          "safe_opportunities": 29,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.15009655684446452,
+            "raw_exact_threshold_p": 0.03752413921111613,
+            "simultaneous_bonferroni_cp95_upper": 0.06617774702077084,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.04572970233076244
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "violations_deployed": {
+            "denominator": 10,
+            "estimate": 0.0,
+            "numerator": 0
+          }
+        }
+      ],
+      "retained_opportunities": {
+        "denominator": 187,
+        "estimate": 0.25668449197860965,
+        "numerator": 48
+      },
+      "retention_interval": {
+        "independent_unit": "whole_seed_four_dataset_cluster",
+        "level": 0.95,
+        "lower": 0.20555555555555555,
+        "method": "whole_seed_percentile_bootstrap",
+        "upper": 0.3076923076923077
+      },
+      "rule": "vera_fixed_profile",
+      "safe_opportunities": 187,
+      "seed_familywise_safety": {
+        "can_change_primary_gate": false,
+        "decisions": 64,
+        "events": 0,
+        "independent_unit": "whole_seed_four_dataset_cluster",
+        "interval_method": "one_sided_clopper_pearson_alpha_0.05",
+        "one_sided_cp95_upper": 0.04572970233076244,
+        "rate": {
+          "denominator": 64,
+          "estimate": 0.0,
+          "numerator": 0
+        }
+      },
+      "violations_all_decisions": {
+        "denominator": 256,
+        "estimate": 0.0,
+        "numerator": 0
+      },
+      "violations_deployed": {
+        "denominator": 48,
+        "estimate": 0.0,
+        "numerator": 0
+      }
+    },
+    {
+      "common_radius": {
+        "cap": 8.0,
+        "defined_denominator": 38,
+        "median": 1.0304412841796875,
+        "q1": 1.0186920166015625,
+        "q3": 1.0585193634033203,
+        "right_censored": 0,
+        "status": "defined",
+        "undefined_reason": null
+      },
+      "decisions": 256,
+      "deployment_interval": {
+        "independent_unit": "whole_seed_four_dataset_cluster",
+        "level": 0.95,
+        "lower": 0.109375,
+        "method": "whole_seed_percentile_bootstrap",
+        "upper": 0.19140625
+      },
+      "deployments": {
+        "denominator": 256,
+        "estimate": 0.1484375,
+        "numerator": 38
+      },
+      "per_dataset": [
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 30,
+            "median": 1.0258750915527344,
+            "q1": 1.0163288116455078,
+            "q3": 1.0502948760986328,
+            "right_censored": 0,
+            "status": "defined",
+            "undefined_reason": null
+          },
+          "dataset": "Waterbirds",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.34375,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.59375
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 0.46875,
+            "numerator": 30
+          },
+          "retained_opportunities": {
+            "denominator": 64,
+            "estimate": 0.46875,
+            "numerator": 30
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.34375,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.59375
+          },
+          "safe_opportunities": 64,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.15009655684446452,
+            "raw_exact_threshold_p": 0.03752413921111613,
+            "simultaneous_bonferroni_cp95_upper": 0.06617774702077084,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.04572970233076244
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "violations_deployed": {
+            "denominator": 30,
+            "estimate": 0.0,
+            "numerator": 0
+          }
+        },
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "undefined",
+            "undefined_reason": "rule_never_deployed"
+          },
+          "dataset": "CivilComments-WILDS",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.0
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "retained_opportunities": {
+            "denominator": 59,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.0
+          },
+          "safe_opportunities": 59,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.15009655684446452,
+            "raw_exact_threshold_p": 0.03752413921111613,
+            "simultaneous_bonferroni_cp95_upper": 0.06617774702077084,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.04572970233076244
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "violations_deployed": {
+            "denominator": 0,
+            "estimate": null,
+            "numerator": 0,
+            "undefined_reason": "zero_denominator"
+          }
+        },
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "undefined",
+            "undefined_reason": "rule_never_deployed"
+          },
+          "dataset": "Bios",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.0
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "retained_opportunities": {
+            "denominator": 35,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.0
+          },
+          "safe_opportunities": 35,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.15009655684446452,
+            "raw_exact_threshold_p": 0.03752413921111613,
+            "simultaneous_bonferroni_cp95_upper": 0.06617774702077084,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.04572970233076244
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "violations_deployed": {
+            "denominator": 0,
+            "estimate": null,
+            "numerator": 0,
+            "undefined_reason": "zero_denominator"
+          }
+        },
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 8,
+            "median": 1.0648345947265625,
+            "q1": 1.039133071899414,
+            "q3": 1.0980796813964844,
+            "right_censored": 0,
+            "status": "defined",
+            "undefined_reason": null
+          },
+          "dataset": "GaitPDB",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.046875,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.203125
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 0.125,
+            "numerator": 8
+          },
+          "retained_opportunities": {
+            "denominator": 29,
+            "estimate": 0.27586206896551724,
+            "numerator": 8
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.12,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.4482758620689655
+          },
+          "safe_opportunities": 29,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.15009655684446452,
+            "raw_exact_threshold_p": 0.03752413921111613,
+            "simultaneous_bonferroni_cp95_upper": 0.06617774702077084,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.04572970233076244
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "violations_deployed": {
+            "denominator": 8,
+            "estimate": 0.0,
+            "numerator": 0
+          }
+        }
+      ],
+      "retained_opportunities": {
+        "denominator": 187,
+        "estimate": 0.20320855614973263,
+        "numerator": 38
+      },
+      "retention_interval": {
+        "independent_unit": "whole_seed_four_dataset_cluster",
+        "level": 0.95,
+        "lower": 0.15253592015830683,
+        "method": "whole_seed_percentile_bootstrap",
+        "upper": 0.25654450261780104
+      },
+      "rule": "vera_vector_envelope",
+      "safe_opportunities": 187,
+      "seed_familywise_safety": {
+        "can_change_primary_gate": false,
+        "decisions": 64,
+        "events": 0,
+        "independent_unit": "whole_seed_four_dataset_cluster",
+        "interval_method": "one_sided_clopper_pearson_alpha_0.05",
+        "one_sided_cp95_upper": 0.04572970233076244,
+        "rate": {
+          "denominator": 64,
+          "estimate": 0.0,
+          "numerator": 0
+        }
+      },
+      "violations_all_decisions": {
+        "denominator": 256,
+        "estimate": 0.0,
+        "numerator": 0
+      },
+      "violations_deployed": {
+        "denominator": 38,
+        "estimate": 0.0,
+        "numerator": 0
+      }
+    },
+    {
+      "common_radius": {
+        "cap": 8.0,
+        "defined_denominator": 6,
+        "median": 1.1244888305664062,
+        "q1": 1.11279296875,
+        "q3": 1.1442756652832031,
+        "right_censored": 0,
+        "status": "defined",
+        "undefined_reason": null
+      },
+      "decisions": 256,
+      "deployment_interval": {
+        "independent_unit": "whole_seed_four_dataset_cluster",
+        "level": 0.95,
+        "lower": 0.0078125,
+        "method": "whole_seed_percentile_bootstrap",
+        "upper": 0.04296875
+      },
+      "deployments": {
+        "denominator": 256,
+        "estimate": 0.0234375,
+        "numerator": 6
+      },
+      "per_dataset": [
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 4,
+            "median": 1.1136474609375,
+            "q1": 1.1095619201660156,
+            "q3": 1.1199226379394531,
+            "right_censored": 0,
+            "status": "defined",
+            "undefined_reason": null
+          },
+          "dataset": "Waterbirds",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.015625,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.125
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 0.0625,
+            "numerator": 4
+          },
+          "retained_opportunities": {
+            "denominator": 64,
+            "estimate": 0.0625,
+            "numerator": 4
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.015625,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.125
+          },
+          "safe_opportunities": 64,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.15009655684446452,
+            "raw_exact_threshold_p": 0.03752413921111613,
+            "simultaneous_bonferroni_cp95_upper": 0.06617774702077084,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.04572970233076244
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "violations_deployed": {
+            "denominator": 4,
+            "estimate": 0.0,
+            "numerator": 0
+          }
+        },
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "undefined",
+            "undefined_reason": "rule_never_deployed"
+          },
+          "dataset": "CivilComments-WILDS",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.0
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "retained_opportunities": {
+            "denominator": 59,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.0
+          },
+          "safe_opportunities": 59,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.15009655684446452,
+            "raw_exact_threshold_p": 0.03752413921111613,
+            "simultaneous_bonferroni_cp95_upper": 0.06617774702077084,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.04572970233076244
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "violations_deployed": {
+            "denominator": 0,
+            "estimate": null,
+            "numerator": 0,
+            "undefined_reason": "zero_denominator"
+          }
+        },
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "undefined",
+            "undefined_reason": "rule_never_deployed"
+          },
+          "dataset": "Bios",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.0
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "retained_opportunities": {
+            "denominator": 35,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.0
+          },
+          "safe_opportunities": 35,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.15009655684446452,
+            "raw_exact_threshold_p": 0.03752413921111613,
+            "simultaneous_bonferroni_cp95_upper": 0.06617774702077084,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.04572970233076244
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "violations_deployed": {
+            "denominator": 0,
+            "estimate": null,
+            "numerator": 0,
+            "undefined_reason": "zero_denominator"
+          }
+        },
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 2,
+            "median": 1.1647300720214844,
+            "q1": 1.1562786102294922,
+            "q3": 1.1731815338134766,
+            "right_censored": 0,
+            "status": "defined",
+            "undefined_reason": null
+          },
+          "dataset": "GaitPDB",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.078125
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 0.03125,
+            "numerator": 2
+          },
+          "retained_opportunities": {
+            "denominator": 29,
+            "estimate": 0.06896551724137931,
+            "numerator": 2
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.17647058823529413
+          },
+          "safe_opportunities": 29,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.15009655684446452,
+            "raw_exact_threshold_p": 0.03752413921111613,
+            "simultaneous_bonferroni_cp95_upper": 0.06617774702077084,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.04572970233076244
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "violations_deployed": {
+            "denominator": 2,
+            "estimate": 0.0,
+            "numerator": 0
+          }
+        }
+      ],
+      "retained_opportunities": {
+        "denominator": 187,
+        "estimate": 0.03208556149732621,
+        "numerator": 6
+      },
+      "retention_interval": {
+        "independent_unit": "whole_seed_four_dataset_cluster",
+        "level": 0.95,
+        "lower": 0.010471204188481676,
+        "method": "whole_seed_percentile_bootstrap",
+        "upper": 0.058823529411764705
+      },
+      "rule": "vera_common_radius",
+      "safe_opportunities": 187,
+      "seed_familywise_safety": {
+        "can_change_primary_gate": false,
+        "decisions": 64,
+        "events": 0,
+        "independent_unit": "whole_seed_four_dataset_cluster",
+        "interval_method": "one_sided_clopper_pearson_alpha_0.05",
+        "one_sided_cp95_upper": 0.04572970233076244,
+        "rate": {
+          "denominator": 64,
+          "estimate": 0.0,
+          "numerator": 0
+        }
+      },
+      "violations_all_decisions": {
+        "denominator": 256,
+        "estimate": 0.0,
+        "numerator": 0
+      },
+      "violations_deployed": {
+        "denominator": 6,
+        "estimate": 0.0,
+        "numerator": 0
+      }
+    },
+    {
+      "common_radius": {
+        "cap": 8.0,
+        "defined_denominator": 0,
+        "median": null,
+        "q1": null,
+        "q3": null,
+        "right_censored": 0,
+        "status": "not_applicable",
+        "undefined_reason": "rule_does_not_return_vera_envelope"
+      },
+      "decisions": 256,
+      "deployment_interval": {
+        "independent_unit": "whole_seed_four_dataset_cluster",
+        "level": 0.95,
+        "lower": 0.6796875,
+        "method": "whole_seed_percentile_bootstrap",
+        "upper": 0.78125
+      },
+      "deployments": {
+        "denominator": 256,
+        "estimate": 0.73046875,
+        "numerator": 187
+      },
+      "per_dataset": [
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "not_applicable",
+            "undefined_reason": "rule_does_not_return_vera_envelope"
+          },
+          "dataset": "Waterbirds",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 1.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 1.0
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 1.0,
+            "numerator": 64
+          },
+          "retained_opportunities": {
+            "denominator": 64,
+            "estimate": 1.0,
+            "numerator": 64
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 1.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 1.0
+          },
+          "safe_opportunities": 64,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.15009655684446452,
+            "raw_exact_threshold_p": 0.03752413921111613,
+            "simultaneous_bonferroni_cp95_upper": 0.06617774702077084,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.04572970233076244
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "violations_deployed": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          }
+        },
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "not_applicable",
+            "undefined_reason": "rule_does_not_return_vera_envelope"
+          },
+          "dataset": "CivilComments-WILDS",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.859375,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.984375
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 0.921875,
+            "numerator": 59
+          },
+          "retained_opportunities": {
+            "denominator": 59,
+            "estimate": 1.0,
+            "numerator": 59
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 1.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 1.0
+          },
+          "safe_opportunities": 59,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.15009655684446452,
+            "raw_exact_threshold_p": 0.03752413921111613,
+            "simultaneous_bonferroni_cp95_upper": 0.06617774702077084,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.04572970233076244
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "violations_deployed": {
+            "denominator": 59,
+            "estimate": 0.0,
+            "numerator": 0
+          }
+        },
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "not_applicable",
+            "undefined_reason": "rule_does_not_return_vera_envelope"
+          },
+          "dataset": "Bios",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.421875,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.671875
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 0.546875,
+            "numerator": 35
+          },
+          "retained_opportunities": {
+            "denominator": 35,
+            "estimate": 1.0,
+            "numerator": 35
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 1.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 1.0
+          },
+          "safe_opportunities": 35,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.15009655684446452,
+            "raw_exact_threshold_p": 0.03752413921111613,
+            "simultaneous_bonferroni_cp95_upper": 0.06617774702077084,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.04572970233076244
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "violations_deployed": {
+            "denominator": 35,
+            "estimate": 0.0,
+            "numerator": 0
+          }
+        },
+        {
+          "common_radius": {
+            "cap": 8.0,
+            "defined_denominator": 0,
+            "median": null,
+            "q1": null,
+            "q3": null,
+            "right_censored": 0,
+            "status": "not_applicable",
+            "undefined_reason": "rule_does_not_return_vera_envelope"
+          },
+          "dataset": "GaitPDB",
+          "decisions": 64,
+          "deployment_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 0.328125,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 0.578125
+          },
+          "deployments": {
+            "denominator": 64,
+            "estimate": 0.453125,
+            "numerator": 29
+          },
+          "retained_opportunities": {
+            "denominator": 29,
+            "estimate": 1.0,
+            "numerator": 29
+          },
+          "retention_interval": {
+            "independent_unit": "whole_seed_four_dataset_cluster",
+            "level": 0.95,
+            "lower": 1.0,
+            "method": "whole_seed_percentile_bootstrap",
+            "upper": 1.0
+          },
+          "safe_opportunities": 29,
+          "safety_sensitivity": {
+            "can_change_primary_gate": false,
+            "holm_adjusted_threshold_p": 0.15009655684446452,
+            "raw_exact_threshold_p": 0.03752413921111613,
+            "simultaneous_bonferroni_cp95_upper": 0.06617774702077084,
+            "simultaneous_bound_method": "bonferroni_one_sided_clopper_pearson",
+            "simultaneous_component_alpha": 0.0125,
+            "threshold_alternative": "less",
+            "threshold_null_rate": 0.05,
+            "threshold_test_method": "holm_exact_binomial_lower_tail_at_0.05",
+            "unadjusted_alpha": 0.05,
+            "unadjusted_cp95_upper": 0.04572970233076244
+          },
+          "violations_all_decisions": {
+            "denominator": 64,
+            "estimate": 0.0,
+            "numerator": 0
+          },
+          "violations_deployed": {
+            "denominator": 29,
+            "estimate": 0.0,
+            "numerator": 0
+          }
+        }
+      ],
+      "retained_opportunities": {
+        "denominator": 187,
+        "estimate": 1.0,
+        "numerator": 187
+      },
+      "retention_interval": {
+        "independent_unit": "whole_seed_four_dataset_cluster",
+        "level": 0.95,
+        "lower": 1.0,
+        "method": "whole_seed_percentile_bootstrap",
+        "upper": 1.0
+      },
+      "rule": "external_oracle",
+      "safe_opportunities": 187,
+      "seed_familywise_safety": {
+        "can_change_primary_gate": false,
+        "decisions": 64,
+        "events": 0,
+        "independent_unit": "whole_seed_four_dataset_cluster",
+        "interval_method": "one_sided_clopper_pearson_alpha_0.05",
+        "one_sided_cp95_upper": 0.04572970233076244,
+        "rate": {
+          "denominator": 64,
+          "estimate": 0.0,
+          "numerator": 0
+        }
+      },
+      "violations_all_decisions": {
+        "denominator": 256,
+        "estimate": 0.0,
+        "numerator": 0
+      },
+      "violations_deployed": {
+        "denominator": 187,
+        "estimate": 0.0,
+        "numerator": 0
+      }
+    }
+  ],
+  "schema_version": 1,
+  "sensitivity_sha256": "5a0a98bbdc89e46c119a776ea80ebc6a5fbadcf081949f204718e837f885f9ac"
+}

@@ -2,7 +2,7 @@
 
 ## Title
 
-**VERA: Evidence-Efficient Certification of Representation Edits Under Deployment Shift**
+**VERA: Support-Aware Certification of Representation Edits Under Deployment Shift**
 
 The title describes the actual guarantee. Leave VERA unexpanded in
 submission-facing text because the guarantee covers a registered attacker

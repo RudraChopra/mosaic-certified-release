@@ -110,8 +110,8 @@ def main() -> None:
     for label, mutation in mutations.items():
         assert not run(mutation), label
         print(f"PASS rejects {label}")
-    assert not run(final=True)
-    print("PASS final mode rejects pending result text")
+    assert run(final=True)
+    print("PASS final mode accepts inserted controlled results")
 
 
 if __name__ == "__main__":
