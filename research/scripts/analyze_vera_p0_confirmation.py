@@ -27,12 +27,12 @@ from vera_p0_evaluator import (
 
 ROOT = Path(__file__).resolve().parents[1]
 REPOSITORY = ROOT.parent
-DEFAULT_PREREG = ROOT / "prereg_vera_p0_confirmation_v3.json"
-DEFAULT_HASH = ROOT / "prereg_vera_p0_confirmation_v3.sha256"
+DEFAULT_PREREG = ROOT / "prereg_vera_p0_confirmation_v4.json"
+DEFAULT_HASH = ROOT / "prereg_vera_p0_confirmation_v4.sha256"
 DEFAULT_RECEIPTS = Path(
-    "/Volumes/Backups/FARO/artifacts/vera_p0_confirmation_v3_receipts"
+    "/Volumes/Backups/FARO/artifacts/vera_p0_confirmation_v4_receipts"
 )
-DEFAULT_OUTPUT = ROOT / "artifacts" / "vera_p0_confirmation_v3.json"
+DEFAULT_OUTPUT = ROOT / "artifacts" / "vera_p0_confirmation_v4.json"
 DATASETS = ("Bios", "CivilComments-WILDS", "GaitPDB", "Waterbirds")
 PRIMARY_GAMMA = 1.25
 PRIMARY_BUDGET = 12000
@@ -67,6 +67,20 @@ def git_commit() -> str:
         capture_output=True,
         text=True,
     ).stdout.strip()
+
+
+def verify_analysis_program_hashes(prereg: Mapping[str, Any]) -> dict[str, str]:
+    programs = prereg.get("analysis_programs", {})
+    expected = programs.get("source_sha256", {}) if isinstance(programs, dict) else {}
+    if not isinstance(expected, dict) or not expected:
+        raise RuntimeError("P0 preregistration has no locked analysis-program hashes")
+    observed = {
+        name: sha256(REPOSITORY / name)
+        for name in sorted(str(key) for key in expected)
+    }
+    if observed != expected:
+        raise RuntimeError("P0 analysis program hashes differ from the locked protocol")
+    return observed
 
 
 def one_sided_upper(events: int, n: int, alpha: float = 0.05) -> float:
@@ -374,6 +388,7 @@ def analyze(args: argparse.Namespace) -> dict[str, Any]:
         raise RuntimeError("P0 preregistration hash mismatch")
     if prereg.get("status") != "locked_before_claim_grade_runs":
         raise RuntimeError("P0 preregistration is not locked")
+    program_hashes = verify_analysis_program_hashes(prereg)
     study = prereg["real_study"]
     seeds = tuple(int(value) for value in study["seeds"])
     if not seeds or tuple(sorted(seeds)) != seeds:
@@ -533,6 +548,7 @@ def analyze(args: argparse.Namespace) -> dict[str, Any]:
         "name": "VERA P0 independent controlled-shift and natural-mixture confirmation",
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "source_git_commit": git_commit(),
+        "locked_analysis_program_sha256": program_hashes,
         "preregistration_sha256": prereg_hash,
         "analysis_boundary": (
             "The controlled study concerns exact risks on its declared finite "

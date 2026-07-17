@@ -18,6 +18,7 @@ from run_official_eraser_frontier import (  # noqa: E402
     EXPANDED_HELDOUT_ATTACKER_CONFIG,
     EXPANDED_REGISTERED_ATTACKER_CONFIG,
 )
+from analyze_vera_p0_confirmation import verify_analysis_program_hashes  # noqa: E402
 
 
 def test_p0_protocol_freezes_fresh_seeds_and_expanded_attackers() -> None:
@@ -33,7 +34,7 @@ def test_p0_protocol_freezes_fresh_seeds_and_expanded_attackers() -> None:
 
     study = payload["real_study"]
     assert payload["status"] == "locked_before_claim_grade_runs"
-    assert payload["schema_version"] == 3
+    assert payload["schema_version"] == 4
     assert payload["supersedes"]["outcomes_present_before_supersession"] is False
     assert payload["data_policy"]["confirmatory_seeds"] == P0_SEEDS
     assert set(P0_SEEDS).isdisjoint(payload["data_policy"]["development_seeds"])
@@ -54,6 +55,9 @@ def test_p0_protocol_freezes_fresh_seeds_and_expanded_attackers() -> None:
         "exact_shift_oracle",
     }
     assert len(payload["analysis_programs"]["source_sha256"]) == 2
+    assert verify_analysis_program_hashes(payload) == payload["analysis_programs"][
+        "source_sha256"
+    ]
 
 
 def test_p0_protocol_scopes_the_natural_mixture_study_honestly() -> None:

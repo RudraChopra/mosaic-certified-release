@@ -21,10 +21,10 @@ ROOT = Path(__file__).resolve().parents[1]
 REPOSITORY = ROOT.parent
 DEFAULT_PARENT = ROOT / "prereg_controlled_shift_followup.json"
 DEFAULT_PARENT_RESULT = ROOT / "maintrack" / "CONTROLLED_SHIFT_FOLLOWUP_RESULT_SUMMARY.json"
-SUPERSEDED_PROTOCOL = ROOT / "prereg_vera_p0_confirmation_v2.json"
-DEFAULT_OUTPUT = ROOT / "prereg_vera_p0_confirmation_v3.json"
-P0_RECEIPT_DIR = Path("/Volumes/Backups/FARO/artifacts/vera_p0_confirmation_v3_receipts")
-P0_AUDIT_DIR = Path("/Volumes/Backups/FARO/artifacts/vera_p0_confirmation_v3_audit_arrays")
+SUPERSEDED_PROTOCOL = ROOT / "prereg_vera_p0_confirmation_v3.json"
+DEFAULT_OUTPUT = ROOT / "prereg_vera_p0_confirmation_v4.json"
+P0_RECEIPT_DIR = Path("/Volumes/Backups/FARO/artifacts/vera_p0_confirmation_v4_receipts")
+P0_AUDIT_DIR = Path("/Volumes/Backups/FARO/artifacts/vera_p0_confirmation_v4_audit_arrays")
 ANALYSIS_PROGRAMS = (
     ROOT / "scripts" / "analyze_vera_p0_confirmation.py",
     ROOT / "scripts" / "vera_p0_evaluator.py",
@@ -351,7 +351,7 @@ def build_payload(
         ],
     }
     return {
-        "schema_version": 3,
+        "schema_version": 4,
         "project": "VERA",
         "phase": "final P0 IID-LTT, attacker-portfolio, and natural-mixture confirmation",
         "status": "locked_before_claim_grade_runs",
@@ -373,9 +373,9 @@ def build_payload(
             "path": str(SUPERSEDED_PROTOCOL.relative_to(REPOSITORY)),
             "sha256": sha256(SUPERSEDED_PROTOCOL),
             "reason": (
-                "No P0 outcome was generated under version 2. Version 3 adds exact "
-                "deployment-rule selection and tie-break definitions, plus hashes for "
-                "the independent analysis programs."
+                "No P0 outcome was generated under version 3. Version 4 makes the "
+                "final analyzer verify its own preregistered source-file hashes "
+                "before it can read P0 outcomes."
             ),
             "outcomes_present_before_supersession": False,
         },
