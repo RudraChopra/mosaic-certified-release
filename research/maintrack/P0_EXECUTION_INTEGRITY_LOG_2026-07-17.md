@@ -49,3 +49,9 @@ its external store path was mistyped; it created no receipt or audit array. The
 worker was restarted with the store path recorded in the version-4
 preregistration. This is an execution correction with no scientific outcome
 available from the failed invocation.
+
+The corrected replacement shell likewise exited before launching a cell (no
+receipt or per-seed log was written), so no further replacement worker was
+used. The original resumable scheduler remains responsible for the
+Waterbirds--R-LACE cells. This operational decision is recorded only for
+execution completeness and changes neither the frozen study nor its data.
