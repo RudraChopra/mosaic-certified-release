@@ -50,17 +50,23 @@ review before that clarification can be treated as verified.
 The original unused protocol at `research/prereg_vera_p0_confirmation.json`
 is transparently superseded before any seed 173--236 outcome is created because
 its receipts did not retain construction-fold outcomes needed to replay its
-stress-design decision. Version 2, at
-`research/prereg_vera_p0_confirmation_v2.json`, is generated only after the
-receipt code is committed and before any fresh outcome is created. It retains
-the original file and its hash as an immutable pre-outcome record rather than
-rewriting it in place.
+stress-design decision. The unused Version 2 added those arrays but did not
+define the comparison-rule tie breaks tightly enough. Version 3, at
+`research/prereg_vera_p0_confirmation_v3.json`, is generated only after the
+receipt and independent-analysis code are committed and before any fresh
+outcome is created. It retains both earlier files and their hashes as immutable
+pre-outcome records rather than rewriting them in place.
 
 Version 2 selects the fixed design edit by construction target balanced
 accuracy, then selects the supported stress cell from construction-only target
 harm and five registered attacker surplus values. The required construction
 arrays are recorded in every receipt, so an independent analyzer can replay
 that choice without looking at certification or external outcomes.
+
+Version 3 also defines all five comparison rules exactly: construction-fixed
+always deploy, point-estimate validation selection, IID LTT, VERA's vector
+envelope, and a non-deployable exact-shift oracle. Its rule-selection tie break
+and both P0 analysis program hashes are part of the lock.
 
 The final protocol uses the prior completed blocks only as development evidence
 and never pools them with the final block.

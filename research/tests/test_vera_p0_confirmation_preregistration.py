@@ -33,7 +33,7 @@ def test_p0_protocol_freezes_fresh_seeds_and_expanded_attackers() -> None:
 
     study = payload["real_study"]
     assert payload["status"] == "locked_before_claim_grade_runs"
-    assert payload["schema_version"] == 2
+    assert payload["schema_version"] == 3
     assert payload["supersedes"]["outcomes_present_before_supersession"] is False
     assert payload["data_policy"]["confirmatory_seeds"] == P0_SEEDS
     assert set(P0_SEEDS).isdisjoint(payload["data_policy"]["development_seeds"])
@@ -45,6 +45,15 @@ def test_p0_protocol_freezes_fresh_seeds_and_expanded_attackers() -> None:
     assert "target_harm_construction" in required
     assert "leakage_correct_construction__boosted_tree" in required
     assert "certification" in study["controlled_shift_protocol"]["stress_design_rule"]
+    assert set(study["deployment_rules"]) == {
+        "common_evidence",
+        "always_deploy",
+        "validation_point_selection",
+        "iid_ltt",
+        "vera_vector_envelope",
+        "exact_shift_oracle",
+    }
+    assert len(payload["analysis_programs"]["source_sha256"]) == 2
 
 
 def test_p0_protocol_scopes_the_natural_mixture_study_honestly() -> None:

@@ -21,10 +21,14 @@ ROOT = Path(__file__).resolve().parents[1]
 REPOSITORY = ROOT.parent
 DEFAULT_PARENT = ROOT / "prereg_controlled_shift_followup.json"
 DEFAULT_PARENT_RESULT = ROOT / "maintrack" / "CONTROLLED_SHIFT_FOLLOWUP_RESULT_SUMMARY.json"
-SUPERSEDED_PROTOCOL = ROOT / "prereg_vera_p0_confirmation.json"
-DEFAULT_OUTPUT = ROOT / "prereg_vera_p0_confirmation_v2.json"
-P0_RECEIPT_DIR = Path("/Volumes/Backups/FARO/artifacts/vera_p0_confirmation_v2_receipts")
-P0_AUDIT_DIR = Path("/Volumes/Backups/FARO/artifacts/vera_p0_confirmation_v2_audit_arrays")
+SUPERSEDED_PROTOCOL = ROOT / "prereg_vera_p0_confirmation_v2.json"
+DEFAULT_OUTPUT = ROOT / "prereg_vera_p0_confirmation_v3.json"
+P0_RECEIPT_DIR = Path("/Volumes/Backups/FARO/artifacts/vera_p0_confirmation_v3_receipts")
+P0_AUDIT_DIR = Path("/Volumes/Backups/FARO/artifacts/vera_p0_confirmation_v3_audit_arrays")
+ANALYSIS_PROGRAMS = (
+    ROOT / "scripts" / "analyze_vera_p0_confirmation.py",
+    ROOT / "scripts" / "vera_p0_evaluator.py",
+)
 P0_SEEDS = list(range(173, 237))
 DEVELOPMENT_SEEDS = list(range(45, 173))
 SUPPORTED_DATASETS = ("Bios", "CivilComments-WILDS", "GaitPDB", "Waterbirds")
@@ -69,6 +73,12 @@ def git_commit() -> str:
         capture_output=True,
         text=True,
     ).stdout.strip()
+
+
+def source_program_hashes() -> dict[str, str]:
+    return {
+        str(path.relative_to(REPOSITORY)): sha256(path) for path in ANALYSIS_PROGRAMS
+    }
 
 
 def verify_outcomes_absent() -> None:
@@ -260,6 +270,38 @@ def build_payload(
             "held-out KNN outcomes",
         ],
     }
+    study["deployment_rules"] = {
+        "common_evidence": (
+            "All rules evaluate the same 12 candidate edits on the same simulated "
+            "certification streams. Among eligible candidates, resolve selection by "
+            "lowest sampled maximum registered-attacker balanced leakage, then lowest "
+            "sampled maximum target harm, then ascending candidate key."
+        ),
+        "always_deploy": (
+            "Deploy the construction-selected fixed design edit without checking any "
+            "certification contract or interval."
+        ),
+        "validation_point_selection": (
+            "Deploy the common-evidence selected candidate only if every sampled "
+            "point target and registered-attacker leakage estimate is at or below its "
+            "declared threshold; no confidence interval is used."
+        ),
+        "iid_ltt": (
+            "Deploy the common-evidence selected candidate only if its simultaneous "
+            "candidate-wise exact IUT clears all target and five-attacker contracts "
+            "at the IID profile (all profile coordinates equal one)."
+        ),
+        "vera_vector_envelope": (
+            "Deploy the common-evidence selected candidate only if its simultaneous "
+            "five-attacker vector envelope contains the exact declared target and "
+            "source conditional profile induced by the construction-selected cell."
+        ),
+        "exact_shift_oracle": (
+            "For retention accounting only, select from candidates whose exact finite "
+            "reference-law shifted target and registered-attacker risks meet all "
+            "thresholds. It is not a deployable rule."
+        ),
+    }
     study["primary_endpoints"] = {
         "iid_ltt_exposure": {
             "unit": "dataset-seed deployment decision",
@@ -309,7 +351,7 @@ def build_payload(
         ],
     }
     return {
-        "schema_version": 2,
+        "schema_version": 3,
         "project": "VERA",
         "phase": "final P0 IID-LTT, attacker-portfolio, and natural-mixture confirmation",
         "status": "locked_before_claim_grade_runs",
@@ -331,9 +373,9 @@ def build_payload(
             "path": str(SUPERSEDED_PROTOCOL.relative_to(REPOSITORY)),
             "sha256": sha256(SUPERSEDED_PROTOCOL),
             "reason": (
-                "No P0 outcome was generated under version 1. Version 2 adds the "
-                "construction-fold audit arrays required to independently replay "
-                "the preregistered stress-design decision."
+                "No P0 outcome was generated under version 2. Version 3 adds exact "
+                "deployment-rule selection and tie-break definitions, plus hashes for "
+                "the independent analysis programs."
             ),
             "outcomes_present_before_supersession": False,
         },
@@ -343,6 +385,13 @@ def build_payload(
             "seed_blocks_disjoint": True,
             "prior_results_may_choose_protocol_but_not_be_pooled": True,
             "external_outcomes_may_not_change_construction_or_certification_choices": True,
+        },
+        "analysis_programs": {
+            "source_sha256": source_program_hashes(),
+            "required_order": (
+                "the source hashes above are committed and pushed before fresh P0 "
+                "runs; the final analyzer must reject a mismatched preregistration hash"
+            ),
         },
         "real_study": study,
         "human_only_gates_not_satisfied": [
