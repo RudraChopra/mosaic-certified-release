@@ -64,7 +64,7 @@ Authoritative evidence:
 
 ## Gate 3: Deployment-Rule Experiment
 
-**Status: FAILED PRIMARY USEFULNESS GATE.** The locked 1,280-run matrix compares
+**Status: PASS FOR INDEPENDENT FOLLOW-UP; FIRST PRIMARY FAILED USEFULNESS.** The locked 1,280-run matrix compares
 nine matched deployment rules on the same candidate edits, including always
 deploy, validation point selection, IID LTT, robust point selection, scalar
 robust certification, VERA, common radius, and the exact shifted-law
@@ -78,12 +78,17 @@ safe retention was 38/187 with a 95% lower bound of 15.1%, below the registered
 A separately frozen supporting stress compares always deploy, validation point
 selection, and VERA across three exact contract severities. At the registered
 contract, naive rules show severe failures and VERA has 0.0% measured
-violations in every stress cell, but the stress headline is ineligible because
-registered usefulness failed. An independent follow-up protocol is now locked
-on seeds 109--172, with the primary budget increased to the previously
-registered 8,000-observation sensitivity setting. That follow-up cannot rescue
-or replace the failed first primary; it may only become a separately reported
-post-failure confirmation if its own sealed run passes.
+violations in every stress cell, but the stress headline is ineligible for
+rescuing the failed first primary. The independent follow-up protocol on seeds
+109--172, with the primary budget increased to the previously registered
+8,000-observation sensitivity setting, has now completed and passed as a
+separately reported post-failure confirmation: validation selection violated
+24/186 deployed decisions, VERA vector deployed 59 edits with 0
+shifted-contract violations, usefulness was 59/183 with 95% seed-bootstrap CI
+[27.5%, 36.8%], paired reduction had 22 favorable and 0 adverse seed clusters
+(p=4.77e-07), and safety had 0/64 sentinel events with one-sided 95% upper
+bound 4.6%. It remains non-pooling and does not retroactively rescue the
+failed first primary.
 
 Authoritative evidence after completion:
 
@@ -95,18 +100,20 @@ Authoritative evidence after completion:
   registered sensitivity analyses
 - `THREE_RULE_THRESHOLD_STRESS_SPEC.md` and its complete 36-cell result
 - `CONTROLLED_SHIFT_RESULT_SUMMARY.json`
-- `prereg_controlled_shift_followup.json` and its SHA-256 sidecar for the
-  pending post-failure follow-up
+- `prereg_controlled_shift_followup.json`, its SHA-256 sidecar,
+  `CONTROLLED_SHIFT_FOLLOWUP_RESULT_SUMMARY.json`, and the sealed first-read
+  follow-up comparison
 
 ## Gate 4: Official Baselines and Cross-Modal Coverage
 
-**Status: PASS FOR COVERAGE, FAIL FOR PRIMARY READINESS.** The prior
+**Status: PASS FOR COVERAGE.** The prior
 five-dataset studies have 1,000 audited official method receipts across INLP,
 R-LACE, LEACE, TaCo, and MANCE++. The controlled supported-shift matrix
 completed on Waterbirds, CivilComments, Bios, and GaitPDB with 1,280 additional
 official-method receipts and 3,072 closed audit-array archives. Camelyon17
-remains the separate unseen-support impossibility study. Coverage is no longer
-the blocker; the failed primary usefulness gate is.
+remains the separate unseen-support impossibility study. The independent
+follow-up adds another 1,280 official-method receipts and 3,072 closed
+audit-array archives on fresh seeds. Coverage is no longer the blocker.
 
 Authoritative evidence:
 
@@ -118,13 +125,13 @@ Authoritative evidence:
 
 ## Gate 5: One Memorable Receipted Number
 
-**Status: FAIL AS HEADLINE, PASS AS DISCLOSURE.** The final abstract sentence
-now reports the audited controlled result directly: validation selection
-violated 19/186 deployed decisions, VERA vector deployed 38 edits with zero
-shifted-contract violations, and the overall primary result failed because the
-safe-retention lower bound was 15.1% rather than at least 20%. The favorable
-threshold-stress sentence is forbidden as a headline because the registered
-usefulness gate failed.
+**Status: PASS FOR FOLLOW-UP HEADLINE WITH FIRST-PRIMARY DISCLOSURE.** The
+abstract now reports both the failed first primary and the successful
+independent follow-up: validation selection violated 24/186 deployed decisions
+in the follow-up, VERA vector deployed 59 edits with zero shifted-contract
+violations, and safe retention was 59/183 with 95% seed-bootstrap CI [27.5%,
+36.8%]. The first primary failure remains disclosed and cannot be erased from
+the headline context.
 
 Authoritative evidence:
 
@@ -135,19 +142,19 @@ Authoritative evidence:
 
 ## Gate 6: Main-Track Presentation
 
-**Status: NOT MAIN-TRACK READY.** The manuscript is a full draft with a
+**Status: NOT FINAL MAIN-TRACK READY.** The manuscript is a full draft with a
 dedicated related-work section, more than 40 active references, the teaching
 figure, controlled result table, controlled budget figure, explicit constants,
-and named and anonymous wrappers. Controlled results are inserted and the final
-three-source audit passes. It still requires exact page fit, pdfTeX
+and named and anonymous wrappers. The successful independent follow-up is now
+inserted into the main result story. It still requires exact page fit, pdfTeX
 compilation, rendered inspection, archive anonymization, official venue-policy
-checks, and human/external review. More importantly, the registered primary
-usefulness gate failed, so presentation polish cannot make this an AAAI/ICLR/
-NeurIPS main-ready success without new independent evidence.
+checks, refreshed literature collision review, and human/external review before
+it can be called submission-ready.
 
 Authoritative evidence:
 
-- named and anonymous manuscript sources and PDFs
+- named and anonymous manuscript sources; tracked PDFs are not authoritative
+  until rebuilt with pdfTeX and inspected for the follow-up result
 - `CONTROLLED_SHIFT_REPORTING_SPEC.md`
 - `AAAI_SOURCE_FINALIZATION_SPEC.md`
 - `DOUBLE_BLIND_RELEASE_BOUNDARY.md`
@@ -176,8 +183,10 @@ Authoritative evidence:
 
 ## Overall Decision
 
-**NOT SUBMISSION READY.** Gates 2--6 still require experiment-dependent work,
-Gate 1 still requires independent proof and novelty review, and Gate 7 is a
-human-only blocker. The overall state may change to `PASS` only when every gate
-above passes with its listed evidence. Conference acceptance is never a
-guaranteed or auditable project outcome.
+**NOT SUBMISSION READY.** The independent follow-up removes the failed
+usefulness result as the main empirical blocker, but Gates 1, 2, 6, and 7 still
+require proof review, final theory/data audit updates, format/source readiness,
+fresh literature collision review, and external human adversarial review. The
+overall state may change to `PASS` only when every gate above passes with its
+listed evidence. Conference acceptance is never a guaranteed or auditable
+project outcome.

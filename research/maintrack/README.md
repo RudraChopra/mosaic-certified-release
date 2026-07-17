@@ -65,6 +65,18 @@ pre-outcome additive-allocation extension uses disjoint certification streams
 and cannot replace the primary decision. Camelyon17 is retained outside this
 matrix as the unsupported-hospital boundary.
 
+That first 64-seed controlled-shift primary passed safety, paired reduction,
+and vector/common advantage but failed usefulness. A non-pooling follow-up was
+therefore locked before any seeds 109--172 outcomes existed, using the same
+supported datasets and official eraser frontier but promoting the previously
+registered 8,000-observation targeted-allocation sensitivity setting to a new
+follow-up primary. The follow-up completed another 1,280 official-method runs,
+passed the strict receipt audit and sealed two-way replay comparison, and
+passed all registered gates: validation selection violated 24/186 deployed
+decisions, whereas VERA deployed 59 edits with zero shifted-contract
+violations and retained 59/183 oracle-safe opportunities. The first primary
+remains reported as failed and is not pooled with the follow-up.
+
 ## Scientific Boundaries
 
 VERA does not certify clinical deployment, universal concept removal, or
@@ -100,6 +112,11 @@ The shorter seven-goal map is [`SEVEN_GATE_STATUS.md`](SEVEN_GATE_STATUS.md).
 Both live trackers intentionally remain red until every empirical,
 presentation, and human-only condition has direct evidence; a green
 file-presence audit cannot override them.
+
+Current paper source is authoritative. The tracked AAAI PDFs predate the
+independent follow-up insertion unless their file timestamps and rendered text
+show the 24/186 versus 0/59 follow-up result. A fresh pdfTeX build and rendered
+inspection are required before any PDF is used for submission or review.
 
 ## Three-Venue Scientific Record
 

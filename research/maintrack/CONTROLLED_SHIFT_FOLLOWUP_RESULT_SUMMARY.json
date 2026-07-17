@@ -1,0 +1,336 @@
+{
+  "analysis_status": "complete_independent_followup_success",
+  "budget_sensitivity_gamma_1_1": [
+    {
+      "allocation": "targeted_floor_0.15",
+      "budget": 1000,
+      "common": {
+        "deploy": 0,
+        "oracle": 183,
+        "safe": 0,
+        "viol": 0
+      },
+      "vector": {
+        "deploy": 2,
+        "oracle": 183,
+        "safe": 2,
+        "viol": 0
+      }
+    },
+    {
+      "allocation": "targeted_floor_0.15",
+      "budget": 2000,
+      "common": {
+        "deploy": 0,
+        "oracle": 183,
+        "safe": 0,
+        "viol": 0
+      },
+      "vector": {
+        "deploy": 22,
+        "oracle": 183,
+        "safe": 22,
+        "viol": 0
+      }
+    },
+    {
+      "allocation": "targeted_floor_0.15",
+      "budget": 4000,
+      "common": {
+        "deploy": 6,
+        "oracle": 183,
+        "safe": 6,
+        "viol": 0
+      },
+      "vector": {
+        "deploy": 51,
+        "oracle": 183,
+        "safe": 51,
+        "viol": 0
+      }
+    },
+    {
+      "allocation": "targeted_floor_0.15",
+      "budget": 8000,
+      "common": {
+        "deploy": 11,
+        "oracle": 183,
+        "safe": 11,
+        "viol": 0
+      },
+      "vector": {
+        "deploy": 59,
+        "oracle": 183,
+        "safe": 59,
+        "viol": 0
+      }
+    },
+    {
+      "allocation": "uniform",
+      "budget": 1000,
+      "common": {
+        "deploy": 0,
+        "oracle": 183,
+        "safe": 0,
+        "viol": 0
+      },
+      "vector": {
+        "deploy": 0,
+        "oracle": 183,
+        "safe": 0,
+        "viol": 0
+      }
+    },
+    {
+      "allocation": "uniform",
+      "budget": 2000,
+      "common": {
+        "deploy": 0,
+        "oracle": 183,
+        "safe": 0,
+        "viol": 0
+      },
+      "vector": {
+        "deploy": 11,
+        "oracle": 183,
+        "safe": 11,
+        "viol": 0
+      }
+    },
+    {
+      "allocation": "uniform",
+      "budget": 4000,
+      "common": {
+        "deploy": 3,
+        "oracle": 183,
+        "safe": 3,
+        "viol": 0
+      },
+      "vector": {
+        "deploy": 39,
+        "oracle": 183,
+        "safe": 39,
+        "viol": 0
+      }
+    },
+    {
+      "allocation": "uniform",
+      "budget": 8000,
+      "common": {
+        "deploy": 8,
+        "oracle": 183,
+        "safe": 8,
+        "viol": 0
+      },
+      "vector": {
+        "deploy": 58,
+        "oracle": 183,
+        "safe": 58,
+        "viol": 0
+      }
+    }
+  ],
+  "cap8_sha256": "00e8c5d2760a16d622ffa866bc3f61698755a70a486b1cb59d33aeab2d316f3a",
+  "comparison_sha256": "7b8e3e044db635c0bfdf24cad93b741acda04f7caa8dcb66e12e3535f6765dad",
+  "first_primary_status": "complete_primary_mixed_failed_usefulness",
+  "followup_may_rescue_or_pool_first_primary": false,
+  "name": "VERA controlled-shift follow-up paper summary",
+  "overall_confirmatory_success": true,
+  "primary_inference": {
+    "common_limiting_contract_counts": {
+      "balanced_leakage::forest": 3,
+      "balanced_leakage::linear": 5,
+      "balanced_leakage::mlp": 3,
+      "balanced_leakage::rbf": 8,
+      "target::environment=0": 38,
+      "target::environment=1": 2
+    },
+    "common_radius_distribution_on_vector_deployments": {
+      "count": 59,
+      "maximum": 1.182647705078125,
+      "median": 1.0400009155273438,
+      "minimum": 1.0022430419921875
+    },
+    "effect_sizes": {
+      "confidence_intervals_95": {
+        "absolute_violation_reduction": [
+          0.0625,
+          0.12890625
+        ],
+        "common_safe_retention": [
+          0.029069767441860465,
+          0.09444444444444444
+        ],
+        "point_deployment_rate": [
+          0.67578125,
+          0.7734375
+        ],
+        "point_violation_rate": [
+          0.0625,
+          0.12890625
+        ],
+        "vector_deployment_rate": [
+          0.1953125,
+          0.265625
+        ],
+        "vector_safe_retention": [
+          0.2752808988764045,
+          0.36813186813186816
+        ],
+        "vector_to_common_ratio": [
+          3.5,
+          10.4
+        ],
+        "vector_violation_rate": [
+          0.0,
+          0.0
+        ]
+      },
+      "point_estimates": {
+        "absolute_violation_reduction": 0.09375,
+        "common_safe_retention": 0.060109289617486336,
+        "point_deployment_rate": 0.7265625,
+        "point_violation_rate": 0.09375,
+        "vector_deployment_rate": 0.23046875,
+        "vector_safe_retention": 0.3224043715846995,
+        "vector_to_common_ratio": 5.363636363636363,
+        "vector_violation_rate": 0.0
+      },
+      "random_seed": 2027071601,
+      "relative_violation_reduction": 1.0,
+      "replicates": 20000,
+      "unit": "seed cluster across all supported datasets"
+    },
+    "heldout_attacker_stress": {
+      "all_vector_deployment_count": 59,
+      "formal_guarantee": false,
+      "heldout_safe_fraction": 0.9152542372881356,
+      "heldout_violation_count": 5,
+      "portfolio_safe_deployment_count": 59
+    },
+    "limiting_coordinate_counts": {
+      "source::0": 14,
+      "source::1": 2,
+      "target::environment=0": 39,
+      "target::environment=1": 4
+    },
+    "overall_confirmatory_success": true,
+    "paired_reduction": {
+      "adverse_seed_clusters": 0,
+      "exact_two_sided_p": 4.76837158203125e-07,
+      "favorable_seed_clusters": 22,
+      "passed": true,
+      "ties": 42
+    },
+    "per_dataset_paired_effects": {
+      "Bios": {
+        "holm_adjusted_p": 0.09375,
+        "point_only_violation_seeds": 6,
+        "raw_exact_p": 0.03125,
+        "vector_only_violation_seeds": 0
+      },
+      "CivilComments-WILDS": {
+        "holm_adjusted_p": 0.0009765625,
+        "point_only_violation_seeds": 13,
+        "raw_exact_p": 0.000244140625,
+        "vector_only_violation_seeds": 0
+      },
+      "GaitPDB": {
+        "holm_adjusted_p": 1.0,
+        "point_only_violation_seeds": 1,
+        "raw_exact_p": 1.0,
+        "vector_only_violation_seeds": 0
+      },
+      "Waterbirds": {
+        "holm_adjusted_p": 0.25,
+        "point_only_violation_seeds": 4,
+        "raw_exact_p": 0.125,
+        "vector_only_violation_seeds": 0
+      }
+    },
+    "safety": {
+      "exact_two_sided_interval": [
+        0.0,
+        0.05600908938663656
+      ],
+      "one_sided_cp95_upper": 0.04572970233076244,
+      "passed": true,
+      "sentinel_decision_count": 64,
+      "sentinel_event_count": 0
+    },
+    "usefulness": {
+      "confidence_interval_95": [
+        0.2752808988764045,
+        0.36813186813186816
+      ],
+      "passed": true,
+      "point_estimate": 0.3224043715846995
+    },
+    "vector_advantage": {
+      "confidence_interval_95": [
+        3.5,
+        10.4
+      ],
+      "passed": true,
+      "point_ratio": 5.363636363636363,
+      "vector_deploys_when_common_abstains": 48
+    }
+  },
+  "primary_rule_results": [
+    {
+      "deploy": 256,
+      "oracle": 183,
+      "rule": "always_deploy",
+      "viol": 128
+    },
+    {
+      "deploy": 186,
+      "oracle": 183,
+      "rule": "validation_point_selection",
+      "viol": 24
+    },
+    {
+      "deploy": 109,
+      "oracle": 183,
+      "rule": "iid_ltt",
+      "viol": 0
+    },
+    {
+      "deploy": 98,
+      "oracle": 183,
+      "rule": "robust_point_estimate",
+      "viol": 3
+    },
+    {
+      "deploy": 256,
+      "oracle": 183,
+      "rule": "generic_scalar_robust_certificate",
+      "viol": 126
+    },
+    {
+      "deploy": 67,
+      "oracle": 183,
+      "rule": "vera_fixed_profile",
+      "viol": 0
+    },
+    {
+      "deploy": 59,
+      "oracle": 183,
+      "rule": "vera_vector_envelope",
+      "viol": 0
+    },
+    {
+      "deploy": 11,
+      "oracle": 183,
+      "rule": "vera_common_radius",
+      "viol": 0
+    },
+    {
+      "deploy": 183,
+      "oracle": 183,
+      "rule": "external_oracle",
+      "viol": 0
+    }
+  ],
+  "schema_version": 1
+}

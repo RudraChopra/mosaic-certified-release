@@ -1,6 +1,6 @@
 # VERA 58-Goal Status
 
-Last outcome update: July 16, 2026 UTC
+Last outcome update: July 17, 2026 UTC
 
 This is the authoritative tracker for the 58-goal acceptance program. Older
 generated readiness and goal-completion artifacts describe earlier source
@@ -22,14 +22,14 @@ Status meanings:
 
 | Goal | Status | Current evidence and remaining condition |
 | --- | --- | --- |
-| 1. No category below 8/10 | FAIL | The controlled-shift result is cleanly audited but mixed: the primary usefulness lower-bound gate failed. A self-score cannot override that result, and clean PDF builds, licenses, external reviews, and human verification also remain incomplete. |
-| 2. Eliminate fatal rejection paths | FAIL | The theorem, controlled design, scalar baseline, vector output, and claim boundaries address several rejection paths, but the registered primary usefulness gate failed and the threshold-stress headline is ineligible. This is fatal to a top-main-ready claim unless a new independently preregistered study or materially different method supplies new evidence. |
+| 1. No category below 8/10 | PENDING | The first controlled-shift primary failed usefulness, but the independently locked post-failure follow-up passed all registered gates. A self-score still cannot override incomplete clean PDF builds, licenses, external reviews, proof checks, and human verification. |
+| 2. Eliminate fatal rejection paths | PENDING | The theorem, controlled design, scalar baseline, vector output, claim boundaries, and successful independent follow-up address the previous empirical fatal path. Remaining rejection paths are proof/novelty review, final literature collision search, page-fit/source readiness, external review, and human verification. |
 | 3. Repair theory appendix | PENDING | One authoritative source has balanced theorem/proof blocks and unique labels. A fresh implementation-consistency run passes 4,314 CVaR, paired-risk, mixture, leakage, radius, envelope, and sample-complexity checks with zero failures. A close official-style layout build exposed and removed a duplicate `placeins` option clash, then compiled the 15-page supplement with resolved references and no overfull horizontal box; the official style itself was not modified in the repository. A clean unmodified PDFLaTeX build, final PDF inspection, V2 mapping, and independent mathematical review remain. |
 | 4. Fix audit semantics | PASS | The prior study is explicitly recorded as execution-complete with method safety successful on 4/4 datasets and the auxiliary baseline-severity floor successful on 3/4. |
 | 5. Human submission confirmations | HUMAN ONLY | OpenReview, email, deadlines, scientific verification, authorship, and AI-disclosure confirmations are unfilled. |
 | 6. One thesis | PASS | The manuscript states that VERA certifies deployment of a registered representation edit under declared supported reweighting while controlling paired harm and registered-attacker recovery. |
 | 7. Shift envelope central | PASS | The vector envelope, fixed-profile decision, common radius, limiting coordinates, support boundary, and abstention are central in the abstract, method, theorem, and deterministic three-panel Figure 1 now included in all three venue sources. |
-| 8. Strong title | PASS | The title is narrowed to the support-aware fallback after the registered usefulness gate failed: **VERA: Support-Aware Certification of Representation Edits Under Deployment Shift**. |
+| 8. Strong title | PASS | The title remains the support-aware branch after the successful follow-up: **VERA: Support-Aware Certification of Representation Edits Under Deployment Shift**. The evidence-efficient title remains inactive because the additive allocator is not the main empirical contribution. |
 | 9. Four explicit contributions | PASS | The introduction names exactly four contributions and does not present VERA as an eraser. |
 | 10. Nearest-work matrix | PENDING | The 16-capability matrix exists. AAAI, ICLR, and NeurIPS now explicitly position VERA against LTT/Pareto/CRC, robust validation, certified fair representations, group-shift evaluation, selective prediction, and support-impossibility work, with 45/41/41 distinct locally verified citations. A frozen final primary-source search, including additive allocation, must still be executed and incorporated. |
 | 11. Three novelty examples | PASS | The main paper gives concrete IID-versus-shift, scalar-pooling, and unsupported-cell examples. |
@@ -45,22 +45,22 @@ Status meanings:
 
 | Goal | Status | Current evidence and remaining condition |
 | --- | --- | --- |
-| 19. Separate IID and shifted claims | PASS | The abstract and results label the 35/128 versus 1/128 result as IID uncertainty control only, and separately report the new Gamma=1.1 controlled-shift result as mixed rather than confirmatory. |
-| 20. New registered shifted study | PASS | The locked 64-seed, four-dataset, five-method, nine-rule matrix completed all 1,280 official-method runs on seeds 45--108. The strict receipt audit validated 1,280 receipts and 3,072 closed audit-array archives before outcome access. |
-| 21. Known ambiguity membership | PASS | Deployment laws are finite-reference reweightings with receipt-level density-ratio checks, and the protocol-compliant cap-8 analyzer plus independent cap-8 raw-array replay agreed exactly in the sealed three-way comparison. |
-| 22. Vector-envelope usefulness | PASS | The vector/common advantage gate passed: vector safe retention was 38/187 versus 6/187 for common radius, a 6.33 ratio with 95% interval [3.5, 18.5]. |
-| 23. Meaningful robust retention | FAIL | The registered 20% lower-bound usefulness gate failed: vector safe retention was 38/187 (20.3%) but the whole-seed 95% lower bound was 15.1%, below the required 20%. No threshold, budget, or allocation may be changed to rescue this primary gate. |
-| 24. Explain GaitPDB | PASS | GaitPDB is reported as secondary: the vector rule deployed 8/64 seeds and retained 8/29 oracle-safe opportunities with zero deployed violations, but this does not rescue the primary usefulness miss. |
+| 19. Separate IID and shifted claims | PASS | The abstract and results label the 35/128 versus 1/128 result as IID uncertainty control only, disclose the failed first controlled-shift primary, and separately report the successful independent Gamma=1.1 follow-up. |
+| 20. New registered shifted study | PASS | The locked 64-seed, four-dataset, five-method, nine-rule matrix completed all 1,280 official-method runs on seeds 45--108. The independent follow-up completed another 1,280 official-method runs on seeds 109--172. Both strict receipt audits validated 3,072 closed audit-array archives before outcome access. |
+| 21. Known ambiguity membership | PASS | Deployment laws are finite-reference reweightings with receipt-level density-ratio checks. The first matrix's cap-8 analyzer and independent raw-array replay agreed exactly in the sealed three-way comparison; the follow-up analyzer and independent replay agreed exactly in the sealed two-way comparison. |
+| 22. Vector-envelope usefulness | PASS | The first primary vector/common advantage gate passed at 38/187 versus 6/187. The follow-up also passed: vector safe retention was 59/183 versus 11/183 for common radius, a 5.36 ratio with 95% interval [3.5, 10.4]. |
+| 23. Meaningful robust retention | PASS | The first primary failed the registered 20% lower-bound usefulness gate, but the non-pooling independent follow-up passed: vector safe retention was 59/183 (32.2%) with whole-seed 95% CI [27.5%, 36.8%]. The first primary remains reported as failed and is not rescued or pooled. |
+| 24. Explain GaitPDB | PASS | The follow-up reports deployment heterogeneity directly: VERA abstained on Bios and CivilComments, deployed 14/64 GaitPDB seed decisions and 45/64 Waterbirds seed decisions, and had zero shifted-contract violations on every deployment. |
 | 25. Preserve Camelyon17 boundary | PASS | Camelyon17 is excluded from supported-shift endpoints and presented as non-identifiability, not clinical failure or fabricated violation. |
-| 26. Held-out attacker challenge | PASS | The held-out boosted-tree stress is reported outside the formal guarantee: 2 of 38 vector deployments violated the held-out attacker stress, so portfolio scope is limited explicitly. |
+| 26. Held-out attacker challenge | PASS | The held-out boosted-tree stress is reported outside the formal guarantee: 2 of 38 first-primary vector deployments and 5 of 59 follow-up vector deployments violated the held-out attacker stress, so portfolio scope is limited explicitly. |
 | 27. Separate erasers and deployment rules | PASS | Five official-entry-point erasers form the candidate frontier; nine matched rules form the decision comparison, including generic scalar robust certification. |
 | 28. Match every baseline | PASS | The locked analyzer reuses candidates, arrays, thresholds, shifts, and seed clusters across all nine rules, and the independent replay matched the protocol cap-8 analyzer with zero mismatches. |
 | 29. Bound official parity claims | PASS | The paper uses the pinned-entry-point/common-protocol wording, disclaims reproduction of every upstream training pipeline or eraser state of the art, and the supplement names each pinned adapter and protocol-specific compatibility change. |
 | 30. Sixteen decisive ablations | PENDING | A hash-frozen analysis specification lists all 16; execution and complete reporting remain. |
 | 31. Seed as independent unit | PASS | Primary inference uses whole 64-seed clusters; repeated candidates, rules, budgets, and datasets are not treated as independent replicates. |
 | 32. Strong endpoint hierarchy | PASS | The locked study separates paired violation reduction, sentinel safety, safe retention, and vector/common advantage, with per-dataset and diagnostic endpoints secondary. |
-| 33. Effect sizes and intervals | PASS | The paper reports paired reduction, sentinel safety, safe retention with whole-seed interval, vector/common ratio, per-dataset paired effects, held-out stress, limiting-coordinate counts, and secondary budget sensitivity. |
-| 34. Lock analyses before running | PASS | The primary protocol and original analyzer were fixed before execution. A pre-outcome static audit found the analyzer's cap-4 literal conflicted with the preregistered cap 8; an outcome-blind correction now fixes cap 8 as authority, preserves cap 4 as sensitivity, and requires two agreeing cap-8 paths before release. |
+| 33. Effect sizes and intervals | PASS | The paper reports paired reduction, sentinel safety, safe retention with whole-seed interval, vector/common ratio, per-dataset paired effects, held-out stress, limiting-coordinate counts, and budget sensitivity for the first primary and the independent follow-up. |
+| 34. Lock analyses before running | PASS | The first-primary protocol and original analyzer were fixed before execution, with the cap-8 correction sealed before first read. The follow-up protocol was locked before seeds 109--172 outcomes existed, and its sealed independent replay and protocol analyzer agreed before result access. |
 | 35. Disclose old 3/4 result | PASS | The manuscript reports the four successful safety comparisons and the failed Gait baseline-severity condition once, precisely. |
 | 36. Apply honesty rule | PASS | Scientifically material deviations and limits are retained; internal process history is kept outside submission-facing prose. A final source scan remains part of Goal 46. |
 
@@ -68,13 +68,13 @@ Status meanings:
 
 | Goal | Status | Current evidence and remaining condition |
 | --- | --- | --- |
-| 37. Self-contained seven-page paper | PENDING | An evidence-preserving compression removed a redundant algorithm float and condensed repeated exposition while retaining the central assumptions, theorem boundaries, protocol constants, negative results, and responsible-use statement. The refreshed close official-style pre-result build starts references at the top of page 7. A conservative synthetic layout probe then inserted a nine-rule full-width table, a 7-inch three-panel figure taller than the planned result figure, and deliberately long result prose; it compiled without overfull boxes and still ended all technical content on page 7 before references. Controlled results, replacement by the actual generated objects, an unmodified official PDFLaTeX build, and final rendered inspection remain. |
-| 38. Two-result abstract | PASS | The abstract now reports the prior IID result separately from the controlled Gamma=1.1 mixed result and states the failed usefulness gate. |
-| 39. One memorable result figure | PASS | The controlled budget-retention figure is generated from sealed outputs and marks the failed primary point plus higher-budget secondary trend. |
+| 37. Self-contained seven-page paper | PENDING | An evidence-preserving compression removed a redundant algorithm float and condensed repeated exposition while retaining the central assumptions, theorem boundaries, protocol constants, negative results, and responsible-use statement. The refreshed close official-style pre-result build starts references at the top of page 7. A conservative synthetic layout probe then inserted a nine-rule full-width table, a 7-inch three-panel figure taller than the planned result figure, and deliberately long result prose; it compiled without overfull boxes and still ended all technical content on page 7 before references. The actual follow-up result table and budget figure are now inserted, but an unmodified official pdfTeX build, exact page-fit check, and final rendered inspection remain. |
+| 38. Two-result abstract | PASS | The abstract now reports the prior IID result separately from controlled-shift evidence, discloses the failed first primary, and gives the successful independent follow-up numbers. |
+| 39. One memorable result figure | PASS | The follow-up budget-retention figure is generated from sealed outputs and marks the successful locked 8,000-observation follow-up primary point. |
 | 40. One main result table | PASS | The main result table is generated from audited outputs and reports all nine matched deployment rules at the primary profile. |
 | 41. Remove internal audit language | PENDING | Submission-facing TeX now describes the cap correction and secondary freezes in ordinary reproducibility language; a source scan finds no outcome-blind, internal-audit, or locked-analyzer process phrasing. A final generated flat-source and PDF scan must still pass. |
-| 42. Claim ledger | PENDING | Theory and protocol claims are mapped. Sensitivity Interpretation 1 separates Bonferroni simultaneous bounds from Holm-adjusted tests and fixes exhaustive zero-denominator ratio accounting; the strict shared-result V2 contract requires those fields alongside sign-test denominators, complete bootstrap accounting, per-dataset rows, failed-gate records, and legal title branches. Draft 2020-12 pass, disclosed threshold-stress failure, disclosed primary failure, and support-aware-title synthetic manifests now validate and 31 deliberate corruptions fail after correcting an impossible zero-match branch. The repository validator, real-result validation, empirical sentences, and human verification still require the completed study. |
-| 43. Keep permitted claims | PASS | Current prose stays inside the stated boundaries and explicitly reports the failed primary usefulness gate, ineligible headline stress, and non-guaranteed held-out attacker stress. |
+| 42. Claim ledger | PENDING | Theory and protocol claims are mapped, and the ledger now separates the failed first primary from the successful independent follow-up. Sensitivity Interpretation 1 separates Bonferroni simultaneous bounds from Holm-adjusted tests and fixes exhaustive zero-denominator ratio accounting; the strict shared-result V2 contract still requires final validation against the completed follow-up artifacts and human verification. |
+| 43. Keep permitted claims | PASS | Current prose stays inside the stated boundaries and explicitly reports the failed first primary, the non-pooling successful follow-up, and non-guaranteed held-out attacker stress. |
 | 44. Forbid overclaims | PASS | The manuscript disclaims universal erasure, unseen-support certification, clinical/legal safety, real-world ambiguity membership, eraser superiority, and zero true risk. |
 | 45. True clean-room reproduction | HUMAN ONLY | Code-path-independent replay is specified, but a person unfamiliar with the project must reproduce the final anonymous package without verbal help. |
 | 46. Remove stale contradictions | PENDING | This tracker supersedes old green readiness artifacts. The pre-outcome cap-4/cap-8 mismatch is disclosed and correction-specified, Replay Interpretation 4 distinguishes full coupled-envelope curves from coordinate-axis intercepts, the old seeds 5--12 tables are explicitly historical, and the unused stale IID macro interface was removed from current AAAI sources. Obsolete generators/audits still reference that interface, and the prior-study ablation generator can still emit the internal phrase `Outcome-blindly locked`; both must be retired or corrected after the matrix. The source-readiness audit also has three stale literal tests: it requires `anonymous supplementary archive` although the source says `anonymous supplement`, requires the superseded `200 official-method runs` although the prospective matrix has 1,280 runs, and requires `not clinical evidence` although the source gives the stronger two-part boundary `not clinical validation` plus no `clinical deployment evidence`. The public README command block still invokes legacy result builders, while the export README still promises tracked draft PDFs; both must be replaced by the final V2 release instructions. These checks must be made semantic and current after the matrix. Implementation/comparison, final result insertion, legacy-artifact pruning, flat-source process-language scan, seed/count scan, and archive scan remain. |
@@ -98,11 +98,10 @@ Status meanings:
 
 ## Three-Venue Content Variants
 
-- **AAAI-27:** official format available; controlled results are inserted and
-  the final three-source audit passes, but the result is not a main-track-ready
-  success because the primary usefulness gate failed. Local PDF compilation is
-  blocked by the absence of a pdfTeX engine on this machine; Tectonic cannot
-  compile the AAAI style because the style requires pdfTeX.
+- **AAAI-27:** official format available; the failed first primary and
+  successful independent follow-up are inserted. The paper still is not
+  submission-ready because final page fit, clean pdfTeX compilation, source
+  packaging, literature refresh, external review, and human verification remain.
 - **ICLR 2027:** a scientifically complete content variant is required, but
   a full scientific-content source now exists with controlled results, figure,
   and tables inserted. Result-dependent supplement sections, review, and
@@ -125,8 +124,8 @@ Status meanings:
 
 ## Overall Decision
 
-**NOT MAIN-TRACK SUBMISSION READY.** The controlled study and first-read replay
-are clean, but the registered primary usefulness gate failed. This decision
-also remains red for clean pdfTeX builds, references and licenses, external
-reviews, independent reproduction, human verification, and venue actions.
-Conference acceptance can never be guaranteed.
+**NOT MAIN-TRACK SUBMISSION READY.** The controlled follow-up and first-read
+replay are clean and empirically successful, but the package remains red for
+clean pdfTeX builds, references and licenses, final source/archive readiness,
+external reviews, independent reproduction, proof review, human verification,
+and venue actions. Conference acceptance can never be guaranteed.
