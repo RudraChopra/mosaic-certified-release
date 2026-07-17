@@ -38,3 +38,8 @@ claim-grade mode. The original resumable matrix remains the authoritative
 scheduler and verifies then reuses any matching parallel receipt when it
 reaches that cell. This is execution parallelism only; it changes no data or
 statistical choice and reads no outcome.
+
+When the CivilComments-WILDS--MANCE++ worker completed, its bounded capacity
+was reassigned to the likewise disjoint Waterbirds--R-LACE cells, with the
+same immutable execution inputs. This replacement uses no result-dependent
+criterion and does not alter the protocol or analysis sources.
