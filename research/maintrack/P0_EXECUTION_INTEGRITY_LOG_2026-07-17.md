@@ -1,0 +1,31 @@
+# P0 Execution Integrity Log
+
+This log records the order of the final P0 confirmation work. It is a
+submission-audit artifact, not scientific evidence.
+
+1. `prereg_vera_p0_confirmation_v4.json` and its SHA-256 sidecar were committed
+   and pushed before the first fresh seed 173--236 run. The lock freezes the
+   construction-only stress choice, five registered attackers, held-out KNN
+   stress, exact rule tie breaks, thresholds, evidence budgets, and the primary
+   analyzer's source hashes.
+2. The resumable official-method matrix was then started in its new external
+   directories. A receipt-level check confirmed only that completed audit
+   archive hashes matched and that the required construction arrays and locked
+   split sizes were present. No P0 target-harm, attacker, deployment decision,
+   retention, or natural-mixture outcome was read.
+3. During execution, the protocol's requirement for two independent result
+   readers was rechecked. The policy/certificate analyzer was already locked.
+   Before any scientific P0 outcome was inspected, the separately implemented
+   `replay_vera_p0_exact_risks.py` was added, tested, committed, and pushed. It
+   does not import the policy evaluator; it reconstructs construction-selected
+   edits, exact finite-reference shift laws, and shifted target/attacker risks
+   directly from hashed raw arrays.
+4. The final read may begin only after the complete matrix, the primary
+   hash-enforced analyzer, the independent exact-risk replay, receipt audits,
+   and their comparison checks have all completed. Any mismatch, missing receipt,
+   or failed P0 endpoint is reported rather than repaired by changing the lock.
+
+The timing in item 3 is a process deviation from the stricter ideal of sealing
+both readers before starting the matrix. It does not change any locked data,
+seed, profile, rule, or analysis source; the matrix had produced receipts but
+no scientific outcome was accessed before the second reader was sealed.
