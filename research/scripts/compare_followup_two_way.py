@@ -10,6 +10,16 @@ from typing import Any
 from compare_three_way import compare_cap8, load_json, sha256
 
 
+def json_ready(value: Any) -> Any:
+    if isinstance(value, dict):
+        return {str(key): json_ready(child) for key, child in value.items()}
+    if isinstance(value, list):
+        return [json_ready(child) for child in value]
+    if isinstance(value, tuple):
+        return [json_ready(child) for child in value]
+    return value
+
+
 def write_report(
     replay_path: Path,
     cap8_path: Path,
@@ -33,7 +43,8 @@ def write_report(
     }
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(
-        json.dumps(report, indent=2, sort_keys=True, allow_nan=False) + "\n",
+        json.dumps(json_ready(report), indent=2, sort_keys=True, allow_nan=False)
+        + "\n",
         encoding="utf-8",
     )
     return report
