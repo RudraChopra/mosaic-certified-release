@@ -11,7 +11,10 @@ SCRIPTS = Path(__file__).resolve().parents[1] / "scripts"
 sys.path.insert(0, str(SCRIPTS))
 
 from run_official_eraser_frontier import (  # noqa: E402
+    EXPANDED_HELDOUT_ATTACKER_CONFIG,
+    EXPANDED_REGISTERED_ATTACKER_CONFIG,
     HELDOUT_ATTACKER_CONFIG,
+    make_attackers,
     make_heldout_attacker,
     paired_target_error_arrays,
 )
@@ -30,6 +33,25 @@ class HeldoutAttackerTests(unittest.TestCase):
 
         first = make_heldout_attacker(13).fit(features, labels).predict(features)
         second = make_heldout_attacker(13).fit(features, labels).predict(features)
+
+        np.testing.assert_array_equal(first, second)
+
+    def test_expanded_portfolio_registers_boosted_tree_and_holds_out_knn(self) -> None:
+        registered = make_attackers(13, 8, EXPANDED_REGISTERED_ATTACKER_CONFIG)
+
+        self.assertIn("boosted_tree", registered)
+        self.assertEqual(EXPANDED_HELDOUT_ATTACKER_CONFIG["name"], "knn_distance")
+        self.assertFalse(EXPANDED_HELDOUT_ATTACKER_CONFIG["formal_guarantee"])
+
+        rng = np.random.default_rng(17)
+        features = rng.normal(size=(80, 8))
+        labels = (features[:, 0] > 0).astype(int)
+        first = make_heldout_attacker(
+            13, EXPANDED_HELDOUT_ATTACKER_CONFIG
+        ).fit(features, labels).predict(features)
+        second = make_heldout_attacker(
+            13, EXPANDED_HELDOUT_ATTACKER_CONFIG
+        ).fit(features, labels).predict(features)
 
         np.testing.assert_array_equal(first, second)
 

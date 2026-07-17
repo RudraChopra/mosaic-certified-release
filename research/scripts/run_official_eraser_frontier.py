@@ -17,6 +17,7 @@ from sklearn.kernel_approximation import Nystroem
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import balanced_accuracy_score
 from sklearn.neural_network import MLPClassifier
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
@@ -79,8 +80,50 @@ METHOD_NAMES = {
     "taco": "TaCo",
     "mance": "MANCE++",
 }
-HELDOUT_ATTACKER_CONFIG = {
-    "name": "boosted_tree",
+REGISTERED_ATTACKER_CONFIG = {
+    "linear": {
+        "class": "sklearn.linear_model.LogisticRegression",
+        "C": 1.0,
+        "class_weight": "balanced",
+        "max_iter": 2000,
+        "solver": "lbfgs",
+        "seed_offset": 11,
+    },
+    "rbf": {
+        "class": "Nystroem-RBF plus LogisticRegression",
+        "gamma": "1 / representation_dimension",
+        "n_components": "min(256, max(32, 2 * representation_dimension))",
+        "standardize_after_features": True,
+        "C": 1.0,
+        "class_weight": "balanced",
+        "max_iter": 1500,
+        "nystroem_seed_offset": 13,
+        "logistic_seed_offset": 17,
+    },
+    "forest": {
+        "class": "sklearn.ensemble.RandomForestClassifier",
+        "n_estimators": 200,
+        "min_samples_leaf": 3,
+        "class_weight": "balanced_subsample",
+        "n_jobs": 8,
+        "seed_offset": 19,
+    },
+    "mlp": {
+        "class": "sklearn.neural_network.MLPClassifier",
+        "hidden_layer_sizes": [128, 64],
+        "alpha": 0.0001,
+        "batch_size": 256,
+        "learning_rate_init": 0.001,
+        "max_iter": 150,
+        "early_stopping": True,
+        "validation_fraction": 0.15,
+        "n_iter_no_change": 12,
+        "standardize": True,
+        "seed_offset": 23,
+    },
+}
+
+BOOSTED_TREE_ATTACKER_CONFIG = {
     "class": "sklearn.ensemble.HistGradientBoostingClassifier",
     "learning_rate": 0.05,
     "max_iter": 150,
@@ -93,6 +136,27 @@ HELDOUT_ATTACKER_CONFIG = {
     "validation_fraction": 0.15,
     "n_iter_no_change": 10,
     "seed_offset": 29,
+}
+
+HELDOUT_ATTACKER_CONFIG = {
+    "name": "boosted_tree",
+    **BOOSTED_TREE_ATTACKER_CONFIG,
+    "formal_guarantee": False,
+    "usage": "external stress evaluation only; never used by certification or selection",
+}
+
+EXPANDED_REGISTERED_ATTACKER_CONFIG = {
+    **REGISTERED_ATTACKER_CONFIG,
+    "boosted_tree": BOOSTED_TREE_ATTACKER_CONFIG,
+}
+
+EXPANDED_HELDOUT_ATTACKER_CONFIG = {
+    "name": "knn_distance",
+    "class": "sklearn.neighbors.KNeighborsClassifier",
+    "n_neighbors": 25,
+    "weights": "distance",
+    "p": 2,
+    "standardize": True,
     "formal_guarantee": False,
     "usage": "external stress evaluation only; never used by certification or selection",
 }
@@ -259,60 +323,31 @@ def validate_claim_configuration(
         "solver": "lbfgs",
         "seed_offset": 101,
     }
-    expected_attackers = {
-        "linear": {
-            "class": "sklearn.linear_model.LogisticRegression",
-            "C": 1.0,
-            "class_weight": "balanced",
-            "max_iter": 2000,
-            "solver": "lbfgs",
-            "seed_offset": 11,
-        },
-        "rbf": {
-            "class": "Nystroem-RBF plus LogisticRegression",
-            "gamma": "1 / representation_dimension",
-            "n_components": "min(256, max(32, 2 * representation_dimension))",
-            "standardize_after_features": True,
-            "C": 1.0,
-            "class_weight": "balanced",
-            "max_iter": 1500,
-            "nystroem_seed_offset": 13,
-            "logistic_seed_offset": 17,
-        },
-        "forest": {
-            "class": "sklearn.ensemble.RandomForestClassifier",
-            "n_estimators": 200,
-            "min_samples_leaf": 3,
-            "class_weight": "balanced_subsample",
-            "n_jobs": 8,
-            "seed_offset": 19,
-        },
-        "mlp": {
-            "class": "sklearn.neural_network.MLPClassifier",
-            "hidden_layer_sizes": [128, 64],
-            "alpha": 0.0001,
-            "batch_size": 256,
-            "learning_rate_init": 0.001,
-            "max_iter": 150,
-            "early_stopping": True,
-            "validation_fraction": 0.15,
-            "n_iter_no_change": 12,
-            "standardize": True,
-            "seed_offset": 23,
-        },
-    }
     if study.get("target_probe") != expected_target_probe:
         raise RuntimeError("target probe differs from the locked runner")
-    if study.get("leakage_attackers") != expected_attackers:
+    registered_attackers = study.get("leakage_attackers")
+    if not isinstance(registered_attackers, dict):
+        raise RuntimeError("attacker portfolio differs from the locked runner")
+    registered_serialized = json.dumps(registered_attackers, sort_keys=True)
+    if registered_serialized not in {
+        json.dumps(REGISTERED_ATTACKER_CONFIG, sort_keys=True),
+        json.dumps(EXPANDED_REGISTERED_ATTACKER_CONFIG, sort_keys=True),
+    }:
         raise RuntimeError("attacker portfolio differs from the locked runner")
     heldout_attacker = study.get("heldout_attacker")
-    if heldout_attacker is not None and heldout_attacker != HELDOUT_ATTACKER_CONFIG:
+    expected_heldout = (
+        EXPANDED_HELDOUT_ATTACKER_CONFIG
+        if registered_attackers == EXPANDED_REGISTERED_ATTACKER_CONFIG
+        else HELDOUT_ATTACKER_CONFIG
+    )
+    if heldout_attacker is not None and heldout_attacker != expected_heldout:
         raise RuntimeError("held-out attacker differs from the locked runner")
     if int(store.manifest.get("n_examples", 0)) <= 0:
         raise RuntimeError("dataset manifest has no examples")
     return {
         "dataset_manifest_sha256": manifest_hash,
         "method": method,
+        "registered_attackers": registered_attackers,
         "heldout_attacker": heldout_attacker,
         "runner_parameters": {
             "max_train": args.max_train,
@@ -464,8 +499,12 @@ def make_target_probe(seed: int) -> LogisticRegression:
     )
 
 
-def make_attackers(seed: int, dimension: int) -> dict[str, object]:
-    return {
+def make_attackers(
+    seed: int,
+    dimension: int,
+    configuration: dict[str, object] = REGISTERED_ATTACKER_CONFIG,
+) -> dict[str, object]:
+    attackers: dict[str, object] = {
         "linear": LogisticRegression(
             C=1.0,
             class_weight="balanced",
@@ -510,22 +549,47 @@ def make_attackers(seed: int, dimension: int) -> dict[str, object]:
             ),
         ),
     }
+    if configuration == EXPANDED_REGISTERED_ATTACKER_CONFIG:
+        attackers["boosted_tree"] = HistGradientBoostingClassifier(
+            learning_rate=0.05,
+            max_iter=150,
+            max_leaf_nodes=31,
+            min_samples_leaf=20,
+            l2_regularization=0.01,
+            max_features=0.8,
+            class_weight="balanced",
+            early_stopping=True,
+            validation_fraction=0.15,
+            n_iter_no_change=10,
+            random_state=seed + 29,
+        )
+    return attackers
 
 
-def make_heldout_attacker(seed: int) -> HistGradientBoostingClassifier:
-    return HistGradientBoostingClassifier(
-        learning_rate=0.05,
-        max_iter=150,
-        max_leaf_nodes=31,
-        min_samples_leaf=20,
-        l2_regularization=0.01,
-        max_features=0.8,
-        class_weight="balanced",
-        early_stopping=True,
-        validation_fraction=0.15,
-        n_iter_no_change=10,
-        random_state=seed + 29,
-    )
+def make_heldout_attacker(
+    seed: int,
+    configuration: dict[str, object] = HELDOUT_ATTACKER_CONFIG,
+) -> object:
+    if configuration == HELDOUT_ATTACKER_CONFIG:
+        return HistGradientBoostingClassifier(
+            learning_rate=0.05,
+            max_iter=150,
+            max_leaf_nodes=31,
+            min_samples_leaf=20,
+            l2_regularization=0.01,
+            max_features=0.8,
+            class_weight="balanced",
+            early_stopping=True,
+            validation_fraction=0.15,
+            n_iter_no_change=10,
+            random_state=seed + 29,
+        )
+    if configuration == EXPANDED_HELDOUT_ATTACKER_CONFIG:
+        return make_pipeline(
+            StandardScaler(),
+            KNeighborsClassifier(n_neighbors=25, weights="distance", p=2),
+        )
+    raise ValueError("unsupported held-out attacker configuration")
 
 
 def balanced_correctness(source: np.ndarray, prediction: np.ndarray) -> float | None:
@@ -569,7 +633,8 @@ def evaluate_candidate(
     seed: int,
     split_at: int,
     audit_path: Path,
-    include_heldout_attacker: bool,
+    registered_attackers: dict[str, object],
+    heldout_attacker_config: dict[str, object] | None,
 ) -> dict[str, object]:
     candidate_certification = candidate.external[:split_at]
     candidate_external = candidate.external[split_at:]
@@ -603,7 +668,9 @@ def evaluate_candidate(
         "target_external": y_external.astype(np.int16),
     }
     leakage_metrics: dict[str, object] = {}
-    for name, attacker in make_attackers(seed, candidate.train.shape[1]).items():
+    for name, attacker in make_attackers(
+        seed, candidate.train.shape[1], registered_attackers
+    ).items():
         attacker.fit(candidate.train, s_train)
         cert_prediction = attacker.predict(candidate_certification)
         external_prediction = attacker.predict(candidate_external)
@@ -622,19 +689,20 @@ def evaluate_candidate(
             ),
         }
     heldout_metrics: dict[str, object] | None = None
-    if include_heldout_attacker:
-        heldout = make_heldout_attacker(seed)
+    if heldout_attacker_config is not None:
+        heldout = make_heldout_attacker(seed, heldout_attacker_config)
         heldout.fit(candidate.train, s_train)
         heldout_cert_prediction = heldout.predict(candidate_certification)
         heldout_external_prediction = heldout.predict(candidate_external)
-        arrays["heldout_leakage_correct_certification__boosted_tree"] = (
+        heldout_name = str(heldout_attacker_config["name"])
+        arrays[f"heldout_leakage_correct_certification__{heldout_name}"] = (
             heldout_cert_prediction == s_certification
         ).astype(np.int8)
-        arrays["heldout_leakage_correct_external__boosted_tree"] = (
+        arrays[f"heldout_leakage_correct_external__{heldout_name}"] = (
             heldout_external_prediction == s_external
         ).astype(np.int8)
         heldout_metrics = {
-            "name": "boosted_tree",
+            "name": heldout_name,
             "formal_guarantee": False,
             "certification_balanced_accuracy": balanced_correctness(
                 s_certification, heldout_cert_prediction
@@ -829,10 +897,22 @@ def main() -> None:
     if args.claim_grade:
         assert locked_configuration is not None
         validate_official_candidates(candidates, locked_configuration)
-    include_heldout_attacker = bool(
-        locked_configuration is not None
-        and locked_configuration.get("heldout_attacker") is not None
+    registered_attackers = (
+        locked_configuration.get("registered_attackers", REGISTERED_ATTACKER_CONFIG)
+        if locked_configuration is not None
+        else REGISTERED_ATTACKER_CONFIG
     )
+    heldout_attacker_config = (
+        locked_configuration.get("heldout_attacker")
+        if locked_configuration is not None
+        else None
+    )
+    if not isinstance(registered_attackers, dict):
+        raise RuntimeError("registered attacker portfolio is invalid")
+    if heldout_attacker_config is not None and not isinstance(
+        heldout_attacker_config, dict
+    ):
+        raise RuntimeError("held-out attacker configuration is invalid")
 
     run_key = f"{args.dataset}__{args.method}__seed-{args.seed}"
     audit_dir = args.external_output_dir / run_key
@@ -855,7 +935,8 @@ def main() -> None:
                 seed=args.seed,
                 split_at=len(certification),
                 audit_path=audit_dir / f"candidate-{index:02d}.npz",
-                include_heldout_attacker=include_heldout_attacker,
+                registered_attackers=registered_attackers,
+                heldout_attacker_config=heldout_attacker_config,
             )
         )
     receipt = {
@@ -873,9 +954,8 @@ def main() -> None:
         "prereg_sha256": prereg_hash,
         "claim_configuration_verified": bool(args.claim_grade),
         "locked_configuration": locked_configuration,
-        "heldout_attacker": (
-            HELDOUT_ATTACKER_CONFIG if include_heldout_attacker else None
-        ),
+        "registered_attackers": registered_attackers,
+        "heldout_attacker": heldout_attacker_config,
         "split_policy": "eraser train/construction are disjoint group-stratified partitions of official train; certification is untouched official validation",
         "external_labels_locked_during_edit_construction": True,
         "indices": {
