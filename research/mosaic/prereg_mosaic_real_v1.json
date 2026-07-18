@@ -1,0 +1,209 @@
+{
+  "claim_boundary": "This confirmation evaluates a fixed MOSAIC release protocol and external benchmark diagnostics. It does not establish that a natural external split belongs to the theorem's structured shift class, does not confer clinical safety, and does not turn an unestimable external contract into evidence of safety.",
+  "code_sha256": {
+    "research/mosaic/audit_mosaic_real_frontier.py": "6d7ba78a8fd00ab49fb7bffad2b0b6912afd1bc958a4533e2ed910687f36931a",
+    "research/mosaic/lock_mosaic_real_prereg.py": "a29ada539b180543e80aadf1cdb4fb83e15d7a8a23797b8672fb22cd3ded811f",
+    "research/mosaic/mosaic_channel.py": "a69c82b9182be32d28d30e83795ac77c9512fa09f95f8bad7e1ed5732e60ecc4",
+    "research/mosaic/mosaic_envelope.py": "e45d2e0168321a5fa953fba0c980fbdd0418386463ed55127069943134f87540",
+    "research/mosaic/mosaic_exact.py": "da248f621a4d5155de9755f0c6ea1936e9acfbc18f624997f3df933aae7c542a",
+    "research/mosaic/mosaic_invariant.py": "25737e049e2bf329f1019b337c37fb84ca749730e27edf372ddc0ef4676e9826",
+    "research/mosaic/mosaic_optimizer.py": "6a7adddec0a95818b2854dafec52c5c15801e94401691880db0d17f66a73d4d9",
+    "research/mosaic/mosaic_real.py": "b8e1d70b8c72f79db6d4cf6587a9e34fde0a050387058b4d00c754f8b60a94f7",
+    "research/mosaic/run_mosaic_official_frontier_pilot.py": "1a148a3cde177fe4a08f425bebaeae14e1a3cc5e32b1a96d8221e25fde83d679",
+    "research/mosaic/run_mosaic_real_confirmation.py": "20dc594c4124715d9418a7ad965e14315579bac6be0e4fe94794909a7b53e68a",
+    "research/scripts/official_eraser_adapters.py": "c7af8e609f75a5f67af33965c1680a268917822f8ab5c9775322e8846beb5aa8",
+    "research/scripts/run_official_eraser_frontier.py": "2a408a5e78f88c687a40e600b12924c5d70299204ad6fdf3ead51911348b0f7f",
+    "research/tests/test_mosaic_real.py": "cddf17586ad5ebeed2e248f6f0b38ac8597f48ed4901800bf17b0032f6d4f377"
+  },
+  "confirmation_seeds": [
+    100,
+    101,
+    102,
+    103,
+    104
+  ],
+  "data_protocol": {
+    "certification_sampling": "equal count per represented source-label stratum",
+    "external_sampling": "equal count per represented source-label stratum when possible; otherwise preserve represented support and mark missing strata",
+    "fine_token_count": 4,
+    "maximum_balanced_certification": 8000,
+    "maximum_balanced_external_diagnostic": 8000,
+    "maximum_eraser_train": 8000,
+    "maximum_tokenizer_construction": 2000,
+    "preprocessing_dimension": 128,
+    "released_token_count": 2,
+    "tokenizer": "balanced logistic task score trained only on construction data, discretized at construction-score quartiles"
+  },
+  "datasets": {
+    "BiasBios-Clinical": {
+      "modality": "text",
+      "source": "binary gender label",
+      "target": "clinical profession versus other profession"
+    },
+    "Camelyon17-WILDS": {
+      "known_external_limitation": "required source-label strata are absent from the external center split",
+      "modality": "medical vision",
+      "source": "hospital grouping",
+      "target": "tumor label"
+    },
+    "CivilComments-WILDS": {
+      "modality": "text",
+      "source": "identity-mention grouping",
+      "target": "toxicity label"
+    },
+    "GaitPDB": {
+      "modality": "time series",
+      "source": "binary recorded source",
+      "target": "native binary task"
+    },
+    "Waterbirds": {
+      "modality": "vision",
+      "source": "background group",
+      "target": "native binary task"
+    }
+  },
+  "frontier": {
+    "candidate_count": 13,
+    "candidates": [
+      "Identity::unedited",
+      "INLP::rank=1",
+      "INLP::rank=2",
+      "INLP::rank=4",
+      "INLP::rank=8",
+      "LEACE::closed_form",
+      "R-LACE::rank=1",
+      "R-LACE::rank=4",
+      "TaCo::components_removed=1",
+      "TaCo::components_removed=2",
+      "TaCo::components_removed=3",
+      "TaCo::components_removed=5",
+      "MANCE++::epsilon=0.05,steps=3"
+    ],
+    "official_methods": [
+      "INLP",
+      "LEACE",
+      "R-LACE",
+      "TaCo",
+      "MANCE++"
+    ],
+    "proxy_rows_permitted": false,
+    "selection": "Among candidates satisfying both registered certificates, choose the smallest certified worst source-label conditional error; break exact ties by candidate key. Abstain if none pass."
+  },
+  "frozen_stores": {
+    "BiasBios-Clinical": {
+      "manifest_sha256": "a2f0d7cd2d67eb2cb01a05fccbd32c24519cd916ac9ceb508ca680ce1f3aa1e4",
+      "path": "/Volumes/Backups/FARO/artifacts/bios_rlace_numpy_store"
+    },
+    "Camelyon17-WILDS": {
+      "manifest_sha256": "6d18335f5a66a174304bbafbd7ca6efca9250fb4c450d7d35ce9791a27883fb3",
+      "path": "/Volumes/Backups/FARO/artifacts/camelyon17_resnet18_torch_center_numpy_store"
+    },
+    "CivilComments-WILDS": {
+      "manifest_sha256": "bfe7394a8189cfeaa12efbaf038306b0463c70d9e05508eed6f154823b0e5c10",
+      "path": "/Volumes/Backups/FARO/artifacts/civilcomments_lexical_numpy_store"
+    },
+    "GaitPDB": {
+      "manifest_sha256": "8ff97ea9c25d32e58dc5551dbadfd63f12e3582b0623808713ad3a3a81c7d8bc",
+      "path": "/Volumes/Backups/FARO/artifacts/gaitpdb_numpy_store"
+    },
+    "Waterbirds": {
+      "manifest_sha256": "fd4c17004512e9b38afc086eab8544dd9a15d187323747f666f3ae38d5d8c41f",
+      "path": "/Volumes/Backups/FARO/artifacts/waterbirds_official_numpy_store"
+    }
+  },
+  "locked_at": "2026-07-18T21:43:43.765576+00:00",
+  "official_repositories": {
+    "INLP": {
+      "clean": true,
+      "commit": "e1edcc19d808108ab71cbb3afb0389db0206a7eb",
+      "path": "/Volumes/Backups/FARO/external/nullspace_projection",
+      "remote": "https://github.com/shauli-ravfogel/nullspace_projection.git"
+    },
+    "LEACE": {
+      "clean": true,
+      "commit": "9f51753821316a1edacf78b52b464ab26d40e60a",
+      "path": "/Volumes/Backups/FARO/external/concept-erasure",
+      "remote": "https://github.com/EleutherAI/concept-erasure"
+    },
+    "MANCE++": {
+      "clean": true,
+      "commit": "d1a260f945914fa1d1c75a71163af3cd586eb241",
+      "path": "/Volumes/Backups/FARO/external/mance",
+      "remote": "https://github.com/MatanAvitan/mance.git"
+    },
+    "R-LACE": {
+      "clean": true,
+      "commit": "2d9b6d03f65416172b4a2ca7f6da10e374002e5f",
+      "path": "/Volumes/Backups/FARO/external/rlace-icml",
+      "remote": "https://github.com/shauli-ravfogel/rlace-icml"
+    },
+    "TaCo": {
+      "clean": true,
+      "commit": "35995e44b95dc1722b03d18b9b16c5b9f8322db5",
+      "path": "/Volumes/Backups/FARO/external/TaCo",
+      "remote": "https://github.com/fanny-jourdan/TaCo"
+    }
+  },
+  "pass_conditions": {
+    "all_required": true,
+    "claim_discipline": "No real benchmark result is described as proving membership in the structured shift class.",
+    "complete_execution": "All 25 dataset-seed runs contain exactly 13 candidates from pinned official implementations, with no proxy or optimization-error row.",
+    "empirical_safety": "There are zero false acceptances among all selected deployments whose external privacy and utility are estimable.",
+    "modality_coverage": "The complete report includes vision, medical vision, text, and time-series feature stores.",
+    "positive_usefulness": "BiasBios-Clinical deploys on at least 4 of 5 confirmation seeds and every estimable selected deployment satisfies the external diagnostic contract.",
+    "receipt_replay": "An independent audit recomputes every radius, privacy certificate, utility certificate, deployment decision, selection, external risk, and false-acceptance label with zero mismatch.",
+    "support_discipline": "Every missing external source-label stratum is reported as unestimable; no such row is counted as safe or unsafe."
+  },
+  "phase": "official-erasure multi-domain real-feature confirmation",
+  "pilot_artifact_sha256": {
+    "research/artifacts/mosaic_official_frontier_pilot_biasbios_seed0_v1.json": "6e252bec07f8966d3fca6a68a64838b5ece578314e6a42db53f730b950cbeb40",
+    "research/artifacts/mosaic_official_frontier_pilot_biasbios_seed1_leace_audit_replay_v1.json": "dad8153891e42fffe39485ea9a3d3e2883ddcba4ee2c80ab37b98d8d73ecb2e4",
+    "research/artifacts/mosaic_official_frontier_pilot_biasbios_seed1_leace_audit_v1.json": "b1f62afd349e69fa7ac09ed21375aaac988b0d9cbbd138450148db5e125693ac",
+    "research/artifacts/mosaic_official_frontier_pilot_civilcomments_seed0_v1.json": "ab754fca0a26a7647febf86a31327c1040d93967ce77268840aeec350d425d91",
+    "research/artifacts/mosaic_official_frontier_pilot_waterbirds_seed0_v1.json": "b5a6bd8dcbd89e85838640eaff050d6d2fe083b061ee0499eb0c5971865b9449",
+    "research/artifacts/mosaic_real_pilot_seed0_v2.json": "ef3c5e6649a0b59a8612a4e94a2df0d933f35444a582174cb471985fdaaf0c11",
+    "research/artifacts/mosaic_real_pilot_seed1_v2.json": "bc754813db4f1969c6620575312db4049ea44e661884de58a22c479a698f305c",
+    "research/artifacts/mosaic_real_pilot_seed2_v2.json": "db871bcb5702ca60f853cf5168cd189af4d9452522e462be6577dc5d65e4cf82",
+    "research/artifacts/mosaic_real_pilot_seed3_v2.json": "029c2e015e5bf502525be67279bf4623b58cc8c52824b3f46f456f33384a11ea",
+    "research/artifacts/mosaic_real_pilot_seed4_v2.json": "65e9320ea70e0bbfad05da015340c28af2e37bfda2509ccfc26ad8ac2d551ee8",
+    "research/artifacts/mosaic_real_pilot_v1.json": "7b5d06537438ccdc74c950e6663d74a173a9389cef98d9ccbfee03c9b2fc3360"
+  },
+  "pilot_exclusion": {
+    "excluded_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "use": "Exploratory pilots selected the frozen protocol. No pilot row enters confirmatory estimates or intervals."
+  },
+  "project": "MOSAIC: Minimax-Optimized Source-Agnostic Invariant Channels",
+  "protocol": {
+    "contamination": 0.05,
+    "familywise_delta": 0.05,
+    "frontier_candidate_count": 13,
+    "maximum_worst_conditional_error": 0.49,
+    "ordered_smoothing": 0.1,
+    "per_candidate_delta": 0.0038461538461538464,
+    "privacy_advantage_threshold": 0.35
+  },
+  "reporting": {
+    "all_candidates": "Report every candidate, seed, certificate, solver check, selection, and external diagnostic, including failures and abstentions.",
+    "external_diagnostic": "External benchmark safety is a diagnostic only. Missing required strata are unestimable, not safe.",
+    "negative_results": "Waterbirds, CivilComments, Camelyon17, and GaitPDB remain in the report even if all seeds abstain or external evaluation is unsupported.",
+    "uncertainty": "Report exact two-sided 95% binomial intervals for seed-level deployment and external-safety rates; report seed-level values and medians with ranges for continuous metrics."
+  },
+  "repository_head_at_lock": "146d2d84ecda5e785da3e9dbd089bbbc20be16cb",
+  "runtime_environment": {
+    "executable": "/Volumes/Backups/FARO/runtime/faro-torch-venv/bin/python",
+    "numpy": "2.5.1",
+    "platform": "Darwin-25.2.0-arm64-arm-64bit",
+    "python": "3.12.13",
+    "scikit_learn": "1.9.0",
+    "scipy": "1.18.0"
+  },
+  "status": "locked_before_confirmatory_outcomes",
+  "stopping_rule": "Run every registered dataset and seed. No outcome-based seed replacement, dataset replacement, threshold change, candidate change, or early stopping is permitted.",
+  "template_sha256": "eccc4345d47bc4a5525a5524d2098932a561de27ab83e7331beaf8a8de8906d9"
+}

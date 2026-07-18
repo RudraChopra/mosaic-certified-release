@@ -1,0 +1,1052 @@
+{
+  "created_at": "2026-07-18T21:24:20.535118+00:00",
+  "dataset": "BiasBios-Clinical",
+  "fit_counts": {
+    "certification": 8000,
+    "eraser_train": 8000,
+    "external": 8000,
+    "tokenizer_construction": 2000
+  },
+  "name": "MOSAIC official-erasure frontier exploratory pilot",
+  "preprocessing": {
+    "explained_variance_ratio_sum": 0.8438064455986023,
+    "input_dimension": 768,
+    "output_dimension": 128,
+    "pca_fit_on_train_only": true,
+    "standardized_from_train_only": true
+  },
+  "protocol": {
+    "contamination": 0.05,
+    "familywise_delta": 0.05,
+    "frontier_candidate_count": 13,
+    "maximum_worst_conditional_error": 0.49,
+    "ordered_smoothing": 0.1,
+    "per_candidate_delta": 0.0038461538461538464,
+    "privacy_advantage_threshold": 0.35
+  },
+  "results": [
+    {
+      "candidate": "Identity::unedited",
+      "certification_stratum_counts": [
+        [
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000
+        ]
+      ],
+      "certified_privacy_advantages": [
+        0.28146550796622694,
+        0.25220271884412715
+      ],
+      "certified_worst_conditional_error": 0.3075237947200836,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "external_estimable": true,
+      "external_safe": true,
+      "external_worst_conditional_error": 0.18084817115251886,
+      "external_worst_privacy_advantage": 0.07746135265700493,
+      "false_acceptance": false,
+      "l1_radii": [
+        [
+          0.09790829036271993,
+          0.09790829036271993
+        ],
+        [
+          0.09790829036271993,
+          0.09790829036271993
+        ]
+      ],
+      "max_constraint_violation": 3.885780586188048e-15,
+      "method": "Identity",
+      "missing_external_strata": [],
+      "provenance": {
+        "official_entrypoint": "none (unedited control)",
+        "transformation": "identity"
+      },
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.4996549344375435,
+          0.5003450655624565
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "solver_mip_gap": 0.0,
+      "strength": "unedited",
+      "tokenizer_thresholds": [
+        0.00262756037757295,
+        0.049945713087390244,
+        0.8394610151934687
+      ]
+    },
+    {
+      "candidate": "INLP::rank=1",
+      "certification_stratum_counts": [
+        [
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000
+        ]
+      ],
+      "certified_privacy_advantages": [
+        0.2821285465493195,
+        0.2524554639784107
+      ],
+      "certified_worst_conditional_error": 0.3077671891283572,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "external_estimable": true,
+      "external_safe": true,
+      "external_worst_conditional_error": 0.18325120606478332,
+      "external_worst_privacy_advantage": 0.07994900068917965,
+      "false_acceptance": false,
+      "l1_radii": [
+        [
+          0.09790829036271993,
+          0.09790829036271993
+        ],
+        [
+          0.09790829036271993,
+          0.09790829036271993
+        ]
+      ],
+      "max_constraint_violation": 7.882583474838611e-15,
+      "method": "INLP",
+      "missing_external_strata": [],
+      "provenance": {
+        "commit": "e1edcc19d808108ab71cbb3afb0389db0206a7eb",
+        "compatibility_change": "SGDClassifier loss='log_loss' replaces removed alias loss='log'",
+        "official_entrypoint": "src.debias.get_debiasing_projection",
+        "rank": 1,
+        "remote": "https://github.com/shauli-ravfogel/nullspace_projection.git",
+        "repository": "/Volumes/Backups/FARO/external/nullspace_projection"
+      },
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.5017229496898676,
+          0.49827705031013236
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "solver_mip_gap": 0.0,
+      "strength": "rank=1",
+      "tokenizer_thresholds": [
+        0.0026345421808952026,
+        0.049279394563343015,
+        0.8396747879643088
+      ]
+    },
+    {
+      "candidate": "INLP::rank=2",
+      "certification_stratum_counts": [
+        [
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000
+        ]
+      ],
+      "certified_privacy_advantages": [
+        0.28283859134601164,
+        0.251502190374
+      ],
+      "certified_worst_conditional_error": 0.3077671891283569,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "external_estimable": true,
+      "external_safe": true,
+      "external_worst_conditional_error": 0.18200551343900745,
+      "external_worst_privacy_advantage": 0.079698139214335,
+      "false_acceptance": false,
+      "l1_radii": [
+        [
+          0.09790829036271993,
+          0.09790829036271993
+        ],
+        [
+          0.09790829036271993,
+          0.09790829036271993
+        ]
+      ],
+      "max_constraint_violation": 4.440892098500626e-15,
+      "method": "INLP",
+      "missing_external_strata": [],
+      "provenance": {
+        "commit": "e1edcc19d808108ab71cbb3afb0389db0206a7eb",
+        "compatibility_change": "SGDClassifier loss='log_loss' replaces removed alias loss='log'",
+        "official_entrypoint": "src.debias.get_debiasing_projection",
+        "rank": 2,
+        "remote": "https://github.com/shauli-ravfogel/nullspace_projection.git",
+        "repository": "/Volumes/Backups/FARO/external/nullspace_projection"
+      },
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.5017229496898695,
+          0.4982770503101305
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "solver_mip_gap": 0.0,
+      "strength": "rank=2",
+      "tokenizer_thresholds": [
+        0.0025875359765380594,
+        0.04919094758168055,
+        0.8414884362951052
+      ]
+    },
+    {
+      "candidate": "INLP::rank=4",
+      "certification_stratum_counts": [
+        [
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000
+        ]
+      ],
+      "certified_privacy_advantages": [
+        0.26787944941457353,
+        0.2601648820451541
+      ],
+      "certified_worst_conditional_error": 0.30560224471634717,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "external_estimable": true,
+      "external_safe": true,
+      "external_worst_conditional_error": 0.18377883934890304,
+      "external_worst_privacy_advantage": 0.062319886765746624,
+      "false_acceptance": false,
+      "l1_radii": [
+        [
+          0.09790829036271993,
+          0.09790829036271993
+        ],
+        [
+          0.09790829036271993,
+          0.09790829036271993
+        ]
+      ],
+      "max_constraint_violation": 2.4121271721260327e-15,
+      "method": "INLP",
+      "missing_external_strata": [],
+      "provenance": {
+        "commit": "e1edcc19d808108ab71cbb3afb0389db0206a7eb",
+        "compatibility_change": "SGDClassifier loss='log_loss' replaces removed alias loss='log'",
+        "official_entrypoint": "src.debias.get_debiasing_projection",
+        "rank": 4,
+        "remote": "https://github.com/shauli-ravfogel/nullspace_projection.git",
+        "repository": "/Volumes/Backups/FARO/external/nullspace_projection"
+      },
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.4953998584571834,
+          0.5046001415428166
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "solver_mip_gap": 0.0,
+      "strength": "rank=4",
+      "tokenizer_thresholds": [
+        0.0026649437926528014,
+        0.04776967695182814,
+        0.8174687270937206
+      ]
+    },
+    {
+      "candidate": "INLP::rank=8",
+      "certification_stratum_counts": [
+        [
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000
+        ]
+      ],
+      "certified_privacy_advantages": [
+        0.23334450973502485,
+        0.2718863877109656
+      ],
+      "certified_worst_conditional_error": 0.3048093770647539,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "external_estimable": true,
+      "external_safe": true,
+      "external_worst_conditional_error": 0.18425380359612725,
+      "external_worst_privacy_advantage": 0.04678284923928078,
+      "false_acceptance": false,
+      "l1_radii": [
+        [
+          0.09790829036271993,
+          0.09790829036271993
+        ],
+        [
+          0.09790829036271993,
+          0.09790829036271993
+        ]
+      ],
+      "max_constraint_violation": 3.191891195797325e-15,
+      "method": "INLP",
+      "missing_external_strata": [],
+      "provenance": {
+        "commit": "e1edcc19d808108ab71cbb3afb0389db0206a7eb",
+        "compatibility_change": "SGDClassifier loss='log_loss' replaces removed alias loss='log'",
+        "official_entrypoint": "src.debias.get_debiasing_projection",
+        "rank": 8,
+        "remote": "https://github.com/shauli-ravfogel/nullspace_projection.git",
+        "repository": "/Volumes/Backups/FARO/external/nullspace_projection"
+      },
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.4412171507607192,
+          0.5587828492392808
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "solver_mip_gap": 0.0,
+      "strength": "rank=8",
+      "tokenizer_thresholds": [
+        0.003279636635245716,
+        0.057548771079095874,
+        0.8308907661943463
+      ]
+    },
+    {
+      "candidate": "LEACE::closed_form",
+      "certification_stratum_counts": [
+        [
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000
+        ]
+      ],
+      "certified_privacy_advantages": [
+        0.22761069424157077,
+        0.2732299197367216
+      ],
+      "certified_worst_conditional_error": 0.30443894320770426,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "external_estimable": true,
+      "external_safe": true,
+      "external_worst_conditional_error": 0.19483720930232556,
+      "external_worst_privacy_advantage": 0.03404228329809733,
+      "false_acceptance": false,
+      "l1_radii": [
+        [
+          0.09790829036271993,
+          0.09790829036271993
+        ],
+        [
+          0.09790829036271993,
+          0.09790829036271993
+        ]
+      ],
+      "max_constraint_violation": 3.8313621741542555e-15,
+      "method": "LEACE",
+      "missing_external_strata": [],
+      "provenance": {
+        "commit": "9f51753821316a1edacf78b52b464ab26d40e60a",
+        "official_entrypoint": "concept_erasure.LeaceFitter.fit(method='leace')",
+        "remote": "https://github.com/EleutherAI/concept-erasure",
+        "repository": "/Volumes/Backups/FARO/external/concept-erasure"
+      },
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.4291754756871037,
+          0.5708245243128963
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "solver_mip_gap": 0.0,
+      "strength": "closed_form",
+      "tokenizer_thresholds": [
+        0.0027137966562608487,
+        0.04946934865720465,
+        0.8166412705910122
+      ]
+    },
+    {
+      "candidate": "R-LACE::rank=1",
+      "certification_stratum_counts": [
+        [
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000
+        ]
+      ],
+      "certified_privacy_advantages": [
+        0.28236828310862316,
+        0.25126331558598825
+      ],
+      "certified_worst_conditional_error": 0.30848131748182417,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "external_estimable": true,
+      "external_safe": true,
+      "external_worst_conditional_error": 0.18200619408121144,
+      "external_worst_privacy_advantage": 0.07944700619408107,
+      "false_acceptance": false,
+      "l1_radii": [
+        [
+          0.09790829036271993,
+          0.09790829036271993
+        ],
+        [
+          0.09790829036271993,
+          0.09790829036271993
+        ]
+      ],
+      "max_constraint_violation": 3.219646771412954e-15,
+      "method": "R-LACE",
+      "missing_external_strata": [],
+      "provenance": {
+        "commit": "2d9b6d03f65416172b4a2ca7f6da10e374002e5f",
+        "compatibility_change": "SGDClassifier loss='log_loss' replaces removed alias loss='log'",
+        "iterations": 10000,
+        "official_entrypoint": "rlace.solve_adv_game",
+        "rank": 1,
+        "remote": "https://github.com/shauli-ravfogel/rlace-icml",
+        "reported_upstream_score": 0.99725,
+        "repository": "/Volumes/Backups/FARO/external/rlace-icml"
+      },
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.5017205781142459,
+          0.49827942188575414
+        ],
+        [
+          1.1102230246251565e-16,
+          0.9999999999999999
+        ]
+      ],
+      "solver_mip_gap": 0.0,
+      "strength": "rank=1",
+      "tokenizer_thresholds": [
+        0.002622965065766852,
+        0.04893959937915714,
+        0.8409539331790874
+      ]
+    },
+    {
+      "candidate": "R-LACE::rank=4",
+      "certification_stratum_counts": [
+        [
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000
+        ]
+      ],
+      "certified_privacy_advantages": [
+        0.2861263337360056,
+        0.24813322476234578
+      ],
+      "certified_worst_conditional_error": 0.3089431646388114,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "external_estimable": true,
+      "external_safe": true,
+      "external_worst_conditional_error": 0.183837525492862,
+      "external_worst_privacy_advantage": 0.08290822569680478,
+      "false_acceptance": false,
+      "l1_radii": [
+        [
+          0.09790829036271993,
+          0.09790829036271993
+        ],
+        [
+          0.09790829036271993,
+          0.09790829036271993
+        ]
+      ],
+      "max_constraint_violation": 3.164135620181696e-15,
+      "method": "R-LACE",
+      "missing_external_strata": [],
+      "provenance": {
+        "commit": "2d9b6d03f65416172b4a2ca7f6da10e374002e5f",
+        "compatibility_change": "SGDClassifier loss='log_loss' replaces removed alias loss='log'",
+        "iterations": 10000,
+        "official_entrypoint": "rlace.solve_adv_game",
+        "rank": 4,
+        "remote": "https://github.com/shauli-ravfogel/rlace-icml",
+        "reported_upstream_score": 0.9975,
+        "repository": "/Volumes/Backups/FARO/external/rlace-icml"
+      },
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.5098572399728076,
+          0.49014276002719237
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "solver_mip_gap": 1.8686801939121312e-14,
+      "strength": "rank=4",
+      "tokenizer_thresholds": [
+        0.0024247649769624825,
+        0.04685377161457065,
+        0.8429767441926608
+      ]
+    },
+    {
+      "candidate": "TaCo::components_removed=1",
+      "certification_stratum_counts": [
+        [
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000
+        ]
+      ],
+      "certified_privacy_advantages": [
+        0.31968998533372117,
+        0.2589220059944368
+      ],
+      "certified_worst_conditional_error": 0.3328050551441651,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "external_estimable": true,
+      "external_safe": true,
+      "external_worst_conditional_error": 0.19659899434318032,
+      "external_worst_privacy_advantage": 0.06311125078566926,
+      "false_acceptance": false,
+      "l1_radii": [
+        [
+          0.09790829036271993,
+          0.09790829036271993
+        ],
+        [
+          0.09790829036271993,
+          0.09790829036271993
+        ]
+      ],
+      "max_constraint_violation": 2.4980018054066022e-15,
+      "method": "TaCo",
+      "missing_external_strata": [],
+      "provenance": {
+        "commit": "35995e44b95dc1722b03d18b9b16c5b9f8322db5",
+        "components": 20,
+        "components_removed": 1,
+        "official_entrypoints": [
+          "TaCo.concept_removal.sobol_importance_from_sample",
+          "TaCo.concept_removal.crop_concepts",
+          "TaCo.concept_removal.build_gender_neutral_features"
+        ],
+        "protocol_adapter": "PCA is fit on train only to keep certification and external splits locked",
+        "remote": "https://github.com/fanny-jourdan/TaCo",
+        "repository": "/Volumes/Backups/FARO/external/TaCo",
+        "sobol_design": 8,
+        "sobol_sampled": 500
+      },
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.543683218101823,
+          0.45631678189817704
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "solver_mip_gap": 4.169945015349257e-15,
+      "strength": "components_removed=1",
+      "tokenizer_thresholds": [
+        0.02289462827269193,
+        0.13342736599505867,
+        0.751612887884392
+      ]
+    },
+    {
+      "candidate": "TaCo::components_removed=2",
+      "certification_stratum_counts": [
+        [
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000
+        ]
+      ],
+      "certified_privacy_advantages": [
+        0.32137332590623635,
+        0.2532972161651761
+      ],
+      "certified_worst_conditional_error": 0.3411689225092222,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "external_estimable": true,
+      "external_safe": true,
+      "external_worst_conditional_error": 0.21544204685573323,
+      "external_worst_privacy_advantage": 0.06951479654747228,
+      "false_acceptance": false,
+      "l1_radii": [
+        [
+          0.09790829036271993,
+          0.09790829036271993
+        ],
+        [
+          0.09790829036271993,
+          0.09790829036271993
+        ]
+      ],
+      "max_constraint_violation": 1.4988010832439613e-14,
+      "method": "TaCo",
+      "missing_external_strata": [],
+      "provenance": {
+        "commit": "35995e44b95dc1722b03d18b9b16c5b9f8322db5",
+        "components": 20,
+        "components_removed": 2,
+        "official_entrypoints": [
+          "TaCo.concept_removal.sobol_importance_from_sample",
+          "TaCo.concept_removal.crop_concepts",
+          "TaCo.concept_removal.build_gender_neutral_features"
+        ],
+        "protocol_adapter": "PCA is fit on train only to keep certification and external splits locked",
+        "remote": "https://github.com/fanny-jourdan/TaCo",
+        "repository": "/Volumes/Backups/FARO/external/TaCo",
+        "sobol_design": 8,
+        "sobol_sampled": 500
+      },
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.5215782983970421,
+          0.47842170160295794
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "solver_mip_gap": 0.0,
+      "strength": "components_removed=2",
+      "tokenizer_thresholds": [
+        0.03171400459778313,
+        0.16031722062972414,
+        0.7456034012844455
+      ]
+    },
+    {
+      "candidate": "TaCo::components_removed=3",
+      "certification_stratum_counts": [
+        [
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000
+        ]
+      ],
+      "certified_privacy_advantages": [
+        0.3121919092632981,
+        0.24031814560619003
+      ],
+      "certified_worst_conditional_error": 0.3474232509712254,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "external_estimable": true,
+      "external_safe": true,
+      "external_worst_conditional_error": 0.21934316185696362,
+      "external_worst_privacy_advantage": 0.07162735257214559,
+      "false_acceptance": false,
+      "l1_radii": [
+        [
+          0.09790829036271993,
+          0.09790829036271993
+        ],
+        [
+          0.09790829036271993,
+          0.09790829036271993
+        ]
+      ],
+      "max_constraint_violation": 3.941291737419306e-15,
+      "method": "TaCo",
+      "missing_external_strata": [],
+      "provenance": {
+        "commit": "35995e44b95dc1722b03d18b9b16c5b9f8322db5",
+        "components": 20,
+        "components_removed": 3,
+        "official_entrypoints": [
+          "TaCo.concept_removal.sobol_importance_from_sample",
+          "TaCo.concept_removal.crop_concepts",
+          "TaCo.concept_removal.build_gender_neutral_features"
+        ],
+        "protocol_adapter": "PCA is fit on train only to keep certification and external splits locked",
+        "remote": "https://github.com/fanny-jourdan/TaCo",
+        "repository": "/Volumes/Backups/FARO/external/TaCo",
+        "sobol_design": 8,
+        "sobol_sampled": 500
+      },
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.5282308657465495,
+          0.4717691342534504
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "solver_mip_gap": 0.0,
+      "strength": "components_removed=3",
+      "tokenizer_thresholds": [
+        0.031706554463696746,
+        0.1641859152821957,
+        0.7541468209073614
+      ]
+    },
+    {
+      "candidate": "TaCo::components_removed=5",
+      "certification_stratum_counts": [
+        [
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000
+        ]
+      ],
+      "certified_privacy_advantages": [
+        0.29408181896863517,
+        0.3500000000000021
+      ],
+      "certified_worst_conditional_error": 0.38049532953113036,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "external_estimable": true,
+      "external_safe": true,
+      "external_worst_conditional_error": 0.25595430522113183,
+      "external_worst_privacy_advantage": 0.09323071706023489,
+      "false_acceptance": false,
+      "l1_radii": [
+        [
+          0.09790829036271993,
+          0.09790829036271993
+        ],
+        [
+          0.09790829036271993,
+          0.09790829036271993
+        ]
+      ],
+      "max_constraint_violation": 3.552713678800501e-15,
+      "method": "TaCo",
+      "missing_external_strata": [],
+      "provenance": {
+        "commit": "35995e44b95dc1722b03d18b9b16c5b9f8322db5",
+        "components": 20,
+        "components_removed": 5,
+        "official_entrypoints": [
+          "TaCo.concept_removal.sobol_importance_from_sample",
+          "TaCo.concept_removal.crop_concepts",
+          "TaCo.concept_removal.build_gender_neutral_features"
+        ],
+        "protocol_adapter": "PCA is fit on train only to keep certification and external splits locked",
+        "remote": "https://github.com/fanny-jourdan/TaCo",
+        "repository": "/Volumes/Backups/FARO/external/TaCo",
+        "sobol_design": 8,
+        "sobol_sampled": 500
+      },
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.4051612084116003,
+          0.5948387915883997
+        ],
+        [
+          0.003172752189901651,
+          0.9968272478100983
+        ]
+      ],
+      "solver_mip_gap": 0.0,
+      "strength": "components_removed=5",
+      "tokenizer_thresholds": [
+        0.05297786288774238,
+        0.20229248399308225,
+        0.7283811777958331
+      ]
+    },
+    {
+      "candidate": "MANCE++::epsilon=0.05,steps=3",
+      "certification_stratum_counts": [
+        [
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000
+        ]
+      ],
+      "certified_privacy_advantages": [
+        0.2487466830823979,
+        0.3007861956377891
+      ],
+      "certified_worst_conditional_error": 0.32723470601682675,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "external_estimable": true,
+      "external_safe": true,
+      "external_worst_conditional_error": 0.20871898079763662,
+      "external_worst_privacy_advantage": 0.03389290989660254,
+      "false_acceptance": false,
+      "l1_radii": [
+        [
+          0.09790829036271993,
+          0.09790829036271993
+        ],
+        [
+          0.09790829036271993,
+          0.09790829036271993
+        ]
+      ],
+      "max_constraint_violation": 3.608224830031759e-15,
+      "method": "MANCE++",
+      "missing_external_strata": [],
+      "provenance": {
+        "commit": "d1a260f945914fa1d1c75a71163af3cd586eb241",
+        "epsilon": 0.05,
+        "external_label_adapter": "dummy labels are supplied because stop_at_floor=False; edited representations do not depend on evaluation labels",
+        "external_labels_hidden": true,
+        "history": [
+          {
+            "concept_acc": 0.5849999785423279,
+            "control_acc": 0.6001250147819519,
+            "scorer_val_acc": NaN,
+            "step": 0
+          },
+          {
+            "concept_acc": 0.5894374847412109,
+            "control_acc": 0.6016250252723694,
+            "scorer_val_acc": 0.890500009059906,
+            "step": 1
+          },
+          {
+            "concept_acc": 0.5957499742507935,
+            "control_acc": 0.6031875014305115,
+            "scorer_val_acc": 0.890500009059906,
+            "step": 2
+          },
+          {
+            "concept_acc": 0.6078749895095825,
+            "control_acc": 0.6042500138282776,
+            "scorer_val_acc": 0.890500009059906,
+            "step": 3
+          }
+        ],
+        "n_neighbors": 8,
+        "official_entrypoint": "mance.MANCE(variant='mance++').fit_erase",
+        "remote": "https://github.com/MatanAvitan/mance.git",
+        "repository": "/Volumes/Backups/FARO/external/mance",
+        "steps_completed": 3,
+        "steps_requested": 3,
+        "tangent_rank": 7
+      },
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.47636632200886253,
+          0.5236336779911375
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "solver_mip_gap": 4.7498392007212567e-14,
+      "strength": "epsilon=0.05,steps=3",
+      "tokenizer_thresholds": [
+        0.02051037432803801,
+        0.15203202179498163,
+        0.7648854337711294
+      ]
+    }
+  ],
+  "seed": 0,
+  "smoke": false,
+  "status": "exploratory_not_confirmatory",
+  "store_manifest_sha256": "a2f0d7cd2d67eb2cb01a05fccbd32c24519cd916ac9ceb508ca680ce1f3aa1e4"
+}

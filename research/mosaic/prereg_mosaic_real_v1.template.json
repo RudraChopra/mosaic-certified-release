@@ -1,0 +1,98 @@
+{
+  "project": "MOSAIC: Minimax-Optimized Source-Agnostic Invariant Channels",
+  "phase": "official-erasure multi-domain real-feature confirmation",
+  "status": "draft_template",
+  "claim_boundary": "This confirmation evaluates a fixed MOSAIC release protocol and external benchmark diagnostics. It does not establish that a natural external split belongs to the theorem's structured shift class, does not confer clinical safety, and does not turn an unestimable external contract into evidence of safety.",
+  "confirmation_seeds": [100, 101, 102, 103, 104],
+  "datasets": {
+    "Waterbirds": {
+      "modality": "vision",
+      "target": "native binary task",
+      "source": "background group"
+    },
+    "Camelyon17-WILDS": {
+      "modality": "medical vision",
+      "target": "tumor label",
+      "source": "hospital grouping",
+      "known_external_limitation": "required source-label strata are absent from the external center split"
+    },
+    "CivilComments-WILDS": {
+      "modality": "text",
+      "target": "toxicity label",
+      "source": "identity-mention grouping"
+    },
+    "BiasBios-Clinical": {
+      "modality": "text",
+      "target": "clinical profession versus other profession",
+      "source": "binary gender label"
+    },
+    "GaitPDB": {
+      "modality": "time series",
+      "target": "native binary task",
+      "source": "binary recorded source"
+    }
+  },
+  "frontier": {
+    "selection": "Among candidates satisfying both registered certificates, choose the smallest certified worst source-label conditional error; break exact ties by candidate key. Abstain if none pass.",
+    "candidates": [
+      "Identity::unedited",
+      "INLP::rank=1",
+      "INLP::rank=2",
+      "INLP::rank=4",
+      "INLP::rank=8",
+      "LEACE::closed_form",
+      "R-LACE::rank=1",
+      "R-LACE::rank=4",
+      "TaCo::components_removed=1",
+      "TaCo::components_removed=2",
+      "TaCo::components_removed=3",
+      "TaCo::components_removed=5",
+      "MANCE++::epsilon=0.05,steps=3"
+    ],
+    "candidate_count": 13,
+    "official_methods": ["INLP", "LEACE", "R-LACE", "TaCo", "MANCE++"],
+    "proxy_rows_permitted": false
+  },
+  "protocol": {
+    "frontier_candidate_count": 13,
+    "familywise_delta": 0.05,
+    "per_candidate_delta": 0.0038461538461538464,
+    "contamination": 0.05,
+    "privacy_advantage_threshold": 0.35,
+    "maximum_worst_conditional_error": 0.49,
+    "ordered_smoothing": 0.1
+  },
+  "data_protocol": {
+    "maximum_eraser_train": 8000,
+    "maximum_tokenizer_construction": 2000,
+    "maximum_balanced_certification": 8000,
+    "maximum_balanced_external_diagnostic": 8000,
+    "preprocessing_dimension": 128,
+    "fine_token_count": 4,
+    "released_token_count": 2,
+    "tokenizer": "balanced logistic task score trained only on construction data, discretized at construction-score quartiles",
+    "certification_sampling": "equal count per represented source-label stratum",
+    "external_sampling": "equal count per represented source-label stratum when possible; otherwise preserve represented support and mark missing strata"
+  },
+  "reporting": {
+    "all_candidates": "Report every candidate, seed, certificate, solver check, selection, and external diagnostic, including failures and abstentions.",
+    "uncertainty": "Report exact two-sided 95% binomial intervals for seed-level deployment and external-safety rates; report seed-level values and medians with ranges for continuous metrics.",
+    "external_diagnostic": "External benchmark safety is a diagnostic only. Missing required strata are unestimable, not safe.",
+    "negative_results": "Waterbirds, CivilComments, Camelyon17, and GaitPDB remain in the report even if all seeds abstain or external evaluation is unsupported."
+  },
+  "pass_conditions": {
+    "all_required": true,
+    "complete_execution": "All 25 dataset-seed runs contain exactly 13 candidates from pinned official implementations, with no proxy or optimization-error row.",
+    "receipt_replay": "An independent audit recomputes every radius, privacy certificate, utility certificate, deployment decision, selection, external risk, and false-acceptance label with zero mismatch.",
+    "positive_usefulness": "BiasBios-Clinical deploys on at least 4 of 5 confirmation seeds and every estimable selected deployment satisfies the external diagnostic contract.",
+    "empirical_safety": "There are zero false acceptances among all selected deployments whose external privacy and utility are estimable.",
+    "support_discipline": "Every missing external source-label stratum is reported as unestimable; no such row is counted as safe or unsafe.",
+    "modality_coverage": "The complete report includes vision, medical vision, text, and time-series feature stores.",
+    "claim_discipline": "No real benchmark result is described as proving membership in the structured shift class."
+  },
+  "stopping_rule": "Run every registered dataset and seed. No outcome-based seed replacement, dataset replacement, threshold change, candidate change, or early stopping is permitted.",
+  "pilot_exclusion": {
+    "excluded_seeds": [0, 1, 2, 3, 4],
+    "use": "Exploratory pilots selected the frozen protocol. No pilot row enters confirmatory estimates or intervals."
+  }
+}

@@ -25,13 +25,16 @@ channel, exact risk, and decision from 64,000 method-level receipts.
 
 Representation editing is often evaluated by fitting a probe to a frozen
 embedding and checking whether a designated source attribute remains
-predictable. That evaluation leaves two deployment gaps. First, failure of a
-particular probe does not prevent a different downstream rule from recovering
-the attribute. Second, an edit chosen on a validation table can exploit
-sampling noise, while the deployed population can change after certification.
-These gaps are especially consequential when the released representation is a
-public interface: the designer controls the release mechanism but not the
-future attacker.
+predictable \citep{ravfogel2020null,ravfogel2022linear,ravfogel2022kernel,
+belrose2023leace,jourdan2023taco,avitan2026mance}. Probe design itself can
+substantially change the apparent conclusion
+\citep{hewitt2019control,pimentel2020probing,voita2020mdl}. That evaluation
+leaves two deployment gaps. First, failure of a particular probe does not
+prevent a different downstream rule from recovering the attribute. Second, an
+edit chosen on a validation table can exploit sampling noise, while the
+deployed population can change after certification. These gaps are especially
+consequential when the released representation is a public interface: the
+designer controls the release mechanism but not the future attacker.
 
 This paper studies a finite but expressive release model. A tokenizer fixed
 without the certification fold maps an internal representation to a fine token
@@ -81,33 +84,55 @@ ablation, and an exact population oracle.
 
 \section{Related Work}
 
-Universal fair-representation certificates protect against downstream
-classifiers by constraining statistical distances or Bayes distinguishability
-on a finite representation. Randomized preprocessing and privacy-funnel work
-optimize stochastic mappings under population privacy and utility constraints.
-MOSAIC adopts those established objects but asks a different statistical
-question: can the stochastic post-channel itself be selected from an
-uncountable family on the table used to certify it? The answer comes from
-placing the simultaneous confidence event on the sufficient fine-token laws
-rather than testing channels one by one.
+\paragraph{Erasure and universal representations.}
+Linear and nonlinear concept-erasure methods remove directions, covariance, or
+components associated with a source variable
+\citep{ravfogel2020null,ravfogel2022linear,ravfogel2022kernel,
+belrose2023leace,jourdan2023taco,holstege2025splince,
+akbari2025obliviator,avitan2026mance}; causal interventions and leakage audits
+also show why a weak probe is not a universal certificate
+\citep{elazar2021amnesic,chowdhury2025limits,zarlenga2025leakage}. FARE
+certifies every downstream classifier for a restricted finite representation,
+while smooth-representation and adversarial-inference work develops other
+finite-sample, high-confidence fairness guarantees
+\citep{jovanovic2023fare,gitiaux2021smooth,deka2023mmdbfair,luo2025frg}.
+MOSAIC differs narrowly: its confidence event is placed on pre-release token
+laws, uniformly covering a stochastic post-channel optimized on that same
+table and then transferred through an explicit shift class.
 
-Risk-control and Learn-Then-Test procedures certify members of registered
-candidate families and abstain when no candidate passes. They are essential
-baselines and the closest decision-layer precedent. MOSAIC does not claim a
-new multiple-testing principle. Its envelope instead covers all stochastic
-post-channels pointwise on one event, avoiding a candidate-family correction
-and permitting a global continuum optimizer. Work on Dobrushin contraction and
-domain generalization likewise establishes that stochastic representations
-can contract distribution shift. Here the contraction quantity enters an
-exact source-inference capacity and is combined with a separate invariance
-defect for common pre-release drift.
+\paragraph{Randomized mappings and risk control.}
+Probabilistic preprocessing, privacy funnels, and fair Pareto optimization
+already establish that stochastic channels can improve population
+privacy--utility tradeoffs
+\citep{calmon2017preprocessing,makhdoumi2014privacyfunnel,
+agarwal2024randomization,kozdoba2024pareto}. MOSAIC does not claim randomization
+as new. Risk-controlling prediction, Learn-Then-Test (LTT), conformal risk
+control, and Pareto testing certify registered decisions and abstain when none
+passes \citep{bates2021rcps,angelopoulos2025ltt,angelopoulos2024crc,
+laufer2023pareto,zollo2024prompt}. Robust conformal variants further address
+specified covariate or likelihood-ratio shifts
+\citep{tibshirani2019covariate,cauchois2024robust,almeida2025hprc,
+zecchin2025wcrc}. These are the closest decision-layer precedents. MOSAIC's
+distinct statistical object is one confidence region for a sufficient table:
+it covers an uncountable channel family without testing channels separately or
+paying a channel-count correction.
 
-Robust fair learning and impossibility results show that arbitrary population
-shift can destroy nontrivial fairness guarantees. Our shift assumption is
-therefore explicit rather than implicit. The common transformation and retained
-mass are shared across sources; only a bounded contamination fraction may vary
-by source. We certify performance conditionally on membership in this class
-and do not infer real-world membership from an ordinary benchmark split.
+\paragraph{Shift, contraction, and abstention.}
+Dobrushin coefficients quantify channel contraction and have been used for
+privacy mechanisms and invariant domain generalization
+\citep{diaz2018contractivity,shui2022regularization}. Fair-learning robustness
+and impossibility results show that unrestricted shift precludes nontrivial
+universal guarantees \citep{lechner2021impossibility,agarwal2025robustfair,
+bendavid2010impossibility}. Benchmark and subgroup-robustness work documents
+the corresponding empirical failures
+\citep{koh2021wilds,sagawa2020groupdro,zhou2021spurious,
+subbaswamy2021evaluation,hashimoto2018fairness,sohoni2020subclass,
+kang2022certifying,ehyaei2025fragile}. We therefore state the common-transform
+plus differential-contamination model explicitly and certify only conditionally
+on membership in it. Explicit abstention follows selective-prediction practice
+\citep{elyaniv2010foundations,geifman2017selective,geifman2019selectivenet,
+timans2025monitoring}, but here it is triggered by a joint privacy--utility
+release contract rather than predictive confidence alone.
 
 \section{Problem Setup}
 
@@ -132,7 +157,8 @@ event
  \label{eq:event}
 \end{equation}
 has probability at least $1-\delta$ after a fixed allocation across strata. We
-use the Weissman multinomial radius in the confirmation, although any valid
+use the Weissman multinomial radius \citep{weissman2003l1} in the confirmation,
+although any valid
 simultaneous region can replace it. The tokenizer and fine alphabet must be
 fixed without these observations.
 
@@ -276,7 +302,11 @@ graded by a separately implemented exact population evaluator that enumerates
 common-transform extremes, attacker assignments, and residual simplex
 vertices. The confirmation stores every channel, decoder, seed, decision,
 confidence-event marker, and exact risk, then an independent script replays all
-rows and aggregate intervals.
+rows and aggregate intervals. This artifact-first protocol follows established
+recommendations for model documentation, dataset documentation, internal
+auditing, and reproducible ML reporting
+\citep{mitchell2019modelcards,gebru2021datasheets,raji2020auditing,
+pineau2021reproducibility}.
 
 The primary safety contrast compares the plug-in continuum rule with MOSAIC at
 a near-boundary shift contract. The primary usefulness contrast compares safe
