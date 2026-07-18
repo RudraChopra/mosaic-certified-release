@@ -1,0 +1,5226 @@
+{
+  "cells": [
+    {
+      "confidence_event_count": 0,
+      "deployment_rate": 1.0,
+      "deployments": 20,
+      "failures_on_confidence_event": 0,
+      "false_acceptance_rate": 0.65,
+      "false_acceptances": 13,
+      "mean_exact_privacy_advantage": 0.26456089695479995,
+      "mean_exact_worst_error": 0.4047111394004658,
+      "mean_selection_criterion": 0.3935292572063248,
+      "method": "always_deploy_plugin",
+      "replicates": 20,
+      "safe_deployment_rate": 0.35,
+      "safe_deployments": 7,
+      "sample_size_per_stratum": 125
+    },
+    {
+      "confidence_event_count": 20,
+      "deployment_rate": 0.0,
+      "deployments": 0,
+      "failures_on_confidence_event": 0,
+      "false_acceptance_rate": 0.0,
+      "false_acceptances": 0,
+      "mean_exact_privacy_advantage": 2.220446049250313e-16,
+      "mean_exact_worst_error": 1.0,
+      "mean_selection_criterion": 1.0,
+      "method": "deterministic_mosaic",
+      "replicates": 20,
+      "safe_deployment_rate": 0.0,
+      "safe_deployments": 0,
+      "sample_size_per_stratum": 125
+    },
+    {
+      "confidence_event_count": 20,
+      "deployment_rate": 0.0,
+      "deployments": 0,
+      "failures_on_confidence_event": 0,
+      "false_acceptance_rate": 0.0,
+      "false_acceptances": 0,
+      "mean_exact_privacy_advantage": 2.220446049250313e-16,
+      "mean_exact_worst_error": 0.5000000000000001,
+      "mean_selection_criterion": 0.6751465057635834,
+      "method": "finite_ltt",
+      "replicates": 20,
+      "safe_deployment_rate": 0.0,
+      "safe_deployments": 0,
+      "sample_size_per_stratum": 125
+    },
+    {
+      "confidence_event_count": 20,
+      "deployment_rate": 0.0,
+      "deployments": 0,
+      "failures_on_confidence_event": 0,
+      "false_acceptance_rate": 0.0,
+      "false_acceptances": 0,
+      "mean_exact_privacy_advantage": 0.2646981772775982,
+      "mean_exact_worst_error": 0.4092683645056078,
+      "mean_selection_criterion": 0.5958863169726009,
+      "method": "heldout_fixed_channel",
+      "replicates": 20,
+      "safe_deployment_rate": 0.0,
+      "safe_deployments": 0,
+      "sample_size_per_stratum": 125
+    },
+    {
+      "confidence_event_count": 20,
+      "deployment_rate": 0.0,
+      "deployments": 0,
+      "failures_on_confidence_event": 0,
+      "false_acceptance_rate": 0.0,
+      "false_acceptances": 0,
+      "mean_exact_privacy_advantage": 1.021405182655144e-15,
+      "mean_exact_worst_error": 0.5000000000000007,
+      "mean_selection_criterion": 0.5000000000000011,
+      "method": "mosaic",
+      "replicates": 20,
+      "safe_deployment_rate": 0.0,
+      "safe_deployments": 0,
+      "sample_size_per_stratum": 125
+    },
+    {
+      "confidence_event_count": 0,
+      "deployment_rate": 0.7,
+      "deployments": 14,
+      "failures_on_confidence_event": 0,
+      "false_acceptance_rate": 0.4,
+      "false_acceptances": 8,
+      "mean_exact_privacy_advantage": 0.26456089695479995,
+      "mean_exact_worst_error": 0.4047111394004658,
+      "mean_selection_criterion": 0.3935292572063248,
+      "method": "plugin_continuum",
+      "replicates": 20,
+      "safe_deployment_rate": 0.3,
+      "safe_deployments": 6,
+      "sample_size_per_stratum": 125
+    },
+    {
+      "confidence_event_count": 0,
+      "deployment_rate": 1.0,
+      "deployments": 20,
+      "failures_on_confidence_event": 0,
+      "false_acceptance_rate": 0.0,
+      "false_acceptances": 0,
+      "mean_exact_privacy_advantage": 0.26374999999999993,
+      "mean_exact_worst_error": 0.3925,
+      "mean_selection_criterion": 0.3925,
+      "method": "population_oracle",
+      "replicates": 20,
+      "safe_deployment_rate": 1.0,
+      "safe_deployments": 20,
+      "sample_size_per_stratum": 125
+    },
+    {
+      "confidence_event_count": 0,
+      "deployment_rate": 0.7,
+      "deployments": 14,
+      "failures_on_confidence_event": 0,
+      "false_acceptance_rate": 0.65,
+      "false_acceptances": 13,
+      "mean_exact_privacy_advantage": 0.24287405208331672,
+      "mean_exact_worst_error": 0.41581678889432905,
+      "mean_selection_criterion": 0.3819496453380497,
+      "method": "shift_unaware_mosaic",
+      "replicates": 20,
+      "safe_deployment_rate": 0.05,
+      "safe_deployments": 1,
+      "sample_size_per_stratum": 125
+    }
+  ],
+  "delta": 0.05,
+  "methods": [
+    "always_deploy_plugin",
+    "plugin_continuum",
+    "heldout_fixed_channel",
+    "finite_ltt",
+    "deterministic_mosaic",
+    "shift_unaware_mosaic",
+    "mosaic",
+    "population_oracle"
+  ],
+  "name": "MOSAIC v2 disclosed synthetic design pilot v0",
+  "replicate_results": [
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.4016659793814433,
+      "exact_worst_privacy_advantage": 0.26779381443298966,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "always_deploy_plugin",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.43505154639175253,
+          0.5649484536082474
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 180,
+      "selection_criterion": 0.3999498556701031
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.4016659793814433,
+      "exact_worst_privacy_advantage": 0.26779381443298966,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "plugin_continuum",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.43505154639175253,
+          0.5649484536082474
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 180,
+      "selection_criterion": 0.3999498556701031
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.40534883720930237,
+      "exact_worst_privacy_advantage": 0.26941860465116285,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "heldout_fixed_channel",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.42151162790697677,
+          0.5784883720930232
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 180,
+      "selection_criterion": 0.5770510977775827
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000001,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "finite_ltt",
+      "release_channel": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 180,
+      "selection_criterion": 0.6751465057635831
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        0
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 1.0,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "deterministic_mosaic",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 180,
+      "selection_criterion": 1.0
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.4152194535664213,
+      "exact_worst_privacy_advantage": 0.24115859240357307,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "shift_unaware_mosaic",
+      "release_channel": [
+        [
+          0.9472685132235946,
+          0.05273148677640534
+        ],
+        [
+          0.4322416284055318,
+          0.5677583715944682
+        ],
+        [
+          0.05049168209656718,
+          0.9495083179034328
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 180,
+      "selection_criterion": 0.39128285185637474
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000016,
+      "exact_worst_privacy_advantage": 4.440892098500626e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "mosaic",
+      "release_channel": [
+        [
+          0.5000000000000013,
+          0.4999999999999987
+        ],
+        [
+          0.5000000000000016,
+          0.4999999999999985
+        ],
+        [
+          0.5000000000000013,
+          0.4999999999999987
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 180,
+      "selection_criterion": 0.5000000000000016
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3925,
+      "exact_worst_privacy_advantage": 0.26374999999999993,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "population_oracle",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.46875,
+          0.53125
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 180,
+      "selection_criterion": 0.3925
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.40258568329718014,
+      "exact_worst_privacy_advantage": 0.26819956616052076,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "always_deploy_plugin",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.4316702819956615,
+          0.5683297180043385
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 181,
+      "selection_criterion": 0.4103510629067246
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.40258568329718014,
+      "exact_worst_privacy_advantage": 0.26819956616052076,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "plugin_continuum",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.4316702819956615,
+          0.5683297180043385
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 181,
+      "selection_criterion": 0.4103510629067246
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.39803669724770646,
+      "exact_worst_privacy_advantage": 0.266192660550459,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "heldout_fixed_channel",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.448394495412844,
+          0.551605504587156
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 181,
+      "selection_criterion": 0.6095062167998022
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000001,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "finite_ltt",
+      "release_channel": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 181,
+      "selection_criterion": 0.6751465057635831
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        0
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 1.0,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "deterministic_mosaic",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 181,
+      "selection_criterion": 1.0
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.4230794406643121,
+      "exact_worst_privacy_advantage": 0.22578937238833707,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "shift_unaware_mosaic",
+      "release_channel": [
+        [
+          0.9124185495264586,
+          0.08758145047354134
+        ],
+        [
+          0.46177594863982774,
+          0.5382240513601723
+        ],
+        [
+          0.05385724811675263,
+          0.9461427518832474
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 181,
+      "selection_criterion": 0.41049802911761346
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000007,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "mosaic",
+      "release_channel": [
+        [
+          0.5000000000000007,
+          0.49999999999999933
+        ],
+        [
+          0.5000000000000007,
+          0.4999999999999993
+        ],
+        [
+          0.5000000000000007,
+          0.4999999999999993
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 181,
+      "selection_criterion": 0.5000000000000007
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3925,
+      "exact_worst_privacy_advantage": 0.26374999999999993,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "population_oracle",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.46875,
+          0.53125
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 181,
+      "selection_criterion": 0.3925
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.41136000000000006,
+      "exact_worst_privacy_advantage": 0.27207058823529406,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "always_deploy_plugin",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.39941176470588236,
+          0.6005882352941176
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 182,
+      "selection_criterion": 0.3841524705882353
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.41136000000000006,
+      "exact_worst_privacy_advantage": 0.27207058823529406,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "plugin_continuum",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.39941176470588236,
+          0.6005882352941176
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 182,
+      "selection_criterion": 0.3841524705882353
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.39560747663551404,
+      "exact_worst_privacy_advantage": 0.26252336448598124,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "heldout_fixed_channel",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.47897196261682246,
+          0.5210280373831775
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 182,
+      "selection_criterion": 0.605002474807421
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000001,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "finite_ltt",
+      "release_channel": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 182,
+      "selection_criterion": 0.6751465057635831
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        0
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 1.0,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "deterministic_mosaic",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 182,
+      "selection_criterion": 1.0
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.42628515711263254,
+      "exact_worst_privacy_advantage": 0.2474328004181694,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "shift_unaware_mosaic",
+      "release_channel": [
+        [
+          0.9452547923253426,
+          0.05474520767465745
+        ],
+        [
+          0.4199035186285448,
+          0.5800964813714552
+        ],
+        [
+          0.02330155445257609,
+          0.9766984455474239
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 182,
+      "selection_criterion": 0.36885252425400505
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5,
+      "exact_worst_privacy_advantage": 3.9968028886505635e-15,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "mosaic",
+      "release_channel": [
+        [
+          0.5000000000000014,
+          0.49999999999999856
+        ],
+        [
+          0.5000000000000053,
+          0.49999999999999467
+        ],
+        [
+          0.49999999999999345,
+          0.5000000000000066
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 182,
+      "selection_criterion": 0.5000000000000022
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3925,
+      "exact_worst_privacy_advantage": 0.26374999999999993,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "population_oracle",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.46875,
+          0.53125
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 182,
+      "selection_criterion": 0.3925
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.40199999999999997,
+      "exact_worst_privacy_advantage": 0.26,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "always_deploy_plugin",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.4999999999999999,
+          0.5000000000000001
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 183,
+      "selection_criterion": 0.3984000000000001
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.40199999999999997,
+      "exact_worst_privacy_advantage": 0.26,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "plugin_continuum",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.4999999999999999,
+          0.5000000000000001
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 183,
+      "selection_criterion": 0.3984000000000001
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3970769230769231,
+      "exact_worst_privacy_advantage": 0.265769230769231,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "heldout_fixed_channel",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.4519230769230769,
+          0.5480769230769231
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 183,
+      "selection_criterion": 0.5981670361028233
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000001,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "finite_ltt",
+      "release_channel": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 183,
+      "selection_criterion": 0.6751465057635831
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        0
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 1.0,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "deterministic_mosaic",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 183,
+      "selection_criterion": 1.0
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.4050538974711831,
+      "exact_worst_privacy_advantage": 0.2561674678280623,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "shift_unaware_mosaic",
+      "release_channel": [
+        [
+          0.9502741078957457,
+          0.04972589210425428
+        ],
+        [
+          0.5509387187409429,
+          0.44906128125905703
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 183,
+      "selection_criterion": 0.3796173887046632
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000011,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "mosaic",
+      "release_channel": [
+        [
+          0.5000000000000011,
+          0.4999999999999989
+        ],
+        [
+          0.5000000000000011,
+          0.4999999999999989
+        ],
+        [
+          0.5000000000000011,
+          0.4999999999999989
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 183,
+      "selection_criterion": 0.5000000000000011
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3925,
+      "exact_worst_privacy_advantage": 0.26374999999999993,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "population_oracle",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.46875,
+          0.53125
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 183,
+      "selection_criterion": 0.3925
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.414627681100769,
+      "exact_worst_privacy_advantage": 0.2625859975718332,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "always_deploy_plugin",
+      "release_channel": [
+        [
+          0.9763253743423715,
+          0.023674625657628456
+        ],
+        [
+          0.561007689194658,
+          0.438992310805342
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 184,
+      "selection_criterion": 0.40277070012140836
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.414627681100769,
+      "exact_worst_privacy_advantage": 0.2625859975718332,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "plugin_continuum",
+      "release_channel": [
+        [
+          0.9763253743423715,
+          0.023674625657628456
+        ],
+        [
+          0.561007689194658,
+          0.438992310805342
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 184,
+      "selection_criterion": 0.40277070012140836
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.4244937937619351,
+      "exact_worst_privacy_advantage": 0.2637762571610438,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "heldout_fixed_channel",
+      "release_channel": [
+        [
+          0.9496339910884788,
+          0.05036600891152121
+        ],
+        [
+          0.6154121578612347,
+          0.3845878421387653
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 184,
+      "selection_criterion": 0.5896955998369886
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000001,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "finite_ltt",
+      "release_channel": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 184,
+      "selection_criterion": 0.6751465057635831
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        0
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 1.0,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "deterministic_mosaic",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 184,
+      "selection_criterion": 1.0
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.42850370988326814,
+      "exact_worst_privacy_advantage": 0.2218958157973232,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "shift_unaware_mosaic",
+      "release_channel": [
+        [
+          0.8984146472693126,
+          0.10158535273068738
+        ],
+        [
+          0.5575262777870309,
+          0.44247372221296916
+        ],
+        [
+          0.07715708434682178,
+          0.9228429156531782
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 184,
+      "selection_criterion": 0.4015853527306871
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000003,
+      "exact_worst_privacy_advantage": 8.881784197001252e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "mosaic",
+      "release_channel": [
+        [
+          0.5000000000000002,
+          0.4999999999999998
+        ],
+        [
+          0.5000000000000013,
+          0.4999999999999986
+        ],
+        [
+          0.4999999999999991,
+          0.5000000000000009
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 184,
+      "selection_criterion": 0.5000000000000007
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3925,
+      "exact_worst_privacy_advantage": 0.26374999999999993,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "population_oracle",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.46875,
+          0.53125
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 184,
+      "selection_criterion": 0.3925
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.39696000000000004,
+      "exact_worst_privacy_advantage": 0.2657176470588234,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "always_deploy_plugin",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.4523529411764706,
+          0.5476470588235294
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 185,
+      "selection_criterion": 0.3735540705882353
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.39696000000000004,
+      "exact_worst_privacy_advantage": 0.2657176470588234,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "plugin_continuum",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.4523529411764706,
+          0.5476470588235294
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 185,
+      "selection_criterion": 0.3735540705882353
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.40513761467889914,
+      "exact_worst_privacy_advantage": 0.2612385321100916,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "heldout_fixed_channel",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.5103211009174313,
+          0.4896788990825687
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 185,
+      "selection_criterion": 0.585312245633354
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000001,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "finite_ltt",
+      "release_channel": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 185,
+      "selection_criterion": 0.6751465057635833
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        0
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 1.0,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "deterministic_mosaic",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 185,
+      "selection_criterion": 1.0
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.4071319171434997,
+      "exact_worst_privacy_advantage": 0.24870710160202103,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "shift_unaware_mosaic",
+      "release_channel": [
+        [
+          0.9650038378329232,
+          0.03499616216707679
+        ],
+        [
+          0.4476422388887922,
+          0.5523577611112078
+        ],
+        [
+          0.031885289189297006,
+          0.968114710810703
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 185,
+      "selection_criterion": 0.35302782390719195
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000002,
+      "exact_worst_privacy_advantage": 0.0,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "mosaic",
+      "release_channel": [
+        [
+          0.4999999999999999,
+          0.5000000000000001
+        ],
+        [
+          0.49999999999999967,
+          0.5000000000000003
+        ],
+        [
+          0.4999999999999999,
+          0.5000000000000001
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 185,
+      "selection_criterion": 0.5000000000000002
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3925,
+      "exact_worst_privacy_advantage": 0.26374999999999993,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "population_oracle",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.46875,
+          0.53125
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 185,
+      "selection_criterion": 0.3925
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.41032454361054765,
+      "exact_worst_privacy_advantage": 0.26328600405679525,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "always_deploy_plugin",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.5273833671399594,
+          0.47261663286004063
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 186,
+      "selection_criterion": 0.413501014198783
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.41032454361054765,
+      "exact_worst_privacy_advantage": 0.26328600405679525,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "plugin_continuum",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.5273833671399594,
+          0.47261663286004063
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 186,
+      "selection_criterion": 0.413501014198783
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.4166153846153846,
+      "exact_worst_privacy_advantage": 0.265769230769231,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "heldout_fixed_channel",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.548076923076923,
+          0.451923076923077
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 186,
+      "selection_criterion": 0.6063233242591115
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000001,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "finite_ltt",
+      "release_channel": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 186,
+      "selection_criterion": 0.6751465057635831
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        0
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 1.0,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "deterministic_mosaic",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 186,
+      "selection_criterion": 1.0
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.4203878703452737,
+      "exact_worst_privacy_advantage": 0.23314004358231122,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "shift_unaware_mosaic",
+      "release_channel": [
+        [
+          0.8970397525391726,
+          0.10296024746082745
+        ],
+        [
+          0.5751024656403874,
+          0.42489753435961264
+        ],
+        [
+          0.04775063375740529,
+          0.9522493662425947
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 186,
+      "selection_criterion": 0.41675626206557087
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000008,
+      "exact_worst_privacy_advantage": 6.661338147750939e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "mosaic",
+      "release_channel": [
+        [
+          0.4999999999999991,
+          0.5000000000000009
+        ],
+        [
+          0.5000000000000002,
+          0.4999999999999997
+        ],
+        [
+          0.5000000000000007,
+          0.4999999999999994
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 186,
+      "selection_criterion": 0.5000000000000009
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3925,
+      "exact_worst_privacy_advantage": 0.26374999999999993,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "population_oracle",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.46875,
+          0.53125
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 186,
+      "selection_criterion": 0.3925
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.396065075921909,
+      "exact_worst_privacy_advantage": 0.26234273318872026,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "always_deploy_plugin",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.480477223427332,
+          0.519522776572668
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 187,
+      "selection_criterion": 0.392540043383948
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.396065075921909,
+      "exact_worst_privacy_advantage": 0.26234273318872026,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "plugin_continuum",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.480477223427332,
+          0.519522776572668
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 187,
+      "selection_criterion": 0.392540043383948
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3956074766355141,
+      "exact_worst_privacy_advantage": 0.26252336448598124,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "heldout_fixed_channel",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.47897196261682257,
+          0.5210280373831775
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 187,
+      "selection_criterion": 0.571624637691266
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000001,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "finite_ltt",
+      "release_channel": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 187,
+      "selection_criterion": 0.6751465057635831
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        0
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 1.0,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "deterministic_mosaic",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 187,
+      "selection_criterion": 1.0
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.405245110506209,
+      "exact_worst_privacy_advantage": 0.2514757134157777,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "shift_unaware_mosaic",
+      "release_channel": [
+        [
+          0.9278727156760689,
+          0.07212728432393115
+        ],
+        [
+          0.5491764190046986,
+          0.45082358099530145
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 187,
+      "selection_criterion": 0.37926688824088095
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.500000000000001,
+      "exact_worst_privacy_advantage": 8.881784197001252e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "mosaic",
+      "release_channel": [
+        [
+          0.4999999999999989,
+          0.5000000000000011
+        ],
+        [
+          0.5000000000000002,
+          0.4999999999999998
+        ],
+        [
+          0.5000000000000011,
+          0.49999999999999895
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 187,
+      "selection_criterion": 0.5000000000000011
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3925,
+      "exact_worst_privacy_advantage": 0.26374999999999993,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "population_oracle",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.46875,
+          0.53125
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 187,
+      "selection_criterion": 0.3925
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.39585168539325843,
+      "exact_worst_privacy_advantage": 0.2624269662921348,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "always_deploy_plugin",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.47977528089887644,
+          0.5202247191011236
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 188,
+      "selection_criterion": 0.39552000000000004
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.39585168539325843,
+      "exact_worst_privacy_advantage": 0.2624269662921348,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "plugin_continuum",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.47977528089887644,
+          0.5202247191011236
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 188,
+      "selection_criterion": 0.39552000000000004
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.4103379441514654,
+      "exact_worst_privacy_advantage": 0.2614913114895825,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "heldout_fixed_channel",
+      "release_channel": [
+        [
+          0.9822339413849749,
+          0.017766058615025115
+        ],
+        [
+          0.5420376934382289,
+          0.45796230656177106
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 188,
+      "selection_criterion": 0.5846137863785699
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000001,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "finite_ltt",
+      "release_channel": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 188,
+      "selection_criterion": 0.6751465057635831
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        0
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 1.0,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "deterministic_mosaic",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 188,
+      "selection_criterion": 1.0
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.40477288570635106,
+      "exact_worst_privacy_advantage": 0.2517279285744223,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "shift_unaware_mosaic",
+      "release_channel": [
+        [
+          0.9241428571859334,
+          0.07585714281406664
+        ],
+        [
+          0.5574946428102975,
+          0.4425053571897025
+        ],
+        [
+          1.1102230246251565e-16,
+          0.9999999999999999
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 188,
+      "selection_criterion": 0.3827696026555139
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000016,
+      "exact_worst_privacy_advantage": 1.1102230246251565e-15,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "mosaic",
+      "release_channel": [
+        [
+          0.499999999999998,
+          0.500000000000002
+        ],
+        [
+          0.5000000000000009,
+          0.49999999999999917
+        ],
+        [
+          0.5000000000000018,
+          0.4999999999999983
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 188,
+      "selection_criterion": 0.500000000000002
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3925,
+      "exact_worst_privacy_advantage": 0.26374999999999993,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "population_oracle",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.46875,
+          0.53125
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 188,
+      "selection_criterion": 0.3925
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.42988489208633096,
+      "exact_worst_privacy_advantage": 0.2710071942446044,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "always_deploy_plugin",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.5917266187050358,
+          0.40827338129496415
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 189,
+      "selection_criterion": 0.3751562589928058
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.42988489208633096,
+      "exact_worst_privacy_advantage": 0.2710071942446044,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "plugin_continuum",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.5917266187050358,
+          0.40827338129496415
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 189,
+      "selection_criterion": 0.3751562589928058
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.4196288659793814,
+      "exact_worst_privacy_advantage": 0.26695876288659814,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "heldout_fixed_channel",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.5579896907216494,
+          0.4420103092783506
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 189,
+      "selection_criterion": 0.5701250437309341
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000001,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "finite_ltt",
+      "release_channel": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 189,
+      "selection_criterion": 0.6751465057635831
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        0
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 1.0,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "deterministic_mosaic",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 189,
+      "selection_criterion": 1.0
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.4435238035071088,
+      "exact_worst_privacy_advantage": 0.24986476945028846,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "shift_unaware_mosaic",
+      "release_channel": [
+        [
+          0.947993346310677,
+          0.05200665368932303
+        ],
+        [
+          0.6164909157913585,
+          0.38350908420864144
+        ],
+        [
+          0.04285253033378145,
+          0.9571474696662186
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 189,
+      "selection_criterion": 0.3582565061322433
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000002,
+      "exact_worst_privacy_advantage": 0.0,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "mosaic",
+      "release_channel": [
+        [
+          0.4999999999999999,
+          0.5000000000000001
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.4999999999999999,
+          0.5000000000000001
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 189,
+      "selection_criterion": 0.5000000000000002
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3925,
+      "exact_worst_privacy_advantage": 0.26374999999999993,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "population_oracle",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.46875,
+          0.53125
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 189,
+      "selection_criterion": 0.3925
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.4162170900692841,
+      "exact_worst_privacy_advantage": 0.2656120092378753,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "always_deploy_plugin",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.5467667436489608,
+          0.45323325635103917
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 190,
+      "selection_criterion": 0.39948083140877605
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.4162170900692841,
+      "exact_worst_privacy_advantage": 0.2656120092378753,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "plugin_continuum",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.5467667436489608,
+          0.45323325635103917
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 190,
+      "selection_criterion": 0.39948083140877605
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.4419845762938528,
+      "exact_worst_privacy_advantage": 0.27261289172201675,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "heldout_fixed_channel",
+      "release_channel": [
+        [
+          0.9687068158516472,
+          0.031293184148352804
+        ],
+        [
+          0.657262737930727,
+          0.342737262069273
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 190,
+      "selection_criterion": 0.6076169563564703
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000001,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "finite_ltt",
+      "release_channel": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 190,
+      "selection_criterion": 0.6751465057635833
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        0
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 1.0,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "deterministic_mosaic",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 190,
+      "selection_criterion": 1.0
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        1,
+        0
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.4245141205803265,
+      "exact_worst_privacy_advantage": 0.2623637706187716,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "shift_unaware_mosaic",
+      "release_channel": [
+        [
+          0.06438662991988986,
+          0.9356133700801101
+        ],
+        [
+          0.3729908616437535,
+          0.6270091383562465
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 190,
+      "selection_criterion": 0.3850177831796123
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000007,
+      "exact_worst_privacy_advantage": 0.0,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "mosaic",
+      "release_channel": [
+        [
+          0.5000000000000007,
+          0.4999999999999993
+        ],
+        [
+          0.5000000000000007,
+          0.4999999999999993
+        ],
+        [
+          0.5000000000000007,
+          0.4999999999999993
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 190,
+      "selection_criterion": 0.5000000000000007
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3925,
+      "exact_worst_privacy_advantage": 0.26374999999999993,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "population_oracle",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.46875,
+          0.53125
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 190,
+      "selection_criterion": 0.3925
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.40171937639198224,
+      "exact_worst_privacy_advantage": 0.2678173719376393,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "always_deploy_plugin",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.4348552338530066,
+          0.5651447661469934
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 191,
+      "selection_criterion": 0.39157844097995553
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.40171937639198224,
+      "exact_worst_privacy_advantage": 0.2678173719376393,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "plugin_continuum",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.4348552338530066,
+          0.5651447661469934
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 191,
+      "selection_criterion": 0.39157844097995553
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.4136533650982728,
+      "exact_worst_privacy_advantage": 0.2560869565217394,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "heldout_fixed_channel",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.21992257296009526,
+          0.7800774270399047
+        ],
+        [
+          0.1876116736152472,
+          0.8123883263847528
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 191,
+      "selection_criterion": 0.594403916157452
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000001,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "finite_ltt",
+      "release_channel": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 191,
+      "selection_criterion": 0.6751465057635833
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        0
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 1.0,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "deterministic_mosaic",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 191,
+      "selection_criterion": 1.0
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.41347172077326755,
+      "exact_worst_privacy_advantage": 0.24943114918450138,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "shift_unaware_mosaic",
+      "release_channel": [
+        [
+          0.9566104318099009,
+          0.043389568190099065
+        ],
+        [
+          0.46320517536195605,
+          0.536794824638044
+        ],
+        [
+          0.005497839756161471,
+          0.9945021602438385
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 191,
+      "selection_criterion": 0.3763752450489914
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000004,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "mosaic",
+      "release_channel": [
+        [
+          0.49999999999999967,
+          0.5000000000000003
+        ],
+        [
+          0.49999999999999967,
+          0.5000000000000003
+        ],
+        [
+          0.49999999999999933,
+          0.5000000000000007
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 191,
+      "selection_criterion": 0.5000000000000004
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3925,
+      "exact_worst_privacy_advantage": 0.26374999999999993,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "population_oracle",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.46875,
+          0.53125
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 191,
+      "selection_criterion": 0.3925
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3954125874125875,
+      "exact_worst_privacy_advantage": 0.26503496503496504,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "always_deploy_plugin",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.4580419580419579,
+          0.5419580419580421
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 192,
+      "selection_criterion": 0.3662903496503497
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3954125874125875,
+      "exact_worst_privacy_advantage": 0.26503496503496504,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "plugin_continuum",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.4580419580419579,
+          0.5419580419580421
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 192,
+      "selection_criterion": 0.3662903496503497
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.41239175257731964,
+      "exact_worst_privacy_advantage": 0.27252577319587634,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "heldout_fixed_channel",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.39561855670103085,
+          0.6043814432989691
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 192,
+      "selection_criterion": 0.5981957359253376
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000001,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "finite_ltt",
+      "release_channel": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 192,
+      "selection_criterion": 0.6751465057635831
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        0
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 1.0,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "deterministic_mosaic",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 192,
+      "selection_criterion": 1.0
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.401923784959023,
+      "exact_worst_privacy_advantage": 0.2554745752083969,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "shift_unaware_mosaic",
+      "release_channel": [
+        [
+          0.9766194016980165,
+          0.023380598301983503
+        ],
+        [
+          0.47536361112473946,
+          0.5246363888752605
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 192,
+      "selection_criterion": 0.33684087617489794
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5,
+      "exact_worst_privacy_advantage": 4.440892098500626e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "mosaic",
+      "release_channel": [
+        [
+          0.5000000000000009,
+          0.4999999999999991
+        ],
+        [
+          0.49999999999999967,
+          0.5000000000000003
+        ],
+        [
+          0.49999999999999967,
+          0.5000000000000003
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 192,
+      "selection_criterion": 0.5000000000000002
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3925,
+      "exact_worst_privacy_advantage": 0.26374999999999993,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "population_oracle",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.46875,
+          0.53125
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 192,
+      "selection_criterion": 0.3925
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.40626611226611226,
+      "exact_worst_privacy_advantage": 0.2616839916839917,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "always_deploy_plugin",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.514033264033264,
+          0.485966735966736
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 193,
+      "selection_criterion": 0.4027559251559252
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.40626611226611226,
+      "exact_worst_privacy_advantage": 0.2616839916839917,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "plugin_continuum",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.514033264033264,
+          0.485966735966736
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 193,
+      "selection_criterion": 0.4027559251559252
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.39625210084033613,
+      "exact_worst_privacy_advantage": 0.26226890756302534,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "heldout_fixed_channel",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.4810924369747899,
+          0.51890756302521
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 193,
+      "selection_criterion": 0.5997661372817564
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000001,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "finite_ltt",
+      "release_channel": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 193,
+      "selection_criterion": 0.6751465057635833
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        0
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 1.0,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "deterministic_mosaic",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 193,
+      "selection_criterion": 1.0
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.41976612639545846,
+      "exact_worst_privacy_advantage": 0.22566901494278158,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "shift_unaware_mosaic",
+      "release_channel": [
+        [
+          0.9155913518049725,
+          0.08440864819502748
+        ],
+        [
+          0.5308719123715245,
+          0.46912808762847547
+        ],
+        [
+          0.06610589032123737,
+          0.9338941096787626
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 193,
+      "selection_criterion": 0.4008950734124372
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000016,
+      "exact_worst_privacy_advantage": 7.771561172376096e-15,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "mosaic",
+      "release_channel": [
+        [
+          0.5000000000000162,
+          0.4999999999999838
+        ],
+        [
+          0.49999999999999234,
+          0.5000000000000077
+        ],
+        [
+          0.499999999999998,
+          0.500000000000002
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 193,
+      "selection_criterion": 0.5000000000000052
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3925,
+      "exact_worst_privacy_advantage": 0.26374999999999993,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "population_oracle",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.46875,
+          0.53125
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 193,
+      "selection_criterion": 0.3925
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.402,
+      "exact_worst_privacy_advantage": 0.26,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "always_deploy_plugin",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 194,
+      "selection_criterion": 0.39552000000000004
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.402,
+      "exact_worst_privacy_advantage": 0.26,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "plugin_continuum",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 194,
+      "selection_criterion": 0.39552000000000004
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3950909090909091,
+      "exact_worst_privacy_advantage": 0.2627272727272727,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "heldout_fixed_channel",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.4772727272727273,
+          0.5227272727272727
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 194,
+      "selection_criterion": 0.6023106702464576
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000001,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "finite_ltt",
+      "release_channel": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 194,
+      "selection_criterion": 0.6751465057635831
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        0
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 1.0,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "deterministic_mosaic",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 194,
+      "selection_criterion": 1.0
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.4036477078631584,
+      "exact_worst_privacy_advantage": 0.25491608820065403,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "shift_unaware_mosaic",
+      "release_channel": [
+        [
+          0.9754921389708971,
+          0.024507861029102813
+        ],
+        [
+          0.5159586998662238,
+          0.4840413001337763
+        ],
+        [
+          0.006554323679601071,
+          0.9934456763203989
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 194,
+      "selection_criterion": 0.37728670656733904
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5,
+      "exact_worst_privacy_advantage": 4.440892098500626e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "mosaic",
+      "release_channel": [
+        [
+          0.5000000000000004,
+          0.4999999999999996
+        ],
+        [
+          0.4999999999999998,
+          0.5000000000000002
+        ],
+        [
+          0.49999999999999967,
+          0.5000000000000003
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 194,
+      "selection_criterion": 0.5000000000000001
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3925,
+      "exact_worst_privacy_advantage": 0.26374999999999993,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "population_oracle",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.46875,
+          0.53125
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 194,
+      "selection_criterion": 0.3925
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.39290644490644494,
+      "exact_worst_privacy_advantage": 0.2639293139293142,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "always_deploy_plugin",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.46725571725571724,
+          0.5327442827442828
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 195,
+      "selection_criterion": 0.3909485239085239
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.39290644490644494,
+      "exact_worst_privacy_advantage": 0.2639293139293142,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "plugin_continuum",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.46725571725571724,
+          0.5327442827442828
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 195,
+      "selection_criterion": 0.3909485239085239
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.41113746808335394,
+      "exact_worst_privacy_advantage": 0.2585248332097849,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "heldout_fixed_channel",
+      "release_channel": [
+        [
+          0.9498393872003953,
+          0.05016061279960471
+        ],
+        [
+          0.5713079647475496,
+          0.4286920352524503
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 195,
+      "selection_criterion": 0.5912148365758771
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000001,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "finite_ltt",
+      "release_channel": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 195,
+      "selection_criterion": 0.6751465057635831
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        0
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 1.0,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "deterministic_mosaic",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 195,
+      "selection_criterion": 1.0
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.4125679269053988,
+      "exact_worst_privacy_advantage": 0.23251197104811339,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "shift_unaware_mosaic",
+      "release_channel": [
+        [
+          0.9178651761115765,
+          0.08213482388842355
+        ],
+        [
+          0.5062588050028441,
+          0.49374119499715585
+        ],
+        [
+          0.036912877420447465,
+          0.9630871225795525
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 195,
+      "selection_criterion": 0.38330918295525923
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000024,
+      "exact_worst_privacy_advantage": 1.3322676295501878e-15,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "mosaic",
+      "release_channel": [
+        [
+          0.49999999999999933,
+          0.5000000000000007
+        ],
+        [
+          0.5000000000000027,
+          0.4999999999999973
+        ],
+        [
+          0.5000000000000023,
+          0.49999999999999767
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 195,
+      "selection_criterion": 0.5000000000000027
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3925,
+      "exact_worst_privacy_advantage": 0.26374999999999993,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "population_oracle",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.46875,
+          0.53125
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 195,
+      "selection_criterion": 0.3925
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.41709933774834435,
+      "exact_worst_privacy_advantage": 0.26596026490066227,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "always_deploy_plugin",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.5496688741721854,
+          0.45033112582781465
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 196,
+      "selection_criterion": 0.41017430463576166
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.41709933774834435,
+      "exact_worst_privacy_advantage": 0.26596026490066227,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "plugin_continuum",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.5496688741721854,
+          0.45033112582781465
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 196,
+      "selection_criterion": 0.41017430463576166
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.4245493209193013,
+      "exact_worst_privacy_advantage": 0.26075139544869064,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "heldout_fixed_channel",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.5500723147499492,
+          0.4499276852500508
+        ],
+        [
+          0.01642900725407337,
+          0.9835709927459266
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 196,
+      "selection_criterion": 0.610167611740153
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000001,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "finite_ltt",
+      "release_channel": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 196,
+      "selection_criterion": 0.6751465057635831
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        0
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 1.0,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "deterministic_mosaic",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 196,
+      "selection_criterion": 1.0
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.4363143018017816,
+      "exact_worst_privacy_advantage": 0.214280561269941,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "shift_unaware_mosaic",
+      "release_channel": [
+        [
+          0.9002335338890577,
+          0.09976646611094236
+        ],
+        [
+          0.5495370886534168,
+          0.4504629113465832
+        ],
+        [
+          0.09909561295712654,
+          0.9009043870428735
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 196,
+      "selection_criterion": 0.41479490014823256
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000001,
+      "exact_worst_privacy_advantage": 1.3322676295501878e-15,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "mosaic",
+      "release_channel": [
+        [
+          0.5000000000000018,
+          0.4999999999999982
+        ],
+        [
+          0.4999999999999991,
+          0.5000000000000009
+        ],
+        [
+          0.49999999999999756,
+          0.5000000000000024
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 196,
+      "selection_criterion": 0.5000000000000009
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3925,
+      "exact_worst_privacy_advantage": 0.26374999999999993,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "population_oracle",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.46875,
+          0.53125
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 196,
+      "selection_criterion": 0.3925
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.39898013245033115,
+      "exact_worst_privacy_advantage": 0.2611920529801326,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "always_deploy_plugin",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.4900662251655629,
+          0.509933774834437
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 197,
+      "selection_criterion": 0.40441430463576156
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.39898013245033115,
+      "exact_worst_privacy_advantage": 0.2611920529801326,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "plugin_continuum",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.4900662251655629,
+          0.509933774834437
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 197,
+      "selection_criterion": 0.40441430463576156
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.40890909090909094,
+      "exact_worst_privacy_advantage": 0.2627272727272727,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "heldout_fixed_channel",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.5227272727272728,
+          0.4772727272727272
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 197,
+      "selection_criterion": 0.5954419833777707
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000001,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "finite_ltt",
+      "release_channel": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 197,
+      "selection_criterion": 0.6751465057635831
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        0
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 1.0,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "deterministic_mosaic",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 197,
+      "selection_criterion": 1.0
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.4139140490651694,
+      "exact_worst_privacy_advantage": 0.22085816540792624,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "shift_unaware_mosaic",
+      "release_channel": [
+        [
+          0.9078532187433285,
+          0.09214678125667157
+        ],
+        [
+          0.5129076449696162,
+          0.48709235503038384
+        ],
+        [
+          0.06956686167841675,
+          0.9304331383215833
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 197,
+      "selection_criterion": 0.40275229897366804
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000004,
+      "exact_worst_privacy_advantage": 0.0,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "mosaic",
+      "release_channel": [
+        [
+          0.5000000000000004,
+          0.49999999999999956
+        ],
+        [
+          0.5000000000000006,
+          0.49999999999999944
+        ],
+        [
+          0.5000000000000004,
+          0.49999999999999956
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 197,
+      "selection_criterion": 0.5000000000000004
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3925,
+      "exact_worst_privacy_advantage": 0.26374999999999993,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "population_oracle",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.46875,
+          0.53125
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 197,
+      "selection_criterion": 0.3925
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3953753026634383,
+      "exact_worst_privacy_advantage": 0.2626150121065376,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "always_deploy_plugin",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.47820823244552063,
+          0.5217917675544794
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 198,
+      "selection_criterion": 0.3752484261501211
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3953753026634383,
+      "exact_worst_privacy_advantage": 0.2626150121065376,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "plugin_continuum",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.47820823244552063,
+          0.5217917675544794
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 198,
+      "selection_criterion": 0.3752484261501211
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3974505494505495,
+      "exact_worst_privacy_advantage": 0.2659340659340661,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "heldout_fixed_channel",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.45054945054945056,
+          0.5494505494505495
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 198,
+      "selection_criterion": 0.5685333364691237
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000001,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "finite_ltt",
+      "release_channel": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 198,
+      "selection_criterion": 0.6751465057635833
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        0
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 1.0,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "deterministic_mosaic",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 198,
+      "selection_criterion": 1.0
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.396946315844781,
+      "exact_worst_privacy_advantage": 0.25544565613205306,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "shift_unaware_mosaic",
+      "release_channel": [
+        [
+          0.9747377130769618,
+          0.025262286923038266
+        ],
+        [
+          0.5041509459721727,
+          0.4958490540278273
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 198,
+      "selection_criterion": 0.34919308848507125
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000002,
+      "exact_worst_privacy_advantage": 0.0,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "mosaic",
+      "release_channel": [
+        [
+          0.4999999999999999,
+          0.5000000000000001
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.4999999999999998,
+          0.5000000000000002
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 198,
+      "selection_criterion": 0.5000000000000002
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3925,
+      "exact_worst_privacy_advantage": 0.26374999999999993,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "population_oracle",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.46875,
+          0.53125
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 198,
+      "selection_criterion": 0.3925
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.4069208633093526,
+      "exact_worst_privacy_advantage": 0.2619424460431654,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "always_deploy_plugin",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.5161870503597124,
+          0.48381294964028765
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 199,
+      "selection_criterion": 0.38827856115107917
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.4069208633093526,
+      "exact_worst_privacy_advantage": 0.2619424460431654,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "plugin_continuum",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.5161870503597124,
+          0.48381294964028765
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 199,
+      "selection_criterion": 0.38827856115107917
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.4160571428571429,
+      "exact_worst_privacy_advantage": 0.274142857142857,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "heldout_fixed_channel",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.3821428571428571,
+          0.6178571428571429
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 199,
+      "selection_criterion": 0.6526536923037654
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000001,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "finite_ltt",
+      "release_channel": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 199,
+      "selection_criterion": 0.6751465057635833
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        0
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 1.0,
+      "exact_worst_privacy_advantage": 2.220446049250313e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "deterministic_mosaic",
+      "release_channel": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 199,
+      "selection_criterion": 1.0
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.414066477791957,
+      "exact_worst_privacy_advantage": 0.2591704841929088,
+      "failure_on_confidence_event": null,
+      "false_acceptance": true,
+      "method": "shift_unaware_mosaic",
+      "release_channel": [
+        [
+          0.9448003201171892,
+          0.0551996798828108
+        ],
+        [
+          0.585086834745591,
+          0.414913165254409
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 199,
+      "selection_criterion": 0.3706145221507396
+    },
+    {
+      "confidence_event": true,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": false,
+      "exact_safe": false,
+      "exact_worst_conditional_error": 0.5000000000000007,
+      "exact_worst_privacy_advantage": 4.440892098500626e-16,
+      "failure_on_confidence_event": false,
+      "false_acceptance": false,
+      "method": "mosaic",
+      "release_channel": [
+        [
+          0.49999999999999944,
+          0.5000000000000006
+        ],
+        [
+          0.5000000000000002,
+          0.4999999999999998
+        ],
+        [
+          0.5000000000000007,
+          0.49999999999999933
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 199,
+      "selection_criterion": 0.5000000000000007
+    },
+    {
+      "confidence_event": null,
+      "decoder": [
+        0,
+        1
+      ],
+      "deployed": true,
+      "exact_safe": true,
+      "exact_worst_conditional_error": 0.3925,
+      "exact_worst_privacy_advantage": 0.26374999999999993,
+      "failure_on_confidence_event": null,
+      "false_acceptance": false,
+      "method": "population_oracle",
+      "release_channel": [
+        [
+          1.0,
+          -0.0
+        ],
+        [
+          0.46875,
+          0.53125
+        ],
+        [
+          -0.0,
+          1.0
+        ]
+      ],
+      "sample_size_per_stratum": 125,
+      "seed": 199,
+      "selection_criterion": 0.3925
+    }
+  ],
+  "replicates_per_sample_size": 20,
+  "sample_sizes_per_stratum": [
+    125
+  ],
+  "scenario": {
+    "common_transform_libraries": [
+      [
+        [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            0.9,
+            0.1,
+            0.0
+          ],
+          [
+            0.05,
+            0.9,
+            0.05
+          ],
+          [
+            0.0,
+            0.1,
+            0.9
+          ]
+        ]
+      ],
+      [
+        [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            0.9,
+            0.1,
+            0.0
+          ],
+          [
+            0.05,
+            0.9,
+            0.05
+          ],
+          [
+            0.0,
+            0.1,
+            0.9
+          ]
+        ]
+      ]
+    ],
+    "contaminations": [
+      0.2,
+      0.2
+    ],
+    "name": "stochastic_middle_token",
+    "population": [
+      [
+        [
+          0.8,
+          0.15,
+          0.05
+        ],
+        [
+          0.65,
+          0.3,
+          0.05
+        ]
+      ],
+      [
+        [
+          0.05,
+          0.2,
+          0.75
+        ],
+        [
+          0.05,
+          0.35,
+          0.6
+        ]
+      ]
+    ],
+    "privacy_advantage_thresholds": [
+      0.3,
+      0.3
+    ],
+    "released_token_count": 2,
+    "utility_threshold": 0.4
+  },
+  "scope": "Disclosed pilot for bounded scenario/threshold selection. Every selected release is graded by exact population external risk. Seeds in this artifact are barred from confirmation.",
+  "seed_start": 180,
+  "status": "pilot_only_excluded_from_confirmatory_results"
+}

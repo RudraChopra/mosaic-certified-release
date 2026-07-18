@@ -1,0 +1,222 @@
+{
+  "claim_boundary": "The confirmation tests finite-sample coverage and usefulness under known synthetic populations in the stated shift class. It does not establish real-data shift membership, clinical safety, novelty, or superiority to code that was not run.",
+  "code_sha256": {
+    "research/mosaic/PRE_RELEASE_SHIFT_THEOREMS.md": "76807c1112314456b4d9de8477571f64f68bf6a762b5522a7dcad1cdb40f1981",
+    "research/mosaic/SYNTHETIC_GATE_SPEC.md": "f2ba7c5c43a9734d3321d438c2708ad2d20f72a0c4f24f7c339cc4005c1a1b9e",
+    "research/mosaic/audit_mosaic_synthetic_confirmation.py": "14c51ef750577985ef07b6a4952c59488448ed3071c92cb93a53fff04f92cd03",
+    "research/mosaic/audit_mosaic_synthetic_pilot.py": "3e18fa89623458a9c57c0a1f5e462e10c2e139fecdb0a98635c76420f1c899dc",
+    "research/mosaic/audit_mosaic_theory_alignment.py": "11cae84def137995993f368c1a054138612b08a56b23777a9d500e9e776b3088",
+    "research/mosaic/compute_mosaic_theory_curve.py": "1d44f79cbdc5a1c55aa2b28b7922531975907dd4ece8ab72539655725ff6e46e",
+    "research/mosaic/lock_mosaic_synthetic_prereg.py": "f523e769e7f62f2b9278ef8f10595f54bae7010c1392270a8e4ae49841e5657d",
+    "research/mosaic/mosaic_channel.py": "a69c82b9182be32d28d30e83795ac77c9512fa09f95f8bad7e1ed5732e60ecc4",
+    "research/mosaic/mosaic_envelope.py": "e45d2e0168321a5fa953fba0c980fbdd0418386463ed55127069943134f87540",
+    "research/mosaic/mosaic_exact.py": "da248f621a4d5155de9755f0c6ea1936e9acfbc18f624997f3df933aae7c542a",
+    "research/mosaic/mosaic_invariant.py": "25737e049e2bf329f1019b337c37fb84ca749730e27edf372ddc0ef4676e9826",
+    "research/mosaic/mosaic_optimizer.py": "6a7adddec0a95818b2854dafec52c5c15801e94401691880db0d17f66a73d4d9",
+    "research/mosaic/requirements-confirmation.txt": "53bc08fba93fa00bb5d72feae5cfa9dd7be12208cdb475093f92ee6b4713e8c0",
+    "research/mosaic/run_mosaic_synthetic_confirmation.py": "03b09811f1a1d5af928c8ff50538330e54a177cd020841a8f2665f4cd0578f2f",
+    "research/mosaic/run_mosaic_synthetic_pilot.py": "4538cdf6862c32f2e886ab6bae236b97b3d90fe918c86b67658949e555e45503",
+    "research/mosaic/verify_mosaic_exact.py": "07ddd0fbb43d24e1ac02b290dee8790a9ec51437c01435e4dbc943bc2578e0a7",
+    "research/mosaic/verify_mosaic_invariant.py": "0502db6d538db556b09ed03ee365038b7937d75c10d8463f5022b0f97e5e1ebb",
+    "research/mosaic/verify_mosaic_optimizer.py": "4f324bf51656e3c16ed224ae9452056fa75dc5c7ec09df61ebbeea9a4e7a7f5b",
+    "research/mosaic/verify_mosaic_population_optimizer.py": "9cb581da9b8b8fc7cbd182344667722d8fd4dc47e4453e68fafbe6d34e82d083",
+    "research/tests/test_mosaic_envelope.py": "e7bd29b61f38e39562809e698d12ddb949ef5f4669da655a0b54fcae7511decc",
+    "research/tests/test_mosaic_exact.py": "b3bcb8c073a3ba5825a8a751bc89a2febcc88553aea55f6408e611295720074e",
+    "research/tests/test_mosaic_invariant.py": "1ac20462fd38d5bb39a1ddc6cb685d31bef9cf2ddde8927b08a0a10ae72ea63d",
+    "research/tests/test_mosaic_optimizer.py": "3108ce9e01e5701e09b1c532394f0c7e68444a03c4f1d5a7afd30bb86913486c",
+    "research/tests/test_mosaic_synthetic_rules.py": "080c05a5f165a360f3e1da6971065b30595038f1ec33e0fb63b471b3c9bcfea2"
+  },
+  "delta": 0.05,
+  "exact_outcome": {
+    "false_acceptance": "A rule deploys and either exact privacy exceeds its scenario threshold or exact utility exceeds its scenario threshold.",
+    "privacy": "Enumerate every common-transform extreme, deterministic released-token source attacker, and source-specific residual simplex vertex; report worst normalized balanced-accuracy advantage.",
+    "safe_retention": "A rule deploys without exact violation in a cell where the population oracle confirms a safe opportunity.",
+    "utility": "Enumerate every common-transform extreme and residual simplex vertex; report worst source-label conditional decoder error."
+  },
+  "locked_date": "2026-07-18",
+  "methods": {
+    "always_deploy_plugin": "Exact empirical external-risk continuum optimum, deployed regardless of empirical utility.",
+    "deterministic_mosaic": "The MOSAIC confidence event and shift certificate restricted to all deterministic three-row binary-output channels.",
+    "finite_ltt": "A fixed 5-by-5-by-5 stochastic-channel grid and four decoders certified by simultaneous one-sided Hoeffding bounds over every channel, transformation, attacker assignment, decoder, source, and label; delta is split equally between privacy and utility families.",
+    "heldout_fixed_channel": "Half-sample exact empirical channel selection followed by direct simultaneous one-sided Hoeffding tests for the fixed channel and decoder on the untouched half; there is no candidate-count penalty.",
+    "mosaic": "The globally optimized continuum stochastic channel with the full fine-table confidence event and registered shift model.",
+    "plugin_continuum": "Exact empirical external-risk continuum optimum, deployed only when empirical privacy and utility pass, with no uncertainty correction.",
+    "population_oracle": "The globally optimized exact external-risk channel using known population laws; an unattainable denominator.",
+    "shift_unaware_mosaic": "The adaptive MOSAIC confidence event with common and differential shift incorrectly set to zero; reported only as an invalid-shift ablation."
+  },
+  "pass_conditions": {
+    "all_required": true,
+    "coverage": "MOSAIC false acceptance is at most delta in every registered cell, with zero false acceptances on the recorded simultaneous confidence event.",
+    "final_synthetic_gate": "Pass only if the confirmation runner's all_pass flag, the independent confirmation replay, and the preregistered theory-alignment audit all pass.",
+    "killer_contrast": {
+      "maximum_mosaic_false_acceptance": 0.05,
+      "minimum_plugin_false_acceptance": 0.2,
+      "sample_size_per_stratum": 125,
+      "scenario": "hard_safety_boundary"
+    },
+    "oracle_opportunity": "The population oracle must safely deploy in every registered cell.",
+    "retention": {
+      "comparators": [
+        "heldout_fixed_channel",
+        "finite_ltt",
+        "deterministic_mosaic"
+      ],
+      "minimum_absolute_margin": 0.1,
+      "minimum_mosaic_safe_retention": 0.3,
+      "minimum_stochastic_margin": 0.2,
+      "sample_size_per_stratum": 250,
+      "scenario": "retention_and_stochastic_value"
+    },
+    "theory_alignment": {
+      "maximum_mean_absolute_error": 0.1,
+      "maximum_primary_absolute_error": 0.12,
+      "primary_sample_size_per_stratum": 250,
+      "requirements": "Every finite-difference active-set diagnostic passes, each predicted curve is nondecreasing in sample size, and both registered error tolerances hold. This alignment audit is required in addition to the confirmation gate.",
+      "scenario": "retention_and_stochastic_value"
+    },
+    "theory_curve": "Before confirmatory outcomes are read, compute both the finite-sample concentration-based abstention upper envelope and the locally stable active-set delta-method deployment curve from the locked population and code. Overlay both with the excluded-pilot calibration curve and untouched confirmation; only the concentration envelope is a finite-sample guarantee."
+  },
+  "phase": "untouched-seed synthetic usefulness confirmation",
+  "pilot_artifact_sha256": {
+    "research/artifacts/mosaic_synthetic_design_pilot_eta020_u040_v0.json": "b9249e9a6181512e4457469d5aeffe4c47cf6c43752acd039f31b3b1b60ff711",
+    "research/artifacts/mosaic_synthetic_design_pilot_hard_audit_v2.json": "811292cdd70653fcf353e9fef65297e521fbe99034dbe70eb2653d7c6dff7077",
+    "research/artifacts/mosaic_synthetic_design_pilot_hard_audit_v3.json": "2a97e0cb1bfa57283e73ec1e3f32fbf8f2cd340e29690a393e780e5f8122ce87",
+    "research/artifacts/mosaic_synthetic_design_pilot_hard_v2.json": "0d15c7be8aa7a8b988bccb5bd98b33b44aaf1ac8b4d61a00644862e032072500",
+    "research/artifacts/mosaic_synthetic_design_pilot_hard_v3.json": "27663ce2b729afe9f700b640d827a84a7d9b896e9c7c17dbd88e75271a85f0c9",
+    "research/artifacts/mosaic_synthetic_design_pilot_retention_audit_v1.json": "46a86a2292172fe17e0bf9fb38e661c09bb580c68d54c6b7ea114c06f361dabc",
+    "research/artifacts/mosaic_synthetic_design_pilot_retention_audit_v2.json": "0f5465e9e4b1fa8ecf82d3fd6a602e9bf8a32fa5a84a0881b6a1f12e241ef7e9",
+    "research/artifacts/mosaic_synthetic_design_pilot_retention_audit_v3.json": "fdf8274d12e7aaf1ce4a8ae10d6ea7532034b458b20cd87ba86c44361efb70dd",
+    "research/artifacts/mosaic_synthetic_design_pilot_retention_v1.json": "3ec265583c60deda5dc48dc5a15a1afc66acb2f10e1b20f6bf5caddc7fc4b35c",
+    "research/artifacts/mosaic_synthetic_design_pilot_retention_v2.json": "174d46e2d2a4b303018229dc4aa8e2a0bc5c46b1c846436302d165bc901ac7df",
+    "research/artifacts/mosaic_synthetic_design_pilot_retention_v3.json": "2de2879b7f5093650150c357e2a9e042ea93dc665a172e4c26a831b1667776c6"
+  },
+  "pilot_exclusion": {
+    "excluded_seeds": "0 through 199 inclusive",
+    "hard_pilot": "research/artifacts/mosaic_synthetic_design_pilot_hard_v3.json",
+    "hard_pilot_audit": "research/artifacts/mosaic_synthetic_design_pilot_hard_audit_v3.json",
+    "legacy_aggregate_only_pilot": "research/artifacts/mosaic_synthetic_design_pilot_eta020_u040_v0.json",
+    "legacy_limitation": "The earliest design artifact predates channel-level receipts and is preserved only as aggregate design history; it is excluded from evidence and all confirmatory estimates.",
+    "retention_pilot": "research/artifacts/mosaic_synthetic_design_pilot_retention_v3.json",
+    "retention_pilot_audit": "research/artifacts/mosaic_synthetic_design_pilot_retention_audit_v3.json",
+    "use": "The disclosed pilot selected only bounded scenarios, thresholds, sample sizes, and the finite LTT grid. No pilot row enters a confirmatory estimate or interval."
+  },
+  "population": {
+    "common_transform_extremes": [
+      [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      [
+        [
+          0.9,
+          0.1,
+          0.0
+        ],
+        [
+          0.05,
+          0.9,
+          0.05
+        ],
+        [
+          0.0,
+          0.1,
+          0.9
+        ]
+      ]
+    ],
+    "family": "stochastic_middle_token_v1",
+    "laws": [
+      [
+        [
+          0.8,
+          0.15,
+          0.05
+        ],
+        [
+          0.65,
+          0.3,
+          0.05
+        ]
+      ],
+      [
+        [
+          0.05,
+          0.2,
+          0.75
+        ],
+        [
+          0.05,
+          0.35,
+          0.6
+        ]
+      ]
+    ],
+    "released_token_count": 2,
+    "strata": "Two labels by two sources, with exactly n independent multinomial draws in every source-label stratum."
+  },
+  "project": "MOSAIC: Minimax-Optimized Source-Agnostic Invariant Channels",
+  "replicates_per_cell": 1000,
+  "reporting": {
+    "headline": "A memorable number may be quoted only from the two registered primary cells with its denominator and interval.",
+    "intervals": "Two-sided 95% Clopper-Pearson intervals for deployment, false acceptance, and safe deployment in every cell.",
+    "negative_results": "All methods and cells remain in the artifact even if any pass condition fails.",
+    "replicate_receipt": "Store every selected channel, decoder, exact risks, deployment decision, confidence-event marker, seed, and selection criterion."
+  },
+  "runtime_environment": {
+    "confirmation_workers": 8,
+    "highs": "1.12.0",
+    "numeric_thread_environment": "OMP_NUM_THREADS=1, OPENBLAS_NUM_THREADS=1, VECLIB_MAXIMUM_THREADS=1",
+    "numpy": "2.4.6",
+    "platform": "Darwin 25.2.0 arm64",
+    "python": "3.14.6",
+    "scipy": "1.17.1"
+  },
+  "scenarios": [
+    {
+      "contamination": 0.2,
+      "name": "hard_safety_boundary",
+      "population_family": "stochastic_middle_token_v1",
+      "privacy_threshold": 0.3,
+      "role": "Tests whether an uncorrected plug-in continuum optimizer falsely accepts a near-boundary external contract while MOSAIC abstains.",
+      "sample_sizes_per_stratum": [
+        125,
+        250,
+        500
+      ],
+      "utility_threshold": 0.4
+    },
+    {
+      "contamination": 0.1,
+      "name": "retention_and_stochastic_value",
+      "population_family": "stochastic_middle_token_v1",
+      "privacy_threshold": 0.35,
+      "role": "Tests same-table sample efficiency and the strict value of stochastic rather than deterministic release channels.",
+      "sample_sizes_per_stratum": [
+        125,
+        250,
+        500,
+        1000,
+        2000
+      ],
+      "utility_threshold": 0.45
+    }
+  ],
+  "seed_base": 10000,
+  "seed_formula": "seed_base + 10000000 * scenario_index + 10000 * sample_size_per_stratum + replicate_index",
+  "status": "locked_before_confirmatory_outcomes",
+  "stopping_rule": "Run all 8000 registered independently sampled tables and all eight methods per table. No outcome-based early stopping, seed replacement, threshold replacement, scenario replacement, or sample-size replacement is permitted.",
+  "theorem_target": "One fine-token multinomial confidence event simultaneously certifies every same-table-selected stochastic release channel under a prespecified common-transform plus bounded differential-contamination shift model."
+}
