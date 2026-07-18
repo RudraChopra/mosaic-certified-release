@@ -10,8 +10,10 @@ attacker assignment $a\in[G]^L$, define
 Every $v_{M,a,s}$ lies in $[0,1]^K$. The balanced Bayes accuracy has the two
 equivalent forms
 \begin{equation}
- A(P,M)=\frac{1}{G}\sum_z\max_s(p_sM)(z)
- =\frac{1}{G}\max_{a\in[G]^L}\sum_sp_s^\top v_{M,a,s}.
+ \begin{aligned}
+ A(P,M)&=\frac{1}{G}\sum_z\max_s(p_sM)(z)\\
+ &=\frac{1}{G}\max_{a\in[G]^L}\sum_sp_s^\top v_{M,a,s}.
+ \end{aligned}
  \label{supp:eq:bayes}
 \end{equation}
 The second identity follows because a finite-alphabet Bayes rule can be chosen
@@ -199,9 +201,11 @@ The exact confidence envelope is no larger than this fallback because it is
 the supremum over the same set. At zero confidence radius, it becomes the
 known-population external risk
 \begin{equation}
- \frac{1}{G}\max_{T\in\operatorname{ext}(\mathcal T_y)}
- \max_{a\in[G]^L}\sum_s\left[(1-\eta_y)p_{s,y}^\top T
- v_{M,a,s}+\eta_y\max_cv_{M,a,s}(c)\right].
+ \begin{aligned}
+ \frac{1}{G}\max_{T\in\operatorname{ext}(\mathcal T_y),\,a\in[G]^L}
+ \sum_s\big[&(1-\eta_y)p_{s,y}^\top T v_{M,a,s}\\
+ &+\eta_y\max_cv_{M,a,s}(c)\big].
+ \end{aligned}
  \label{supp:eq:exactprivacy}
 \end{equation}
 used by the separately implemented synthetic evaluator.
@@ -419,7 +423,19 @@ channel-level claim; every later pilot row is replayed by the exact evaluator.
 
 \input{mosaic_supplement_results}
 
+\input{mosaic_transform_exact_supplement_results}
+
+\input{mosaic_real_supplement_results}
+
 \section{Reproducibility Manifest}
+
+MOSAIC optimization, confirmations, and audits ran on an Apple M4 system with
+10 CPU cores and 16 GB unified memory under macOS 26.2 (arm64). The locked
+Python environment was Python 3.12.13 with NumPy 2.5.1, SciPy 1.18.0,
+scikit-learn 1.9.0, PyTorch 2.13.0, and the HiGHS LP/MILP backend exposed by
+SciPy. No GPU is
+required once the registered feature stores have been constructed; synthetic
+confirmation and every replay are CPU-only.
 
 The named package reports the exact preregistration hash, Git commit, software
 versions, and artifact hashes. The anonymous package retains the same internal

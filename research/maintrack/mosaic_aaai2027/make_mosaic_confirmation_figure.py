@@ -37,7 +37,7 @@ DISPLAY_NAMES = {
     "shift_unaware_mosaic": "Shift-unaware",
     "always_deploy_plugin": "Always deploy",
     "plugin_continuum": "Plug-in",
-    "mosaic": "MOSAIC",
+    "mosaic": "MOSAIC-transfer",
     "heldout_fixed_channel": "Held-out",
     "finite_ltt": "Finite LTT",
     "deterministic_mosaic": "Deterministic",
@@ -205,7 +205,7 @@ def theory_panel(ax: plt.Axes, alignment: dict[str, Any]) -> None:
     ax.set_ylim(-0.04, 1.04)
     ax.set_yticks([0.0, 0.25, 0.5, 0.75, 1.0], ["0", "25", "50", "75", "100"])
     ax.set_xlabel("Samples per source-label stratum", fontsize=6.5)
-    ax.set_ylabel("MOSAIC deployments (%)", fontsize=6.5)
+    ax.set_ylabel("Fallback deployments (%)", fontsize=6.5)
     ax.set_title("Theory predicts the abstention transition", loc="left", fontsize=8.0, fontweight="bold", color=INK, pad=7)
     ax.text(-0.17, 1.055, "c", transform=ax.transAxes, fontsize=8.0, fontweight="bold", color="white", ha="center", va="center", bbox={"boxstyle": "square,pad=0.20", "facecolor": INK, "edgecolor": INK})
     ax.grid(color=GRID, linewidth=0.55, zorder=0)

@@ -1,0 +1,99 @@
+\section{Official-Method Real-Feature Receipts}
+
+\begingroup\raggedright
+The real-feature preregistration digest is
+\texttt{362065c8f110fd3eb096a638e12031ef}\allowbreak
+\texttt{494eb208524c69216910307033dd7ed3}. The complete manifest digest is
+\texttt{773ba872cab2b404900652a3d8f8f522}\allowbreak
+\texttt{e9e29295df2d50bd2736d109e7182b0b}; its independent replay digest is
+\texttt{bbf30f5db4f466325063ef0edb8c282b}\allowbreak
+\texttt{47916b287c9139b6595b8b14b86af4d6}. All seven locked gates pass: complete
+execution, positive usefulness, empirical safety, support discipline, modality
+coverage, claim discipline, and receipt replay.\par
+\endgroup
+
+The frontier contains 13 rows in a fixed order: identity; INLP ranks 1, 2, 4,
+and 8; LEACE; R-LACE ranks 1 and 4; TaCo with 1, 2, 3, and 5 removed
+components; and MANCE++. Every transformation calls a pinned official
+implementation and records its repository, commit, entry point, and parameters.
+There are no proxy rows. Each candidate has a separately fitted tokenizer, so
+its simultaneous table receives $\delta/13$ before continuum channel selection.
+Because the protocol predates the transform-exact amendment, these rows use the
+capacity-transfer fallback. The official-method study therefore evaluates the
+frontier and release protocol, while the paired synthetic study measures the
+exact refinement itself.
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3.0pt}
+\begin{tabular}{rllrr}
+\hline
+Seed & Selected & Cert. & Ext. error & Ext. adv. \\
+\hline
+100 & INLP rank 4 & .3124 & .1817 & .0451 \\
+101 & R-LACE rank 4 & .3086 & .2030 & .0720 \\
+102 & INLP rank 4 & .3259 & .2047 & .0843 \\
+103 & INLP rank 1 & .2991 & .1954 & .0598 \\
+104 & INLP rank 4 & .3160 & .1863 & .0456 \\
+\hline
+\end{tabular}
+\caption{BiasBios selected rows; all are externally safe.}
+\label{supp:tab:biasselections}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4.0pt}
+\begin{tabular}{rll}
+\hline
+Seed & Selected & Cert. error \\
+\hline
+100 & LEACE & .2702 \\
+101 & LEACE & .2818 \\
+102 & LEACE & .2773 \\
+103 & LEACE & .2955 \\
+104 & LEACE & .2853 \\
+\hline
+\end{tabular}
+\caption{Camelyon17 selected rows. Every natural external diagnostic is
+unestimable because a required source is absent.}
+\label{supp:tab:camselections}
+\end{table}
+
+All 65 BiasBios candidate rows are certifiable and externally safe. By contrast,
+all 195 rows across Waterbirds, CivilComments, and GaitPDB satisfy the privacy
+threshold only with certified worst error above .49; the selected decision is
+therefore abstention. Natural external evaluation finds zero safe candidates in
+CivilComments and GaitPDB and one of 65 in Waterbirds. That Waterbirds row is a
+useful conservative case: favorable external behavior does not retroactively
+make an uncertified construction-table decision deployable.
+
+Camelyon17 has 65 certifiable candidate rows and selects LEACE on every seed,
+but every external row is missing a required source class. The external audit
+distribution is therefore identical under arbitrarily different missing-source
+laws, exactly matching the non-identifiability theorem. We count these five
+model-conditional releases separately from the five externally estimable
+BiasBios selections. Reporting ``zero false acceptances'' refers only to those
+five estimable selections and is not promoted to a population-frequency claim.
+
+\paragraph{Exploratory transform-exact replay.}
+After confirmatory outcomes were known, we re-optimized the exact envelope on
+all 325 stored token tables. Exact certified error is no larger on every row and
+strictly smaller on 133, with a maximum reduction of 3.54 percentage points.
+Candidate deployments increase from 130 to 132: INLP rank 4 on Waterbirds seeds
+102 and 103 crosses the utility contract, and both selected releases pass the
+natural external diagnostic. Exact selection therefore deploys on 12 of 25
+jobs; all seven externally estimable selections are diagnostically safe, five
+Camelyon17 selections remain unestimable, and the remaining 13 jobs abstain.
+This analysis is post-outcome and exploratory, not a new confirmatory study.
+
+\begingroup\raggedright
+The analysis digest is
+\texttt{ea45e4ed7c47691e1813fea40d36293e}\allowbreak
+\texttt{295db03245c11f4485c339ae7778aeae}; its independent 325-optimization replay
+has digest
+\texttt{3f3afabf41d5e4ff0c28c5d21dd68813}\allowbreak
+\texttt{af54c6b47ea2f0e9d478bd9bd92850ac} and zero mismatches.\par
+\endgroup

@@ -1,0 +1,65 @@
+\section{Transform-Exact Refinement}
+
+The broad comparison above uses the capacity-transfer certificate in
+Eq.~\eqref{eq:transferbound}, which remains useful when a transform family
+cannot be enumerated. We separately locked a paired confirmation of the exact
+envelope in Eq.~\eqref{eq:exactshift}: 1,000 untouched tables for one hard
+safety cell and four retention sample sizes, with both optimizers run on every
+table. The preregistered gates required pointwise dominance, zero failures on
+the simultaneous confidence event, false-acceptance rate at most $\delta$, and
+large safe-retention margins at $n=125$ and $250$.
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/figure3_mosaic_transform_exact.pdf}
+  \caption{Audited paired transform-exact confirmation with 1,000 tables per
+  point; error bars in (a) are exact 95\% Clopper--Pearson intervals. The exact
+  shift envelope safely deploys on 53.0\% of low-data tables versus 0.3\% for
+  capacity transfer, and on 99.9\% versus 57.8\% at $n=250$. Panel (b) shows
+  the empirical CDF of the paired certified utility objectives at $n=125$;
+  exact geometry moves 527 additional tables across the same contract.}
+  \label{fig:exactrefinement}
+\end{figure*}
+
+Figure~\ref{fig:exactrefinement} shows that exactness changes the release
+decision, not only the third decimal place of a bound. At $n=125$, the exact
+method adds 527 safe deployments with no reverse discordance (paired exact
+$p=4.55\times10^{-159}$). At $n=250$, it adds 421 with no reverse discordance
+($p=3.69\times10^{-127}$). Mean certified worst error falls by 3.26 and 4.09
+percentage points, respectively. The exact objective is no larger on all 5,000
+paired tables and is strictly smaller on every retention table.
+
+Both methods abstain on every table at the hard safety boundary: the exact
+envelope improves mean certified error by 0.45 points but correctly does not
+cross the contract. Across all ten method-by-cell combinations there are zero
+false acceptances; the per-cell exact 95\% upper endpoint is 0.368\%. The final
+strict-decision audit independently recomputes 20,000 privacy certificates,
+40,000 utility certificates, 20,000 external risks, and all 10,000 decisions
+with zero mismatch. The public audit trail also retains an earlier failed
+decision-tolerance replay and the pre-rerun amendment that corrected it.
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{2.6pt}
+\begin{tabular}{llrrrrr}
+\hline
+&& \multicolumn{5}{c}{Utility threshold $\tau_U$} \\
+$n$ & Certificate & .43 & .44 & .45 & .46 & .47 \\
+\hline
+125 & transfer & 0.0 & 0.0 & 0.3 & 4.8 & 17.0 \\
+125 & exact & 11.6 & 29.0 & 53.0 & 76.9 & 94.4 \\
+250 & transfer & 4.6 & 23.6 & 57.8 & 88.0 & 98.3 \\
+250 & exact & 97.7 & 99.6 & 99.9 & 100 & 100 \\
+\hline
+\end{tabular}
+\caption{Exploratory safe-deployment sensitivity (\%) with fixed
+$\tau_P=.35$. Thresholds other than the locked $.45$ were examined after
+outcomes; all 20 cells have zero false acceptances.}
+\label{tab:thresholds}
+\end{table}
+
+The post-hoc sweep in Table~\ref{tab:thresholds} checks whether the result is a
+single-threshold artifact. Transform-exact retention is higher at all ten
+sample-size--threshold combinations, including stricter contracts; this is
+descriptive sensitivity, not a second confirmatory test.

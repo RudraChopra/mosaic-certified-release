@@ -11,14 +11,16 @@ so the certificate incurs no candidate-count correction. We derive an exact
 multiclass attacker envelope, an exact structured-shift theorem combining
 common drift with bounded differential contamination, a matching utility
 certificate, and a no-free-lunch result for unrestricted differential shift.
-For a finite transform polytope, the resulting problem is solved globally by
-decoder enumeration and linear optimization. In a hash-locked synthetic confirmation,
-naive continuum selection deploys contract-violating releases on 42.1\% of
-1,000 primary tables, while MOSAIC records none; in a feasible regime MOSAIC
-safely deploys on 56.3\% of tables versus 3.3\% for finite Learn-Then-Test.
-Its deployment curve tracks a prediction frozen before outcomes with 0.20
-percentage-point mean absolute error. An independent program replays every
-channel, exact risk, and decision from 64,000 method-level receipts.
+For a finite transform polytope, decoder enumeration and linear optimization
+find the global solution. In hash-locked synthetic studies, naive continuum
+selection deploys contract-violating releases on 42.1\% of 1,000 primary tables
+while MOSAIC records none. On 1,000 paired low-data tables, the transform-exact
+certificate safely deploys on 53.0\%, versus 0.3\% for its capacity-transfer
+fallback; at the next sample size the rates are 99.9\% and 57.8\%. Across 325
+official-method rows on five datasets, all five externally estimable selected
+releases pass the natural diagnostic; other cases abstain or remain
+unestimable. Independent programs replay 64,000 broad-comparison and 10,000
+exact-refinement receipts with zero mismatch.
 \end{abstract}
 
 \section{Introduction}
@@ -63,14 +65,20 @@ abstains when no release satisfies the registered contract.
 The contribution is not the individual use of randomized channels,
 distributional confidence regions, contraction coefficients, or
 accept-or-abstain decisions, all of which have substantial prior literatures.
-The technical claim is their specific combination: continuum-wide same-table
-selection, an exact arbitrary-attacker metric, structured pre-release shift,
-simultaneous task utility, and a globally checked optimizer. We also prove that
-unrestricted source-specific shift forces a constant-row release and quantify
-the resulting privacy--utility obstruction. A hash-locked experiment compares
-MOSAIC with plug-in selection, held-out fixed-channel certification, finite
-Learn-Then-Test certification, deterministic release, a shift-unaware
-ablation, and an exact population oracle.
+The technical contributions are:
+\begin{itemize}
+  \item an exact finite-sample envelope for an arbitrary downstream attacker
+  that simultaneously covers every same-table selected stochastic channel;
+  \item an exact certificate for a common-transform polytope plus arbitrary
+  differential contamination, with matching utility, a capacity-transfer
+  fallback, and impossibility results at the unrestricted and missing-source
+  boundaries;
+  \item a globally solved finite-alphabet release rule that jointly chooses a
+  randomized channel and task decoder and otherwise abstains; and
+  \item hash-locked paired experiments against plug-in selection, held-out
+  certification, finite LTT, deterministic release, official erasure methods,
+  a shift-unaware ablation, and an exact population oracle.
+\end{itemize}
 
 \begin{figure*}[t]
   \centering
@@ -258,6 +266,20 @@ The exact envelope in Eq.~\eqref{eq:exactshift} is never larger. When
 $\eta_y=0$ and $TM=M$, both reduce to the reference certificate; when
 $\eta_y=1$, both reduce to exact distribution-free capacity.
 
+\begin{proposition}[Exactness value]
+For every $M$ and confidence table, the transform-exact privacy envelope is no
+larger than Eq.~\eqref{eq:transferbound}. The matching transform-exact utility
+value is likewise no larger than its capacity-transfer fallback.
+\end{proposition}
+
+Both exact quantities are suprema over the registered structured class. The
+fallback proof upper-bounds every element of that same class using separate
+contraction and capacity inequalities, so taking the supremum preserves the
+ordering. The proposition holds pointwise in $M$; therefore optimizing the
+tighter envelope cannot worsen the globally optimal certified objective. It can
+still change feasibility sharply when a loose fallback straddles a contract
+threshold, which is the effect tested in Fig.~\ref{fig:exactrefinement}.
+
 For decoder $g:[L]\to[J]$, let
 $u_y(c)=\sum_zM(c,z)\mathbf 1\{g(z)\neq y\}$. The matching exact conditional
 error certificate is
@@ -314,6 +336,30 @@ optimum. The capacity-transfer fallback uses binary branch variables and one
 mixed-integer linear program per decoder. A release is accepted only when the
 solver reports optimality, all primal residuals pass, and separately recomputed
 certificates agree with the objective; otherwise the rule abstains.
+
+\paragraph{Release protocol.}
+The end-to-end rule is deliberately mechanical. First, fix the tokenizer,
+transform polytope, source and task alphabets, thresholds, and confidence
+allocation without the certification fold. Second, form every supported
+$\widehat p_{s,y}$ and simultaneous radius. Third, for each of the $J^L$
+decoders, solve the exact LP minimizing worst certified utility subject to all
+privacy constraints. Fourth, replay every certificate from the returned
+channel and reject nonoptimal or numerically inconsistent solutions. Finally,
+among any separately registered tokenizers or erasers, apply their familywise
+allocation and select the feasible row with minimum certified error under a
+fixed tie break. No feasible row, unsupported required stratum, or failed
+solver check returns \textsc{abstain}; otherwise the software releases only
+$(M,g)$ and the resulting token interface.
+
+Let $R=\max_y|\mathcal V_y|$. For one decoder, a direct support-function
+formulation has order
+$KL+JR G^{L+1}K+JRGK$ variables and constraints: the middle term comes from
+privacy transform--attacker--source tuples and the last from utility strata.
+Thus the exact method is polynomial in the fine alphabet $K$ for fixed
+$(G,J,L,R)$ but exponential in the deliberately small released alphabet $L$.
+Decoder enumeration adds a factor $J^L$ and parallelizes exactly. Larger public
+alphabets require separation or column-generation methods; the present theorem
+does not hide that computational boundary.
 
 The exact optimizer is checked against binary confidence-ball endpoint
 enumeration, zero-radius population-risk identities, 100 randomized dominance
@@ -373,16 +419,20 @@ if any gate fails.
 
 \input{mosaic_results}
 
+\input{mosaic_transform_exact_results}
+
 \paragraph{Official-method real-feature confirmation.}
 A separate pre-outcome lock evaluates five frozen feature stores spanning
 vision (Waterbirds), medical vision (Camelyon17-WILDS), text
 (CivilComments-WILDS and BiasBios), and gait time series
 \citep{sagawa2020groupdro,koh2021wilds,borkan2019civilcomments,
-dearteaga2019bios}. For every dataset and each untouched seed in
+dearteaga2019bios,goldberger2000physionet}. For every dataset and each untouched seed in
 $\{100,\ldots,104\}$, the construction split fits a balanced logistic task
 score and discretizes it at quartiles into four fine tokens. MOSAIC releases
 two tokens under identity or registered 10\% adjacent-token smoothing, with
 $(\eta,\tau_P,\tau_U,\delta)=(0.05,0.35,0.49,0.05)$.
+This pre-refinement lock uses the capacity-transfer fallback; the paired
+synthetic amendment isolates the exact-envelope gain.
 
 The frontier contains identity and twelve settings from the pinned official
 INLP, LEACE, R-LACE, TaCo, and MANCE++ implementations
@@ -398,16 +448,50 @@ selection, and diagnostic. External splits test empirical behavior but do not
 establish membership in Eq.~\eqref{eq:shift}; missing source--label strata are
 reported as unestimable rather than safe.
 
+\input{mosaic_real_results}
+
+\section{Guarantee Semantics}
+
+\paragraph{Probability and deployment shift.}
+The probability $1-\delta$ is over the certification table. On its simultaneous
+event, the conclusion holds uniformly over every optimized channel and every
+external distribution in the registered shift class. It does not assume that
+an external metric is within a validation confidence interval. Instead,
+$(\mathcal T_y,\eta_y)$ are explicit contract parameters: common transformations
+inside $\mathcal T_y$ and up to $\eta_y$ arbitrary differential contamination
+are already inside the external supremum. A natural benchmark split can reveal
+a contradiction or missing support, but a favorable score cannot establish
+membership in that class.
+
+\paragraph{Where multiplicity is paid.}
+The tokenizer is frozen before certification, and one confidence event on its
+fine-token table covers the uncountable set of stochastic $M$ and every decoder
+selected afterward. There is therefore no channel-count correction. If the
+frontier contains $m$ separately learned erasers or tokenizers, their $m$
+different tables do require a registered familywise allocation, as in the
+official-method study. This is the precise distinction from applying LTT to a
+finite list of already constructed channels: MOSAIC pays for statistical
+objects, not for every point subsequently optimized inside one covered object.
+
+\paragraph{Threat surface.}
+The attacker knows $M$ and may use any function of the released token $Z$;
+Eq.~\eqref{eq:attacker} is its exact balanced Bayes success, with no probe or
+computational restriction. The guarantee requires $M$ to be source-blind and
+software-enforced and $Z$ to be the only public representation interface.
+Releasing $C$, the original feature vector, source-dependent metadata, or a
+side channel falls outside the theorem. The task decoder may be public because
+utility is certified jointly rather than treated as secret.
+
 \section{Limitations and Scope}
 
-The statistical guarantee is conditional on the shift class in
-Eq.~\eqref{eq:shift}. An ordinary benchmark split cannot prove that a real
-hospital, text domain, or sensor environment belongs to that class. Such a
-claim requires an engineering specification or separate bridge data with its
-own confidence allocation. The current finite-token theorem also assumes that
-the tokenizer and alphabet are fixed independently of the certification table.
-Large alphabets may require structured confidence regions or column generation
-rather than full assignment enumeration.
+The guarantee is conditional on Eq.~\eqref{eq:shift}; an ordinary benchmark
+split cannot prove that a real hospital, text domain, or sensor environment
+belongs to that class. Membership requires an engineering specification or
+separate bridge data containing every required source--label stratum, with its
+own confidence allocation. Without that evidence, a favorable score cannot
+establish membership. The finite-token theorem also fixes the tokenizer and
+alphabet independently of the certification table; large alphabets may require
+structured confidence regions or column generation.
 
 MOSAIC certifies source inference from the released token, not every possible
 harm associated with representation use. It does not protect information that
@@ -424,5 +508,6 @@ it can optimize over a continuum on the same table while retaining a single
 finite-sample event. The structured shift theorem separates common drift that
 the channel can absorb from differential drift that its capacity must pay for,
 and the no-free-lunch result states when abstention is unavoidable. The locked
-evaluation determines whether those guarantees retain enough safe utility to
-justify the method in practice.
+evaluation shows both sides of that decision: abstention at an infeasible safety
+boundary and substantially higher safe retention when exact shift geometry can
+replace a generic capacity bound.
