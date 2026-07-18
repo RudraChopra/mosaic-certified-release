@@ -1,1 +1,45 @@
-% Populated only from independently audited locked receipts.
+\section{Confirmation Receipts and Complete Primary Cells}
+
+The locked preregistration has SHA-256 digest
+\texttt{d6819cec1605db6dfeb5789c0f0f8d674ee135b51f1cd820aaff16df84b65cf2}.
+The 45 MB confirmation receipt has digest
+\texttt{de4fd53da17e0371d9023ef5a58f2cf3093ed3111b980920e0f9b9eab1b4e665}.
+Its separate replay checks all 64,000 seeds and channels, 192,000 stochastic
+rows, 128,000 exact risks, 128,000 decision labels, and 1,152 aggregate fields;
+the maximum replay discrepancy is exactly zero in double precision.  The
+replay itself has digest
+\texttt{9e64b4883cfb5bf510a058e0fe6995abbe362b2d958c0d1163fbaca78d2966d4}.
+
+\begin{table*}[t]
+\centering
+\small
+\setlength{\tabcolsep}{5.0pt}
+\begin{tabular}{lrrrrrr}
+\hline
+& \multicolumn{3}{c}{Hard safety boundary, $n=125$}
+& \multicolumn{3}{c}{Retention regime, $n=250$} \\
+Rule & Deploy & False & Safe & Deploy & False & Safe \\
+\hline
+Always deploy plug-in & 100.0 & 57.6 & 42.4 & 100.0 & 0.0 & 100.0 \\
+Plug-in continuum     &  73.7 & 42.1 & 31.6 & 100.0 & 0.0 & 100.0 \\
+Shift-unaware MOSAIC  &  80.3 & 76.6 &  3.7 & 100.0 & 0.0 & 100.0 \\
+Held-out fixed        &   0.0 &  0.0 &  0.0 &   2.5 & 0.0 &   2.5 \\
+Finite LTT            &   0.0 &  0.0 &  0.0 &   3.3 & 0.0 &   3.3 \\
+Deterministic MOSAIC  &   0.0 &  0.0 &  0.0 &   0.0 & 0.0 &   0.0 \\
+MOSAIC                &   0.0 &  0.0 &  0.0 &  56.3 & 0.0 &  56.3 \\
+Population oracle     & 100.0 &  0.0 &100.0 & 100.0 & 0.0 & 100.0 \\
+\hline
+\end{tabular}
+\caption{All eight locked rules in both primary cells (rates in percent).
+The oracle verifies that a safe channel exists; it is not deployable.}
+\label{supp:tab:allprimary}
+\end{table*}
+
+For zero events in 1,000 trials, the exact 95\% Clopper--Pearson upper endpoint
+is 0.3682\%.  MOSAIC's retention rate has interval $[53.16,59.40]$; held-out
+certification has $[1.62,3.67]$ and finite LTT has $[2.28,4.60]$.  The theory
+alignment audit links both pre-outcome and post-outcome receipts and passes
+with mean absolute deployment error 0.001968 and primary-cell error 0.004389.
+The finite-sample concentration abstention bound is vacuous through $n=500$,
+then falls to 0.03097 at $n=1000$ and $7.60\times10^{-9}$ at $n=2000$; we
+report that looseness rather than replacing it with the local approximation.

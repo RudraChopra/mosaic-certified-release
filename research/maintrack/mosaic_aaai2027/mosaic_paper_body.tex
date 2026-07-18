@@ -12,9 +12,13 @@ multiclass attacker envelope, a shift-transfer theorem combining common drift
 with bounded differential contamination, a matching utility certificate, and
 a no-free-lunch result for unrestricted differential shift. The resulting
 finite problem is solved globally by decoder enumeration and branch-aware
-mixed-integer linear optimization. The empirical claims in this draft are
-populated only from a hash-locked confirmatory study and independently replayed
-receipts.
+mixed-integer linear optimization. In a hash-locked synthetic confirmation,
+naive continuum selection deploys contract-violating releases on 42.1\% of
+1,000 primary tables, while MOSAIC records none; in a feasible regime MOSAIC
+safely deploys on 56.3\% of tables versus 3.3\% for finite Learn-Then-Test.
+Its deployment curve tracks a prediction frozen before outcomes with 0.20
+percentage-point mean absolute error. An independent program replays every
+channel, exact risk, and decision from 64,000 method-level receipts.
 \end{abstract}
 
 \section{Introduction}
@@ -63,6 +67,17 @@ the resulting privacy--utility obstruction. A hash-locked experiment compares
 MOSAIC with plug-in selection, held-out fixed-channel certification, finite
 Learn-Then-Test certification, deterministic release, a shift-unaware
 ablation, and an exact population oracle.
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/figure1_mosaic_overview.pdf}
+  \caption{MOSAIC certifies fine-token laws before applying a source-blind
+  stochastic release. The same confidence event covers continuum channel and
+  decoder selection. Structured shift acts before the enforced channel, and a
+  release occurs only when both universal-attacker privacy and worst-stratum
+  task utility pass; otherwise MOSAIC abstains.}
+  \label{fig:overview}
+\end{figure*}
 
 \section{Related Work}
 
