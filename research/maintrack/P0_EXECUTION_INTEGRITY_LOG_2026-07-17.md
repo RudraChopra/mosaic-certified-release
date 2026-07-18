@@ -55,3 +55,10 @@ receipt or per-seed log was written), so no further replacement worker was
 used. The original resumable scheduler remains responsible for the
 Waterbirds--R-LACE cells. This operational decision is recorded only for
 execution completeness and changes neither the frozen study nor its data.
+
+After the complete receipt audit passed, the primary analyzer was launched. A
+tool-session retry unintentionally created two duplicate analyzer processes
+against the same immutable inputs and output path. Both duplicates were
+terminated before any analyzer output existed; the original process was
+retained. No result-dependent choice was made and no partial scientific output
+was read before the correction.
