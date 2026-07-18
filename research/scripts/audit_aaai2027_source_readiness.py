@@ -72,7 +72,9 @@ def collect_checks() -> tuple[list[Check], dict[str, Any]]:
     pdflatex = shutil.which("pdflatex") or (
         str(texlive_pdflatex) if texlive_pdflatex.is_file() else None
     )
-    latex_engine = pdflatex or shutil.which("tectonic")
+    # The official AAAI-27 style aborts under Tectonic because it explicitly
+    # requires pdfTeX. A generic TeX executable is therefore not enough.
+    latex_engine = pdflatex
     word_count = estimate_main_words(body_source)
     anonymous_identity_terms = [
         "Rudra",
@@ -139,7 +141,7 @@ def collect_checks() -> tuple[list[Check], dict[str, Any]]:
             status=status(
                 "\\author{Anonymous Submission}" in anonymous_source
                 and "\\section{Reproducibility}" in anonymous_source
-                and "anonymous supplementary archive" in anonymous_source
+                and "anonymous supplement" in anonymous_source.lower()
                 and not anonymous_leaks
             ),
             evidence=f"anonymous_leaks={anonymous_leaks}",
@@ -172,10 +174,10 @@ def collect_checks() -> tuple[list[Check], dict[str, Any]]:
             key="official_baseline_matrix_present",
             status=status(
                 all(term in source for term in ("INLP", "R-LACE", "LEACE", "TaCo", "MANCE++"))
-                and "200 official-method runs" in source
+                and "1,280 official-method" in source
                 and "no proxy" in source.lower()
             ),
-            evidence="source identifies all five official erasers, 200 runs, and the zero-proxy boundary",
+            evidence="source identifies all five official erasers, the current 1,280-run matrix, and the zero-proxy boundary",
             requirement="AAAI source must describe the current official baseline matrix without proxy rows.",
         ),
         Check(
@@ -207,11 +209,21 @@ def collect_checks() -> tuple[list[Check], dict[str, Any]]:
         Check(
             key="clinical_boundary_present",
             status=status(
-                "not clinical evidence" in normalized_source
-                and "not clinical validation" in normalized_source
+                "not clinical validation" in normalized_source
+                and "clinical deployment evidence" in normalized_source
             ),
             evidence="source states Camelyon17/GaitPDB are not clinical deployment evidence",
             requirement="Medical benchmark language must not imply clinical deployment readiness.",
+        ),
+        Check(
+            key="final_p0_negative_result_disclosed",
+            status=status(
+                "P0" in source
+                and "negative confirmation" in source.lower()
+                and "2 violations among 118 deployments" in source
+            ),
+            evidence="source discloses the final P0 non-superiority result against IID LTT",
+            requirement="Current source must not let earlier follow-up results conceal the final P0 negative confirmation.",
         ),
         Check(
             key="estimated_length_reasonable",
@@ -223,7 +235,7 @@ def collect_checks() -> tuple[list[Check], dict[str, Any]]:
             key="latex_engine_available",
             status=status(latex_engine is not None, warn=True),
             evidence=f"latex_engine={latex_engine or '<missing>'}",
-            requirement="Local final AAAI PDF compilation requires PDFLaTeX or Tectonic.",
+            requirement="Local final AAAI PDF compilation requires a pdfTeX-compatible PDFLaTeX executable.",
         ),
     ]
     metadata = {
@@ -233,7 +245,7 @@ def collect_checks() -> tuple[list[Check], dict[str, Any]]:
         "style": str(STYLE),
         "estimated_main_words": word_count,
         "latex_engine": latex_engine,
-        "compile_blocker": None if latex_engine else "PDFLaTeX and Tectonic are not installed locally",
+        "compile_blocker": None if latex_engine else "PDFLaTeX is not installed locally; the AAAI style rejects Tectonic.",
     }
     return checks, metadata
 

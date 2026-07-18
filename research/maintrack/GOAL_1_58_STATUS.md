@@ -1,6 +1,6 @@
 # VERA 58-Goal Status
 
-Last outcome update: July 17, 2026 UTC
+Last outcome update: July 18, 2026 UTC
 
 This is the authoritative tracker for the 58-goal acceptance program. Older
 generated readiness and goal-completion artifacts describe earlier source
@@ -17,6 +17,20 @@ Status meanings:
 - `PENDING`: required evidence or work is incomplete.
 - `FAIL`: the registered requirement was tested and did not pass.
 - `HUMAN ONLY`: an identifiable person must perform and attest the action.
+
+## July 18 P0 Addendum
+
+The final P0 matrix on fresh seeds 173--236 completed with 1,280/1,280
+claim-grade receipts, a passing 3,072-array mechanical audit, and zero
+discrepancies between the primary reader and an independent exact-risk replay.
+It is a **negative confirmation** for the planned VERA-over-IID-LTT main-track
+headline: at the Gamma = 1.25 primary profile, VERA made 11 safe deployments
+among 194 exact-safe opportunities, whereas IID LTT had 2 exact shifted-contract
+violations among 118 deployments. VERA's safety sentinel passed, but its
+registered IID-exposure, paired-comparison, and Gamma = 1.25 usefulness gates
+failed. Earlier non-pooled follow-up evidence remains historical context, not a
+substitute for P0. Therefore this tracker must not be read as support for an
+AAAI-main submission without a genuinely new method, proof, and fresh study.
 
 ## Goals 1--18: Identity, Novelty, and Theory
 
@@ -127,8 +141,10 @@ Status meanings:
 
 ## Overall Decision
 
-**NOT MAIN-TRACK SUBMISSION READY.** The controlled follow-up and first-read
-replay are clean and empirically successful, and fresh pdfTeX PDFs now build.
-The package remains red for references and licenses, final source/archive
-readiness, external reviews, independent reproduction, proof review, human
-verification, and venue actions. Conference acceptance can never be guaranteed.
+**NOT MAIN-TRACK SUBMISSION READY; DO NOT SUBMIT CURRENT VERA TO AAAI MAIN.**
+The completed, independently audited P0 protocol fails the planned empirical
+advantage-over-IID-LTT and primary-profile usefulness gates. This is stronger
+evidence against the requested main-track claim than earlier follow-up evidence
+is in favor of it. Independent proof review, novelty review, licenses,
+anonymous-package verification, human verification, and venue actions also
+remain open. Conference acceptance can never be guaranteed.
