@@ -1,0 +1,152 @@
+{
+  "claim_boundary": "This synthetic study tests the exact confidence envelope only under the registered finite transform polytope and contamination model. It does not establish real-domain shift membership, clinical safety, or literature novelty.",
+  "code_sha256": {
+    "research/mosaic/PRE_RELEASE_SHIFT_THEOREMS.md": "02307099d21953e0eb7bee5ae756d655281507d54feb3bd75ef48772d110c1e3",
+    "research/mosaic/audit_mosaic_transform_exact_confirmation.py": "3334c1144547545a96b9555f7dffe250b2dea51bae77807f9f6b603ff2a4fa93",
+    "research/mosaic/lock_mosaic_transform_exact_prereg.py": "44bf4690072c3ea90165f9dd18544eb81d4a7661644e0abf2e031f8a1a90e05e",
+    "research/mosaic/mosaic_channel.py": "a69c82b9182be32d28d30e83795ac77c9512fa09f95f8bad7e1ed5732e60ecc4",
+    "research/mosaic/mosaic_exact.py": "da248f621a4d5155de9755f0c6ea1936e9acfbc18f624997f3df933aae7c542a",
+    "research/mosaic/mosaic_invariant.py": "25737e049e2bf329f1019b337c37fb84ca749730e27edf372ddc0ef4676e9826",
+    "research/mosaic/mosaic_optimizer.py": "6a7adddec0a95818b2854dafec52c5c15801e94401691880db0d17f66a73d4d9",
+    "research/mosaic/mosaic_transform_exact.py": "65266cd19f62b4974a35a0f50b29ca5e98c34e0a1be3edea21234f38dd82e50c",
+    "research/mosaic/mosaic_transform_exact_optimizer.py": "6f7085858f272d8585b5eb90027c5e1aace6d1728bd1e82a1c27a9433ce125d0",
+    "research/mosaic/run_mosaic_synthetic_pilot.py": "4538cdf6862c32f2e886ab6bae236b97b3d90fe918c86b67658949e555e45503",
+    "research/mosaic/run_mosaic_transform_exact_confirmation.py": "b229bdb46ce0de57c3955285f6fcf1f627e18660d4636e80d8a07b5e78235de4",
+    "research/mosaic/run_mosaic_transform_exact_pilot.py": "ecf3800aafdd91ed2248d6c4d5931ea3043461df453ae8c41225e58b65508c40",
+    "research/tests/test_mosaic_transform_exact.py": "191b989cf2d2be95b8fcf6a5cf26097d4845f5b074cfe1caf3d3a058c6f9510f",
+    "research/tests/test_mosaic_transform_exact_optimizer.py": "604a193971a23a47a107bea496b2b74c5464cf17b0e178fd1dc955ae207be68f",
+    "research/tests/test_mosaic_transform_exact_study.py": "70878d23f270671986ce3b068fea2635125ddb8ed9b1a4c974f954aaff391abc"
+  },
+  "delta": 0.05,
+  "locked_at": "2026-07-18T22:18:38.285865+00:00",
+  "methods": [
+    "capacity_transfer",
+    "transform_exact"
+  ],
+  "pass_conditions": {
+    "audit": "An independent program must replay every confidence event, privacy certificate, utility certificate, external risk, decision, aggregate, and paired dominance comparison with zero mismatch.",
+    "complete_execution": "Exactly 1000 paired results for both methods in every registered cell, with unique seeds and no solver failure.",
+    "coverage": "Each method has false-acceptance rate at most delta in every cell and zero false acceptances on the simultaneous confidence event.",
+    "pointwise_dominance": "Transform-exact certified worst error is no larger than capacity transfer on every paired table, within 2e-7.",
+    "retention_n125": {
+      "minimum_safe_deployment_margin_over_capacity_transfer": 0.3,
+      "minimum_transform_exact_safe_deployment_rate": 0.35
+    },
+    "retention_n250": {
+      "minimum_safe_deployment_margin_over_capacity_transfer": 0.25,
+      "minimum_transform_exact_safe_deployment_rate": 0.9
+    }
+  },
+  "phase": "transform-exact untouched-seed refinement confirmation",
+  "pilot_artifact_sha256": {
+    "research/artifacts/mosaic_transform_exact_pilot_hard_v1.json": "311b86a1731014de926b0fa313e65eec0d0dcf681d3345b75c539fe55bcc219d",
+    "research/artifacts/mosaic_transform_exact_pilot_retention_v1.json": "15bee6d58093434b5da2676de4e54a301cc7efef16c1985a490c9fc244142421"
+  },
+  "pilot_exclusion": {
+    "artifacts": [
+      "research/artifacts/mosaic_transform_exact_pilot_retention_v1.json",
+      "research/artifacts/mosaic_transform_exact_pilot_hard_v1.json"
+    ],
+    "excluded_seed_ranges": [
+      "200-249",
+      "300-349"
+    ]
+  },
+  "population": {
+    "common_transform_extremes": [
+      [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      [
+        [
+          0.9,
+          0.1,
+          0.0
+        ],
+        [
+          0.05,
+          0.9,
+          0.05
+        ],
+        [
+          0.0,
+          0.1,
+          0.9
+        ]
+      ]
+    ],
+    "laws": [
+      [
+        [
+          0.8,
+          0.15,
+          0.05
+        ],
+        [
+          0.65,
+          0.3,
+          0.05
+        ]
+      ],
+      [
+        [
+          0.05,
+          0.2,
+          0.75
+        ],
+        [
+          0.05,
+          0.35,
+          0.6
+        ]
+      ]
+    ],
+    "released_token_count": 2
+  },
+  "project": "MOSAIC: Minimax-Optimized Source-Agnostic Invariant Channels",
+  "replicates_per_cell": 1000,
+  "reporting": "Report all cells and paired rows, including abstentions, negative results, and any failed gate.",
+  "repository_head_at_lock": "512bcf8b67a4f3bc68409f39cf40b319bd96a462",
+  "scenarios": [
+    {
+      "contamination": 0.2,
+      "name": "hard_safety_boundary",
+      "privacy_threshold": 0.3,
+      "sample_sizes_per_stratum": [
+        125
+      ],
+      "utility_threshold": 0.4
+    },
+    {
+      "contamination": 0.1,
+      "name": "retention_and_exactness_value",
+      "privacy_threshold": 0.35,
+      "sample_sizes_per_stratum": [
+        125,
+        250,
+        500,
+        1000
+      ],
+      "utility_threshold": 0.45
+    }
+  ],
+  "seed_base": 50000000,
+  "seed_formula": "seed_base + 10000000 * scenario_index + 10000 * sample_size_per_stratum + replicate_index",
+  "status": "locked_before_confirmatory_outcomes",
+  "stopping_rule": "Run every registered table and both methods. No outcome-based early stopping, seed replacement, threshold change, scenario change, or pass-condition change is permitted.",
+  "template_sha256": "0722598e5f6f7b4dddbe3642a14bc778b6c008029a57a1fa024842e740c27d70"
+}
