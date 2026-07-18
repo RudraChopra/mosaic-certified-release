@@ -142,44 +142,69 @@ For label $y$, suppose
  \label{supp:eq:model}
 \end{equation}
 with common $T_y\in\mathcal T_y$ and common retained mass $t_y$ across sources.
-Let
+For a polytope with finite extremes
+$\mathcal V_y=\operatorname{ext}(\mathcal T_y)$, define
 \begin{equation}
- B_y(M)=\min\{\operatorname{Cap}_G(M),
- \overline A_y(\widehat P,M)+\rho_{\mathcal T_y}(M)\}.
+ \begin{aligned}
+ \overline A_y^X(M)
+ &=\frac1G\max_{T\in\mathcal V_y,\,a\in[G]^L}\sum_s\Big[
+ \\[-2pt]&\quad (1-\eta_y)
+ \Phi(\widehat p_{s,y},\epsilon_{s,y};Tv_{M,a,s})
+ \\[-2pt]&\quad +\eta_y\max_cv_{M,a,s}(c)\Big].
+ \end{aligned}
+ \label{supp:eq:exactconfidence}
 \end{equation}
 
-\begin{theorem}[Post-selection-safe structured-shift certificate]
+\begin{theorem}[Transform-exact post-selection certificate]
 On $\mathcal E$, simultaneously for every selected $M$ and every external law
-in Eq.~\eqref{supp:eq:model},
+in Eq.~\eqref{supp:eq:model}, $A(Q,M)\leq\overline A_y^X(M)$. For fixed $M$,
+the right-hand side is the exact supremum over the product confidence sets,
+transform polytope, allowed retained masses, and residual laws.
+\end{theorem}
+
+\begin{proof}
+Expand balanced Bayes accuracy using Eq.~\eqref{supp:eq:bayes}. For fixed
+$T,t$, and attacker assignment, the source confidence sets and residual
+simplexes separate. Their support values are
+$\Phi(\widehat p_{s,y},\epsilon_{s,y};Tv_{M,a,s})$ and
+$\max_cv_{M,a,s}(c)$. The latter is no smaller because every coordinate of
+$Tv$ is a convex combination of coordinates of $v$. The maximizing retained
+mass is therefore $t=1-\eta_y$. The resulting confidence support is convex in
+$T$, so its maximum over a polytope is attained at an extreme. All remaining
+maxima are finite and commute. This gives exactness for fixed $M$; pointwise
+coverage over all channels preserves the bound after same-table selection.
+\end{proof}
+
+For a transform family that cannot be enumerated, let
+$B_y(M)=\min\{\operatorname{Cap}_G(M),
+\overline A_y(\widehat P,M)+\rho_{\mathcal T_y}(M)\}$.
+
+\begin{corollary}[Capacity-transfer fallback]
+On $\mathcal E$,
 \begin{equation}
  A(Q,M)\leq(1-\eta_y)B_y(M)
  +\eta_y\operatorname{Cap}_G(M).
  \label{supp:eq:shiftbound}
 \end{equation}
-\end{theorem}
+\end{corollary}
 
 \begin{proof}
-Balanced Bayes accuracy is convex in the collection of source laws. The
-retained experiment is bounded by Eq.~\eqref{supp:eq:transfer}, the adaptive
-envelope bounds its unknown reference term, and the residual experiment is
-bounded by capacity. Thus the right-hand side before optimizing $t_y$ is
-$t_yB_y(M)+(1-t_y)\operatorname{Cap}_G(M)$. Since $B_y(M)$ cannot exceed
-capacity, this expression is largest at the smallest allowed retained mass,
-$t_y=1-\eta_y$.
+The retained experiment is bounded by Eq.~\eqref{supp:eq:transfer}, the
+adaptive envelope bounds its unknown reference term, and residuals are bounded
+by capacity. Since $B_y(M)\leq\operatorname{Cap}_G(M)$, the largest value over
+$t_y\geq1-\eta_y$ occurs at $t_y=1-\eta_y$.
 \end{proof}
 
-For known population laws and a convex hull of listed transform extremes, the
-matching exact worst external privacy risk is
+The exact confidence envelope is no larger than this fallback because it is
+the supremum over the same set. At zero confidence radius, it becomes the
+known-population external risk
 \begin{equation}
  \frac{1}{G}\max_{T\in\operatorname{ext}(\mathcal T_y)}
  \max_{a\in[G]^L}\sum_s\left[(1-\eta_y)p_{s,y}^\top T
  v_{M,a,s}+\eta_y\max_cv_{M,a,s}(c)\right].
  \label{supp:eq:exactprivacy}
 \end{equation}
-This is the ground-truth synthetic evaluator, not the deployable certificate.
-The residual vertex is optimal because its score is at least the common score
-source by source; a convex function of $T$ attains its maximum at a listed
-extreme.
+used by the separately implemented synthetic evaluator.
 
 \section{Utility Certificate}
 
@@ -194,7 +219,30 @@ $u_y=M\ell_y$. Define
  U_y(M,g)&=\max_cu_y(c).
 \end{align}
 
-\begin{corollary}[Adaptive shifted-utility certificate]
+Define the transform-exact value
+\begin{equation}
+ \begin{aligned}
+ \overline E^X_{s,y}(M,g)
+ &=\max_{T\in\mathcal V_y}\Big[(1-\eta_y)
+ \\[-2pt]&\quad\Phi(\widehat p_{s,y},\epsilon_{s,y};Tu_y)
+ +\eta_y\max_cu_y(c)\Big].
+ \end{aligned}
+ \label{supp:eq:exactutilityconfidence}
+\end{equation}
+
+\begin{corollary}[Transform-exact adaptive utility certificate]
+On $\mathcal E$, every selected $(M,g)$ satisfies
+$\operatorname{Err}_{s,y}(Q,M,g)\leq\overline E^X_{s,y}(M,g)$, and the
+right-hand side is exact over the stated confidence ball and shift class.
+\end{corollary}
+
+\begin{proof}
+Repeat the transform-exact proof for bounded loss $\ell_y$, without averaging
+over sources or maximizing an attacker assignment.
+\end{proof}
+
+The capacity-transfer fallback is
+\begin{corollary}[Adaptive shifted-utility fallback]
 On $\mathcal E$, every selected $(M,g)$ satisfies
 \begin{equation}
  \operatorname{Err}_{s,y}(Q,M,g)\leq
@@ -211,6 +259,8 @@ component differs from its reference expectation by at most the largest
 positive directional defect $\kappa_y$, while the arbitrary residual
 concentrates on a row with maximal error $U_y$.
 \end{proof}
+
+The transform-exact utility value is never larger than this fallback.
 
 The exact population utility risk used in the independent evaluator is
 \begin{equation}
@@ -245,6 +295,42 @@ $M(c_1,\cdot)$. Total variation is therefore at least $1-e_0-e_1$, giving
 \end{equation}
 Thus a nontrivial task contract is incompatible with chance-level source
 capacity under unrestricted differential shift.
+
+\section{Missing-Source Non-Identifiability}
+
+Fix two required sources and a released-token law $q_0M$ for source zero.
+Suppose an external audit contains no source-one rows, so its observed-data
+distribution is identical for every $q_1\in\Delta_K$. Define
+\begin{equation}
+ A_{\rm miss}(q_0,M)=\sup_{q_1\in\Delta_K}A((q_0,q_1),M).
+ \label{supp:eq:missing}
+\end{equation}
+
+\begin{theorem}[Missing-source non-identifiability]
+Let a possibly randomized protocol observe no source-one rows and claim
+$A((q_0,q_1),M)\leq\tau$. If its false-certification probability is at most
+$\delta<1$ uniformly over every $q_1$, then for
+$\tau<A_{\rm miss}(q_0,M)$ it can issue that claim with probability at most
+$\delta$.
+\end{theorem}
+
+\begin{proof}
+The finite-simplex supremum is attained; call a maximizer $q_1^*$. The audit's
+observed-data distribution does not depend on the missing law. Consequently,
+every event on which the protocol claims a bound below
+$A((q_0,q_1^*),M)$ is a false-certification event under $q_1^*$, and uniform
+validity limits that event to probability $\delta$.
+\end{proof}
+
+The same indistinguishability argument for a missing source--label utility
+stratum replaces Eq.~\eqref{supp:eq:missing} by
+$\max_c(M\ell_y)(c)$. These are precisely the full-simplex terms used when a
+stratum has count zero. Moreover, if $M$ is nonconstant, then
+$A_{\rm miss}(q_0,M)>1/2$ for every $q_0$: the mixture $q_0M$ cannot equal every
+nonidentical channel row, and a missing source concentrated on a differing row
+has positive total-variation distinguishability. Missing required strata must
+therefore be reported as unestimable unless an external structural assumption
+identifies their laws.
 
 \section{Abstention Theory}
 
@@ -289,24 +375,28 @@ approximation if their maximum discrepancy exceeds $5\times10^{-3}$.
 
 \section{Optimization Certificate}
 
-For fixed decoder, every attacker assignment, transform extreme, support
-function dual, capacity term, invariance defect, and utility loss has a linear
-epigraph in the channel and auxiliary variables. The minimum between a
-capacity branch and a coupled-shift branch is represented as a finite
-disjunction with binary variables. The implementation solves one mixed-integer
-linear program per decoder and takes the best globally certified objective.
-This global claim is made only when all decoder and attacker assignments are
-enumerated, the solver reports numerical zero MIP gap, the primal residual is
-at most $2\times10^{-7}$, and independently recomputed certificates match the
-objective at the same tolerance. A timeout, nonzero gap, oversized assignment
-family, or post-hoc mismatch cannot return a deployment.
+For fixed decoder, each support-function dual, transformed score, and residual
+row maximum in Eqs.~\eqref{supp:eq:exactconfidence} and
+\eqref{supp:eq:exactutilityconfidence} has a linear epigraph in the channel and
+auxiliary variables. Enforcing all transform extremes and attacker assignments
+therefore gives one linear program per decoder; enumerating all $J^L$ decoders
+returns the global transform-exact finite-alphabet optimum. The
+capacity-transfer fallback represents each minimum as a binary disjunction and
+solves a mixed-integer linear program per decoder.
 
-The numerical audit compares 30 randomized small instances with exhaustive
-$21^K$ channel grids, recomputes every certificate, checks explicit abstention,
-and includes a witness in which the best stochastic certified error is
-$0.371588$ while every deterministic release has certified error $1$. Separate
-exact-risk and population-optimizer audits enumerate all transformation,
-attacker, residual, and channel-grid extrema.
+Globality is asserted only when every decoder and attacker assignment is
+enumerated, the exact LP reports an optimal status or the fallback reports
+numerical zero MIP gap, the primal residual is at most $2\times10^{-7}$, and an
+independent implementation reproduces every certificate and the objective at
+the same tolerance. A timeout, nonzero gap, oversized assignment family, or
+post-hoc mismatch cannot return a deployment.
+
+The exact audit checks zero-radius agreement with a separate population
+evaluator, binary confidence-ball endpoints, 100 randomized dominance
+comparisons with the fallback, and dense channel grids. The fallback audit
+compares 30 randomized small instances with exhaustive $21^K$ grids and
+includes a witness in which the best stochastic certified error is $0.371588$
+while every deterministic release has certified error $1$.
 
 \section{Locked Experimental Protocol}
 

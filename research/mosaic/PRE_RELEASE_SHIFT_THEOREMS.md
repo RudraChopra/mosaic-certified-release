@@ -153,16 +153,44 @@ to every source, and each residual `r_s` is otherwise arbitrary. This separates
 large source-blind drift from a bounded fraction of differential drift without
 allowing either component to bypass `M`.
 
-Let
-
-`B_y(M)=min{Cap_G(M), Abar_y(P_hat,M)+rho_Tset_y(M)}`.
-
 For a balanced-accuracy scalar `b`, write
 `Adv_G(b)=(G b-1)/(G-1)`.
 
-**Theorem 4 (post-selection-safe pre-release coupled-shift certificate).** On
-the same event `E`, simultaneously for every adaptively selected stochastic
-channel `M` and every external experiment satisfying the decomposition,
+For a registered finite set of transform extremes, define
+
+`A^X_y(P_hat,M) = G^{-1} max_{T in ext(Tset_y), a in [G]^L}`
+`  sum_s [(1-eta_y) Phi(p_hat_sy,epsilon_sy;T v_{M,a,s})`
+`         + eta_y max_c v_{M,a,s}(c)]`.
+
+**Theorem 4 (transform-exact post-selection certificate).** On the same event
+`E`, simultaneously for every adaptively selected stochastic channel `M` and
+every external experiment satisfying the decomposition,
+
+`A(Q,M) <= A^X_y(P_hat,M)`.
+
+For fixed `M`, the right-hand side is exactly the supremum of external balanced
+Bayes accuracy over the Cartesian product of the stated multinomial confidence
+sets, every `T_y` in the convex hull of the registered extremes, every retained
+mass `t_y>=1-eta_y`, and every collection of residual laws.
+
+**Proof.** Expand balanced Bayes accuracy as a maximum over deterministic
+attacker assignments. For fixed `T`, `t`, and assignment, the confidence sets
+and residual simplexes separate across sources. Their exact support values are
+`Phi(p_hat_sy,epsilon_sy;T v_{M,a,s})` and `max_c v_{M,a,s}(c)`. The residual
+support is at least the transformed common support because `T v` is a convex
+combination of coordinates of `v`. The objective is therefore maximized over
+`t>=1-eta_y` at `t=1-eta_y`. The resulting support function is convex in `T`,
+so its maximum over the registered transform polytope is attained at an
+extreme. All remaining maxima are finite and commute. Exactness holds for each
+fixed `M`; pointwise coverage over the complete channel space makes the result
+valid after same-table selection. QED.
+
+The earlier invariance argument remains useful when transform extremes cannot
+be enumerated. Let
+
+`B_y(M)=min{Cap_G(M), Abar_y(P_hat,M)+rho_Tset_y(M)}`.
+
+**Corollary 4.1 (capacity-transfer certificate).** On `E`,
 
 `A(Q,M) <= (1-eta_y) B_y(M) + eta_y Cap_G(M)`.
 
@@ -177,30 +205,26 @@ differential residual by `Cap_G(M)`. Since `B_y(M)<=Cap_G(M)`, the upper bound
 is largest over `t_y>=1-eta_y` at `t_y=1-eta_y`. Theorem 1 permits replacement
 of the unknown reference accuracy by its adaptive confidence envelope. QED.
 
+The transform-exact value is never larger than this capacity-transfer bound:
+the latter is valid for every member of the same confidence and shift set,
+whereas Theorem 4 computes that set's exact supremum.
+
 This theorem has two useful limits. If `eta_y=0` and `T_y M=M`, the external
 certificate equals the reference certificate despite arbitrarily large common
 drift inside `Tset_y`. If `eta_y=1`, the exact worst-case certificate is the
 channel capacity rather than the vacuous value one.
 
-### Exact population risk used to falsify the certificate
+### Zero-radius population special case
 
-The certificate above need not be tight because `rho` separates a total-
-variation comparison from the attacker optimization. For a known reference
-population, however, the exact worst external risk in the stated model is a
-finite expression. If `Tset_y` is the convex hull of listed extremes, then
+For a known reference population, Theorem 4 reduces to the exact worst external
+risk in the stated model:
 
 `R^*_y(M) = G^{-1} max_{T in ext(Tset_y)} max_{a in [G]^L}`
 `             sum_s [(1-eta_y) p_sy^T T v_{M,a,s}`
 `                    + eta_y max_c v_{M,a,s}(c)]`.
 
-This follows by expanding the deterministic-attacker representation. For fixed
-`T` and `a`, every residual law concentrates on a maximizing fine token. The
-residual term is at least the common term source by source, so the supremum over
-all retained masses `t_y >= 1-eta_y` occurs at `t_y=1-eta_y`. The objective is a
-maximum of linear functions of `T`, so a convex-hull maximum is attained at a
-listed extreme. This identity is not the deployable certificate: it requires
-the unknown population laws. It is the independent ground-truth quantity used
-to count false acceptances in synthetic experiments.
+The independent synthetic evaluator implements this zero-radius identity
+without calling either confidence-certificate implementation.
 
 ## 6. Utility is certified under the same event
 
@@ -217,8 +241,22 @@ and the differential-shift error capacity
 
 `U_y(M,g)=max_c (M ell_y)(c)`.
 
-**Corollary 5 (adaptive shifted-utility certificate).** On `E`, the external
-conditional task error satisfies
+The matching transform-exact utility certificate is
+
+`E^X_{s,y}(M,g) = max_{T in ext(Tset_y)}`
+`  [(1-eta_y) Phi(p_hat_sy,epsilon_sy;T u_y)`
+`   + eta_y max_c u_y(c)]`.
+
+**Corollary 5 (transform-exact adaptive utility certificate).** On `E`, every
+same-table selected `(M,g)` satisfies
+
+`Err_{s,y}(Q,M,g) <= E^X_{s,y}(M,g)`,
+
+and the right-hand side is the exact supremum over the stated confidence ball
+and structured shift class. The proof is Theorem 4 applied to the bounded loss
+`ell_y`, without the attacker average or assignment maximum.
+
+The capacity-transfer fallback satisfies
 
 `Err_{s,y}(Q,M,g) <= (1-eta_y) D_{s,y}(M,g)+eta_y U_y(M,g)`,
 
@@ -226,9 +264,10 @@ where
 
 `D_{s,y}(M,g)=min{U_y(M,g),Ebar_{s,y}(M,g)+kappa_y(M,g)}`.
 
-The proof repeats Theorem 4 for the bounded loss `ell_y`. Thus the tokenizer's
-release channel, its decoder, privacy, and diagnostic utility can be selected
-on one certification table under one simultaneous event.
+by the same invariance argument as Corollary 4.1. The transform-exact value is
+never larger. Thus the tokenizer's release channel, its decoder, privacy, and
+diagnostic utility can be selected on one certification table under one
+simultaneous event.
 
 With known population laws, the matching exact external utility risk is
 
@@ -263,46 +302,87 @@ In particular, row-wise task error at most `e` forces worst-case differential
 source advantage at least `1-2e`. This is the quantitative reason a bounded
 `eta` assumption is necessary rather than cosmetic.
 
-An unsupported stratum does not logically force privacy abstention: `Cap_G(M)`
-remains distribution-free. It does prevent a nontrivial data-derived utility
-claim unless the task is guaranteed mechanically by the channel. MOSAIC must
-return `ABSTAIN_NO_FEASIBLE_CHANNEL`, with unsupported utility recorded as the
-reason, whenever its full privacy-and-utility deployment contract cannot be
-proved from those worst-case quantities.
+### 7.1 Missing-source non-identifiability
+
+An external sample cannot validate a balanced source contract when a required
+source is absent. This limitation is statistical, not an implementation detail.
+Fix a label, two required sources, a release channel `M`, and an observed law
+`q_0` for source zero. Suppose the external audit contains no source-one rows,
+so its distribution is identical for every possible `q_1 in Delta_K`. Define
+
+`A_miss(q_0,M) = sup_{q_1 in Delta_K} A((q_0,q_1),M)`.
+
+**Theorem 7 (missing-source audits cannot certify below the unidentified
+worst case).** Let a possibly randomized protocol observe no source-one rows
+and output a claim `A((q_0,q_1),M) <= tau`. If that claim has false-certification
+probability at most `delta<1` uniformly over every `q_1`, then whenever
+`tau < A_miss(q_0,M)` the protocol can issue the claim with probability at most
+`delta`. Equivalently, any uniformly valid upper confidence bound must be at
+least `A_miss(q_0,M)` except on its allowed failure event.
+
+**Proof.** Choose `q_1^*` attaining the finite-simplex supremum. The observed
+audit distribution is the same under `q_1^*` as under every other missing-source
+law. Every event on which the protocol claims a bound below
+`A((q_0,q_1^*),M)` is therefore a false-certification event under `q_1^*`, and
+uniform validity limits its probability to `delta`. QED.
+
+For a missing source-label utility stratum, the identical argument replaces
+`A_miss` with `max_c (M ell_y)(c)`: a uniformly valid conditional-error upper
+bound cannot fall below the worst release-channel row. These are exactly the
+full-simplex terms used by MOSAIC when a stratum count is zero. If `M` is
+nonconstant, `A_miss(q_0,M)>1/2` for every `q_0`: the released law `q_0M` lies
+in the convex hull of channel rows, and at least one row differs from it, so a
+missing source concentrated on that row has positive total-variation
+distinguishability. Thus an absent source can never support an exact-erasure
+claim for a nonconstant release. A benchmark with missing required strata must
+be reported as unestimable unless an external structural assumption supplies
+the missing law.
 
 ## 8. Optimization consequence
 
 For fixed output size, fixed decoder, a finite extreme-channel library `Tset`,
-and fixed radii:
+and fixed radii, every transform-exact `Phi` term has the linear-program dual
+in Section 2. The maxima over transformed scores and residual rows have linear
+epigraphs. Enforcing every finite transform and attacker assignment therefore
+gives one linear program per decoder. Complete enumeration of the `J^L`
+decoder family yields a global optimum for the transform-exact finite problem.
+This jointly optimizes all `K L` channel probabilities while certifying every
+one of the `G^L` attacker assignments.
+
+The capacity-transfer fallback has the following piecewise-linear structure:
 
 - `Abar(P_hat,M)` is convex and piecewise linear in `M`;
 - `Cap_G(M)` is convex and piecewise linear;
 - `rho_Tset(M)`, `kappa_y(M,g)`, and `U_y(M,g)` are convex and piecewise linear;
 - every `Phi` term has the linear-program dual in Section 2.
 
-Therefore each branch obtained by choosing the capacity bound or the
+Each branch obtained by choosing the capacity bound or the
 coupled-shift bound is a finite linear program after epigraph expansion. The
 implementation uses binary variables to choose these branches in one exact
 mixed-integer linear program for each decoder assignment, then enumerates the
 finite decoder family. Subject to the solver's optimality certificate, this
 selects the globally best worst-stratum certified utility for the stated finite
-problem. Theorem 4 and Corollary 5 continue to cover that selection.
+fallback problem. Theorem 4 and Corollary 5 cover either selection rule.
 Failure of every branch to satisfy the registered privacy and utility contract
 returns `ABSTAIN_NO_FEASIBLE_CHANNEL`.
 
 More precisely, global optimality is asserted only when the output alphabet,
 finite transform extremes, and decoder family are all completely enumerated;
-the requested relative MIP gap is zero; the solver reports a gap at numerical
-zero; primal constraints pass a direct residual check; and the objective agrees
-with independently recomputed privacy and utility certificates. A timeout,
-nonzero gap, oversized attacker family, or post-hoc mismatch is not a global
-solution and cannot produce a deployment. The implementation records the MIP
-gap, dual bound, maximum constraint violation, and post-hoc certificates.
+the LP solver reports an optimal status, or the fallback MILP reports a gap at
+numerical zero; primal constraints pass a direct residual check; and the
+objective agrees with independently recomputed privacy and utility
+certificates. A timeout, nonzero gap, oversized attacker family, or post-hoc
+mismatch is not a global solution and cannot produce a deployment. The
+implementation records the dual bound or MIP gap, maximum constraint violation,
+and post-hoc certificates.
 
-The optimization claim is tested against exhaustive channel grids on small
-alphabets and a constructed case in which a stochastic channel strictly
-outperforms every deterministic channel. Those numerical checks support the
-encoding; they do not replace the algebraic proof or an independent review.
+The transform-exact implementation is checked against zero-radius population
+risk, binary confidence-ball endpoint enumeration, 100 randomized dominance
+comparisons against the capacity-transfer certificate, and dense channel grids.
+The fallback optimizer is separately checked against exhaustive channel grids
+and a case in which a stochastic channel strictly outperforms every
+deterministic channel. Those numerical checks support the encodings; they do
+not replace the algebraic proof or an independent review.
 
 ### 8.1 A finite-sample abstention envelope
 
@@ -400,10 +480,10 @@ The provisional contribution is the combination of:
 
 1. an exact finite-sample envelope for every downstream attacker after an
    adaptively optimized stochastic representation release;
-2. a pre-release shift decomposition with a computable invariance defect and
-   exact differential-shift channel capacity;
-3. a globally solvable piecewise-linear optimization of shifted privacy and
-   utility on the same certification event; and
+2. an exact supremum over a common-transform polytope, bounded differential
+   contamination, confidence uncertainty, and arbitrary downstream attackers;
+3. globally solvable linear optimization of shifted privacy and utility on the
+   same certification event, with a capacity-transfer fallback; and
 4. a matching no-free-lunch theorem that quantitatively links task utility to
    unavoidable leakage under unrestricted differential shift.
 
