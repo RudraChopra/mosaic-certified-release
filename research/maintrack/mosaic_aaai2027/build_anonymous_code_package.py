@@ -52,6 +52,9 @@ SOURCE_PATTERNS = (
 ARTIFACT_PATTERNS = (
     "research/artifacts/mosaic_*.json",
     "research/artifacts/mosaic_*.sha256",
+    "research/artifacts/mosaic_bridge_confirmation_receipts_v1/*.json",
+    "research/artifacts/mosaic_bridge_strict_receipts_v1/*.json",
+    "research/artifacts/mosaic_bridge_comparator_receipts_v1/*.json",
     "research/artifacts/mosaic_real_confirmation_v1/*.json",
     "research/artifacts/mosaic_real_exact_confirmation_v1/*.json",
 )
@@ -144,6 +147,64 @@ PYTHONPATH=research/mosaic:research/scripts \
   python research/mosaic/audit_mosaic_real_exact_frontier.py \
   research/artifacts/mosaic_real_exact_confirmation_v1/*.json \
   --output /tmp/mosaic_real_exact_confirmation_audit.json
+```
+
+The paired synthetic baselines and bridge-model stress test can be replayed
+directly from their complete saved tables:
+
+```bash
+PYTHONPATH=research/mosaic:research/scripts \
+  python research/mosaic/audit_mosaic_baseline_extension.py \
+  --report research/artifacts/mosaic_baseline_extension_v1_schema_repaired.json \
+  --output /tmp/mosaic_baseline_extension_audit.json
+PYTHONPATH=research/mosaic:research/scripts \
+  python research/mosaic/audit_mosaic_bridge_misspecification.py \
+  --output /tmp/mosaic_bridge_misspecification_audit.json
+```
+
+The external-shift evidence has three independent replay layers. The first
+recomputes every raw finite-confidence bridge and global optimum; the next two
+replay the outward-rounded strict receipts in floating-point and exact rational
+arithmetic:
+
+```bash
+PYTHONPATH=research/mosaic:research/scripts \
+  python research/mosaic/audit_mosaic_bridge_frontier.py \
+  research/artifacts/mosaic_bridge_confirmation_receipts_v1/*.json \
+  --output /tmp/mosaic_bridge_raw_audit.json
+PYTHONPATH=research/mosaic:research/scripts \
+  python research/mosaic/audit_mosaic_bridge_strict.py \
+  --original-dir research/artifacts/mosaic_bridge_confirmation_receipts_v1 \
+  --strict-dir research/artifacts/mosaic_bridge_strict_receipts_v1 \
+  --prereg research/mosaic/prereg_mosaic_bridge_v1.json \
+  --amendment research/mosaic/prereg_mosaic_bridge_strict_amendment_v1.json \
+  --output /tmp/mosaic_bridge_strict_audit.json
+PYTHONPATH=research/mosaic:research/scripts \
+  python research/mosaic/audit_mosaic_bridge_rational.py \
+  --original-dir research/artifacts/mosaic_bridge_confirmation_receipts_v1 \
+  --strict-dir research/artifacts/mosaic_bridge_strict_receipts_v1 \
+  --strict-amendment research/mosaic/prereg_mosaic_bridge_strict_amendment_v1.json \
+  --rational-lock research/mosaic/prereg_mosaic_bridge_rational_audit_v1.json \
+  --output /tmp/mosaic_bridge_rational_audit.json
+```
+
+The comparator extension additionally verifies that its protocol lock was
+committed before outcomes were inspected. An extracted archive has no Git
+history, so materialize a disposable local commit without changing any file,
+then run its independent certificate audit:
+
+```bash
+git init
+git add research
+git -c user.name="Anonymous Authors" \
+  -c user.email="anonymous@example.invalid" \
+  commit -m "Materialize locked review package"
+PYTHONPATH=research/mosaic:research/scripts \
+  python research/mosaic/audit_mosaic_bridge_comparator_extension.py \
+  --raw-dir research/artifacts/mosaic_bridge_confirmation_receipts_v1 \
+  --comparator-dir research/artifacts/mosaic_bridge_comparator_receipts_v1 \
+  --lock research/mosaic/prereg_mosaic_bridge_comparator_extension_v1.json \
+  --output /tmp/mosaic_bridge_comparator_audit.json
 ```
 
 The real-feature transformation stage additionally requires the public datasets,
