@@ -1,0 +1,1784 @@
+{
+  "claim_boundary": "This lock authenticates the exact public raw assets and processed arrays used by the registered confirmation; it contains no model outcomes.",
+  "frozen_at": "2026-07-19T20:15:34.830538+00:00",
+  "preregistration_sha256": "efdf0017d152fb99b5a3e5374efd935578412b3f74ef3c03ed5e446c9da8373a",
+  "project": "MOSAIC natural multi-environment ACS confirmation",
+  "raw_assets": {
+    "2018/1-Year/psam_p06.csv": {
+      "bytes": 267297811,
+      "sha256": "dc2187fc90df2c5f6b546ee89a2b41c9a97379c9e7136461b6a6c8de871b43e0"
+    },
+    "2018/1-Year/psam_p12.csv": {
+      "bytes": 142285432,
+      "sha256": "850e370344877e1bfa3e646390f645788db68c8c9bcf36b710bc84ebdc991c37"
+    },
+    "2018/1-Year/psam_p17.csv": {
+      "bytes": 88630961,
+      "sha256": "f9cdef125864fca5ab4daca6d8935eff33759db305937b43c17225405e29efc1"
+    },
+    "2018/1-Year/psam_p36.csv": {
+      "bytes": 138176785,
+      "sha256": "f9bfd886b96182c4e7bde11386dd5e1c7ea2d6194ef8bb4ee6bfbb0023814a91"
+    },
+    "2018/1-Year/psam_p53.csv": {
+      "bytes": 53579209,
+      "sha256": "a6a28a87ba6ef2b2a87b7b8bb4f199c26a529fb816af0d197f4bb643256a4a47"
+    }
+  },
+  "status": "frozen_before_outcome_execution",
+  "store_count": 12,
+  "stores": {
+    "employment:CA->FL": {
+      "arrays": {
+        "environment.npy": {
+          "bytes": 2324036,
+          "dtype": "int32",
+          "sha256": "80da57d15a26928819ad73b9dc3b0ee8d0b7f75d34ed4dd7dce50b76f5961a95",
+          "shape": [
+            580977
+          ]
+        },
+        "g.npy": {
+          "bytes": 581105,
+          "dtype": "int8",
+          "sha256": "1fd1090233df0233b71404e4bfac8a8ef09176507f17219821758416f0421793",
+          "shape": [
+            580977
+          ]
+        },
+        "s.npy": {
+          "bytes": 581105,
+          "dtype": "int8",
+          "sha256": "b45b5a272f922cd71af10d3c457c560c4d6641701aab3b60c582d15b06113b22",
+          "shape": [
+            580977
+          ]
+        },
+        "split.npy": {
+          "bytes": 581105,
+          "dtype": "int8",
+          "sha256": "e31ed70423ee0d7571f6f19fb1d944c82677965363d3a0f279d1d9226f560cdb",
+          "shape": [
+            580977
+          ]
+        },
+        "y.npy": {
+          "bytes": 581105,
+          "dtype": "int8",
+          "sha256": "3df0f75cafad3cfb6776b7f99b387047333ac7eeb0a9c4758324f49478d02c86",
+          "shape": [
+            580977
+          ]
+        },
+        "z.npy": {
+          "bytes": 34858748,
+          "dtype": "float32",
+          "sha256": "8d632a4ab86bdd0eb1935abda8ac56e7ad56dd5f3453df45904a53964e1b1931",
+          "shape": [
+            580977,
+            15
+          ]
+        }
+      },
+      "manifest": {
+        "arrays": {
+          "environment": "environment.npy",
+          "g": "g.npy",
+          "s": "s.npy",
+          "split": "split.npy",
+          "y": "y.npy",
+          "z": "z.npy"
+        },
+        "created_at": "2026-07-19T20:13:13.633983+00:00",
+        "dataset": "Folktables ESR CA-to-FL",
+        "dimension": 15,
+        "environment": "target-state Public Use Microdata Area (PUMA)",
+        "external_environment_count": 151,
+        "feature_columns": [
+          "AGEP",
+          "SCHL",
+          "MAR",
+          "RELP",
+          "DIS",
+          "ESP",
+          "CIT",
+          "MIG",
+          "MIL",
+          "ANC",
+          "NATIVITY",
+          "DEAR",
+          "DEYE",
+          "DREM",
+          "RAC1P"
+        ],
+        "horizon": "1-Year",
+        "n_examples": 580977,
+        "official_target_column": "ESR",
+        "raw_assets": {
+          "2018/1-Year/psam_p06.csv": {
+            "bytes": 267297811,
+            "sha256": "dc2187fc90df2c5f6b546ee89a2b41c9a97379c9e7136461b6a6c8de871b43e0"
+          },
+          "2018/1-Year/psam_p12.csv": {
+            "bytes": 142285432,
+            "sha256": "850e370344877e1bfa3e646390f645788db68c8c9bcf36b710bc84ebdc991c37"
+          }
+        },
+        "reference_fraction": 0.2,
+        "source": "US Census ACS PUMS via Folktables 0.0.12",
+        "source_concept": "binary sex; excluded from the released feature matrix",
+        "source_counts": {
+          "0": 284930,
+          "1": 296047
+        },
+        "split_codes": {
+          "eraser_train": 0,
+          "external_target": 2,
+          "reference": 1
+        },
+        "split_counts": {
+          "0": 303054,
+          "1": 75763,
+          "2": 202160
+        },
+        "split_seed": 20271022,
+        "state_source_counts": {
+          "CA": {
+            "0": 186677,
+            "1": 192140
+          },
+          "FL": {
+            "0": 98253,
+            "1": 103907
+          }
+        },
+        "state_target_counts": {
+          "CA": {
+            "0": 206014,
+            "1": 172803
+          },
+          "FL": {
+            "0": 113842,
+            "1": 88318
+          }
+        },
+        "states": {
+          "external": "FL",
+          "reference": "CA"
+        },
+        "survey_year": "2018",
+        "target_counts": {
+          "0": 319856,
+          "1": 261121
+        },
+        "task": "employment"
+      },
+      "manifest_sha256": "486da3db1c154181bbca418937266f5a02dd2b9404b41091d9d0ce422520dfcc"
+    },
+    "employment:CA->IL": {
+      "arrays": {
+        "environment.npy": {
+          "bytes": 2021220,
+          "dtype": "int32",
+          "sha256": "9ac0cb1ba36bae20882b614ea8eb019c5dbd9c8d14b017483ac40ae5099463d5",
+          "shape": [
+            505273
+          ]
+        },
+        "g.npy": {
+          "bytes": 505401,
+          "dtype": "int8",
+          "sha256": "f3368baef0b03c4466aab7474d9fccc144d0355f83abc381dc91d423e469fc0d",
+          "shape": [
+            505273
+          ]
+        },
+        "s.npy": {
+          "bytes": 505401,
+          "dtype": "int8",
+          "sha256": "297fb1782deb389e16581fca99b88cf6f97a511ae4a5d1fe3419edcaa51663d5",
+          "shape": [
+            505273
+          ]
+        },
+        "split.npy": {
+          "bytes": 505401,
+          "dtype": "int8",
+          "sha256": "4d87574979caa703f57ce46e1e1b6f9250635e064388c7a685cac3308b31b9da",
+          "shape": [
+            505273
+          ]
+        },
+        "y.npy": {
+          "bytes": 505401,
+          "dtype": "int8",
+          "sha256": "11cd6728d6ca240e68b46edc3401f6e99d083fb3b8d382b1ec4e3b45952b4f62",
+          "shape": [
+            505273
+          ]
+        },
+        "z.npy": {
+          "bytes": 30316508,
+          "dtype": "float32",
+          "sha256": "f2dd1245c7eeb2e5aeecbd4449af942e085099fdc5ca897d554f713f15aba607",
+          "shape": [
+            505273,
+            15
+          ]
+        }
+      },
+      "manifest": {
+        "arrays": {
+          "environment": "environment.npy",
+          "g": "g.npy",
+          "s": "s.npy",
+          "split": "split.npy",
+          "y": "y.npy",
+          "z": "z.npy"
+        },
+        "created_at": "2026-07-19T20:12:42.024242+00:00",
+        "dataset": "Folktables ESR CA-to-IL",
+        "dimension": 15,
+        "environment": "target-state Public Use Microdata Area (PUMA)",
+        "external_environment_count": 88,
+        "feature_columns": [
+          "AGEP",
+          "SCHL",
+          "MAR",
+          "RELP",
+          "DIS",
+          "ESP",
+          "CIT",
+          "MIG",
+          "MIL",
+          "ANC",
+          "NATIVITY",
+          "DEAR",
+          "DEYE",
+          "DREM",
+          "RAC1P"
+        ],
+        "horizon": "1-Year",
+        "n_examples": 505273,
+        "official_target_column": "ESR",
+        "raw_assets": {
+          "2018/1-Year/psam_p06.csv": {
+            "bytes": 267297811,
+            "sha256": "dc2187fc90df2c5f6b546ee89a2b41c9a97379c9e7136461b6a6c8de871b43e0"
+          },
+          "2018/1-Year/psam_p17.csv": {
+            "bytes": 88630961,
+            "sha256": "f9cdef125864fca5ab4daca6d8935eff33759db305937b43c17225405e29efc1"
+          }
+        },
+        "reference_fraction": 0.2,
+        "source": "US Census ACS PUMS via Folktables 0.0.12",
+        "source_concept": "binary sex; excluded from the released feature matrix",
+        "source_counts": {
+          "0": 248616,
+          "1": 256657
+        },
+        "split_codes": {
+          "eraser_train": 0,
+          "external_target": 2,
+          "reference": 1
+        },
+        "split_counts": {
+          "0": 303054,
+          "1": 75763,
+          "2": 126456
+        },
+        "split_seed": 20270822,
+        "state_source_counts": {
+          "CA": {
+            "0": 186677,
+            "1": 192140
+          },
+          "IL": {
+            "0": 61939,
+            "1": 64517
+          }
+        },
+        "state_target_counts": {
+          "CA": {
+            "0": 206014,
+            "1": 172803
+          },
+          "IL": {
+            "0": 66264,
+            "1": 60192
+          }
+        },
+        "states": {
+          "external": "IL",
+          "reference": "CA"
+        },
+        "survey_year": "2018",
+        "target_counts": {
+          "0": 272278,
+          "1": 232995
+        },
+        "task": "employment"
+      },
+      "manifest_sha256": "888bb167e6935e8e9a43bf0c31aa6c7df70428debe24f2c199fda76392af46ad"
+    },
+    "employment:CA->NY": {
+      "arrays": {
+        "environment.npy": {
+          "bytes": 2303264,
+          "dtype": "int32",
+          "sha256": "cba3551f143959efb14cf636874ab44ea2b3a2ecc52d17b608fdeb12ede6f419",
+          "shape": [
+            575784
+          ]
+        },
+        "g.npy": {
+          "bytes": 575912,
+          "dtype": "int8",
+          "sha256": "9a44de614b5515e9cf96fa611d0b752641111c123b3c8c5eb40791c1536ea38b",
+          "shape": [
+            575784
+          ]
+        },
+        "s.npy": {
+          "bytes": 575912,
+          "dtype": "int8",
+          "sha256": "503db9657f20dba473df3f083421d9f96e83fafde351644b685108b23424f476",
+          "shape": [
+            575784
+          ]
+        },
+        "split.npy": {
+          "bytes": 575912,
+          "dtype": "int8",
+          "sha256": "b94e62b65a19304bfec8fa977a8559e788cf7d660e2c534fe36bef8e063c9c7f",
+          "shape": [
+            575784
+          ]
+        },
+        "y.npy": {
+          "bytes": 575912,
+          "dtype": "int8",
+          "sha256": "86190d2b0aa9ffa51263932817dc66a9af723ef97aa1dfc9b766e2298c8af56c",
+          "shape": [
+            575784
+          ]
+        },
+        "z.npy": {
+          "bytes": 34547168,
+          "dtype": "float32",
+          "sha256": "6750ba50b9535e06028556d740d02205c942a68a3736ff3fe4e56daf76648ce3",
+          "shape": [
+            575784,
+            15
+          ]
+        }
+      },
+      "manifest": {
+        "arrays": {
+          "environment": "environment.npy",
+          "g": "g.npy",
+          "s": "s.npy",
+          "split": "split.npy",
+          "y": "y.npy",
+          "z": "z.npy"
+        },
+        "created_at": "2026-07-19T20:12:57.629691+00:00",
+        "dataset": "Folktables ESR CA-to-NY",
+        "dimension": 15,
+        "environment": "target-state Public Use Microdata Area (PUMA)",
+        "external_environment_count": 145,
+        "feature_columns": [
+          "AGEP",
+          "SCHL",
+          "MAR",
+          "RELP",
+          "DIS",
+          "ESP",
+          "CIT",
+          "MIG",
+          "MIL",
+          "ANC",
+          "NATIVITY",
+          "DEAR",
+          "DEYE",
+          "DREM",
+          "RAC1P"
+        ],
+        "horizon": "1-Year",
+        "n_examples": 575784,
+        "official_target_column": "ESR",
+        "raw_assets": {
+          "2018/1-Year/psam_p06.csv": {
+            "bytes": 267297811,
+            "sha256": "dc2187fc90df2c5f6b546ee89a2b41c9a97379c9e7136461b6a6c8de871b43e0"
+          },
+          "2018/1-Year/psam_p36.csv": {
+            "bytes": 138176785,
+            "sha256": "f9bfd886b96182c4e7bde11386dd5e1c7ea2d6194ef8bb4ee6bfbb0023814a91"
+          }
+        },
+        "reference_fraction": 0.2,
+        "source": "US Census ACS PUMS via Folktables 0.0.12",
+        "source_concept": "binary sex; excluded from the released feature matrix",
+        "source_counts": {
+          "0": 281839,
+          "1": 293945
+        },
+        "split_codes": {
+          "eraser_train": 0,
+          "external_target": 2,
+          "reference": 1
+        },
+        "split_counts": {
+          "0": 303054,
+          "1": 75763,
+          "2": 196967
+        },
+        "split_seed": 20270922,
+        "state_source_counts": {
+          "CA": {
+            "0": 186677,
+            "1": 192140
+          },
+          "NY": {
+            "0": 95162,
+            "1": 101805
+          }
+        },
+        "state_target_counts": {
+          "CA": {
+            "0": 206014,
+            "1": 172803
+          },
+          "NY": {
+            "0": 105498,
+            "1": 91469
+          }
+        },
+        "states": {
+          "external": "NY",
+          "reference": "CA"
+        },
+        "survey_year": "2018",
+        "target_counts": {
+          "0": 311512,
+          "1": 264272
+        },
+        "task": "employment"
+      },
+      "manifest_sha256": "31458ebd62b13c5dc46ac8be06d8f3968df822d55e25f659a695bdda249feeb3"
+    },
+    "employment:CA->WA": {
+      "arrays": {
+        "environment.npy": {
+          "bytes": 1820296,
+          "dtype": "int32",
+          "sha256": "b0db7422b583c2ce93e50d5023d9eb73c0d5fb4f36424a41567b205604a4bad3",
+          "shape": [
+            455042
+          ]
+        },
+        "g.npy": {
+          "bytes": 455170,
+          "dtype": "int8",
+          "sha256": "e94cc0009e3c8e1f2f64e85e0cc5e79be5d06cc315d61aefacc41c68d1519128",
+          "shape": [
+            455042
+          ]
+        },
+        "s.npy": {
+          "bytes": 455170,
+          "dtype": "int8",
+          "sha256": "41afa84fc31a7bc5055a57b9a8139af4917f99bc6d6b8066d2f28f29dcf78beb",
+          "shape": [
+            455042
+          ]
+        },
+        "split.npy": {
+          "bytes": 455170,
+          "dtype": "int8",
+          "sha256": "28cf82fff20224e747e25269ad30689c326802665845b0aad905d257e22f0e29",
+          "shape": [
+            455042
+          ]
+        },
+        "y.npy": {
+          "bytes": 455170,
+          "dtype": "int8",
+          "sha256": "a614c6a534cf7b1c218c303e3cdb3c02208bc3ee2e46732ed7386ac56d400766",
+          "shape": [
+            455042
+          ]
+        },
+        "z.npy": {
+          "bytes": 27302648,
+          "dtype": "float32",
+          "sha256": "c3c8db0f8bccf9514397fd635c334aaa6a1227fb343b2c8a37b3c2cb66948ab8",
+          "shape": [
+            455042,
+            15
+          ]
+        }
+      },
+      "manifest": {
+        "arrays": {
+          "environment": "environment.npy",
+          "g": "g.npy",
+          "s": "s.npy",
+          "split": "split.npy",
+          "y": "y.npy",
+          "z": "z.npy"
+        },
+        "created_at": "2026-07-19T20:12:34.194307+00:00",
+        "dataset": "Folktables ESR CA-to-WA",
+        "dimension": 15,
+        "environment": "target-state Public Use Microdata Area (PUMA)",
+        "external_environment_count": 56,
+        "feature_columns": [
+          "AGEP",
+          "SCHL",
+          "MAR",
+          "RELP",
+          "DIS",
+          "ESP",
+          "CIT",
+          "MIG",
+          "MIL",
+          "ANC",
+          "NATIVITY",
+          "DEAR",
+          "DEYE",
+          "DREM",
+          "RAC1P"
+        ],
+        "horizon": "1-Year",
+        "n_examples": 455042,
+        "official_target_column": "ESR",
+        "raw_assets": {
+          "2018/1-Year/psam_p06.csv": {
+            "bytes": 267297811,
+            "sha256": "dc2187fc90df2c5f6b546ee89a2b41c9a97379c9e7136461b6a6c8de871b43e0"
+          },
+          "2018/1-Year/psam_p53.csv": {
+            "bytes": 53579209,
+            "sha256": "a6a28a87ba6ef2b2a87b7b8bb4f199c26a529fb816af0d197f4bb643256a4a47"
+          }
+        },
+        "reference_fraction": 0.2,
+        "source": "US Census ACS PUMS via Folktables 0.0.12",
+        "source_concept": "binary sex; excluded from the released feature matrix",
+        "source_counts": {
+          "0": 224467,
+          "1": 230575
+        },
+        "split_codes": {
+          "eraser_train": 0,
+          "external_target": 2,
+          "reference": 1
+        },
+        "split_counts": {
+          "0": 303054,
+          "1": 75763,
+          "2": 76225
+        },
+        "split_seed": 20270722,
+        "state_source_counts": {
+          "CA": {
+            "0": 186677,
+            "1": 192140
+          },
+          "WA": {
+            "0": 37790,
+            "1": 38435
+          }
+        },
+        "state_target_counts": {
+          "CA": {
+            "0": 206014,
+            "1": 172803
+          },
+          "WA": {
+            "0": 41361,
+            "1": 34864
+          }
+        },
+        "states": {
+          "external": "WA",
+          "reference": "CA"
+        },
+        "survey_year": "2018",
+        "target_counts": {
+          "0": 247375,
+          "1": 207667
+        },
+        "task": "employment"
+      },
+      "manifest_sha256": "7ac6c54a67ecadc3b82aa2e7da32f76ef48ff85e7cc929a45fa33d96401c5382"
+    },
+    "income:CA->FL": {
+      "arrays": {
+        "environment.npy": {
+          "bytes": 1178488,
+          "dtype": "int32",
+          "sha256": "582bd43ba8fcd1d4f011509145461b7acca1e3778963c3ee42f2d2ba6eb89b34",
+          "shape": [
+            294590
+          ]
+        },
+        "g.npy": {
+          "bytes": 294718,
+          "dtype": "int8",
+          "sha256": "35631bf7122905b978092ef485f64c07889429ba7e2663bbb9d32ec819df8584",
+          "shape": [
+            294590
+          ]
+        },
+        "s.npy": {
+          "bytes": 294718,
+          "dtype": "int8",
+          "sha256": "721f42f3373c3ac04af9ba004cc07568a6c488c5b78c35ed33c4702c0f22ee61",
+          "shape": [
+            294590
+          ]
+        },
+        "split.npy": {
+          "bytes": 294718,
+          "dtype": "int8",
+          "sha256": "305702bea33c37cb81c8340715c8366f4d832f761829c4fdf3adb7ba3ba39c3d",
+          "shape": [
+            294590
+          ]
+        },
+        "y.npy": {
+          "bytes": 294718,
+          "dtype": "int8",
+          "sha256": "8553fa4435c21cceea8a5c31ea663ea5bef5be2ec62356bb74629adadcd0c4a1",
+          "shape": [
+            294590
+          ]
+        },
+        "z.npy": {
+          "bytes": 10605368,
+          "dtype": "float32",
+          "sha256": "82f6ea959ccef1298870b06fe2cc597113414894d3f20adb3caec154b021d894",
+          "shape": [
+            294590,
+            9
+          ]
+        }
+      },
+      "manifest": {
+        "arrays": {
+          "environment": "environment.npy",
+          "g": "g.npy",
+          "s": "s.npy",
+          "split": "split.npy",
+          "y": "y.npy",
+          "z": "z.npy"
+        },
+        "created_at": "2026-07-19T20:13:11.505187+00:00",
+        "dataset": "Folktables PINCP CA-to-FL",
+        "dimension": 9,
+        "environment": "target-state Public Use Microdata Area (PUMA)",
+        "external_environment_count": 151,
+        "feature_columns": [
+          "AGEP",
+          "COW",
+          "SCHL",
+          "MAR",
+          "OCCP",
+          "POBP",
+          "RELP",
+          "WKHP",
+          "RAC1P"
+        ],
+        "horizon": "1-Year",
+        "n_examples": 294590,
+        "official_target_column": "PINCP",
+        "raw_assets": {
+          "2018/1-Year/psam_p06.csv": {
+            "bytes": 267297811,
+            "sha256": "dc2187fc90df2c5f6b546ee89a2b41c9a97379c9e7136461b6a6c8de871b43e0"
+          },
+          "2018/1-Year/psam_p12.csv": {
+            "bytes": 142285432,
+            "sha256": "850e370344877e1bfa3e646390f645788db68c8c9bcf36b710bc84ebdc991c37"
+          }
+        },
+        "reference_fraction": 0.2,
+        "source": "US Census ACS PUMS via Folktables 0.0.12",
+        "source_concept": "binary sex; excluded from the released feature matrix",
+        "source_counts": {
+          "0": 154133,
+          "1": 140457
+        },
+        "split_codes": {
+          "eraser_train": 0,
+          "external_target": 2,
+          "reference": 1
+        },
+        "split_counts": {
+          "0": 156532,
+          "1": 39133,
+          "2": 98925
+        },
+        "split_seed": 20271021,
+        "state_source_counts": {
+          "CA": {
+            "0": 103311,
+            "1": 92354
+          },
+          "FL": {
+            "0": 50822,
+            "1": 48103
+          }
+        },
+        "state_target_counts": {
+          "CA": {
+            "0": 115330,
+            "1": 80335
+          },
+          "FL": {
+            "0": 66149,
+            "1": 32776
+          }
+        },
+        "states": {
+          "external": "FL",
+          "reference": "CA"
+        },
+        "survey_year": "2018",
+        "target_counts": {
+          "0": 181479,
+          "1": 113111
+        },
+        "task": "income"
+      },
+      "manifest_sha256": "19fc8bb8566da9cdda12d4c31428a46134cfb73c8a15cb9f2a981c7f795a3db0"
+    },
+    "income:CA->IL": {
+      "arrays": {
+        "environment.npy": {
+          "bytes": 1050852,
+          "dtype": "int32",
+          "sha256": "eb922406934d423af57d560b2fda50ce8be213ffde0c0e6e7c5dee9ab0bfd53d",
+          "shape": [
+            262681
+          ]
+        },
+        "g.npy": {
+          "bytes": 262809,
+          "dtype": "int8",
+          "sha256": "748279d32d9606ee7d54167aece6dc14d7e71416d9b752eb1fdc286942cc5948",
+          "shape": [
+            262681
+          ]
+        },
+        "s.npy": {
+          "bytes": 262809,
+          "dtype": "int8",
+          "sha256": "14ce6c0893f7f1ef7db057b1162366d19f5b0a20722baf4005f3aee4a90e7fac",
+          "shape": [
+            262681
+          ]
+        },
+        "split.npy": {
+          "bytes": 262809,
+          "dtype": "int8",
+          "sha256": "eca446b96222b86c35be89477e7c70da66feb3309420c35ad10fbc826a813592",
+          "shape": [
+            262681
+          ]
+        },
+        "y.npy": {
+          "bytes": 262809,
+          "dtype": "int8",
+          "sha256": "e540de09575e76f979a16e603b88c8be79216e9a2b72e59180bbd979cce42e7f",
+          "shape": [
+            262681
+          ]
+        },
+        "z.npy": {
+          "bytes": 9456644,
+          "dtype": "float32",
+          "sha256": "f2b1024f8c11a91ec0898611a01485fe081e70788451a928cffdefed3ef465a4",
+          "shape": [
+            262681,
+            9
+          ]
+        }
+      },
+      "manifest": {
+        "arrays": {
+          "environment": "environment.npy",
+          "g": "g.npy",
+          "s": "s.npy",
+          "split": "split.npy",
+          "y": "y.npy",
+          "z": "z.npy"
+        },
+        "created_at": "2026-07-19T20:12:41.185694+00:00",
+        "dataset": "Folktables PINCP CA-to-IL",
+        "dimension": 9,
+        "environment": "target-state Public Use Microdata Area (PUMA)",
+        "external_environment_count": 88,
+        "feature_columns": [
+          "AGEP",
+          "COW",
+          "SCHL",
+          "MAR",
+          "OCCP",
+          "POBP",
+          "RELP",
+          "WKHP",
+          "RAC1P"
+        ],
+        "horizon": "1-Year",
+        "n_examples": 262681,
+        "official_target_column": "PINCP",
+        "raw_assets": {
+          "2018/1-Year/psam_p06.csv": {
+            "bytes": 267297811,
+            "sha256": "dc2187fc90df2c5f6b546ee89a2b41c9a97379c9e7136461b6a6c8de871b43e0"
+          },
+          "2018/1-Year/psam_p17.csv": {
+            "bytes": 88630961,
+            "sha256": "f9cdef125864fca5ab4daca6d8935eff33759db305937b43c17225405e29efc1"
+          }
+        },
+        "reference_fraction": 0.2,
+        "source": "US Census ACS PUMS via Folktables 0.0.12",
+        "source_concept": "binary sex; excluded from the released feature matrix",
+        "source_counts": {
+          "0": 137907,
+          "1": 124774
+        },
+        "split_codes": {
+          "eraser_train": 0,
+          "external_target": 2,
+          "reference": 1
+        },
+        "split_counts": {
+          "0": 156532,
+          "1": 39133,
+          "2": 67016
+        },
+        "split_seed": 20270821,
+        "state_source_counts": {
+          "CA": {
+            "0": 103311,
+            "1": 92354
+          },
+          "IL": {
+            "0": 34596,
+            "1": 32420
+          }
+        },
+        "state_target_counts": {
+          "CA": {
+            "0": 115330,
+            "1": 80335
+          },
+          "IL": {
+            "0": 40643,
+            "1": 26373
+          }
+        },
+        "states": {
+          "external": "IL",
+          "reference": "CA"
+        },
+        "survey_year": "2018",
+        "target_counts": {
+          "0": 155973,
+          "1": 106708
+        },
+        "task": "income"
+      },
+      "manifest_sha256": "0a301a4697a1d7bbdd9c6d85ea93cfc355b78c07efa75768c7ee038cd86114e2"
+    },
+    "income:CA->NY": {
+      "arrays": {
+        "environment.npy": {
+          "bytes": 1194872,
+          "dtype": "int32",
+          "sha256": "4f2a518ae687a1396822e23ccfe6ddcd5d1782aeb2cf721d1ba77793f7dbc5aa",
+          "shape": [
+            298686
+          ]
+        },
+        "g.npy": {
+          "bytes": 298814,
+          "dtype": "int8",
+          "sha256": "9a37e000153cb64ddded2b6c44c72d2f0d40abf134f5dea1e41c86c813573330",
+          "shape": [
+            298686
+          ]
+        },
+        "s.npy": {
+          "bytes": 298814,
+          "dtype": "int8",
+          "sha256": "d25ec604c882b33cb814672888462a2d7d85648acf59172b8591232766716718",
+          "shape": [
+            298686
+          ]
+        },
+        "split.npy": {
+          "bytes": 298814,
+          "dtype": "int8",
+          "sha256": "9a348e589aed9b770821a66f9fca05b49bb756abe013d3e679b46a241d3179d9",
+          "shape": [
+            298686
+          ]
+        },
+        "y.npy": {
+          "bytes": 298814,
+          "dtype": "int8",
+          "sha256": "f9193e24362c7fe4c216d5b2cf011f9b503cfd3114bf1d8a0303ec22a34a9560",
+          "shape": [
+            298686
+          ]
+        },
+        "z.npy": {
+          "bytes": 10752824,
+          "dtype": "float32",
+          "sha256": "0a8427512ba9aac723bb425bf90b0842da73225a078c4f1d716d78bbc6f5de1b",
+          "shape": [
+            298686,
+            9
+          ]
+        }
+      },
+      "manifest": {
+        "arrays": {
+          "environment": "environment.npy",
+          "g": "g.npy",
+          "s": "s.npy",
+          "split": "split.npy",
+          "y": "y.npy",
+          "z": "z.npy"
+        },
+        "created_at": "2026-07-19T20:12:53.448827+00:00",
+        "dataset": "Folktables PINCP CA-to-NY",
+        "dimension": 9,
+        "environment": "target-state Public Use Microdata Area (PUMA)",
+        "external_environment_count": 145,
+        "feature_columns": [
+          "AGEP",
+          "COW",
+          "SCHL",
+          "MAR",
+          "OCCP",
+          "POBP",
+          "RELP",
+          "WKHP",
+          "RAC1P"
+        ],
+        "horizon": "1-Year",
+        "n_examples": 298686,
+        "official_target_column": "PINCP",
+        "raw_assets": {
+          "2018/1-Year/psam_p06.csv": {
+            "bytes": 267297811,
+            "sha256": "dc2187fc90df2c5f6b546ee89a2b41c9a97379c9e7136461b6a6c8de871b43e0"
+          },
+          "2018/1-Year/psam_p36.csv": {
+            "bytes": 138176785,
+            "sha256": "f9bfd886b96182c4e7bde11386dd5e1c7ea2d6194ef8bb4ee6bfbb0023814a91"
+          }
+        },
+        "reference_fraction": 0.2,
+        "source": "US Census ACS PUMS via Folktables 0.0.12",
+        "source_concept": "binary sex; excluded from the released feature matrix",
+        "source_counts": {
+          "0": 155489,
+          "1": 143197
+        },
+        "split_codes": {
+          "eraser_train": 0,
+          "external_target": 2,
+          "reference": 1
+        },
+        "split_counts": {
+          "0": 156532,
+          "1": 39133,
+          "2": 103021
+        },
+        "split_seed": 20270921,
+        "state_source_counts": {
+          "CA": {
+            "0": 103311,
+            "1": 92354
+          },
+          "NY": {
+            "0": 52178,
+            "1": 50843
+          }
+        },
+        "state_target_counts": {
+          "CA": {
+            "0": 115330,
+            "1": 80335
+          },
+          "NY": {
+            "0": 60294,
+            "1": 42727
+          }
+        },
+        "states": {
+          "external": "NY",
+          "reference": "CA"
+        },
+        "survey_year": "2018",
+        "target_counts": {
+          "0": 175624,
+          "1": 123062
+        },
+        "task": "income"
+      },
+      "manifest_sha256": "dd3a33fba1bcfd683f421c00baeaae4b47ddec7f5d541f9373647b07233f10ea"
+    },
+    "income:CA->WA": {
+      "arrays": {
+        "environment.npy": {
+          "bytes": 942564,
+          "dtype": "int32",
+          "sha256": "dedf25fa7590c387d9d1eef391d70cddd4901b0b2440a742c4e757bc1b06e5c9",
+          "shape": [
+            235609
+          ]
+        },
+        "g.npy": {
+          "bytes": 235737,
+          "dtype": "int8",
+          "sha256": "52ff1429ca5e054f05f7e1e0123bd0e150a04236189dfa0f49714ef1d621aef6",
+          "shape": [
+            235609
+          ]
+        },
+        "s.npy": {
+          "bytes": 235737,
+          "dtype": "int8",
+          "sha256": "a014dfe04733efaf8fff82496cbe7235fc5ab5762adaab10c51a858dd129ae86",
+          "shape": [
+            235609
+          ]
+        },
+        "split.npy": {
+          "bytes": 235737,
+          "dtype": "int8",
+          "sha256": "cd5b64c185c454b0df73bd718147b14fb84b1fa5e69dbd662423f900c0c44e27",
+          "shape": [
+            235609
+          ]
+        },
+        "y.npy": {
+          "bytes": 235737,
+          "dtype": "int8",
+          "sha256": "8fe2f2c15cad55cdc353c2e6774ed6fa54753803d03e1fd95d94f6c7c278fb0d",
+          "shape": [
+            235609
+          ]
+        },
+        "z.npy": {
+          "bytes": 8482052,
+          "dtype": "float32",
+          "sha256": "a95e82f253d3a285d70fcaa6ab4549258bf57fe5f6e9d69a294fcb617d6300d7",
+          "shape": [
+            235609,
+            9
+          ]
+        }
+      },
+      "manifest": {
+        "arrays": {
+          "environment": "environment.npy",
+          "g": "g.npy",
+          "s": "s.npy",
+          "split": "split.npy",
+          "y": "y.npy",
+          "z": "z.npy"
+        },
+        "created_at": "2026-07-19T20:12:30.786738+00:00",
+        "dataset": "Folktables PINCP CA-to-WA",
+        "dimension": 9,
+        "environment": "target-state Public Use Microdata Area (PUMA)",
+        "external_environment_count": 56,
+        "feature_columns": [
+          "AGEP",
+          "COW",
+          "SCHL",
+          "MAR",
+          "OCCP",
+          "POBP",
+          "RELP",
+          "WKHP",
+          "RAC1P"
+        ],
+        "horizon": "1-Year",
+        "n_examples": 235609,
+        "official_target_column": "PINCP",
+        "raw_assets": {
+          "2018/1-Year/psam_p06.csv": {
+            "bytes": 267297811,
+            "sha256": "dc2187fc90df2c5f6b546ee89a2b41c9a97379c9e7136461b6a6c8de871b43e0"
+          },
+          "2018/1-Year/psam_p53.csv": {
+            "bytes": 53579209,
+            "sha256": "a6a28a87ba6ef2b2a87b7b8bb4f199c26a529fb816af0d197f4bb643256a4a47"
+          }
+        },
+        "reference_fraction": 0.2,
+        "source": "US Census ACS PUMS via Folktables 0.0.12",
+        "source_concept": "binary sex; excluded from the released feature matrix",
+        "source_counts": {
+          "0": 124524,
+          "1": 111085
+        },
+        "split_codes": {
+          "eraser_train": 0,
+          "external_target": 2,
+          "reference": 1
+        },
+        "split_counts": {
+          "0": 156532,
+          "1": 39133,
+          "2": 39944
+        },
+        "split_seed": 20270721,
+        "state_source_counts": {
+          "CA": {
+            "0": 103311,
+            "1": 92354
+          },
+          "WA": {
+            "0": 21213,
+            "1": 18731
+          }
+        },
+        "state_target_counts": {
+          "CA": {
+            "0": 115330,
+            "1": 80335
+          },
+          "WA": {
+            "0": 22834,
+            "1": 17110
+          }
+        },
+        "states": {
+          "external": "WA",
+          "reference": "CA"
+        },
+        "survey_year": "2018",
+        "target_counts": {
+          "0": 138164,
+          "1": 97445
+        },
+        "task": "income"
+      },
+      "manifest_sha256": "645f0117ed26bf354047187dd2cd30d686c5f4bdd9f642fdb19d3b9a1aeb6646"
+    },
+    "public_coverage:CA->FL": {
+      "arrays": {
+        "environment.npy": {
+          "bytes": 839532,
+          "dtype": "int32",
+          "sha256": "e0750741dad0479b1293985cd098f72a4622970041e8090f194784e8520d04e3",
+          "shape": [
+            209851
+          ]
+        },
+        "g.npy": {
+          "bytes": 209979,
+          "dtype": "int8",
+          "sha256": "b7a16367db9bf3f0d62f28fe25e5c28d9f148804c40cfa539ec6781430c27c6d",
+          "shape": [
+            209851
+          ]
+        },
+        "s.npy": {
+          "bytes": 209979,
+          "dtype": "int8",
+          "sha256": "75fd275c93e18f14ef9f161dba7fc26ab89ae573221abc66411663d4d1c8c408",
+          "shape": [
+            209851
+          ]
+        },
+        "split.npy": {
+          "bytes": 209979,
+          "dtype": "int8",
+          "sha256": "ee26576ec4610da52382ae93d73efe207517a99cdb14955e446f6e04b7cdf50f",
+          "shape": [
+            209851
+          ]
+        },
+        "y.npy": {
+          "bytes": 209979,
+          "dtype": "int8",
+          "sha256": "0974e5d6bc6829b5a6970c424eadb37017c99ae3005cbd3390da86aa6aa9f7b0",
+          "shape": [
+            209851
+          ]
+        },
+        "z.npy": {
+          "bytes": 15109400,
+          "dtype": "float32",
+          "sha256": "7e2919920c4e2c2e791419776bd7871eafa3f0b051affbafe49ad0dfbc109b7d",
+          "shape": [
+            209851,
+            18
+          ]
+        }
+      },
+      "manifest": {
+        "arrays": {
+          "environment": "environment.npy",
+          "g": "g.npy",
+          "s": "s.npy",
+          "split": "split.npy",
+          "y": "y.npy",
+          "z": "z.npy"
+        },
+        "created_at": "2026-07-19T20:13:15.102816+00:00",
+        "dataset": "Folktables PUBCOV CA-to-FL",
+        "dimension": 18,
+        "environment": "target-state Public Use Microdata Area (PUMA)",
+        "external_environment_count": 151,
+        "feature_columns": [
+          "AGEP",
+          "SCHL",
+          "MAR",
+          "DIS",
+          "ESP",
+          "CIT",
+          "MIG",
+          "MIL",
+          "ANC",
+          "NATIVITY",
+          "DEAR",
+          "DEYE",
+          "DREM",
+          "PINCP",
+          "ESR",
+          "ST",
+          "FER",
+          "RAC1P"
+        ],
+        "horizon": "1-Year",
+        "n_examples": 209851,
+        "official_target_column": "PUBCOV",
+        "raw_assets": {
+          "2018/1-Year/psam_p06.csv": {
+            "bytes": 267297811,
+            "sha256": "dc2187fc90df2c5f6b546ee89a2b41c9a97379c9e7136461b6a6c8de871b43e0"
+          },
+          "2018/1-Year/psam_p12.csv": {
+            "bytes": 142285432,
+            "sha256": "850e370344877e1bfa3e646390f645788db68c8c9bcf36b710bc84ebdc991c37"
+          }
+        },
+        "reference_fraction": 0.2,
+        "source": "US Census ACS PUMS via Folktables 0.0.12",
+        "source_concept": "binary sex; excluded from the released feature matrix",
+        "source_counts": {
+          "0": 92557,
+          "1": 117294
+        },
+        "split_codes": {
+          "eraser_train": 0,
+          "external_target": 2,
+          "reference": 1
+        },
+        "split_counts": {
+          "0": 110844,
+          "1": 27710,
+          "2": 71297
+        },
+        "split_seed": 20271023,
+        "state_source_counts": {
+          "CA": {
+            "0": 61108,
+            "1": 77446
+          },
+          "FL": {
+            "0": 31449,
+            "1": 39848
+          }
+        },
+        "state_target_counts": {
+          "CA": {
+            "0": 87435,
+            "1": 51119
+          },
+          "FL": {
+            "0": 55799,
+            "1": 15498
+          }
+        },
+        "states": {
+          "external": "FL",
+          "reference": "CA"
+        },
+        "survey_year": "2018",
+        "target_counts": {
+          "0": 143234,
+          "1": 66617
+        },
+        "task": "public_coverage"
+      },
+      "manifest_sha256": "7f251887c04a854955ba8bf2bb48e31bf1955ad995e5336227e4edc968a877a0"
+    },
+    "public_coverage:CA->IL": {
+      "arrays": {
+        "environment.npy": {
+          "bytes": 725652,
+          "dtype": "int32",
+          "sha256": "20bcb8cad19dc0d18f6f195a11afaa497b8384feb231cdf4b42837a9cc50c8b7",
+          "shape": [
+            181381
+          ]
+        },
+        "g.npy": {
+          "bytes": 181509,
+          "dtype": "int8",
+          "sha256": "21538a6141720975acd4150e631c4eb2b83a7b6fb2e79074917d214cc9bd74a9",
+          "shape": [
+            181381
+          ]
+        },
+        "s.npy": {
+          "bytes": 181509,
+          "dtype": "int8",
+          "sha256": "95bf43b7d921c8ce66b36ecdf9bf803c52922f944e73825b7746908587327a9e",
+          "shape": [
+            181381
+          ]
+        },
+        "split.npy": {
+          "bytes": 181509,
+          "dtype": "int8",
+          "sha256": "e0a0b41f9abc6262279df829ff76e7af200e3325ba46b7b15aa8a1326c22d04d",
+          "shape": [
+            181381
+          ]
+        },
+        "y.npy": {
+          "bytes": 181509,
+          "dtype": "int8",
+          "sha256": "1caf8e706f846aee8f9765cad3a62fc958ffa057ca71ffdcc22ebf9fce331f8a",
+          "shape": [
+            181381
+          ]
+        },
+        "z.npy": {
+          "bytes": 13059560,
+          "dtype": "float32",
+          "sha256": "1ed971ef3bfd16bb4354e3f84ea6641705df6d5cd206211c73609495766284c1",
+          "shape": [
+            181381,
+            18
+          ]
+        }
+      },
+      "manifest": {
+        "arrays": {
+          "environment": "environment.npy",
+          "g": "g.npy",
+          "s": "s.npy",
+          "split": "split.npy",
+          "y": "y.npy",
+          "z": "z.npy"
+        },
+        "created_at": "2026-07-19T20:12:42.765416+00:00",
+        "dataset": "Folktables PUBCOV CA-to-IL",
+        "dimension": 18,
+        "environment": "target-state Public Use Microdata Area (PUMA)",
+        "external_environment_count": 88,
+        "feature_columns": [
+          "AGEP",
+          "SCHL",
+          "MAR",
+          "DIS",
+          "ESP",
+          "CIT",
+          "MIG",
+          "MIL",
+          "ANC",
+          "NATIVITY",
+          "DEAR",
+          "DEYE",
+          "DREM",
+          "PINCP",
+          "ESR",
+          "ST",
+          "FER",
+          "RAC1P"
+        ],
+        "horizon": "1-Year",
+        "n_examples": 181381,
+        "official_target_column": "PUBCOV",
+        "raw_assets": {
+          "2018/1-Year/psam_p06.csv": {
+            "bytes": 267297811,
+            "sha256": "dc2187fc90df2c5f6b546ee89a2b41c9a97379c9e7136461b6a6c8de871b43e0"
+          },
+          "2018/1-Year/psam_p17.csv": {
+            "bytes": 88630961,
+            "sha256": "f9cdef125864fca5ab4daca6d8935eff33759db305937b43c17225405e29efc1"
+          }
+        },
+        "reference_fraction": 0.2,
+        "source": "US Census ACS PUMS via Folktables 0.0.12",
+        "source_concept": "binary sex; excluded from the released feature matrix",
+        "source_counts": {
+          "0": 79024,
+          "1": 102357
+        },
+        "split_codes": {
+          "eraser_train": 0,
+          "external_target": 2,
+          "reference": 1
+        },
+        "split_counts": {
+          "0": 110844,
+          "1": 27710,
+          "2": 42827
+        },
+        "split_seed": 20270823,
+        "state_source_counts": {
+          "CA": {
+            "0": 61108,
+            "1": 77446
+          },
+          "IL": {
+            "0": 17916,
+            "1": 24911
+          }
+        },
+        "state_target_counts": {
+          "CA": {
+            "0": 87435,
+            "1": 51119
+          },
+          "IL": {
+            "0": 30145,
+            "1": 12682
+          }
+        },
+        "states": {
+          "external": "IL",
+          "reference": "CA"
+        },
+        "survey_year": "2018",
+        "target_counts": {
+          "0": 117580,
+          "1": 63801
+        },
+        "task": "public_coverage"
+      },
+      "manifest_sha256": "d7958c4acc3f1890d410893e40fc1d250f7182db8ca6836f01e6e0efeefa76d2"
+    },
+    "public_coverage:CA->NY": {
+      "arrays": {
+        "environment.npy": {
+          "bytes": 824548,
+          "dtype": "int32",
+          "sha256": "e3435efc14d964ba37be2392395785809d37cedad578af77400cce9353318f6c",
+          "shape": [
+            206105
+          ]
+        },
+        "g.npy": {
+          "bytes": 206233,
+          "dtype": "int8",
+          "sha256": "adea35a8cd1fe15fbfd012a078442df519b8dddc98bb6f1fce8e236b511f3d05",
+          "shape": [
+            206105
+          ]
+        },
+        "s.npy": {
+          "bytes": 206233,
+          "dtype": "int8",
+          "sha256": "36de35c096789fdbd4dd519ddd164e7dd2b8689c7661d7fc462aea726b4f84e6",
+          "shape": [
+            206105
+          ]
+        },
+        "split.npy": {
+          "bytes": 206233,
+          "dtype": "int8",
+          "sha256": "62c019377d8214bbb7732a1c7dde266523545fb14c2f715d2bbb635cb97bf6cd",
+          "shape": [
+            206105
+          ]
+        },
+        "y.npy": {
+          "bytes": 206233,
+          "dtype": "int8",
+          "sha256": "f4c7fd10ed3aef577fe94c72eee8b75c3b0d0b944b0a6ddfbd8947401fe3491d",
+          "shape": [
+            206105
+          ]
+        },
+        "z.npy": {
+          "bytes": 14839688,
+          "dtype": "float32",
+          "sha256": "d291d04138626e0edf25ca94aab4a8fdd46cf0f065f0f73548a7e6326b6deb0b",
+          "shape": [
+            206105,
+            18
+          ]
+        }
+      },
+      "manifest": {
+        "arrays": {
+          "environment": "environment.npy",
+          "g": "g.npy",
+          "s": "s.npy",
+          "split": "split.npy",
+          "y": "y.npy",
+          "z": "z.npy"
+        },
+        "created_at": "2026-07-19T20:12:58.601534+00:00",
+        "dataset": "Folktables PUBCOV CA-to-NY",
+        "dimension": 18,
+        "environment": "target-state Public Use Microdata Area (PUMA)",
+        "external_environment_count": 145,
+        "feature_columns": [
+          "AGEP",
+          "SCHL",
+          "MAR",
+          "DIS",
+          "ESP",
+          "CIT",
+          "MIG",
+          "MIL",
+          "ANC",
+          "NATIVITY",
+          "DEAR",
+          "DEYE",
+          "DREM",
+          "PINCP",
+          "ESR",
+          "ST",
+          "FER",
+          "RAC1P"
+        ],
+        "horizon": "1-Year",
+        "n_examples": 206105,
+        "official_target_column": "PUBCOV",
+        "raw_assets": {
+          "2018/1-Year/psam_p06.csv": {
+            "bytes": 267297811,
+            "sha256": "dc2187fc90df2c5f6b546ee89a2b41c9a97379c9e7136461b6a6c8de871b43e0"
+          },
+          "2018/1-Year/psam_p36.csv": {
+            "bytes": 138176785,
+            "sha256": "f9bfd886b96182c4e7bde11386dd5e1c7ea2d6194ef8bb4ee6bfbb0023814a91"
+          }
+        },
+        "reference_fraction": 0.2,
+        "source": "US Census ACS PUMS via Folktables 0.0.12",
+        "source_concept": "binary sex; excluded from the released feature matrix",
+        "source_counts": {
+          "0": 90757,
+          "1": 115348
+        },
+        "split_codes": {
+          "eraser_train": 0,
+          "external_target": 2,
+          "reference": 1
+        },
+        "split_counts": {
+          "0": 110844,
+          "1": 27710,
+          "2": 67551
+        },
+        "split_seed": 20270923,
+        "state_source_counts": {
+          "CA": {
+            "0": 61108,
+            "1": 77446
+          },
+          "NY": {
+            "0": 29649,
+            "1": 37902
+          }
+        },
+        "state_target_counts": {
+          "CA": {
+            "0": 87435,
+            "1": 51119
+          },
+          "NY": {
+            "0": 40446,
+            "1": 27105
+          }
+        },
+        "states": {
+          "external": "NY",
+          "reference": "CA"
+        },
+        "survey_year": "2018",
+        "target_counts": {
+          "0": 127881,
+          "1": 78224
+        },
+        "task": "public_coverage"
+      },
+      "manifest_sha256": "901e0c2b914d384b76720a9c4f94c1bfa9d9981005ba13a0ccaee97cada384ac"
+    },
+    "public_coverage:CA->WA": {
+      "arrays": {
+        "environment.npy": {
+          "bytes": 651592,
+          "dtype": "int32",
+          "sha256": "6ff1484d4a0e0a82de01342cf97504a29b934c09fbc585bafb888c5d0242a796",
+          "shape": [
+            162866
+          ]
+        },
+        "g.npy": {
+          "bytes": 162994,
+          "dtype": "int8",
+          "sha256": "618e47f499f13046f4ada851a334cb010ccdbdae2d3f0b936df41d0d55267f04",
+          "shape": [
+            162866
+          ]
+        },
+        "s.npy": {
+          "bytes": 162994,
+          "dtype": "int8",
+          "sha256": "2d0bb49ba1dae2b54779808bd33227d896eecb303b4cbf49059eb5fb688a1fda",
+          "shape": [
+            162866
+          ]
+        },
+        "split.npy": {
+          "bytes": 162994,
+          "dtype": "int8",
+          "sha256": "4d0b7ee6c8c170375beedc5b82611a5f77bfc670e98e854d6339daedca903930",
+          "shape": [
+            162866
+          ]
+        },
+        "y.npy": {
+          "bytes": 162994,
+          "dtype": "int8",
+          "sha256": "5414d6db7fd5125e6f150bffe8f66cd2f4a8c098260e0fa97c0ce9485d72c68c",
+          "shape": [
+            162866
+          ]
+        },
+        "z.npy": {
+          "bytes": 11726480,
+          "dtype": "float32",
+          "sha256": "ebcb3891a23d977f45722809b0fb1038b8e0de379c40eb1397284ea18488ce42",
+          "shape": [
+            162866,
+            18
+          ]
+        }
+      },
+      "manifest": {
+        "arrays": {
+          "environment": "environment.npy",
+          "g": "g.npy",
+          "s": "s.npy",
+          "split": "split.npy",
+          "y": "y.npy",
+          "z": "z.npy"
+        },
+        "created_at": "2026-07-19T20:12:34.759960+00:00",
+        "dataset": "Folktables PUBCOV CA-to-WA",
+        "dimension": 18,
+        "environment": "target-state Public Use Microdata Area (PUMA)",
+        "external_environment_count": 56,
+        "feature_columns": [
+          "AGEP",
+          "SCHL",
+          "MAR",
+          "DIS",
+          "ESP",
+          "CIT",
+          "MIG",
+          "MIL",
+          "ANC",
+          "NATIVITY",
+          "DEAR",
+          "DEYE",
+          "DREM",
+          "PINCP",
+          "ESR",
+          "ST",
+          "FER",
+          "RAC1P"
+        ],
+        "horizon": "1-Year",
+        "n_examples": 162866,
+        "official_target_column": "PUBCOV",
+        "raw_assets": {
+          "2018/1-Year/psam_p06.csv": {
+            "bytes": 267297811,
+            "sha256": "dc2187fc90df2c5f6b546ee89a2b41c9a97379c9e7136461b6a6c8de871b43e0"
+          },
+          "2018/1-Year/psam_p53.csv": {
+            "bytes": 53579209,
+            "sha256": "a6a28a87ba6ef2b2a87b7b8bb4f199c26a529fb816af0d197f4bb643256a4a47"
+          }
+        },
+        "reference_fraction": 0.2,
+        "source": "US Census ACS PUMS via Folktables 0.0.12",
+        "source_concept": "binary sex; excluded from the released feature matrix",
+        "source_counts": {
+          "0": 71180,
+          "1": 91686
+        },
+        "split_codes": {
+          "eraser_train": 0,
+          "external_target": 2,
+          "reference": 1
+        },
+        "split_counts": {
+          "0": 110844,
+          "1": 27710,
+          "2": 24312
+        },
+        "split_seed": 20270723,
+        "state_source_counts": {
+          "CA": {
+            "0": 61108,
+            "1": 77446
+          },
+          "WA": {
+            "0": 10072,
+            "1": 14240
+          }
+        },
+        "state_target_counts": {
+          "CA": {
+            "0": 87435,
+            "1": 51119
+          },
+          "WA": {
+            "0": 16346,
+            "1": 7966
+          }
+        },
+        "states": {
+          "external": "WA",
+          "reference": "CA"
+        },
+        "survey_year": "2018",
+        "target_counts": {
+          "0": 103781,
+          "1": 59085
+        },
+        "task": "public_coverage"
+      },
+      "manifest_sha256": "c6c0e391f688f57f846494958ac3b95e528e173c27b083f9eb6f33dc0569c680"
+    }
+  }
+}
