@@ -1,0 +1,189 @@
+{
+  "claim_boundary": "This confirmation tests the already locked corrected strict-v2 pipeline on new seed-specific bridge and diagnostic partitions. It is a fresh confirmation of the implementation, not evidence of 25 independent deployment domains: jobs on a shared dataset remain statistically clustered. Results do not imply clinical safety, protect unregistered side channels, or cover later target-population drift.",
+  "code_sha256": {
+    "research/mosaic/BRIDGE_MEMBERSHIP_THEOREM.md": "4e13d3af00930f24a6ed58d27c9111ce2885ee1561537f1d905b02ce160ef04e",
+    "research/mosaic/REPEATED_QUERY_THEOREM.md": "9fc1a35321e988e8c0c640b1d6233061caba8a0f01febe2fb646e87fa81e2421",
+    "research/mosaic/audit_mosaic_bridge_rational.py": "9b49743428250ca0afd58b13c245588560dcc6d1b467c7e8e0a8b92246dfa292",
+    "research/mosaic/audit_mosaic_bridge_strict.py": "4d705e849dafd1aac81ec0ffa1e4c8a2e474569c90050b1889b8c065d15326d3",
+    "research/mosaic/audit_mosaic_bridge_strict_v2.py": "14bf1c67f70a5b71bb8cb23126e899884a2e6f15229f0af0ecf2dfe753b3dab4",
+    "research/mosaic/lock_mosaic_bridge_corrected_confirmation.py": "99182d90e7919b55e9b8b5ee3dda563d11ab41c5fe8e7853bc4d6bb357af379f",
+    "research/mosaic/mosaic_bridge.py": "a4db7cf4752ec463fc01bd8ad436c06846c74d3feefe0aeb62d5dd87e4df32a4",
+    "research/mosaic/mosaic_channel.py": "a69c82b9182be32d28d30e83795ac77c9512fa09f95f8bad7e1ed5732e60ecc4",
+    "research/mosaic/mosaic_envelope.py": "2987bde2e3bed364aad28ad31fb9d31f4168835a1070b8065d6336efc0b6ee05",
+    "research/mosaic/mosaic_rational_certificate.py": "c35625eb3b530b94d125c204a124f88709365ac0e5babc1f2426d78e947d2986",
+    "research/mosaic/mosaic_real.py": "b8e1d70b8c72f79db6d4cf6587a9e34fde0a050387058b4d00c754f8b60a94f7",
+    "research/mosaic/mosaic_strict_certification.py": "0e51f5461fc3e109a65ac071d610b28f43b577303adacda9dfba87e85480611d",
+    "research/mosaic/mosaic_strict_certification_v2.py": "2cd9ebf580817d89f94b067899cbfc540e69cebe064ed597036c9de8dd84f5c8",
+    "research/mosaic/mosaic_transform_exact.py": "65266cd19f62b4974a35a0f50b29ca5e98c34e0a1be3edea21234f38dd82e50c",
+    "research/mosaic/mosaic_transform_exact_optimizer.py": "6f7085858f272d8585b5eb90027c5e1aace6d1728bd1e82a1c27a9433ce125d0",
+    "research/mosaic/replay_mosaic_bridge_strict.py": "291d285155fc6f3573606c103061bb06ffbeaf490882c2b7bd9f6c1015b18d07",
+    "research/mosaic/replay_mosaic_bridge_strict_v2.py": "48750c4afaa48aec3b758c6248689b79042159401013ce42c8c7da993caee64f",
+    "research/mosaic/run_mosaic_bridge_frontier.py": "4478d1d525648f783f1ed4172c611a3fd336c546098387f005904c2f0efe02ab",
+    "research/mosaic/run_mosaic_official_frontier_exact_confirmation.py": "66d7aa3eeedd6460fc894c281b4c660e3da0c781984012eeb379e543b506f166",
+    "research/mosaic/run_mosaic_real_pilot.py": "f15afbe3174884153f84f157b7330c40da7d4681ade376db4a71cd997fc7db8d",
+    "research/mosaic/summarize_mosaic_bridge_grouped.py": "28a4800c84d432f049b7b1c6d69092cee9b39944981fd4044eff60a9b57e1235",
+    "research/mosaic/verify_mosaic_bridge.py": "74cdb6f3b183906194fb4dd52a7eb952318d930ea9d96f4921808c4872cbaba5",
+    "research/scripts/official_eraser_adapters.py": "c7af8e609f75a5f67af33965c1680a268917822f8ab5c9775322e8846beb5aa8",
+    "research/scripts/run_official_eraser_frontier.py": "2a408a5e78f88c687a40e600b12924c5d70299204ad6fdf3ead51911348b0f7f",
+    "research/tests/test_mosaic_grouped_summary.py": "85d4a57fd2addec6da5a6f2e93b14379187fae2b3a0ae186ffb55f09c61da856"
+  },
+  "confirmation_seeds": [
+    1220,
+    1221,
+    1222,
+    1223,
+    1224
+  ],
+  "data_protocol": {
+    "external_split": "Within each represented source-label stratum, a seeded two-thirds bridge and one-third untouched diagnostic partition.",
+    "maximum_balanced_external": 12000,
+    "maximum_balanced_reference": 8000,
+    "maximum_eraser_train": 8000,
+    "maximum_tokenizer_construction": 2000,
+    "tokenizer": "Balanced logistic task score fit only on construction features and discretized at construction-score quartiles."
+  },
+  "datasets": {
+    "BiasBios-Clinical": {
+      "manifest_sha256": "a2f0d7cd2d67eb2cb01a05fccbd32c24519cd916ac9ceb508ca680ce1f3aa1e4",
+      "modality": "text",
+      "path": "/Volumes/Backups/FARO/artifacts/bios_rlace_numpy_store",
+      "target_mode": "bios_clinical_binary"
+    },
+    "Camelyon17-WILDS": {
+      "manifest_sha256": "6d18335f5a66a174304bbafbd7ca6efca9250fb4c450d7d35ce9791a27883fb3",
+      "modality": "medical vision",
+      "path": "/Volumes/Backups/FARO/artifacts/camelyon17_resnet18_torch_center_numpy_store",
+      "target_mode": "native_binary"
+    },
+    "CivilComments-WILDS": {
+      "manifest_sha256": "bfe7394a8189cfeaa12efbaf038306b0463c70d9e05508eed6f154823b0e5c10",
+      "modality": "text",
+      "path": "/Volumes/Backups/FARO/artifacts/civilcomments_lexical_numpy_store",
+      "target_mode": "native_binary"
+    },
+    "GaitPDB": {
+      "manifest_sha256": "8ff97ea9c25d32e58dc5551dbadfd63f12e3582b0623808713ad3a3a81c7d8bc",
+      "modality": "time series",
+      "path": "/Volumes/Backups/FARO/artifacts/gaitpdb_numpy_store",
+      "target_mode": "native_binary"
+    },
+    "Waterbirds": {
+      "manifest_sha256": "fd4c17004512e9b38afc086eab8544dd9a15d187323747f666f3ae38d5d8c41f",
+      "modality": "vision",
+      "path": "/Volumes/Backups/FARO/artifacts/waterbirds_official_numpy_store",
+      "target_mode": "native_binary"
+    }
+  },
+  "decision_gates": {
+    "maximum_bridge_membership_violation": 0.0,
+    "maximum_optimization_errors": 0,
+    "maximum_primary_false_acceptances": 0,
+    "require_camelyon_missing_support_abstention": true,
+    "require_l4_pointwise_no_worse": true,
+    "required_candidate_rows": 325,
+    "required_files": 25,
+    "required_global_optimization_replays": 350
+  },
+  "frontier": {
+    "candidate_count": 13,
+    "l4_followup": "Reoptimize L=4 only for the minimum-error L=2 candidate, without using diagnostic outcomes.",
+    "official_methods": [
+      "INLP",
+      "LEACE",
+      "R-LACE",
+      "TaCo",
+      "MANCE++"
+    ],
+    "primary_selection": "For each dataset and seed, select the L=2 strict-v2 candidate with minimum certified worst source-label error among candidates satisfying source advantage <=0.35 and utility error <=0.40; break exact ties lexically and otherwise abstain.",
+    "proxy_rows_permitted": false
+  },
+  "locked_at": "2026-07-19T07:09:02.698867+00:00",
+  "numerical_policy": {
+    "decision_tolerance": 0.0,
+    "execution": "Materialize raw frontier receipts, then deterministically apply the already locked strict-v2 structural-zero correction before any selection is reported.",
+    "rational_audit_lock_path": "research/mosaic/prereg_mosaic_bridge_rational_audit_v2.json",
+    "rational_audit_lock_sha256": "a922c62344d92bcbf6baaff7cfa9c73d9189e2e93c4eb7c5795845f87cefb0ea",
+    "strict_amendment_path": "research/mosaic/prereg_mosaic_bridge_strict_amendment_v2.json",
+    "strict_amendment_sha256": "b009bcbecfecc9eea699b5104305a99c734803978663eb88ef229b51d14e2e80",
+    "strict_repair_version": "v2_structural_zero_columns"
+  },
+  "official_repositories": {
+    "INLP": {
+      "clean": true,
+      "commit": "e1edcc19d808108ab71cbb3afb0389db0206a7eb",
+      "path": "/Volumes/Backups/FARO/external/nullspace_projection",
+      "remote": "https://github.com/shauli-ravfogel/nullspace_projection.git"
+    },
+    "LEACE": {
+      "clean": true,
+      "commit": "9f51753821316a1edacf78b52b464ab26d40e60a",
+      "path": "/Volumes/Backups/FARO/external/concept-erasure",
+      "remote": "https://github.com/EleutherAI/concept-erasure"
+    },
+    "MANCE++": {
+      "clean": true,
+      "commit": "d1a260f945914fa1d1c75a71163af3cd586eb241",
+      "path": "/Volumes/Backups/FARO/external/mance",
+      "remote": "https://github.com/MatanAvitan/mance.git"
+    },
+    "R-LACE": {
+      "clean": true,
+      "commit": "2d9b6d03f65416172b4a2ca7f6da10e374002e5f",
+      "path": "/Volumes/Backups/FARO/external/rlace-icml",
+      "remote": "https://github.com/shauli-ravfogel/rlace-icml"
+    },
+    "TaCo": {
+      "clean": true,
+      "commit": "35995e44b95dc1722b03d18b9b16c5b9f8322db5",
+      "path": "/Volumes/Backups/FARO/external/TaCo",
+      "remote": "https://github.com/fanny-jourdan/TaCo"
+    }
+  },
+  "pass_conditions": {
+    "complete_execution": "All 25 dataset-seed jobs contain 13 official candidate rows and complete strict-v2 replay and rational audits.",
+    "complete_reporting": "Report all dataset-level deployments, diagnostics, abstentions, missing-support cases, retained masses, and dataset-clustered sensitivity summaries regardless of outcome.",
+    "corrected_replay": "Every strict-v2 receipt exactly equals an independently regenerated receipt under zero decision tolerance.",
+    "outward_certificate": "Every serialized bridge slack is nonnegative and every reported source and utility bound is verified by exact-rational recomputation."
+  },
+  "phase": "fresh corrected strict-v2 bridge confirmation",
+  "pilot_exclusion": {
+    "excluded_real_seed_ranges": [
+      "0-1219"
+    ],
+    "use": "No earlier real-data seed, including raw, strict-v1, strict-v2, or transform-exact runs, enters the confirmation estimates."
+  },
+  "project": "MOSAIC: Minimax-Optimized Source-Agnostic Invariant Channels",
+  "protocol": {
+    "bridge_fraction": 0.6666666666666666,
+    "familywise_delta": 0.05,
+    "fine_token_count": 4,
+    "frontier_candidate_count": 13,
+    "l4_policy": "reoptimize the minimum-error L2 candidate on the same covered table",
+    "per_candidate_table_delta": 0.0019230769230769232,
+    "primary_released_token_count": 2,
+    "primary_utility_threshold": 0.4,
+    "privacy_advantage_threshold": 0.35,
+    "secondary_released_token_count": 4,
+    "utility_thresholds": [
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.49
+    ]
+  },
+  "repository_head_at_lock": "bc12d2af3d8cdf2ee9dd18b25a20434675245059",
+  "runtime_environment": {
+    "numpy": "2.5.1",
+    "platform": "macOS-26.2-arm64-arm-64bit",
+    "python": "3.12.13",
+    "scikit_learn": "1.9.0",
+    "scipy": "1.18.0"
+  },
+  "status": "locked_before_confirmatory_outcomes",
+  "stopping_rule": "Run every registered dataset and seed. No outcome-based replacement, threshold change, candidate change, early stopping, or selective omission.",
+  "supersedes_preflight_only": {
+    "path": "research/mosaic/prereg_mosaic_bridge_corrected_confirmation_v1.json",
+    "reason": "The v1 status label was incompatible with the frozen frontier runner. The runner rejected it before loading data or writing an outcome."
+  }
+}
