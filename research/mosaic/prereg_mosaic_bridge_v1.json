@@ -1,0 +1,196 @@
+{
+  "claim_boundary": "This confirmation tests whether a labeled bridge sample from the natural external population can certify membership in MOSAIC's structured shift class and support a release on an untouched diagnostic split. The theorem applies when bridge and deployment observations are exchangeable draws from the same source-label conditional laws. Results do not imply clinical safety, protect unregistered side channels, or justify future drift after the bridge population changes.",
+  "code_sha256": {
+    "research/mosaic/BRIDGE_MEMBERSHIP_THEOREM.md": "4e13d3af00930f24a6ed58d27c9111ce2885ee1561537f1d905b02ce160ef04e",
+    "research/mosaic/REPEATED_QUERY_THEOREM.md": "9fc1a35321e988e8c0c640b1d6233061caba8a0f01febe2fb646e87fa81e2421",
+    "research/mosaic/audit_mosaic_bridge_frontier.py": "0d6ced3644101f90a07cede0f4dfaa86afba4bbeb1f46b2f3ed095819553df3b",
+    "research/mosaic/build_mosaic_bridge_manifest.py": "fe51283f33b9ae2f8f547e94eb1b0e49dbd1615cf25f8da8bb7a64761ebfbe68",
+    "research/mosaic/lock_mosaic_bridge_prereg.py": "1cd498cfa94a55843938ed66e39b61c0ed9b3a3966342938716e341ab10def65",
+    "research/mosaic/mosaic_bridge.py": "a4db7cf4752ec463fc01bd8ad436c06846c74d3feefe0aeb62d5dd87e4df32a4",
+    "research/mosaic/mosaic_channel.py": "a69c82b9182be32d28d30e83795ac77c9512fa09f95f8bad7e1ed5732e60ecc4",
+    "research/mosaic/mosaic_envelope.py": "e45d2e0168321a5fa953fba0c980fbdd0418386463ed55127069943134f87540",
+    "research/mosaic/mosaic_real.py": "b8e1d70b8c72f79db6d4cf6587a9e34fde0a050387058b4d00c754f8b60a94f7",
+    "research/mosaic/mosaic_release.py": "b06f1b876b92c3aa09b9586f49341c267257eecf166bea7a8113207ca6ef4f76",
+    "research/mosaic/mosaic_transform_exact.py": "65266cd19f62b4974a35a0f50b29ca5e98c34e0a1be3edea21234f38dd82e50c",
+    "research/mosaic/mosaic_transform_exact_optimizer.py": "6f7085858f272d8585b5eb90027c5e1aace6d1728bd1e82a1c27a9433ce125d0",
+    "research/mosaic/run_mosaic_bridge_frontier.py": "4478d1d525648f783f1ed4172c611a3fd336c546098387f005904c2f0efe02ab",
+    "research/mosaic/run_mosaic_official_frontier_exact_confirmation.py": "66d7aa3eeedd6460fc894c281b4c660e3da0c781984012eeb379e543b506f166",
+    "research/mosaic/run_mosaic_real_pilot.py": "f15afbe3174884153f84f157b7330c40da7d4681ade376db4a71cd997fc7db8d",
+    "research/mosaic/verify_mosaic_bridge.py": "74cdb6f3b183906194fb4dd52a7eb952318d930ea9d96f4921808c4872cbaba5",
+    "research/scripts/official_eraser_adapters.py": "c7af8e609f75a5f67af33965c1680a268917822f8ab5c9775322e8846beb5aa8",
+    "research/scripts/run_official_eraser_frontier.py": "2a408a5e78f88c687a40e600b12924c5d70299204ad6fdf3ead51911348b0f7f",
+    "research/tests/test_mosaic_bridge.py": "8c14eb5215abe73d9328cbeeb24c35efde429d83aaee285b6b1b4d28406f8d9a",
+    "research/tests/test_mosaic_bridge_frontier.py": "94077dfa0de770b89f8bde2e6d388487d860b2fd1d0a18bf435fa1fa1a7e6460",
+    "research/tests/test_mosaic_bridge_manifest.py": "550adf50ba4ca4ee067e2e4f56180b90c744bdd012dd3286a24231e8d58dc91a",
+    "research/tests/test_mosaic_release.py": "ea0ce34ee101bb9f2dfb0da4643ffce90c53d3e975899298ce228f04d2a08bd9"
+  },
+  "confirmation_seeds": [
+    1200,
+    1201,
+    1202,
+    1203,
+    1204,
+    1205,
+    1206,
+    1207,
+    1208,
+    1209,
+    1210,
+    1211,
+    1212,
+    1213,
+    1214,
+    1215,
+    1216,
+    1217,
+    1218,
+    1219
+  ],
+  "data_protocol": {
+    "bridge": "Joint reference and bridge multinomial L1 confidence regions; exact LP maximizes a source-blind common-transform retained mass per label.",
+    "external_split": "Within each represented source-label stratum, deterministic seeded two-thirds bridge and one-third untouched diagnostic split.",
+    "maximum_balanced_external": 12000,
+    "maximum_balanced_reference": 8000,
+    "maximum_eraser_train": 8000,
+    "maximum_tokenizer_construction": 2000,
+    "tokenizer": "Balanced logistic task score fit only on construction features and discretized at construction-score quartiles."
+  },
+  "datasets": {
+    "BiasBios-Clinical": {
+      "manifest_sha256": "a2f0d7cd2d67eb2cb01a05fccbd32c24519cd916ac9ceb508ca680ce1f3aa1e4",
+      "modality": "text",
+      "path": "/Volumes/Backups/FARO/artifacts/bios_rlace_numpy_store",
+      "target_mode": "bios_clinical_binary"
+    },
+    "Camelyon17-WILDS": {
+      "manifest_sha256": "6d18335f5a66a174304bbafbd7ca6efca9250fb4c450d7d35ce9791a27883fb3",
+      "modality": "medical vision",
+      "path": "/Volumes/Backups/FARO/artifacts/camelyon17_resnet18_torch_center_numpy_store",
+      "target_mode": "native_binary"
+    },
+    "CivilComments-WILDS": {
+      "manifest_sha256": "bfe7394a8189cfeaa12efbaf038306b0463c70d9e05508eed6f154823b0e5c10",
+      "modality": "text",
+      "path": "/Volumes/Backups/FARO/artifacts/civilcomments_lexical_numpy_store",
+      "target_mode": "native_binary"
+    },
+    "GaitPDB": {
+      "manifest_sha256": "8ff97ea9c25d32e58dc5551dbadfd63f12e3582b0623808713ad3a3a81c7d8bc",
+      "modality": "time series",
+      "path": "/Volumes/Backups/FARO/artifacts/gaitpdb_numpy_store",
+      "target_mode": "native_binary"
+    },
+    "Waterbirds": {
+      "manifest_sha256": "fd4c17004512e9b38afc086eab8544dd9a15d187323747f666f3ae38d5d8c41f",
+      "modality": "vision",
+      "path": "/Volumes/Backups/FARO/artifacts/waterbirds_official_numpy_store",
+      "target_mode": "native_binary"
+    }
+  },
+  "decision_gates": {
+    "maximum_bridge_membership_violation": 3e-07,
+    "maximum_optimization_errors": 0,
+    "maximum_primary_false_acceptances": 0,
+    "minimum_biasbios_primary_deployments": 16,
+    "minimum_biasbios_tau035_deployments": 14,
+    "minimum_estimable_primary_deployments": 16,
+    "require_camelyon_missing_support_abstention": true,
+    "require_l4_pointwise_no_worse": true,
+    "required_candidate_rows": 1300,
+    "required_files": 100,
+    "required_global_optimization_replays": 1400
+  },
+  "frontier": {
+    "candidate_count": 13,
+    "l4_followup": "Reoptimize L=4 only for the minimum-error L=2 candidate, without using diagnostic outcomes.",
+    "official_methods": [
+      "INLP",
+      "LEACE",
+      "R-LACE",
+      "TaCo",
+      "MANCE++"
+    ],
+    "primary_selection": "For each dataset and seed, choose the L=2 candidate with minimum bridge-certified worst source-label error among candidates satisfying source advantage <=0.35 and utility error <=0.40; break exact ties lexically and otherwise abstain.",
+    "proxy_rows_permitted": false
+  },
+  "locked_at": "2026-07-19T02:18:18.455562+00:00",
+  "official_repositories": {
+    "INLP": {
+      "clean": true,
+      "commit": "e1edcc19d808108ab71cbb3afb0389db0206a7eb",
+      "path": "/Volumes/Backups/FARO/external/nullspace_projection",
+      "remote": "https://github.com/shauli-ravfogel/nullspace_projection.git"
+    },
+    "LEACE": {
+      "clean": true,
+      "commit": "9f51753821316a1edacf78b52b464ab26d40e60a",
+      "path": "/Volumes/Backups/FARO/external/concept-erasure",
+      "remote": "https://github.com/EleutherAI/concept-erasure"
+    },
+    "MANCE++": {
+      "clean": true,
+      "commit": "d1a260f945914fa1d1c75a71163af3cd586eb241",
+      "path": "/Volumes/Backups/FARO/external/mance",
+      "remote": "https://github.com/MatanAvitan/mance.git"
+    },
+    "R-LACE": {
+      "clean": true,
+      "commit": "2d9b6d03f65416172b4a2ca7f6da10e374002e5f",
+      "path": "/Volumes/Backups/FARO/external/rlace-icml",
+      "remote": "https://github.com/shauli-ravfogel/rlace-icml"
+    },
+    "TaCo": {
+      "clean": true,
+      "commit": "35995e44b95dc1722b03d18b9b16c5b9f8322db5",
+      "path": "/Volumes/Backups/FARO/external/TaCo",
+      "remote": "https://github.com/fanny-jourdan/TaCo"
+    }
+  },
+  "pass_conditions": {
+    "all_required": true,
+    "complete_execution": "All 100 dataset-seed jobs contain 13 official candidate rows and the independent audit replays every bridge and global optimum.",
+    "complete_reporting": "Report all datasets, seeds, thresholds, abstentions, missing strata, bridge contaminations, diagnostic failures, and negative results.",
+    "diagnostic_safety": "There are zero contract violations among estimable primary selected releases on the untouched diagnostic splits.",
+    "finite_sample_membership": "Every stored bridge transform satisfies the robust confidence-region domination inequalities under independent recomputation.",
+    "interface_sensitivity": "The globally optimized four-token objective is no worse than the two-token objective for every registered follow-up row.",
+    "missing_support": "Camelyon jobs with an absent required bridge source-label stratum certify zero retained mass and abstain under the primary contract.",
+    "stronger_utility": "BiasBios deploys on at least 16/20 seeds at tau_U=0.40 and at least 14/20 seeds at tau_U=0.35."
+  },
+  "phase": "data-certified structured-shift bridge confirmation",
+  "pilot_exclusion": {
+    "excluded_real_seed_ranges": [
+      "0-1199"
+    ],
+    "use": "Prior seeds selected the architecture and showed that BiasBios can support a finite-sample bridge. No excluded real row enters the confirmation estimates or intervals."
+  },
+  "project": "MOSAIC: Minimax-Optimized Source-Agnostic Invariant Channels",
+  "protocol": {
+    "bridge_fraction": 0.6666666666666666,
+    "familywise_delta": 0.05,
+    "fine_token_count": 4,
+    "frontier_candidate_count": 13,
+    "l4_policy": "reoptimize the minimum-error L2 candidate on the same covered table",
+    "per_candidate_table_delta": 0.0019230769230769232,
+    "primary_released_token_count": 2,
+    "primary_utility_threshold": 0.4,
+    "privacy_advantage_threshold": 0.35,
+    "secondary_released_token_count": 4,
+    "utility_thresholds": [
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.49
+    ]
+  },
+  "repository_head_at_lock": "d96181541bd770bc19d626d4d936bd76963d2604",
+  "runtime_environment": {
+    "numpy": "2.5.1",
+    "platform": "Darwin-25.2.0-arm64-arm-64bit",
+    "python": "3.12.13",
+    "scikit_learn": "1.9.0",
+    "scipy": "1.18.0"
+  },
+  "status": "locked_before_confirmatory_outcomes",
+  "stopping_rule": "Run every registered dataset and seed. No outcome-based replacement, threshold change, candidate change, early stopping, or selective omission."
+}
