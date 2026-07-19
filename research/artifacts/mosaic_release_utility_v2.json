@@ -1,0 +1,3978 @@
+{
+  "claim_boundary": "The v2 table measures diagnostic interface utility only. It neither revalidates the historical reference/bridge features nor changes the original MOSAIC result.",
+  "name": "MOSAIC diagnostic-anchored released-interface utility analysis v2",
+  "release_count": 23,
+  "repair_disclosure": {
+    "change": "v2 requires the diagnostic count match, records every reference and bridge discrepancy, and computes no metric from those discrepant splits.",
+    "classification": "post-outcome diagnostic-anchored measurement repair",
+    "observation": "For the investigated first selected release, the untouched diagnostic token counts matched exactly while the reference and bridge counts did not.",
+    "trigger": "The v1 utility run stopped because current reference and bridge token counts differed from their locked receipts."
+  },
+  "results": [
+    {
+      "claim_boundary": "The task metrics are computed from the current reconstructed features and the exact locked diagnostic token table. They do not revalidate the original reference or bridge split, whose current feature reconstruction differs.",
+      "dataset": "BiasBios-Clinical",
+      "diagnostic_examples": 4000,
+      "four_bin_tokenizer_before_channel": {
+        "accuracy": 0.875,
+        "balanced_accuracy": 0.875
+      },
+      "full_feature_classifier_on_selected_edit": {
+        "accuracy": 0.9025,
+        "balanced_accuracy": 0.9025
+      },
+      "full_feature_classifier_on_unedited_representation": {
+        "accuracy": 0.906,
+        "balanced_accuracy": 0.906
+      },
+      "original_receipt": "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1200.json",
+      "reconstruction": {
+        "bridge_examples": 8000,
+        "bridge_token_count_receipt_match": false,
+        "bridge_token_counts_current": [
+          [
+            [
+              906,
+              655,
+              390,
+              49
+            ],
+            [
+              487,
+              678,
+              686,
+              149
+            ]
+          ],
+          [
+            [
+              21,
+              80,
+              564,
+              1335
+            ],
+            [
+              4,
+              36,
+              179,
+              1781
+            ]
+          ]
+        ],
+        "bridge_token_counts_locked": [
+          [
+            [
+              711,
+              681,
+              532,
+              76
+            ],
+            [
+              689,
+              682,
+              541,
+              88
+            ]
+          ],
+          [
+            [
+              12,
+              50,
+              400,
+              1538
+            ],
+            [
+              8,
+              43,
+              257,
+              1692
+            ]
+          ]
+        ],
+        "diagnostic_token_count_receipt_match": true,
+        "freeze_discrepancy": "The current frozen store reproduces the untouched diagnostic token table but not the historical reference or bridge tables. Utility is therefore reported only as a diagnostic-anchored post-outcome audit.",
+        "preprocessing": {
+          "explained_variance_ratio_sum": 0.8439908623695374,
+          "input_dimension": 768,
+          "output_dimension": 128,
+          "pca_fit_on_train_only": true,
+          "standardized_from_train_only": true
+        },
+        "reference_examples": 8000,
+        "reference_token_count_receipt_match": false,
+        "reference_token_counts_current": [
+          [
+            [
+              900,
+              665,
+              382,
+              53
+            ],
+            [
+              479,
+              669,
+              694,
+              158
+            ]
+          ],
+          [
+            [
+              17,
+              64,
+              501,
+              1418
+            ],
+            [
+              7,
+              33,
+              325,
+              1635
+            ]
+          ]
+        ],
+        "reference_token_counts_locked": [
+          [
+            [
+              690,
+              702,
+              516,
+              92
+            ],
+            [
+              688,
+              661,
+              558,
+              93
+            ]
+          ],
+          [
+            [
+              8,
+              37,
+              328,
+              1627
+            ],
+            [
+              11,
+              45,
+              492,
+              1452
+            ]
+          ]
+        ],
+        "store_manifest_sha256": "a2f0d7cd2d67eb2cb01a05fccbd32c24519cd916ac9ceb508ca680ce1f3aa1e4",
+        "token_count_receipt_match": true,
+        "tokenizer_thresholds": [
+          0.002510685712818038,
+          0.04452299917739844,
+          0.7988830814457185
+        ]
+      },
+      "released_interface": {
+        "expected_accuracy": 0.8626926128844857,
+        "expected_balanced_accuracy": 0.8626926128844856,
+        "expected_positive_prediction_rate": 0.47957434664116294
+      },
+      "seed": 1200,
+      "selected_candidate": "INLP::rank=4",
+      "selected_method": "INLP",
+      "selected_strength": "rank=4",
+      "strict_receipt": "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1200.json",
+      "strict_receipt_sha256": "5d23469e402185619634ab58759ce217b557bf2dda0163e75b82b2942e89d52c",
+      "utility_threshold": "0.40"
+    },
+    {
+      "claim_boundary": "The task metrics are computed from the current reconstructed features and the exact locked diagnostic token table. They do not revalidate the original reference or bridge split, whose current feature reconstruction differs.",
+      "dataset": "BiasBios-Clinical",
+      "diagnostic_examples": 4000,
+      "four_bin_tokenizer_before_channel": {
+        "accuracy": 0.875,
+        "balanced_accuracy": 0.875
+      },
+      "full_feature_classifier_on_selected_edit": {
+        "accuracy": 0.911,
+        "balanced_accuracy": 0.911
+      },
+      "full_feature_classifier_on_unedited_representation": {
+        "accuracy": 0.906,
+        "balanced_accuracy": 0.9059999999999999
+      },
+      "original_receipt": "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1201.json",
+      "reconstruction": {
+        "bridge_examples": 8000,
+        "bridge_token_count_receipt_match": false,
+        "bridge_token_counts_current": [
+          [
+            [
+              1042,
+              612,
+              318,
+              28
+            ],
+            [
+              333,
+              614,
+              831,
+              222
+            ]
+          ],
+          [
+            [
+              31,
+              140,
+              646,
+              1183
+            ],
+            [
+              1,
+              18,
+              157,
+              1824
+            ]
+          ]
+        ],
+        "bridge_token_counts_locked": [
+          [
+            [
+              662,
+              714,
+              543,
+              81
+            ],
+            [
+              663,
+              715,
+              542,
+              80
+            ]
+          ],
+          [
+            [
+              13,
+              68,
+              448,
+              1471
+            ],
+            [
+              5,
+              45,
+              300,
+              1650
+            ]
+          ]
+        ],
+        "diagnostic_token_count_receipt_match": true,
+        "freeze_discrepancy": "The current frozen store reproduces the untouched diagnostic token table but not the historical reference or bridge tables. Utility is therefore reported only as a diagnostic-anchored post-outcome audit.",
+        "preprocessing": {
+          "explained_variance_ratio_sum": 0.8434078097343445,
+          "input_dimension": 768,
+          "output_dimension": 128,
+          "pca_fit_on_train_only": true,
+          "standardized_from_train_only": true
+        },
+        "reference_examples": 8000,
+        "reference_token_count_receipt_match": false,
+        "reference_token_counts_current": [
+          [
+            [
+              1075,
+              602,
+              293,
+              30
+            ],
+            [
+              345,
+              624,
+              808,
+              223
+            ]
+          ],
+          [
+            [
+              24,
+              108,
+              587,
+              1281
+            ],
+            [
+              3,
+              24,
+              267,
+              1706
+            ]
+          ]
+        ],
+        "reference_token_counts_locked": [
+          [
+            [
+              664,
+              736,
+              531,
+              69
+            ],
+            [
+              716,
+              658,
+              551,
+              75
+            ]
+          ],
+          [
+            [
+              9,
+              38,
+              363,
+              1590
+            ],
+            [
+              11,
+              72,
+              554,
+              1363
+            ]
+          ]
+        ],
+        "store_manifest_sha256": "a2f0d7cd2d67eb2cb01a05fccbd32c24519cd916ac9ceb508ca680ce1f3aa1e4",
+        "token_count_receipt_match": true,
+        "tokenizer_thresholds": [
+          0.0014723657450545198,
+          0.036763495316944304,
+          0.8202952628929882
+        ]
+      },
+      "released_interface": {
+        "expected_accuracy": 0.8537083510837941,
+        "expected_balanced_accuracy": 0.8537083510837941,
+        "expected_positive_prediction_rate": 0.5062360358829678
+      },
+      "seed": 1201,
+      "selected_candidate": "LEACE::closed_form",
+      "selected_method": "LEACE",
+      "selected_strength": "closed_form",
+      "strict_receipt": "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1201.json",
+      "strict_receipt_sha256": "9dc3fbfe9e1809a172cf8d543e7a6ca8ae5c4977470ad36d85c65177766a67be",
+      "utility_threshold": "0.40"
+    },
+    {
+      "claim_boundary": "The task metrics are computed from the current reconstructed features and the exact locked diagnostic token table. They do not revalidate the original reference or bridge split, whose current feature reconstruction differs.",
+      "dataset": "BiasBios-Clinical",
+      "diagnostic_examples": 4000,
+      "four_bin_tokenizer_before_channel": {
+        "accuracy": 0.8885,
+        "balanced_accuracy": 0.8885
+      },
+      "full_feature_classifier_on_selected_edit": {
+        "accuracy": 0.90875,
+        "balanced_accuracy": 0.90875
+      },
+      "full_feature_classifier_on_unedited_representation": {
+        "accuracy": 0.9065,
+        "balanced_accuracy": 0.9065000000000001
+      },
+      "original_receipt": "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1202.json",
+      "reconstruction": {
+        "bridge_examples": 8000,
+        "bridge_token_count_receipt_match": false,
+        "bridge_token_counts_current": [
+          [
+            [
+              1261,
+              455,
+              253,
+              31
+            ],
+            [
+              289,
+              480,
+              928,
+              303
+            ]
+          ],
+          [
+            [
+              53,
+              117,
+              585,
+              1245
+            ],
+            [
+              0,
+              15,
+              130,
+              1855
+            ]
+          ]
+        ],
+        "bridge_token_counts_locked": [
+          [
+            [
+              714,
+              615,
+              563,
+              108
+            ],
+            [
+              773,
+              569,
+              563,
+              95
+            ]
+          ],
+          [
+            [
+              14,
+              53,
+              334,
+              1599
+            ],
+            [
+              7,
+              54,
+              253,
+              1686
+            ]
+          ]
+        ],
+        "diagnostic_token_count_receipt_match": true,
+        "freeze_discrepancy": "The current frozen store reproduces the untouched diagnostic token table but not the historical reference or bridge tables. Utility is therefore reported only as a diagnostic-anchored post-outcome audit.",
+        "preprocessing": {
+          "explained_variance_ratio_sum": 0.8428972363471985,
+          "input_dimension": 768,
+          "output_dimension": 128,
+          "pca_fit_on_train_only": true,
+          "standardized_from_train_only": true
+        },
+        "reference_examples": 8000,
+        "reference_token_count_receipt_match": false,
+        "reference_token_counts_current": [
+          [
+            [
+              1253,
+              460,
+              263,
+              24
+            ],
+            [
+              257,
+              508,
+              912,
+              323
+            ]
+          ],
+          [
+            [
+              42,
+              85,
+              618,
+              1255
+            ],
+            [
+              3,
+              12,
+              212,
+              1773
+            ]
+          ]
+        ],
+        "reference_token_counts_locked": [
+          [
+            [
+              686,
+              637,
+              569,
+              108
+            ],
+            [
+              805,
+              576,
+              529,
+              90
+            ]
+          ],
+          [
+            [
+              7,
+              40,
+              274,
+              1679
+            ],
+            [
+              15,
+              69,
+              607,
+              1309
+            ]
+          ]
+        ],
+        "store_manifest_sha256": "a2f0d7cd2d67eb2cb01a05fccbd32c24519cd916ac9ceb508ca680ce1f3aa1e4",
+        "token_count_receipt_match": true,
+        "tokenizer_thresholds": [
+          0.009242330394518512,
+          0.0757520865288768,
+          0.7861026534123143
+        ]
+      },
+      "released_interface": {
+        "expected_accuracy": 0.8821048226889748,
+        "expected_balanced_accuracy": 0.8821048226889749,
+        "expected_positive_prediction_rate": 0.44936493428473007
+      },
+      "seed": 1202,
+      "selected_candidate": "LEACE::closed_form",
+      "selected_method": "LEACE",
+      "selected_strength": "closed_form",
+      "strict_receipt": "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1202.json",
+      "strict_receipt_sha256": "ffd878328042eda17d37646aa0d58a9754e2fe2dda68abc2feaf5e1c9e4f2f31",
+      "utility_threshold": "0.40"
+    },
+    {
+      "claim_boundary": "The task metrics are computed from the current reconstructed features and the exact locked diagnostic token table. They do not revalidate the original reference or bridge split, whose current feature reconstruction differs.",
+      "dataset": "BiasBios-Clinical",
+      "diagnostic_examples": 4000,
+      "four_bin_tokenizer_before_channel": {
+        "accuracy": 0.8795,
+        "balanced_accuracy": 0.8795
+      },
+      "full_feature_classifier_on_selected_edit": {
+        "accuracy": 0.906,
+        "balanced_accuracy": 0.9059999999999999
+      },
+      "full_feature_classifier_on_unedited_representation": {
+        "accuracy": 0.904,
+        "balanced_accuracy": 0.9039999999999999
+      },
+      "original_receipt": "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1203.json",
+      "reconstruction": {
+        "bridge_examples": 8000,
+        "bridge_token_count_receipt_match": false,
+        "bridge_token_counts_current": [
+          [
+            [
+              932,
+              612,
+              400,
+              56
+            ],
+            [
+              363,
+              625,
+              806,
+              206
+            ]
+          ],
+          [
+            [
+              34,
+              118,
+              503,
+              1345
+            ],
+            [
+              3,
+              45,
+              187,
+              1765
+            ]
+          ]
+        ],
+        "bridge_token_counts_locked": [
+          [
+            [
+              661,
+              708,
+              553,
+              78
+            ],
+            [
+              664,
+              659,
+              571,
+              106
+            ]
+          ],
+          [
+            [
+              13,
+              70,
+              403,
+              1514
+            ],
+            [
+              13,
+              70,
+              263,
+              1654
+            ]
+          ]
+        ],
+        "diagnostic_token_count_receipt_match": true,
+        "freeze_discrepancy": "The current frozen store reproduces the untouched diagnostic token table but not the historical reference or bridge tables. Utility is therefore reported only as a diagnostic-anchored post-outcome audit.",
+        "preprocessing": {
+          "explained_variance_ratio_sum": 0.8427451252937317,
+          "input_dimension": 768,
+          "output_dimension": 128,
+          "pca_fit_on_train_only": true,
+          "standardized_from_train_only": true
+        },
+        "reference_examples": 8000,
+        "reference_token_count_receipt_match": false,
+        "reference_token_counts_current": [
+          [
+            [
+              957,
+              599,
+              390,
+              54
+            ],
+            [
+              358,
+              614,
+              833,
+              195
+            ]
+          ],
+          [
+            [
+              30,
+              88,
+              547,
+              1335
+            ],
+            [
+              6,
+              45,
+              315,
+              1634
+            ]
+          ]
+        ],
+        "reference_token_counts_locked": [
+          [
+            [
+              685,
+              665,
+              569,
+              81
+            ],
+            [
+              619,
+              676,
+              604,
+              101
+            ]
+          ],
+          [
+            [
+              17,
+              44,
+              355,
+              1584
+            ],
+            [
+              15,
+              76,
+              510,
+              1399
+            ]
+          ]
+        ],
+        "store_manifest_sha256": "a2f0d7cd2d67eb2cb01a05fccbd32c24519cd916ac9ceb508ca680ce1f3aa1e4",
+        "token_count_receipt_match": true,
+        "tokenizer_thresholds": [
+          0.0016534226815425063,
+          0.031003624681500398,
+          0.7987695349400648
+        ]
+      },
+      "released_interface": {
+        "expected_accuracy": 0.8520036842300072,
+        "expected_balanced_accuracy": 0.8520036842300072,
+        "expected_positive_prediction_rate": 0.4675886304399893
+      },
+      "seed": 1203,
+      "selected_candidate": "INLP::rank=4",
+      "selected_method": "INLP",
+      "selected_strength": "rank=4",
+      "strict_receipt": "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1203.json",
+      "strict_receipt_sha256": "ae38fcde4476da76ded45200e7f14e046fdc173c2315052382b488fe99e63536",
+      "utility_threshold": "0.40"
+    },
+    {
+      "claim_boundary": "The task metrics are computed from the current reconstructed features and the exact locked diagnostic token table. They do not revalidate the original reference or bridge split, whose current feature reconstruction differs.",
+      "dataset": "BiasBios-Clinical",
+      "diagnostic_examples": 4000,
+      "four_bin_tokenizer_before_channel": {
+        "accuracy": 0.88575,
+        "balanced_accuracy": 0.88575
+      },
+      "full_feature_classifier_on_selected_edit": {
+        "accuracy": 0.9075,
+        "balanced_accuracy": 0.9075
+      },
+      "full_feature_classifier_on_unedited_representation": {
+        "accuracy": 0.90425,
+        "balanced_accuracy": 0.90425
+      },
+      "original_receipt": "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1204.json",
+      "reconstruction": {
+        "bridge_examples": 8000,
+        "bridge_token_count_receipt_match": false,
+        "bridge_token_counts_current": [
+          [
+            [
+              1103,
+              573,
+              294,
+              30
+            ],
+            [
+              267,
+              524,
+              927,
+              282
+            ]
+          ],
+          [
+            [
+              28,
+              100,
+              610,
+              1262
+            ],
+            [
+              1,
+              16,
+              136,
+              1847
+            ]
+          ]
+        ],
+        "bridge_token_counts_locked": [
+          [
+            [
+              585,
+              736,
+              591,
+              88
+            ],
+            [
+              674,
+              661,
+              576,
+              89
+            ]
+          ],
+          [
+            [
+              7,
+              44,
+              364,
+              1585
+            ],
+            [
+              9,
+              43,
+              304,
+              1644
+            ]
+          ]
+        ],
+        "diagnostic_token_count_receipt_match": true,
+        "freeze_discrepancy": "The current frozen store reproduces the untouched diagnostic token table but not the historical reference or bridge tables. Utility is therefore reported only as a diagnostic-anchored post-outcome audit.",
+        "preprocessing": {
+          "explained_variance_ratio_sum": 0.8427072763442993,
+          "input_dimension": 768,
+          "output_dimension": 128,
+          "pca_fit_on_train_only": true,
+          "standardized_from_train_only": true
+        },
+        "reference_examples": 8000,
+        "reference_token_count_receipt_match": false,
+        "reference_token_counts_current": [
+          [
+            [
+              1111,
+              585,
+              276,
+              28
+            ],
+            [
+              259,
+              569,
+              900,
+              272
+            ]
+          ],
+          [
+            [
+              24,
+              99,
+              715,
+              1162
+            ],
+            [
+              1,
+              10,
+              223,
+              1766
+            ]
+          ]
+        ],
+        "reference_token_counts_locked": [
+          [
+            [
+              555,
+              784,
+              580,
+              81
+            ],
+            [
+              713,
+              677,
+              547,
+              63
+            ]
+          ],
+          [
+            [
+              7,
+              35,
+              327,
+              1631
+            ],
+            [
+              6,
+              61,
+              657,
+              1276
+            ]
+          ]
+        ],
+        "store_manifest_sha256": "a2f0d7cd2d67eb2cb01a05fccbd32c24519cd916ac9ceb508ca680ce1f3aa1e4",
+        "token_count_receipt_match": true,
+        "tokenizer_thresholds": [
+          0.0058164055660101036,
+          0.07264906312989955,
+          0.8299683551833218
+        ]
+      },
+      "released_interface": {
+        "expected_accuracy": 0.87974631204765,
+        "expected_balanced_accuracy": 0.8797463120476501,
+        "expected_positive_prediction_rate": 0.4440836584663532
+      },
+      "seed": 1204,
+      "selected_candidate": "LEACE::closed_form",
+      "selected_method": "LEACE",
+      "selected_strength": "closed_form",
+      "strict_receipt": "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1204.json",
+      "strict_receipt_sha256": "1972753fe4cc8b93fd5fe5be3141f34fb1ccf7345429ba8a0e01632d0a4cc976",
+      "utility_threshold": "0.40"
+    },
+    {
+      "claim_boundary": "The task metrics are computed from the current reconstructed features and the exact locked diagnostic token table. They do not revalidate the original reference or bridge split, whose current feature reconstruction differs.",
+      "dataset": "BiasBios-Clinical",
+      "diagnostic_examples": 4000,
+      "four_bin_tokenizer_before_channel": {
+        "accuracy": 0.88075,
+        "balanced_accuracy": 0.8807499999999999
+      },
+      "full_feature_classifier_on_selected_edit": {
+        "accuracy": 0.9075,
+        "balanced_accuracy": 0.9075
+      },
+      "full_feature_classifier_on_unedited_representation": {
+        "accuracy": 0.9035,
+        "balanced_accuracy": 0.9035
+      },
+      "original_receipt": "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1205.json",
+      "reconstruction": {
+        "bridge_examples": 8000,
+        "bridge_token_count_receipt_match": false,
+        "bridge_token_counts_current": [
+          [
+            [
+              1444,
+              335,
+              199,
+              22
+            ],
+            [
+              119,
+              270,
+              859,
+              752
+            ]
+          ],
+          [
+            [
+              136,
+              297,
+              970,
+              597
+            ],
+            [
+              1,
+              10,
+              71,
+              1918
+            ]
+          ]
+        ],
+        "bridge_token_counts_locked": [
+          [
+            [
+              715,
+              675,
+              543,
+              67
+            ],
+            [
+              741,
+              638,
+              548,
+              73
+            ]
+          ],
+          [
+            [
+              16,
+              61,
+              401,
+              1522
+            ],
+            [
+              16,
+              37,
+              285,
+              1662
+            ]
+          ]
+        ],
+        "diagnostic_token_count_receipt_match": true,
+        "freeze_discrepancy": "The current frozen store reproduces the untouched diagnostic token table but not the historical reference or bridge tables. Utility is therefore reported only as a diagnostic-anchored post-outcome audit.",
+        "preprocessing": {
+          "explained_variance_ratio_sum": 0.8435206413269043,
+          "input_dimension": 768,
+          "output_dimension": 128,
+          "pca_fit_on_train_only": true,
+          "standardized_from_train_only": true
+        },
+        "reference_examples": 8000,
+        "reference_token_count_receipt_match": false,
+        "reference_token_counts_current": [
+          [
+            [
+              1507,
+              296,
+              176,
+              21
+            ],
+            [
+              111,
+              233,
+              870,
+              786
+            ]
+          ],
+          [
+            [
+              117,
+              283,
+              1087,
+              513
+            ],
+            [
+              3,
+              10,
+              114,
+              1873
+            ]
+          ]
+        ],
+        "reference_token_counts_locked": [
+          [
+            [
+              717,
+              669,
+              531,
+              83
+            ],
+            [
+              700,
+              672,
+              560,
+              68
+            ]
+          ],
+          [
+            [
+              9,
+              55,
+              342,
+              1594
+            ],
+            [
+              13,
+              56,
+              597,
+              1334
+            ]
+          ]
+        ],
+        "store_manifest_sha256": "a2f0d7cd2d67eb2cb01a05fccbd32c24519cd916ac9ceb508ca680ce1f3aa1e4",
+        "token_count_receipt_match": true,
+        "tokenizer_thresholds": [
+          0.002044621405692541,
+          0.034932915563757765,
+          0.8179210844440342
+        ]
+      },
+      "released_interface": {
+        "expected_accuracy": 0.8651052001088461,
+        "expected_balanced_accuracy": 0.865105200108846,
+        "expected_positive_prediction_rate": 0.4849971191563217
+      },
+      "seed": 1205,
+      "selected_candidate": "INLP::rank=8",
+      "selected_method": "INLP",
+      "selected_strength": "rank=8",
+      "strict_receipt": "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1205.json",
+      "strict_receipt_sha256": "e94682e56c53c9254f8f08b144d396b9d1706114f328039e679a023f19293aae",
+      "utility_threshold": "0.40"
+    },
+    {
+      "claim_boundary": "The task metrics are computed from the current reconstructed features and the exact locked diagnostic token table. They do not revalidate the original reference or bridge split, whose current feature reconstruction differs.",
+      "dataset": "BiasBios-Clinical",
+      "diagnostic_examples": 4000,
+      "four_bin_tokenizer_before_channel": {
+        "accuracy": 0.86125,
+        "balanced_accuracy": 0.86125
+      },
+      "full_feature_classifier_on_selected_edit": {
+        "accuracy": 0.90275,
+        "balanced_accuracy": 0.9027499999999999
+      },
+      "full_feature_classifier_on_unedited_representation": {
+        "accuracy": 0.908,
+        "balanced_accuracy": 0.9079999999999999
+      },
+      "original_receipt": "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1206.json",
+      "reconstruction": {
+        "bridge_examples": 8000,
+        "bridge_token_count_receipt_match": false,
+        "bridge_token_counts_current": [
+          [
+            [
+              1248,
+              461,
+              264,
+              27
+            ],
+            [
+              109,
+              258,
+              967,
+              666
+            ]
+          ],
+          [
+            [
+              106,
+              263,
+              1109,
+              522
+            ],
+            [
+              1,
+              5,
+              128,
+              1866
+            ]
+          ]
+        ],
+        "bridge_token_counts_locked": [
+          [
+            [
+              683,
+              647,
+              571,
+              99
+            ],
+            [
+              742,
+              637,
+              536,
+              85
+            ]
+          ],
+          [
+            [
+              9,
+              60,
+              343,
+              1588
+            ],
+            [
+              14,
+              54,
+              416,
+              1516
+            ]
+          ]
+        ],
+        "diagnostic_token_count_receipt_match": true,
+        "freeze_discrepancy": "The current frozen store reproduces the untouched diagnostic token table but not the historical reference or bridge tables. Utility is therefore reported only as a diagnostic-anchored post-outcome audit.",
+        "preprocessing": {
+          "explained_variance_ratio_sum": 0.8438424468040466,
+          "input_dimension": 768,
+          "output_dimension": 128,
+          "pca_fit_on_train_only": true,
+          "standardized_from_train_only": true
+        },
+        "reference_examples": 8000,
+        "reference_token_count_receipt_match": false,
+        "reference_token_counts_current": [
+          [
+            [
+              1331,
+              418,
+              228,
+              23
+            ],
+            [
+              74,
+              228,
+              998,
+              700
+            ]
+          ],
+          [
+            [
+              102,
+              221,
+              1040,
+              637
+            ],
+            [
+              1,
+              7,
+              129,
+              1863
+            ]
+          ]
+        ],
+        "reference_token_counts_locked": [
+          [
+            [
+              684,
+              632,
+              570,
+              114
+            ],
+            [
+              717,
+              649,
+              539,
+              95
+            ]
+          ],
+          [
+            [
+              7,
+              39,
+              288,
+              1666
+            ],
+            [
+              10,
+              78,
+              640,
+              1272
+            ]
+          ]
+        ],
+        "store_manifest_sha256": "a2f0d7cd2d67eb2cb01a05fccbd32c24519cd916ac9ceb508ca680ce1f3aa1e4",
+        "token_count_receipt_match": true,
+        "tokenizer_thresholds": [
+          0.004481724107002905,
+          0.06131180207358117,
+          0.8254859231773153
+        ]
+      },
+      "released_interface": {
+        "expected_accuracy": 0.8526316889511686,
+        "expected_balanced_accuracy": 0.8526316889511687,
+        "expected_positive_prediction_rate": 0.46587145786353945
+      },
+      "seed": 1206,
+      "selected_candidate": "MANCE++::epsilon=0.05,steps=3",
+      "selected_method": "MANCE++",
+      "selected_strength": "epsilon=0.05,steps=3",
+      "strict_receipt": "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1206.json",
+      "strict_receipt_sha256": "99a84c7054f7888235663f079b036c0e105bf8e19e1654b0cde4b8d5ea795408",
+      "utility_threshold": "0.40"
+    },
+    {
+      "claim_boundary": "The task metrics are computed from the current reconstructed features and the exact locked diagnostic token table. They do not revalidate the original reference or bridge split, whose current feature reconstruction differs.",
+      "dataset": "BiasBios-Clinical",
+      "diagnostic_examples": 4000,
+      "four_bin_tokenizer_before_channel": {
+        "accuracy": 0.8745,
+        "balanced_accuracy": 0.8745
+      },
+      "full_feature_classifier_on_selected_edit": {
+        "accuracy": 0.8975,
+        "balanced_accuracy": 0.8975
+      },
+      "full_feature_classifier_on_unedited_representation": {
+        "accuracy": 0.90075,
+        "balanced_accuracy": 0.9007499999999999
+      },
+      "original_receipt": "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1207.json",
+      "reconstruction": {
+        "bridge_examples": 8000,
+        "bridge_token_count_receipt_match": false,
+        "bridge_token_counts_current": [
+          [
+            [
+              1117,
+              496,
+              338,
+              49
+            ],
+            [
+              98,
+              341,
+              927,
+              634
+            ]
+          ],
+          [
+            [
+              94,
+              229,
+              871,
+              806
+            ],
+            [
+              2,
+              12,
+              196,
+              1790
+            ]
+          ]
+        ],
+        "bridge_token_counts_locked": [
+          [
+            [
+              663,
+              681,
+              549,
+              107
+            ],
+            [
+              630,
+              666,
+              576,
+              128
+            ]
+          ],
+          [
+            [
+              14,
+              54,
+              363,
+              1569
+            ],
+            [
+              14,
+              37,
+              343,
+              1606
+            ]
+          ]
+        ],
+        "diagnostic_token_count_receipt_match": true,
+        "freeze_discrepancy": "The current frozen store reproduces the untouched diagnostic token table but not the historical reference or bridge tables. Utility is therefore reported only as a diagnostic-anchored post-outcome audit.",
+        "preprocessing": {
+          "explained_variance_ratio_sum": 0.8430411219596863,
+          "input_dimension": 768,
+          "output_dimension": 128,
+          "pca_fit_on_train_only": true,
+          "standardized_from_train_only": true
+        },
+        "reference_examples": 8000,
+        "reference_token_count_receipt_match": false,
+        "reference_token_counts_current": [
+          [
+            [
+              1207,
+              458,
+              284,
+              51
+            ],
+            [
+              126,
+              318,
+              893,
+              663
+            ]
+          ],
+          [
+            [
+              61,
+              252,
+              1032,
+              655
+            ],
+            [
+              1,
+              12,
+              158,
+              1829
+            ]
+          ]
+        ],
+        "reference_token_counts_locked": [
+          [
+            [
+              707,
+              610,
+              587,
+              96
+            ],
+            [
+              651,
+              684,
+              537,
+              128
+            ]
+          ],
+          [
+            [
+              12,
+              41,
+              319,
+              1628
+            ],
+            [
+              22,
+              53,
+              504,
+              1421
+            ]
+          ]
+        ],
+        "store_manifest_sha256": "a2f0d7cd2d67eb2cb01a05fccbd32c24519cd916ac9ceb508ca680ce1f3aa1e4",
+        "token_count_receipt_match": true,
+        "tokenizer_thresholds": [
+          0.005085173535230557,
+          0.06364853565701763,
+          0.7695120836134508
+        ]
+      },
+      "released_interface": {
+        "expected_accuracy": 0.8664848402436288,
+        "expected_balanced_accuracy": 0.8664848402436289,
+        "expected_positive_prediction_rate": 0.4503501863275838
+      },
+      "seed": 1207,
+      "selected_candidate": "MANCE++::epsilon=0.05,steps=3",
+      "selected_method": "MANCE++",
+      "selected_strength": "epsilon=0.05,steps=3",
+      "strict_receipt": "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1207.json",
+      "strict_receipt_sha256": "b0784dc4a6200ff0503af6666cf1ad6d4ae223f1e73fc704152a76ff126da926",
+      "utility_threshold": "0.40"
+    },
+    {
+      "claim_boundary": "The task metrics are computed from the current reconstructed features and the exact locked diagnostic token table. They do not revalidate the original reference or bridge split, whose current feature reconstruction differs.",
+      "dataset": "BiasBios-Clinical",
+      "diagnostic_examples": 4000,
+      "four_bin_tokenizer_before_channel": {
+        "accuracy": 0.86975,
+        "balanced_accuracy": 0.86975
+      },
+      "full_feature_classifier_on_selected_edit": {
+        "accuracy": 0.90175,
+        "balanced_accuracy": 0.90175
+      },
+      "full_feature_classifier_on_unedited_representation": {
+        "accuracy": 0.89825,
+        "balanced_accuracy": 0.89825
+      },
+      "original_receipt": "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1208.json",
+      "reconstruction": {
+        "bridge_examples": 8000,
+        "bridge_token_count_receipt_match": false,
+        "bridge_token_counts_current": [
+          [
+            [
+              1264,
+              423,
+              269,
+              44
+            ],
+            [
+              123,
+              386,
+              1014,
+              477
+            ]
+          ],
+          [
+            [
+              96,
+              205,
+              900,
+              799
+            ],
+            [
+              1,
+              6,
+              105,
+              1888
+            ]
+          ]
+        ],
+        "bridge_token_counts_locked": [
+          [
+            [
+              651,
+              728,
+              545,
+              76
+            ],
+            [
+              654,
+              684,
+              589,
+              73
+            ]
+          ],
+          [
+            [
+              9,
+              58,
+              412,
+              1521
+            ],
+            [
+              4,
+              47,
+              302,
+              1647
+            ]
+          ]
+        ],
+        "diagnostic_token_count_receipt_match": true,
+        "freeze_discrepancy": "The current frozen store reproduces the untouched diagnostic token table but not the historical reference or bridge tables. Utility is therefore reported only as a diagnostic-anchored post-outcome audit.",
+        "preprocessing": {
+          "explained_variance_ratio_sum": 0.8443814516067505,
+          "input_dimension": 768,
+          "output_dimension": 128,
+          "pca_fit_on_train_only": true,
+          "standardized_from_train_only": true
+        },
+        "reference_examples": 8000,
+        "reference_token_count_receipt_match": false,
+        "reference_token_counts_current": [
+          [
+            [
+              1283,
+              421,
+              271,
+              25
+            ],
+            [
+              119,
+              375,
+              1014,
+              492
+            ]
+          ],
+          [
+            [
+              76,
+              170,
+              668,
+              1086
+            ],
+            [
+              1,
+              8,
+              170,
+              1821
+            ]
+          ]
+        ],
+        "reference_token_counts_locked": [
+          [
+            [
+              628,
+              693,
+              612,
+              67
+            ],
+            [
+              658,
+              696,
+              570,
+              76
+            ]
+          ],
+          [
+            [
+              13,
+              36,
+              358,
+              1593
+            ],
+            [
+              15,
+              80,
+              641,
+              1264
+            ]
+          ]
+        ],
+        "store_manifest_sha256": "a2f0d7cd2d67eb2cb01a05fccbd32c24519cd916ac9ceb508ca680ce1f3aa1e4",
+        "token_count_receipt_match": true,
+        "tokenizer_thresholds": [
+          0.007150841325349525,
+          0.0772779732747299,
+          0.8350026431450381
+        ]
+      },
+      "released_interface": {
+        "expected_accuracy": 0.8575289224576939,
+        "expected_balanced_accuracy": 0.8575289224576939,
+        "expected_positive_prediction_rate": 0.4676012559318602
+      },
+      "seed": 1208,
+      "selected_candidate": "INLP::rank=8",
+      "selected_method": "INLP",
+      "selected_strength": "rank=8",
+      "strict_receipt": "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1208.json",
+      "strict_receipt_sha256": "de459acff9310ddbeda1cf40daf4e3ea893fb7a5c69ceebfdbdba09fe5716b55",
+      "utility_threshold": "0.40"
+    },
+    {
+      "claim_boundary": "The task metrics are computed from the current reconstructed features and the exact locked diagnostic token table. They do not revalidate the original reference or bridge split, whose current feature reconstruction differs.",
+      "dataset": "BiasBios-Clinical",
+      "diagnostic_examples": 4000,
+      "four_bin_tokenizer_before_channel": {
+        "accuracy": 0.88625,
+        "balanced_accuracy": 0.88625
+      },
+      "full_feature_classifier_on_selected_edit": {
+        "accuracy": 0.90025,
+        "balanced_accuracy": 0.90025
+      },
+      "full_feature_classifier_on_unedited_representation": {
+        "accuracy": 0.90775,
+        "balanced_accuracy": 0.9077500000000001
+      },
+      "original_receipt": "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1209.json",
+      "reconstruction": {
+        "bridge_examples": 8000,
+        "bridge_token_count_receipt_match": false,
+        "bridge_token_counts_current": [
+          [
+            [
+              1556,
+              251,
+              173,
+              20
+            ],
+            [
+              32,
+              104,
+              654,
+              1210
+            ]
+          ],
+          [
+            [
+              375,
+              396,
+              999,
+              230
+            ],
+            [
+              1,
+              5,
+              48,
+              1946
+            ]
+          ]
+        ],
+        "bridge_token_counts_locked": [
+          [
+            [
+              651,
+              675,
+              564,
+              110
+            ],
+            [
+              632,
+              646,
+              583,
+              139
+            ]
+          ],
+          [
+            [
+              16,
+              53,
+              372,
+              1559
+            ],
+            [
+              19,
+              58,
+              277,
+              1646
+            ]
+          ]
+        ],
+        "diagnostic_token_count_receipt_match": true,
+        "freeze_discrepancy": "The current frozen store reproduces the untouched diagnostic token table but not the historical reference or bridge tables. Utility is therefore reported only as a diagnostic-anchored post-outcome audit.",
+        "preprocessing": {
+          "explained_variance_ratio_sum": 0.8427760601043701,
+          "input_dimension": 768,
+          "output_dimension": 128,
+          "pca_fit_on_train_only": true,
+          "standardized_from_train_only": true
+        },
+        "reference_examples": 8000,
+        "reference_token_count_receipt_match": false,
+        "reference_token_counts_current": [
+          [
+            [
+              1572,
+              268,
+              130,
+              30
+            ],
+            [
+              29,
+              96,
+              640,
+              1235
+            ]
+          ],
+          [
+            [
+              381,
+              455,
+              919,
+              245
+            ],
+            [
+              3,
+              6,
+              53,
+              1938
+            ]
+          ]
+        ],
+        "reference_token_counts_locked": [
+          [
+            [
+              671,
+              640,
+              578,
+              111
+            ],
+            [
+              677,
+              674,
+              537,
+              112
+            ]
+          ],
+          [
+            [
+              13,
+              38,
+              324,
+              1625
+            ],
+            [
+              27,
+              63,
+              544,
+              1366
+            ]
+          ]
+        ],
+        "store_manifest_sha256": "a2f0d7cd2d67eb2cb01a05fccbd32c24519cd916ac9ceb508ca680ce1f3aa1e4",
+        "token_count_receipt_match": true,
+        "tokenizer_thresholds": [
+          0.0034200817670089435,
+          0.04454781462654481,
+          0.7933419842691806
+        ]
+      },
+      "released_interface": {
+        "expected_accuracy": 0.8742661594752187,
+        "expected_balanced_accuracy": 0.8742661594752188,
+        "expected_positive_prediction_rate": 0.4708892390850988
+      },
+      "seed": 1209,
+      "selected_candidate": "MANCE++::epsilon=0.05,steps=3",
+      "selected_method": "MANCE++",
+      "selected_strength": "epsilon=0.05,steps=3",
+      "strict_receipt": "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1209.json",
+      "strict_receipt_sha256": "611d63bcb14172dbd6cd6b4b4c8219b4ae53d207f772217f98f334282fa8b6b9",
+      "utility_threshold": "0.40"
+    },
+    {
+      "claim_boundary": "The task metrics are computed from the current reconstructed features and the exact locked diagnostic token table. They do not revalidate the original reference or bridge split, whose current feature reconstruction differs.",
+      "dataset": "BiasBios-Clinical",
+      "diagnostic_examples": 4000,
+      "four_bin_tokenizer_before_channel": {
+        "accuracy": 0.8655,
+        "balanced_accuracy": 0.8654999999999999
+      },
+      "full_feature_classifier_on_selected_edit": {
+        "accuracy": 0.889,
+        "balanced_accuracy": 0.889
+      },
+      "full_feature_classifier_on_unedited_representation": {
+        "accuracy": 0.898,
+        "balanced_accuracy": 0.8979999999999999
+      },
+      "original_receipt": "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1210.json",
+      "reconstruction": {
+        "bridge_examples": 8000,
+        "bridge_token_count_receipt_match": false,
+        "bridge_token_counts_current": [
+          [
+            [
+              916,
+              601,
+              432,
+              51
+            ],
+            [
+              255,
+              524,
+              908,
+              313
+            ]
+          ],
+          [
+            [
+              42,
+              167,
+              699,
+              1092
+            ],
+            [
+              11,
+              151,
+              580,
+              1258
+            ]
+          ]
+        ],
+        "bridge_token_counts_locked": [
+          [
+            [
+              669,
+              659,
+              553,
+              119
+            ],
+            [
+              655,
+              654,
+              607,
+              84
+            ]
+          ],
+          [
+            [
+              25,
+              57,
+              343,
+              1575
+            ],
+            [
+              10,
+              40,
+              353,
+              1597
+            ]
+          ]
+        ],
+        "diagnostic_token_count_receipt_match": true,
+        "freeze_discrepancy": "The current frozen store reproduces the untouched diagnostic token table but not the historical reference or bridge tables. Utility is therefore reported only as a diagnostic-anchored post-outcome audit.",
+        "preprocessing": {
+          "explained_variance_ratio_sum": 0.8435853719711304,
+          "input_dimension": 768,
+          "output_dimension": 128,
+          "pca_fit_on_train_only": true,
+          "standardized_from_train_only": true
+        },
+        "reference_examples": 8000,
+        "reference_token_count_receipt_match": false,
+        "reference_token_counts_current": [
+          [
+            [
+              910,
+              625,
+              411,
+              54
+            ],
+            [
+              206,
+              505,
+              938,
+              351
+            ]
+          ],
+          [
+            [
+              22,
+              107,
+              515,
+              1356
+            ],
+            [
+              13,
+              37,
+              442,
+              1508
+            ]
+          ]
+        ],
+        "reference_token_counts_locked": [
+          [
+            [
+              722,
+              610,
+              558,
+              110
+            ],
+            [
+              660,
+              649,
+              572,
+              119
+            ]
+          ],
+          [
+            [
+              8,
+              50,
+              264,
+              1678
+            ],
+            [
+              14,
+              56,
+              570,
+              1360
+            ]
+          ]
+        ],
+        "store_manifest_sha256": "a2f0d7cd2d67eb2cb01a05fccbd32c24519cd916ac9ceb508ca680ce1f3aa1e4",
+        "token_count_receipt_match": true,
+        "tokenizer_thresholds": [
+          0.005048009600006844,
+          0.06127608181231802,
+          0.788633218074906
+        ]
+      },
+      "released_interface": {
+        "expected_accuracy": 0.8581188251347084,
+        "expected_balanced_accuracy": 0.8581188251347083,
+        "expected_positive_prediction_rate": 0.44952231768933676
+      },
+      "seed": 1210,
+      "selected_candidate": "MANCE++::epsilon=0.05,steps=3",
+      "selected_method": "MANCE++",
+      "selected_strength": "epsilon=0.05,steps=3",
+      "strict_receipt": "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1210.json",
+      "strict_receipt_sha256": "0474152f23f3e2f15c8ba1f61b753d12d74944d4371ec15c86c3e1164fadbe60",
+      "utility_threshold": "0.40"
+    },
+    {
+      "claim_boundary": "The task metrics are computed from the current reconstructed features and the exact locked diagnostic token table. They do not revalidate the original reference or bridge split, whose current feature reconstruction differs.",
+      "dataset": "BiasBios-Clinical",
+      "diagnostic_examples": 4000,
+      "four_bin_tokenizer_before_channel": {
+        "accuracy": 0.87375,
+        "balanced_accuracy": 0.87375
+      },
+      "full_feature_classifier_on_selected_edit": {
+        "accuracy": 0.9025,
+        "balanced_accuracy": 0.9025
+      },
+      "full_feature_classifier_on_unedited_representation": {
+        "accuracy": 0.8975,
+        "balanced_accuracy": 0.8975
+      },
+      "original_receipt": "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1211.json",
+      "reconstruction": {
+        "bridge_examples": 8000,
+        "bridge_token_count_receipt_match": false,
+        "bridge_token_counts_current": [
+          [
+            [
+              1096,
+              518,
+              323,
+              63
+            ],
+            [
+              318,
+              481,
+              839,
+              362
+            ]
+          ],
+          [
+            [
+              41,
+              124,
+              571,
+              1264
+            ],
+            [
+              9,
+              22,
+              143,
+              1826
+            ]
+          ]
+        ],
+        "bridge_token_counts_locked": [
+          [
+            [
+              694,
+              653,
+              547,
+              106
+            ],
+            [
+              724,
+              618,
+              556,
+              102
+            ]
+          ],
+          [
+            [
+              17,
+              45,
+              327,
+              1611
+            ],
+            [
+              19,
+              50,
+              274,
+              1657
+            ]
+          ]
+        ],
+        "diagnostic_token_count_receipt_match": true,
+        "freeze_discrepancy": "The current frozen store reproduces the untouched diagnostic token table but not the historical reference or bridge tables. Utility is therefore reported only as a diagnostic-anchored post-outcome audit.",
+        "preprocessing": {
+          "explained_variance_ratio_sum": 0.8442081212997437,
+          "input_dimension": 768,
+          "output_dimension": 128,
+          "pca_fit_on_train_only": true,
+          "standardized_from_train_only": true
+        },
+        "reference_examples": 8000,
+        "reference_token_count_receipt_match": false,
+        "reference_token_counts_current": [
+          [
+            [
+              1095,
+              493,
+              353,
+              59
+            ],
+            [
+              258,
+              469,
+              881,
+              392
+            ]
+          ],
+          [
+            [
+              42,
+              98,
+              672,
+              1188
+            ],
+            [
+              8,
+              18,
+              210,
+              1764
+            ]
+          ]
+        ],
+        "reference_token_counts_locked": [
+          [
+            [
+              663,
+              629,
+              577,
+              131
+            ],
+            [
+              661,
+              665,
+              574,
+              100
+            ]
+          ],
+          [
+            [
+              14,
+              37,
+              274,
+              1675
+            ],
+            [
+              18,
+              75,
+              526,
+              1381
+            ]
+          ]
+        ],
+        "store_manifest_sha256": "a2f0d7cd2d67eb2cb01a05fccbd32c24519cd916ac9ceb508ca680ce1f3aa1e4",
+        "token_count_receipt_match": true,
+        "tokenizer_thresholds": [
+          0.0033718710803282244,
+          0.04426793880439796,
+          0.7479590740844859
+        ]
+      },
+      "released_interface": {
+        "expected_accuracy": 0.8683171537271542,
+        "expected_balanced_accuracy": 0.8683171537271543,
+        "expected_positive_prediction_rate": 0.4477725762961661
+      },
+      "seed": 1211,
+      "selected_candidate": "INLP::rank=8",
+      "selected_method": "INLP",
+      "selected_strength": "rank=8",
+      "strict_receipt": "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1211.json",
+      "strict_receipt_sha256": "e3600b592a442f155406bda93e1325acaeda5199a5b9132616a203754f2a4acc",
+      "utility_threshold": "0.40"
+    },
+    {
+      "claim_boundary": "The task metrics are computed from the current reconstructed features and the exact locked diagnostic token table. They do not revalidate the original reference or bridge split, whose current feature reconstruction differs.",
+      "dataset": "BiasBios-Clinical",
+      "diagnostic_examples": 4000,
+      "four_bin_tokenizer_before_channel": {
+        "accuracy": 0.84375,
+        "balanced_accuracy": 0.84375
+      },
+      "full_feature_classifier_on_selected_edit": {
+        "accuracy": 0.89225,
+        "balanced_accuracy": 0.89225
+      },
+      "full_feature_classifier_on_unedited_representation": {
+        "accuracy": 0.90225,
+        "balanced_accuracy": 0.90225
+      },
+      "original_receipt": "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1212.json",
+      "reconstruction": {
+        "bridge_examples": 8000,
+        "bridge_token_count_receipt_match": false,
+        "bridge_token_counts_current": [
+          [
+            [
+              34,
+              81,
+              206,
+              1679
+            ],
+            [
+              1945,
+              38,
+              12,
+              5
+            ]
+          ],
+          [
+            [
+              11,
+              30,
+              121,
+              1838
+            ],
+            [
+              1898,
+              82,
+              13,
+              7
+            ]
+          ]
+        ],
+        "bridge_token_counts_locked": [
+          [
+            [
+              689,
+              699,
+              501,
+              111
+            ],
+            [
+              757,
+              658,
+              478,
+              107
+            ]
+          ],
+          [
+            [
+              19,
+              92,
+              372,
+              1517
+            ],
+            [
+              21,
+              63,
+              362,
+              1554
+            ]
+          ]
+        ],
+        "diagnostic_token_count_receipt_match": true,
+        "freeze_discrepancy": "The current frozen store reproduces the untouched diagnostic token table but not the historical reference or bridge tables. Utility is therefore reported only as a diagnostic-anchored post-outcome audit.",
+        "preprocessing": {
+          "explained_variance_ratio_sum": 0.8427137732505798,
+          "input_dimension": 768,
+          "output_dimension": 128,
+          "pca_fit_on_train_only": true,
+          "standardized_from_train_only": true
+        },
+        "reference_examples": 8000,
+        "reference_token_count_receipt_match": false,
+        "reference_token_counts_current": [
+          [
+            [
+              21,
+              45,
+              155,
+              1779
+            ],
+            [
+              1968,
+              19,
+              7,
+              6
+            ]
+          ],
+          [
+            [
+              4,
+              7,
+              27,
+              1962
+            ],
+            [
+              1866,
+              90,
+              25,
+              19
+            ]
+          ]
+        ],
+        "reference_token_counts_locked": [
+          [
+            [
+              615,
+              761,
+              517,
+              107
+            ],
+            [
+              699,
+              705,
+              481,
+              115
+            ]
+          ],
+          [
+            [
+              13,
+              63,
+              319,
+              1605
+            ],
+            [
+              21,
+              93,
+              588,
+              1298
+            ]
+          ]
+        ],
+        "store_manifest_sha256": "a2f0d7cd2d67eb2cb01a05fccbd32c24519cd916ac9ceb508ca680ce1f3aa1e4",
+        "token_count_receipt_match": true,
+        "tokenizer_thresholds": [
+          0.0014187662139542728,
+          0.04891023985452121,
+          0.7852324430756452
+        ]
+      },
+      "released_interface": {
+        "expected_accuracy": 0.8409422485837088,
+        "expected_balanced_accuracy": 0.8409422485837088,
+        "expected_positive_prediction_rate": 0.442805830734655
+      },
+      "seed": 1212,
+      "selected_candidate": "MANCE++::epsilon=0.05,steps=3",
+      "selected_method": "MANCE++",
+      "selected_strength": "epsilon=0.05,steps=3",
+      "strict_receipt": "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1212.json",
+      "strict_receipt_sha256": "703a3c13ce6d54c97c6dccaddeef31024bbeb7ee3d07b172809b3837ac0b2742",
+      "utility_threshold": "0.40"
+    },
+    {
+      "claim_boundary": "The task metrics are computed from the current reconstructed features and the exact locked diagnostic token table. They do not revalidate the original reference or bridge split, whose current feature reconstruction differs.",
+      "dataset": "BiasBios-Clinical",
+      "diagnostic_examples": 4000,
+      "four_bin_tokenizer_before_channel": {
+        "accuracy": 0.84575,
+        "balanced_accuracy": 0.84575
+      },
+      "full_feature_classifier_on_selected_edit": {
+        "accuracy": 0.8955,
+        "balanced_accuracy": 0.8955
+      },
+      "full_feature_classifier_on_unedited_representation": {
+        "accuracy": 0.89775,
+        "balanced_accuracy": 0.89775
+      },
+      "original_receipt": "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1213.json",
+      "reconstruction": {
+        "bridge_examples": 8000,
+        "bridge_token_count_receipt_match": false,
+        "bridge_token_counts_current": [
+          [
+            [
+              50,
+              245,
+              980,
+              725
+            ],
+            [
+              1568,
+              306,
+              115,
+              11
+            ]
+          ],
+          [
+            [
+              1,
+              10,
+              138,
+              1851
+            ],
+            [
+              604,
+              720,
+              649,
+              27
+            ]
+          ]
+        ],
+        "bridge_token_counts_locked": [
+          [
+            [
+              669,
+              712,
+              541,
+              78
+            ],
+            [
+              669,
+              697,
+              539,
+              95
+            ]
+          ],
+          [
+            [
+              6,
+              62,
+              440,
+              1492
+            ],
+            [
+              17,
+              55,
+              419,
+              1509
+            ]
+          ]
+        ],
+        "diagnostic_token_count_receipt_match": true,
+        "freeze_discrepancy": "The current frozen store reproduces the untouched diagnostic token table but not the historical reference or bridge tables. Utility is therefore reported only as a diagnostic-anchored post-outcome audit.",
+        "preprocessing": {
+          "explained_variance_ratio_sum": 0.8439023494720459,
+          "input_dimension": 768,
+          "output_dimension": 128,
+          "pca_fit_on_train_only": true,
+          "standardized_from_train_only": true
+        },
+        "reference_examples": 8000,
+        "reference_token_count_receipt_match": false,
+        "reference_token_counts_current": [
+          [
+            [
+              45,
+              194,
+              956,
+              805
+            ],
+            [
+              1609,
+              280,
+              101,
+              10
+            ]
+          ],
+          [
+            [
+              1,
+              2,
+              85,
+              1912
+            ],
+            [
+              489,
+              808,
+              649,
+              54
+            ]
+          ]
+        ],
+        "reference_token_counts_locked": [
+          [
+            [
+              643,
+              691,
+              580,
+              86
+            ],
+            [
+              708,
+              690,
+              507,
+              95
+            ]
+          ],
+          [
+            [
+              8,
+              46,
+              425,
+              1521
+            ],
+            [
+              13,
+              64,
+              654,
+              1269
+            ]
+          ]
+        ],
+        "store_manifest_sha256": "a2f0d7cd2d67eb2cb01a05fccbd32c24519cd916ac9ceb508ca680ce1f3aa1e4",
+        "token_count_receipt_match": true,
+        "tokenizer_thresholds": [
+          0.003398228052595942,
+          0.055316568259000234,
+          0.8341029014767973
+        ]
+      },
+      "released_interface": {
+        "expected_accuracy": 0.8388637354217424,
+        "expected_balanced_accuracy": 0.8388637354217423,
+        "expected_positive_prediction_rate": 0.46361424847625793
+      },
+      "seed": 1213,
+      "selected_candidate": "MANCE++::epsilon=0.05,steps=3",
+      "selected_method": "MANCE++",
+      "selected_strength": "epsilon=0.05,steps=3",
+      "strict_receipt": "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1213.json",
+      "strict_receipt_sha256": "400c9c1fcc34171cf090aeb935e367325df03c74c6a69df574dd4ab9bf3565fa",
+      "utility_threshold": "0.40"
+    },
+    {
+      "claim_boundary": "The task metrics are computed from the current reconstructed features and the exact locked diagnostic token table. They do not revalidate the original reference or bridge split, whose current feature reconstruction differs.",
+      "dataset": "BiasBios-Clinical",
+      "diagnostic_examples": 4000,
+      "four_bin_tokenizer_before_channel": {
+        "accuracy": 0.8815,
+        "balanced_accuracy": 0.8815
+      },
+      "full_feature_classifier_on_selected_edit": {
+        "accuracy": 0.88725,
+        "balanced_accuracy": 0.88725
+      },
+      "full_feature_classifier_on_unedited_representation": {
+        "accuracy": 0.90425,
+        "balanced_accuracy": 0.90425
+      },
+      "original_receipt": "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1214.json",
+      "reconstruction": {
+        "bridge_examples": 8000,
+        "bridge_token_count_receipt_match": false,
+        "bridge_token_counts_current": [
+          [
+            [
+              1819,
+              116,
+              54,
+              11
+            ],
+            [
+              11,
+              21,
+              166,
+              1802
+            ]
+          ],
+          [
+            [
+              967,
+              510,
+              433,
+              90
+            ],
+            [
+              0,
+              3,
+              16,
+              1981
+            ]
+          ]
+        ],
+        "bridge_token_counts_locked": [
+          [
+            [
+              621,
+              670,
+              594,
+              115
+            ],
+            [
+              627,
+              706,
+              524,
+              143
+            ]
+          ],
+          [
+            [
+              12,
+              65,
+              324,
+              1599
+            ],
+            [
+              17,
+              48,
+              256,
+              1679
+            ]
+          ]
+        ],
+        "diagnostic_token_count_receipt_match": true,
+        "freeze_discrepancy": "The current frozen store reproduces the untouched diagnostic token table but not the historical reference or bridge tables. Utility is therefore reported only as a diagnostic-anchored post-outcome audit.",
+        "preprocessing": {
+          "explained_variance_ratio_sum": 0.8434344530105591,
+          "input_dimension": 768,
+          "output_dimension": 128,
+          "pca_fit_on_train_only": true,
+          "standardized_from_train_only": true
+        },
+        "reference_examples": 8000,
+        "reference_token_count_receipt_match": false,
+        "reference_token_counts_current": [
+          [
+            [
+              1859,
+              92,
+              37,
+              12
+            ],
+            [
+              5,
+              17,
+              105,
+              1873
+            ]
+          ],
+          [
+            [
+              1178,
+              451,
+              296,
+              75
+            ],
+            [
+              2,
+              5,
+              10,
+              1983
+            ]
+          ]
+        ],
+        "reference_token_counts_locked": [
+          [
+            [
+              633,
+              649,
+              583,
+              135
+            ],
+            [
+              636,
+              671,
+              563,
+              130
+            ]
+          ],
+          [
+            [
+              8,
+              49,
+              343,
+              1600
+            ],
+            [
+              26,
+              83,
+              510,
+              1381
+            ]
+          ]
+        ],
+        "store_manifest_sha256": "a2f0d7cd2d67eb2cb01a05fccbd32c24519cd916ac9ceb508ca680ce1f3aa1e4",
+        "token_count_receipt_match": true,
+        "tokenizer_thresholds": [
+          0.00363622728093234,
+          0.053299391523529,
+          0.7367893168067972
+        ]
+      },
+      "released_interface": {
+        "expected_accuracy": 0.8776477125561908,
+        "expected_balanced_accuracy": 0.8776477125561908,
+        "expected_positive_prediction_rate": 0.4538432777547593
+      },
+      "seed": 1214,
+      "selected_candidate": "MANCE++::epsilon=0.05,steps=3",
+      "selected_method": "MANCE++",
+      "selected_strength": "epsilon=0.05,steps=3",
+      "strict_receipt": "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1214.json",
+      "strict_receipt_sha256": "af23daf7203d6f3769c8450afb01aefdb1fe55303a9c3e35a07bb29386a32231",
+      "utility_threshold": "0.40"
+    },
+    {
+      "claim_boundary": "The task metrics are computed from the current reconstructed features and the exact locked diagnostic token table. They do not revalidate the original reference or bridge split, whose current feature reconstruction differs.",
+      "dataset": "BiasBios-Clinical",
+      "diagnostic_examples": 4000,
+      "four_bin_tokenizer_before_channel": {
+        "accuracy": 0.8615,
+        "balanced_accuracy": 0.8614999999999999
+      },
+      "full_feature_classifier_on_selected_edit": {
+        "accuracy": 0.8985,
+        "balanced_accuracy": 0.8985
+      },
+      "full_feature_classifier_on_unedited_representation": {
+        "accuracy": 0.90275,
+        "balanced_accuracy": 0.9027499999999999
+      },
+      "original_receipt": "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1215.json",
+      "reconstruction": {
+        "bridge_examples": 8000,
+        "bridge_token_count_receipt_match": false,
+        "bridge_token_counts_current": [
+          [
+            [
+              284,
+              712,
+              820,
+              184
+            ],
+            [
+              1142,
+              558,
+              261,
+              39
+            ]
+          ],
+          [
+            [
+              6,
+              37,
+              320,
+              1637
+            ],
+            [
+              43,
+              172,
+              771,
+              1014
+            ]
+          ]
+        ],
+        "bridge_token_counts_locked": [
+          [
+            [
+              674,
+              677,
+              556,
+              93
+            ],
+            [
+              742,
+              684,
+              466,
+              108
+            ]
+          ],
+          [
+            [
+              16,
+              78,
+              419,
+              1487
+            ],
+            [
+              21,
+              50,
+              335,
+              1594
+            ]
+          ]
+        ],
+        "diagnostic_token_count_receipt_match": true,
+        "freeze_discrepancy": "The current frozen store reproduces the untouched diagnostic token table but not the historical reference or bridge tables. Utility is therefore reported only as a diagnostic-anchored post-outcome audit.",
+        "preprocessing": {
+          "explained_variance_ratio_sum": 0.8426387310028076,
+          "input_dimension": 768,
+          "output_dimension": 128,
+          "pca_fit_on_train_only": true,
+          "standardized_from_train_only": true
+        },
+        "reference_examples": 8000,
+        "reference_token_count_receipt_match": false,
+        "reference_token_counts_current": [
+          [
+            [
+              328,
+              698,
+              785,
+              189
+            ],
+            [
+              1176,
+              521,
+              266,
+              37
+            ]
+          ],
+          [
+            [
+              3,
+              26,
+              333,
+              1638
+            ],
+            [
+              68,
+              230,
+              1059,
+              643
+            ]
+          ]
+        ],
+        "reference_token_counts_locked": [
+          [
+            [
+              724,
+              669,
+              507,
+              100
+            ],
+            [
+              750,
+              692,
+              455,
+              103
+            ]
+          ],
+          [
+            [
+              12,
+              59,
+              481,
+              1448
+            ],
+            [
+              22,
+              94,
+              626,
+              1258
+            ]
+          ]
+        ],
+        "store_manifest_sha256": "a2f0d7cd2d67eb2cb01a05fccbd32c24519cd916ac9ceb508ca680ce1f3aa1e4",
+        "token_count_receipt_match": true,
+        "tokenizer_thresholds": [
+          0.00830874144555733,
+          0.10071882185108094,
+          0.8265829341994659
+        ]
+      },
+      "released_interface": {
+        "expected_accuracy": 0.8532057142779488,
+        "expected_balanced_accuracy": 0.853205714277949,
+        "expected_positive_prediction_rate": 0.45698967037506827
+      },
+      "seed": 1215,
+      "selected_candidate": "MANCE++::epsilon=0.05,steps=3",
+      "selected_method": "MANCE++",
+      "selected_strength": "epsilon=0.05,steps=3",
+      "strict_receipt": "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1215.json",
+      "strict_receipt_sha256": "f23d943bdd2e53050aa2725dcc17f1bb89e7044201bd760b0ab2bb9366ca2279",
+      "utility_threshold": "0.40"
+    },
+    {
+      "claim_boundary": "The task metrics are computed from the current reconstructed features and the exact locked diagnostic token table. They do not revalidate the original reference or bridge split, whose current feature reconstruction differs.",
+      "dataset": "BiasBios-Clinical",
+      "diagnostic_examples": 4000,
+      "four_bin_tokenizer_before_channel": {
+        "accuracy": 0.8745,
+        "balanced_accuracy": 0.8745
+      },
+      "full_feature_classifier_on_selected_edit": {
+        "accuracy": 0.907,
+        "balanced_accuracy": 0.907
+      },
+      "full_feature_classifier_on_unedited_representation": {
+        "accuracy": 0.90425,
+        "balanced_accuracy": 0.90425
+      },
+      "original_receipt": "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1216.json",
+      "reconstruction": {
+        "bridge_examples": 8000,
+        "bridge_token_count_receipt_match": false,
+        "bridge_token_counts_current": [
+          [
+            [
+              1326,
+              443,
+              208,
+              23
+            ],
+            [
+              227,
+              505,
+              853,
+              415
+            ]
+          ],
+          [
+            [
+              54,
+              180,
+              679,
+              1087
+            ],
+            [
+              1,
+              15,
+              106,
+              1878
+            ]
+          ]
+        ],
+        "bridge_token_counts_locked": [
+          [
+            [
+              737,
+              654,
+              515,
+              94
+            ],
+            [
+              784,
+              616,
+              504,
+              96
+            ]
+          ],
+          [
+            [
+              11,
+              60,
+              333,
+              1596
+            ],
+            [
+              11,
+              60,
+              294,
+              1635
+            ]
+          ]
+        ],
+        "diagnostic_token_count_receipt_match": true,
+        "freeze_discrepancy": "The current frozen store reproduces the untouched diagnostic token table but not the historical reference or bridge tables. Utility is therefore reported only as a diagnostic-anchored post-outcome audit.",
+        "preprocessing": {
+          "explained_variance_ratio_sum": 0.8435356020927429,
+          "input_dimension": 768,
+          "output_dimension": 128,
+          "pca_fit_on_train_only": true,
+          "standardized_from_train_only": true
+        },
+        "reference_examples": 8000,
+        "reference_token_count_receipt_match": false,
+        "reference_token_counts_current": [
+          [
+            [
+              1292,
+              491,
+              197,
+              20
+            ],
+            [
+              183,
+              415,
+              916,
+              486
+            ]
+          ],
+          [
+            [
+              41,
+              161,
+              712,
+              1086
+            ],
+            [
+              4,
+              17,
+              161,
+              1818
+            ]
+          ]
+        ],
+        "reference_token_counts_locked": [
+          [
+            [
+              630,
+              681,
+              571,
+              118
+            ],
+            [
+              684,
+              650,
+              573,
+              93
+            ]
+          ],
+          [
+            [
+              8,
+              37,
+              317,
+              1638
+            ],
+            [
+              14,
+              88,
+              528,
+              1370
+            ]
+          ]
+        ],
+        "store_manifest_sha256": "a2f0d7cd2d67eb2cb01a05fccbd32c24519cd916ac9ceb508ca680ce1f3aa1e4",
+        "token_count_receipt_match": true,
+        "tokenizer_thresholds": [
+          0.0023541638440464103,
+          0.04199044260118603,
+          0.7628613542055714
+        ]
+      },
+      "released_interface": {
+        "expected_accuracy": 0.8674728568151647,
+        "expected_balanced_accuracy": 0.8674728568151646,
+        "expected_positive_prediction_rate": 0.44652506633520517
+      },
+      "seed": 1216,
+      "selected_candidate": "LEACE::closed_form",
+      "selected_method": "LEACE",
+      "selected_strength": "closed_form",
+      "strict_receipt": "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1216.json",
+      "strict_receipt_sha256": "2a1eab959156b9f0a800b2d0819132dd6a19543399189d8e9a4679c3e38d825d",
+      "utility_threshold": "0.40"
+    },
+    {
+      "claim_boundary": "The task metrics are computed from the current reconstructed features and the exact locked diagnostic token table. They do not revalidate the original reference or bridge split, whose current feature reconstruction differs.",
+      "dataset": "BiasBios-Clinical",
+      "diagnostic_examples": 4000,
+      "four_bin_tokenizer_before_channel": {
+        "accuracy": 0.88125,
+        "balanced_accuracy": 0.88125
+      },
+      "full_feature_classifier_on_selected_edit": {
+        "accuracy": 0.89975,
+        "balanced_accuracy": 0.89975
+      },
+      "full_feature_classifier_on_unedited_representation": {
+        "accuracy": 0.90025,
+        "balanced_accuracy": 0.90025
+      },
+      "original_receipt": "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1217.json",
+      "reconstruction": {
+        "bridge_examples": 8000,
+        "bridge_token_count_receipt_match": false,
+        "bridge_token_counts_current": [
+          [
+            [
+              1283,
+              498,
+              192,
+              27
+            ],
+            [
+              158,
+              442,
+              893,
+              507
+            ]
+          ],
+          [
+            [
+              65,
+              193,
+              643,
+              1099
+            ],
+            [
+              1,
+              7,
+              89,
+              1903
+            ]
+          ]
+        ],
+        "bridge_token_counts_locked": [
+          [
+            [
+              642,
+              721,
+              554,
+              83
+            ],
+            [
+              677,
+              644,
+              561,
+              118
+            ]
+          ],
+          [
+            [
+              11,
+              73,
+              385,
+              1531
+            ],
+            [
+              6,
+              41,
+              267,
+              1686
+            ]
+          ]
+        ],
+        "diagnostic_token_count_receipt_match": true,
+        "freeze_discrepancy": "The current frozen store reproduces the untouched diagnostic token table but not the historical reference or bridge tables. Utility is therefore reported only as a diagnostic-anchored post-outcome audit.",
+        "preprocessing": {
+          "explained_variance_ratio_sum": 0.8426413536071777,
+          "input_dimension": 768,
+          "output_dimension": 128,
+          "pca_fit_on_train_only": true,
+          "standardized_from_train_only": true
+        },
+        "reference_examples": 8000,
+        "reference_token_count_receipt_match": false,
+        "reference_token_counts_current": [
+          [
+            [
+              1259,
+              524,
+              196,
+              21
+            ],
+            [
+              165,
+              449,
+              905,
+              481
+            ]
+          ],
+          [
+            [
+              52,
+              153,
+              662,
+              1133
+            ],
+            [
+              3,
+              12,
+              132,
+              1853
+            ]
+          ]
+        ],
+        "reference_token_counts_locked": [
+          [
+            [
+              594,
+              688,
+              617,
+              101
+            ],
+            [
+              699,
+              673,
+              512,
+              116
+            ]
+          ],
+          [
+            [
+              10,
+              46,
+              325,
+              1619
+            ],
+            [
+              14,
+              70,
+              510,
+              1406
+            ]
+          ]
+        ],
+        "store_manifest_sha256": "a2f0d7cd2d67eb2cb01a05fccbd32c24519cd916ac9ceb508ca680ce1f3aa1e4",
+        "token_count_receipt_match": true,
+        "tokenizer_thresholds": [
+          0.004361391162486801,
+          0.058843942459942275,
+          0.7383619166266606
+        ]
+      },
+      "released_interface": {
+        "expected_accuracy": 0.8700846658627209,
+        "expected_balanced_accuracy": 0.870084665862721,
+        "expected_positive_prediction_rate": 0.4791554916985837
+      },
+      "seed": 1217,
+      "selected_candidate": "LEACE::closed_form",
+      "selected_method": "LEACE",
+      "selected_strength": "closed_form",
+      "strict_receipt": "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1217.json",
+      "strict_receipt_sha256": "a41a2fda9240e4e2d52c15efec91206599857c223b799935614ab17705045bc1",
+      "utility_threshold": "0.40"
+    },
+    {
+      "claim_boundary": "The task metrics are computed from the current reconstructed features and the exact locked diagnostic token table. They do not revalidate the original reference or bridge split, whose current feature reconstruction differs.",
+      "dataset": "BiasBios-Clinical",
+      "diagnostic_examples": 4000,
+      "four_bin_tokenizer_before_channel": {
+        "accuracy": 0.882,
+        "balanced_accuracy": 0.882
+      },
+      "full_feature_classifier_on_selected_edit": {
+        "accuracy": 0.9085,
+        "balanced_accuracy": 0.9085
+      },
+      "full_feature_classifier_on_unedited_representation": {
+        "accuracy": 0.90225,
+        "balanced_accuracy": 0.90225
+      },
+      "original_receipt": "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1218.json",
+      "reconstruction": {
+        "bridge_examples": 8000,
+        "bridge_token_count_receipt_match": false,
+        "bridge_token_counts_current": [
+          [
+            [
+              1242,
+              462,
+              269,
+              27
+            ],
+            [
+              290,
+              528,
+              860,
+              322
+            ]
+          ],
+          [
+            [
+              46,
+              147,
+              673,
+              1134
+            ],
+            [
+              0,
+              17,
+              110,
+              1873
+            ]
+          ]
+        ],
+        "bridge_token_counts_locked": [
+          [
+            [
+              725,
+              635,
+              551,
+              89
+            ],
+            [
+              773,
+              600,
+              541,
+              86
+            ]
+          ],
+          [
+            [
+              9,
+              58,
+              382,
+              1551
+            ],
+            [
+              6,
+              47,
+              276,
+              1671
+            ]
+          ]
+        ],
+        "diagnostic_token_count_receipt_match": true,
+        "freeze_discrepancy": "The current frozen store reproduces the untouched diagnostic token table but not the historical reference or bridge tables. Utility is therefore reported only as a diagnostic-anchored post-outcome audit.",
+        "preprocessing": {
+          "explained_variance_ratio_sum": 0.8446578979492188,
+          "input_dimension": 768,
+          "output_dimension": 128,
+          "pca_fit_on_train_only": true,
+          "standardized_from_train_only": true
+        },
+        "reference_examples": 8000,
+        "reference_token_count_receipt_match": false,
+        "reference_token_counts_current": [
+          [
+            [
+              1196,
+              492,
+              284,
+              28
+            ],
+            [
+              236,
+              541,
+              874,
+              349
+            ]
+          ],
+          [
+            [
+              47,
+              114,
+              638,
+              1201
+            ],
+            [
+              2,
+              16,
+              164,
+              1818
+            ]
+          ]
+        ],
+        "reference_token_counts_locked": [
+          [
+            [
+              653,
+              667,
+              576,
+              104
+            ],
+            [
+              731,
+              640,
+              541,
+              88
+            ]
+          ],
+          [
+            [
+              11,
+              46,
+              307,
+              1636
+            ],
+            [
+              13,
+              59,
+              493,
+              1435
+            ]
+          ]
+        ],
+        "store_manifest_sha256": "a2f0d7cd2d67eb2cb01a05fccbd32c24519cd916ac9ceb508ca680ce1f3aa1e4",
+        "token_count_receipt_match": true,
+        "tokenizer_thresholds": [
+          0.0054726608342178865,
+          0.0661217142447458,
+          0.7965941841327793
+        ]
+      },
+      "released_interface": {
+        "expected_accuracy": 0.8714939932864316,
+        "expected_balanced_accuracy": 0.8714939932864316,
+        "expected_positive_prediction_rate": 0.4657450347326217
+      },
+      "seed": 1218,
+      "selected_candidate": "INLP::rank=4",
+      "selected_method": "INLP",
+      "selected_strength": "rank=4",
+      "strict_receipt": "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1218.json",
+      "strict_receipt_sha256": "7c45a62bcd53e2be6b80daf7b6df4f755bb25f6786141c2c9ce7ce6f84b89485",
+      "utility_threshold": "0.40"
+    },
+    {
+      "claim_boundary": "The task metrics are computed from the current reconstructed features and the exact locked diagnostic token table. They do not revalidate the original reference or bridge split, whose current feature reconstruction differs.",
+      "dataset": "BiasBios-Clinical",
+      "diagnostic_examples": 4000,
+      "four_bin_tokenizer_before_channel": {
+        "accuracy": 0.86775,
+        "balanced_accuracy": 0.86775
+      },
+      "full_feature_classifier_on_selected_edit": {
+        "accuracy": 0.901,
+        "balanced_accuracy": 0.901
+      },
+      "full_feature_classifier_on_unedited_representation": {
+        "accuracy": 0.911,
+        "balanced_accuracy": 0.911
+      },
+      "original_receipt": "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1219.json",
+      "reconstruction": {
+        "bridge_examples": 8000,
+        "bridge_token_count_receipt_match": false,
+        "bridge_token_counts_current": [
+          [
+            [
+              435,
+              649,
+              659,
+              257
+            ],
+            [
+              816,
+              701,
+              422,
+              61
+            ]
+          ],
+          [
+            [
+              9,
+              48,
+              275,
+              1668
+            ],
+            [
+              28,
+              128,
+              725,
+              1119
+            ]
+          ]
+        ],
+        "bridge_token_counts_locked": [
+          [
+            [
+              636,
+              704,
+              526,
+              134
+            ],
+            [
+              628,
+              689,
+              547,
+              136
+            ]
+          ],
+          [
+            [
+              15,
+              71,
+              305,
+              1609
+            ],
+            [
+              18,
+              50,
+              352,
+              1580
+            ]
+          ]
+        ],
+        "diagnostic_token_count_receipt_match": true,
+        "freeze_discrepancy": "The current frozen store reproduces the untouched diagnostic token table but not the historical reference or bridge tables. Utility is therefore reported only as a diagnostic-anchored post-outcome audit.",
+        "preprocessing": {
+          "explained_variance_ratio_sum": 0.8438214063644409,
+          "input_dimension": 768,
+          "output_dimension": 128,
+          "pca_fit_on_train_only": true,
+          "standardized_from_train_only": true
+        },
+        "reference_examples": 8000,
+        "reference_token_count_receipt_match": false,
+        "reference_token_counts_current": [
+          [
+            [
+              384,
+              643,
+              702,
+              271
+            ],
+            [
+              782,
+              714,
+              439,
+              65
+            ]
+          ],
+          [
+            [
+              5,
+              28,
+              221,
+              1746
+            ],
+            [
+              26,
+              137,
+              778,
+              1059
+            ]
+          ]
+        ],
+        "reference_token_counts_locked": [
+          [
+            [
+              576,
+              676,
+              597,
+              151
+            ],
+            [
+              560,
+              715,
+              561,
+              164
+            ]
+          ],
+          [
+            [
+              15,
+              42,
+              252,
+              1691
+            ],
+            [
+              19,
+              61,
+              431,
+              1489
+            ]
+          ]
+        ],
+        "store_manifest_sha256": "a2f0d7cd2d67eb2cb01a05fccbd32c24519cd916ac9ceb508ca680ce1f3aa1e4",
+        "token_count_receipt_match": true,
+        "tokenizer_thresholds": [
+          0.00763976427605688,
+          0.0992331081956277,
+          0.7474963933785497
+        ]
+      },
+      "released_interface": {
+        "expected_accuracy": 0.8631686812682713,
+        "expected_balanced_accuracy": 0.8631686812682711,
+        "expected_positive_prediction_rate": 0.4477579974640218
+      },
+      "seed": 1219,
+      "selected_candidate": "MANCE++::epsilon=0.05,steps=3",
+      "selected_method": "MANCE++",
+      "selected_strength": "epsilon=0.05,steps=3",
+      "strict_receipt": "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1219.json",
+      "strict_receipt_sha256": "64784a33f41b8913466f8661a9f5c61c275cf0e9761eb2c21ab49fe5abc7c55b",
+      "utility_threshold": "0.40"
+    },
+    {
+      "claim_boundary": "The task metrics are computed from the current reconstructed features and the exact locked diagnostic token table. They do not revalidate the original reference or bridge split, whose current feature reconstruction differs.",
+      "dataset": "Waterbirds",
+      "diagnostic_examples": 856,
+      "four_bin_tokenizer_before_channel": {
+        "accuracy": 0.7441588785046729,
+        "balanced_accuracy": 0.7441588785046729
+      },
+      "full_feature_classifier_on_selected_edit": {
+        "accuracy": 0.8364485981308412,
+        "balanced_accuracy": 0.8364485981308412
+      },
+      "full_feature_classifier_on_unedited_representation": {
+        "accuracy": 0.7710280373831776,
+        "balanced_accuracy": 0.7710280373831775
+      },
+      "original_receipt": "research/artifacts/mosaic_bridge_confirmation_receipts_v1/Waterbirds__seed1200.json",
+      "reconstruction": {
+        "bridge_examples": 1712,
+        "bridge_token_count_receipt_match": false,
+        "bridge_token_counts_current": [
+          [
+            [
+              114,
+              137,
+              116,
+              61
+            ],
+            [
+              197,
+              124,
+              80,
+              27
+            ]
+          ],
+          [
+            [
+              10,
+              39,
+              86,
+              293
+            ],
+            [
+              46,
+              56,
+              131,
+              195
+            ]
+          ]
+        ],
+        "bridge_token_counts_locked": [
+          [
+            [
+              150,
+              118,
+              105,
+              55
+            ],
+            [
+              175,
+              112,
+              85,
+              56
+            ]
+          ],
+          [
+            [
+              12,
+              28,
+              74,
+              314
+            ],
+            [
+              27,
+              37,
+              83,
+              281
+            ]
+          ]
+        ],
+        "diagnostic_token_count_receipt_match": true,
+        "freeze_discrepancy": "The current frozen store reproduces the untouched diagnostic token table but not the historical reference or bridge tables. Utility is therefore reported only as a diagnostic-anchored post-outcome audit.",
+        "preprocessing": {
+          "explained_variance_ratio_sum": 0.8236148953437805,
+          "input_dimension": 512,
+          "output_dimension": 128,
+          "pca_fit_on_train_only": true,
+          "standardized_from_train_only": true
+        },
+        "reference_examples": 532,
+        "reference_token_count_receipt_match": false,
+        "reference_token_counts_current": [
+          [
+            [
+              29,
+              35,
+              42,
+              27
+            ],
+            [
+              55,
+              54,
+              17,
+              7
+            ]
+          ],
+          [
+            [
+              3,
+              9,
+              35,
+              86
+            ],
+            [
+              7,
+              26,
+              31,
+              69
+            ]
+          ]
+        ],
+        "reference_token_counts_locked": [
+          [
+            [
+              39,
+              35,
+              40,
+              19
+            ],
+            [
+              47,
+              48,
+              28,
+              10
+            ]
+          ],
+          [
+            [
+              4,
+              7,
+              27,
+              95
+            ],
+            [
+              2,
+              12,
+              31,
+              88
+            ]
+          ]
+        ],
+        "store_manifest_sha256": "fd4c17004512e9b38afc086eab8544dd9a15d187323747f666f3ae38d5d8c41f",
+        "token_count_receipt_match": true,
+        "tokenizer_thresholds": [
+          0.034286034321856916,
+          0.19230799688575556,
+          0.6345080599287634
+        ]
+      },
+      "released_interface": {
+        "expected_accuracy": 0.671226133822638,
+        "expected_balanced_accuracy": 0.671226133822638,
+        "expected_positive_prediction_rate": 0.3928379422554231
+      },
+      "seed": 1200,
+      "selected_candidate": "INLP::rank=4",
+      "selected_method": "INLP",
+      "selected_strength": "rank=4",
+      "strict_receipt": "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/Waterbirds__seed1200.json",
+      "strict_receipt_sha256": "a36d42c31ba4d2627bc2e8d672cf7f07bbcf3e3e13ed6a59ca3f39dc91d92292",
+      "utility_threshold": "0.49"
+    },
+    {
+      "claim_boundary": "The task metrics are computed from the current reconstructed features and the exact locked diagnostic token table. They do not revalidate the original reference or bridge split, whose current feature reconstruction differs.",
+      "dataset": "Waterbirds",
+      "diagnostic_examples": 856,
+      "four_bin_tokenizer_before_channel": {
+        "accuracy": 0.7873831775700935,
+        "balanced_accuracy": 0.7873831775700935
+      },
+      "full_feature_classifier_on_selected_edit": {
+        "accuracy": 0.8317757009345794,
+        "balanced_accuracy": 0.8317757009345794
+      },
+      "full_feature_classifier_on_unedited_representation": {
+        "accuracy": 0.7558411214953271,
+        "balanced_accuracy": 0.7558411214953271
+      },
+      "original_receipt": "research/artifacts/mosaic_bridge_confirmation_receipts_v1/Waterbirds__seed1210.json",
+      "reconstruction": {
+        "bridge_examples": 1712,
+        "bridge_token_count_receipt_match": false,
+        "bridge_token_counts_current": [
+          [
+            [
+              120,
+              126,
+              116,
+              66
+            ],
+            [
+              172,
+              141,
+              80,
+              35
+            ]
+          ],
+          [
+            [
+              11,
+              43,
+              103,
+              271
+            ],
+            [
+              34,
+              66,
+              105,
+              223
+            ]
+          ]
+        ],
+        "bridge_token_counts_locked": [
+          [
+            [
+              144,
+              120,
+              93,
+              71
+            ],
+            [
+              172,
+              122,
+              85,
+              49
+            ]
+          ],
+          [
+            [
+              13,
+              30,
+              80,
+              305
+            ],
+            [
+              18,
+              44,
+              83,
+              283
+            ]
+          ]
+        ],
+        "diagnostic_token_count_receipt_match": true,
+        "freeze_discrepancy": "The current frozen store reproduces the untouched diagnostic token table but not the historical reference or bridge tables. Utility is therefore reported only as a diagnostic-anchored post-outcome audit.",
+        "preprocessing": {
+          "explained_variance_ratio_sum": 0.8236265182495117,
+          "input_dimension": 512,
+          "output_dimension": 128,
+          "pca_fit_on_train_only": true,
+          "standardized_from_train_only": true
+        },
+        "reference_examples": 532,
+        "reference_token_count_receipt_match": false,
+        "reference_token_counts_current": [
+          [
+            [
+              40,
+              46,
+              26,
+              21
+            ],
+            [
+              57,
+              38,
+              30,
+              8
+            ]
+          ],
+          [
+            [
+              5,
+              8,
+              34,
+              86
+            ],
+            [
+              8,
+              21,
+              44,
+              60
+            ]
+          ]
+        ],
+        "reference_token_counts_locked": [
+          [
+            [
+              57,
+              33,
+              24,
+              19
+            ],
+            [
+              51,
+              45,
+              28,
+              9
+            ]
+          ],
+          [
+            [
+              4,
+              10,
+              25,
+              94
+            ],
+            [
+              6,
+              9,
+              32,
+              86
+            ]
+          ]
+        ],
+        "store_manifest_sha256": "fd4c17004512e9b38afc086eab8544dd9a15d187323747f666f3ae38d5d8c41f",
+        "token_count_receipt_match": true,
+        "tokenizer_thresholds": [
+          0.022023670654418532,
+          0.16899535802772717,
+          0.6562453186714596
+        ]
+      },
+      "released_interface": {
+        "expected_accuracy": 0.6978341734880603,
+        "expected_balanced_accuracy": 0.6978341734880602,
+        "expected_positive_prediction_rate": 0.4068708263008045
+      },
+      "seed": 1210,
+      "selected_candidate": "INLP::rank=4",
+      "selected_method": "INLP",
+      "selected_strength": "rank=4",
+      "strict_receipt": "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/Waterbirds__seed1210.json",
+      "strict_receipt_sha256": "10d356c8518ba019107a21589c94ff8f56edae166610dbde3ac7ca6de97804ae",
+      "utility_threshold": "0.49"
+    },
+    {
+      "claim_boundary": "The task metrics are computed from the current reconstructed features and the exact locked diagnostic token table. They do not revalidate the original reference or bridge split, whose current feature reconstruction differs.",
+      "dataset": "Waterbirds",
+      "diagnostic_examples": 856,
+      "four_bin_tokenizer_before_channel": {
+        "accuracy": 0.7254672897196262,
+        "balanced_accuracy": 0.7254672897196262
+      },
+      "full_feature_classifier_on_selected_edit": {
+        "accuracy": 0.8212616822429907,
+        "balanced_accuracy": 0.8212616822429907
+      },
+      "full_feature_classifier_on_unedited_representation": {
+        "accuracy": 0.764018691588785,
+        "balanced_accuracy": 0.764018691588785
+      },
+      "original_receipt": "research/artifacts/mosaic_bridge_confirmation_receipts_v1/Waterbirds__seed1215.json",
+      "reconstruction": {
+        "bridge_examples": 1712,
+        "bridge_token_count_receipt_match": false,
+        "bridge_token_counts_current": [
+          [
+            [
+              112,
+              128,
+              125,
+              63
+            ],
+            [
+              129,
+              142,
+              109,
+              48
+            ]
+          ],
+          [
+            [
+              17,
+              49,
+              115,
+              247
+            ],
+            [
+              46,
+              62,
+              124,
+              196
+            ]
+          ]
+        ],
+        "bridge_token_counts_locked": [
+          [
+            [
+              141,
+              136,
+              95,
+              56
+            ],
+            [
+              131,
+              130,
+              110,
+              57
+            ]
+          ],
+          [
+            [
+              15,
+              32,
+              97,
+              284
+            ],
+            [
+              20,
+              43,
+              82,
+              283
+            ]
+          ]
+        ],
+        "diagnostic_token_count_receipt_match": true,
+        "freeze_discrepancy": "The current frozen store reproduces the untouched diagnostic token table but not the historical reference or bridge tables. Utility is therefore reported only as a diagnostic-anchored post-outcome audit.",
+        "preprocessing": {
+          "explained_variance_ratio_sum": 0.823918879032135,
+          "input_dimension": 512,
+          "output_dimension": 128,
+          "pca_fit_on_train_only": true,
+          "standardized_from_train_only": true
+        },
+        "reference_examples": 532,
+        "reference_token_count_receipt_match": false,
+        "reference_token_counts_current": [
+          [
+            [
+              41,
+              39,
+              30,
+              23
+            ],
+            [
+              35,
+              44,
+              38,
+              16
+            ]
+          ],
+          [
+            [
+              7,
+              27,
+              31,
+              68
+            ],
+            [
+              14,
+              27,
+              37,
+              55
+            ]
+          ]
+        ],
+        "reference_token_counts_locked": [
+          [
+            [
+              53,
+              33,
+              28,
+              19
+            ],
+            [
+              35,
+              38,
+              41,
+              19
+            ]
+          ],
+          [
+            [
+              6,
+              19,
+              24,
+              84
+            ],
+            [
+              3,
+              20,
+              27,
+              83
+            ]
+          ]
+        ],
+        "store_manifest_sha256": "fd4c17004512e9b38afc086eab8544dd9a15d187323747f666f3ae38d5d8c41f",
+        "token_count_receipt_match": true,
+        "tokenizer_thresholds": [
+          0.02349012445177344,
+          0.17198941467361187,
+          0.6788236630773421
+        ]
+      },
+      "released_interface": {
+        "expected_accuracy": 0.6658837708379506,
+        "expected_balanced_accuracy": 0.6658837708379504,
+        "expected_positive_prediction_rate": 0.398748261503037
+      },
+      "seed": 1215,
+      "selected_candidate": "INLP::rank=4",
+      "selected_method": "INLP",
+      "selected_strength": "rank=4",
+      "strict_receipt": "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/Waterbirds__seed1215.json",
+      "strict_receipt_sha256": "8133262256fc18e5d324aefa4568f08425eed92d59ebf941e55a1ccc3d3ce681",
+      "utility_threshold": "0.49"
+    }
+  ],
+  "slices": {
+    "BiasBios-Clinical": [
+      "0.40"
+    ],
+    "Waterbirds": [
+      "0.49"
+    ]
+  },
+  "utility_repair_lock_sha256": "f89eb1b40c5a4d1c837f5beeb9c957c6f65a408f5dc7bb3f8c6c9db4ad9e7cb7"
+}

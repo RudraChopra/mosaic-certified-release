@@ -1,0 +1,2313 @@
+{
+  "claim_boundary": "The direct rule certifies only the distribution sampled by the labeled bridge table. Unlike MOSAIC, it does not certify a transform-plus-contamination class that can contain an external target law.",
+  "dataset": "BiasBios-Clinical",
+  "direct_target_lock_sha256": "c6e693e6eb35c9a95909d755a5b56b7761315a8c61422169fcf8d44bd65fd41c",
+  "original_preregistration_sha256": "d1fd9c04bd5b6dd76f35b6bc2e1bf8badb23dceeb32a19edf36fcfd611b8bf02",
+  "original_receipt": "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1218.json",
+  "original_receipt_sha256": "4d0f0a60d8d03b7af95fd84881f7a39c8702c34f0593ef450653a321c960a148",
+  "project": "MOSAIC direct target-table comparator",
+  "protocol": {
+    "bridge_fraction": 0.6666666666666666,
+    "familywise_delta": 0.05,
+    "fine_token_count": 4,
+    "frontier_candidate_count": 13,
+    "l4_policy": "reoptimize the minimum-error L2 candidate on the same covered table",
+    "per_candidate_table_delta": 0.0019230769230769232,
+    "primary_released_token_count": 2,
+    "primary_utility_threshold": 0.4,
+    "privacy_advantage_threshold": 0.35,
+    "secondary_released_token_count": 4,
+    "utility_thresholds": [
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.49
+    ]
+  },
+  "results": [
+    {
+      "bridge_l1_radii": [
+        [
+          0.10138629346371542,
+          0.10138629346371542
+        ],
+        [
+          0.10138629346371542,
+          0.10138629346371542
+        ]
+      ],
+      "bridge_stratum_counts": [
+        [
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000
+        ]
+      ],
+      "bridge_token_counts": [
+        [
+          [
+            841,
+            639,
+            463,
+            57
+          ],
+          [
+            575,
+            670,
+            628,
+            127
+          ]
+        ],
+        [
+          [
+            16,
+            82,
+            450,
+            1452
+          ],
+          [
+            4,
+            34,
+            266,
+            1696
+          ]
+        ]
+      ],
+      "candidate": "Identity::unedited",
+      "diagnostic_token_counts": [
+        [
+          [
+            421,
+            310,
+            233,
+            36
+          ],
+          [
+            293,
+            356,
+            294,
+            57
+          ]
+        ],
+        [
+          [
+            8,
+            42,
+            231,
+            719
+          ],
+          [
+            1,
+            17,
+            128,
+            854
+          ]
+        ]
+      ],
+      "direct_target": {
+        "decoder": [
+          0,
+          1
+        ],
+        "diagnostic": {
+          "estimable": true,
+          "missing_strata": [],
+          "worst_conditional_error": 0.19078571428571425,
+          "worst_privacy_advantage": 0.0947745825602968
+        },
+        "max_constraint_violation": 1.0408340855860843e-16,
+        "method": "global_decoder_enumeration_transform_exact_lp",
+        "release_channel": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.6094619666048235,
+            0.39053803339517645
+          ],
+          [
+            -0.0,
+            1.0
+          ]
+        ],
+        "released_token_count": 2,
+        "risk_bound_kind": "simultaneous_confidence_target_table_only",
+        "selection_source_advantages": [
+          0.15507980236647012,
+          0.1750794151945949
+        ],
+        "selection_worst_conditional_error": 0.23682208921794312,
+        "solved_decoder_assignments": 4,
+        "solver_dual_bound": 0.23682208921794304,
+        "solver_mip_gap": 0.0,
+        "solver_objective": 0.23682208921794304,
+        "solver_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "threshold_decisions": {
+          "0.30": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.35": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.40": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.45": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.49": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          }
+        }
+      },
+      "method": "Identity",
+      "provenance": {
+        "official_entrypoint": "none (unedited control)",
+        "transformation": "identity"
+      },
+      "strength": "unedited"
+    },
+    {
+      "bridge_l1_radii": [
+        [
+          0.10138629346371542,
+          0.10138629346371542
+        ],
+        [
+          0.10138629346371542,
+          0.10138629346371542
+        ]
+      ],
+      "bridge_stratum_counts": [
+        [
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000
+        ]
+      ],
+      "bridge_token_counts": [
+        [
+          [
+            871,
+            604,
+            468,
+            57
+          ],
+          [
+            621,
+            643,
+            620,
+            116
+          ]
+        ],
+        [
+          [
+            16,
+            83,
+            453,
+            1448
+          ],
+          [
+            4,
+            32,
+            273,
+            1691
+          ]
+        ]
+      ],
+      "candidate": "INLP::rank=1",
+      "diagnostic_token_counts": [
+        [
+          [
+            420,
+            306,
+            234,
+            40
+          ],
+          [
+            313,
+            336,
+            295,
+            56
+          ]
+        ],
+        [
+          [
+            7,
+            39,
+            243,
+            711
+          ],
+          [
+            0,
+            17,
+            132,
+            851
+          ]
+        ]
+      ],
+      "direct_target": {
+        "decoder": [
+          0,
+          1
+        ],
+        "diagnostic": {
+          "estimable": true,
+          "missing_strata": [],
+          "worst_conditional_error": 0.19026001863932923,
+          "worst_privacy_advantage": 0.09489655172413802
+        },
+        "max_constraint_violation": 1.2663481374630692e-16,
+        "method": "global_decoder_enumeration_transform_exact_lp",
+        "release_channel": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.5936626281453877,
+            0.4063373718546123
+          ],
+          [
+            -0.0,
+            1.0
+          ]
+        ],
+        "released_token_count": 2,
+        "risk_bound_kind": "simultaneous_confidence_target_table_only",
+        "selection_source_advantages": [
+          0.14859269190901503,
+          0.17303148267612012
+        ],
+        "selection_worst_conditional_error": 0.23465773200678805,
+        "solved_decoder_assignments": 4,
+        "solver_dual_bound": 0.23465773200678805,
+        "solver_mip_gap": 0.0,
+        "solver_objective": 0.23465773200678805,
+        "solver_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "threshold_decisions": {
+          "0.30": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.35": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.40": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.45": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.49": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          }
+        }
+      },
+      "method": "INLP",
+      "provenance": {
+        "commit": "e1edcc19d808108ab71cbb3afb0389db0206a7eb",
+        "compatibility_change": "SGDClassifier loss='log_loss' replaces removed alias loss='log'",
+        "official_entrypoint": "src.debias.get_debiasing_projection",
+        "rank": 1,
+        "remote": "https://github.com/shauli-ravfogel/nullspace_projection.git",
+        "repository": "/Volumes/Backups/FARO/external/nullspace_projection"
+      },
+      "strength": "rank=1"
+    },
+    {
+      "bridge_l1_radii": [
+        [
+          0.10138629346371542,
+          0.10138629346371542
+        ],
+        [
+          0.10138629346371542,
+          0.10138629346371542
+        ]
+      ],
+      "bridge_stratum_counts": [
+        [
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000
+        ]
+      ],
+      "bridge_token_counts": [
+        [
+          [
+            843,
+            615,
+            479,
+            63
+          ],
+          [
+            625,
+            644,
+            625,
+            106
+          ]
+        ],
+        [
+          [
+            19,
+            73,
+            435,
+            1473
+          ],
+          [
+            4,
+            33,
+            273,
+            1690
+          ]
+        ]
+      ],
+      "candidate": "INLP::rank=2",
+      "diagnostic_token_counts": [
+        [
+          [
+            402,
+            318,
+            241,
+            39
+          ],
+          [
+            319,
+            330,
+            302,
+            49
+          ]
+        ],
+        [
+          [
+            5,
+            40,
+            234,
+            721
+          ],
+          [
+            1,
+            15,
+            131,
+            853
+          ]
+        ]
+      ],
+      "direct_target": {
+        "decoder": [
+          0,
+          1
+        ],
+        "diagnostic": {
+          "estimable": true,
+          "missing_strata": [],
+          "worst_conditional_error": 0.1860622641509432,
+          "worst_privacy_advantage": 0.09109150943396216
+        },
+        "max_constraint_violation": 4.614364446098307e-16,
+        "method": "global_decoder_enumeration_transform_exact_lp",
+        "release_channel": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.6028301886792444,
+            0.3971698113207556
+          ],
+          [
+            -0.0,
+            1.0
+          ]
+        ],
+        "released_token_count": 2,
+        "risk_bound_kind": "simultaneous_confidence_target_table_only",
+        "selection_source_advantages": [
+          0.14030948142441613,
+          0.16492939273342078
+        ],
+        "selection_worst_conditional_error": 0.2278087127695938,
+        "solved_decoder_assignments": 4,
+        "solver_dual_bound": 0.22780871276959333,
+        "solver_mip_gap": 0.0,
+        "solver_objective": 0.22780871276959333,
+        "solver_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "threshold_decisions": {
+          "0.30": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.35": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.40": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.45": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.49": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          }
+        }
+      },
+      "method": "INLP",
+      "provenance": {
+        "commit": "e1edcc19d808108ab71cbb3afb0389db0206a7eb",
+        "compatibility_change": "SGDClassifier loss='log_loss' replaces removed alias loss='log'",
+        "official_entrypoint": "src.debias.get_debiasing_projection",
+        "rank": 2,
+        "remote": "https://github.com/shauli-ravfogel/nullspace_projection.git",
+        "repository": "/Volumes/Backups/FARO/external/nullspace_projection"
+      },
+      "strength": "rank=2"
+    },
+    {
+      "bridge_l1_radii": [
+        [
+          0.10138629346371542,
+          0.10138629346371542
+        ],
+        [
+          0.10138629346371542,
+          0.10138629346371542
+        ]
+      ],
+      "bridge_stratum_counts": [
+        [
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000
+        ]
+      ],
+      "bridge_token_counts": [
+        [
+          [
+            725,
+            635,
+            551,
+            89
+          ],
+          [
+            773,
+            600,
+            541,
+            86
+          ]
+        ],
+        [
+          [
+            9,
+            58,
+            382,
+            1551
+          ],
+          [
+            6,
+            47,
+            276,
+            1671
+          ]
+        ]
+      ],
+      "candidate": "INLP::rank=4",
+      "diagnostic_token_counts": [
+        [
+          [
+            349,
+            310,
+            295,
+            46
+          ],
+          [
+            377,
+            317,
+            266,
+            40
+          ]
+        ],
+        [
+          [
+            5,
+            30,
+            186,
+            779
+          ],
+          [
+            5,
+            15,
+            145,
+            835
+          ]
+        ]
+      ],
+      "direct_target": {
+        "decoder": [
+          0,
+          1
+        ],
+        "diagnostic": {
+          "estimable": true,
+          "missing_strata": [],
+          "worst_conditional_error": 0.1598263665594855,
+          "worst_privacy_advantage": 0.040180064308681596
+        },
+        "max_constraint_violation": 1.1449174941446927e-16,
+        "method": "global_decoder_enumeration_transform_exact_lp",
+        "release_channel": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.6141479099678457,
+            0.38585209003215426
+          ],
+          [
+            -0.0,
+            1.0
+          ]
+        ],
+        "released_token_count": 2,
+        "risk_bound_kind": "simultaneous_confidence_target_table_only",
+        "selection_source_advantages": [
+          0.10009082392742985,
+          0.1316011564610693
+        ],
+        "selection_worst_conditional_error": 0.20149539753571624,
+        "solved_decoder_assignments": 4,
+        "solver_dual_bound": 0.20149539753571624,
+        "solver_mip_gap": 0.0,
+        "solver_objective": 0.20149539753571624,
+        "solver_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "threshold_decisions": {
+          "0.30": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.35": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.40": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.45": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.49": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          }
+        }
+      },
+      "method": "INLP",
+      "provenance": {
+        "commit": "e1edcc19d808108ab71cbb3afb0389db0206a7eb",
+        "compatibility_change": "SGDClassifier loss='log_loss' replaces removed alias loss='log'",
+        "official_entrypoint": "src.debias.get_debiasing_projection",
+        "rank": 4,
+        "remote": "https://github.com/shauli-ravfogel/nullspace_projection.git",
+        "repository": "/Volumes/Backups/FARO/external/nullspace_projection"
+      },
+      "strength": "rank=4"
+    },
+    {
+      "bridge_l1_radii": [
+        [
+          0.10138629346371542,
+          0.10138629346371542
+        ],
+        [
+          0.10138629346371542,
+          0.10138629346371542
+        ]
+      ],
+      "bridge_stratum_counts": [
+        [
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000
+        ]
+      ],
+      "bridge_token_counts": [
+        [
+          [
+            706,
+            646,
+            561,
+            87
+          ],
+          [
+            798,
+            593,
+            526,
+            83
+          ]
+        ],
+        [
+          [
+            9,
+            55,
+            385,
+            1551
+          ],
+          [
+            6,
+            46,
+            292,
+            1656
+          ]
+        ]
+      ],
+      "candidate": "INLP::rank=8",
+      "diagnostic_token_counts": [
+        [
+          [
+            336,
+            319,
+            292,
+            53
+          ],
+          [
+            383,
+            324,
+            256,
+            37
+          ]
+        ],
+        [
+          [
+            5,
+            29,
+            184,
+            782
+          ],
+          [
+            5,
+            18,
+            150,
+            827
+          ]
+        ]
+      ],
+      "direct_target": {
+        "decoder": [
+          0,
+          1
+        ],
+        "diagnostic": {
+          "estimable": true,
+          "missing_strata": [],
+          "worst_conditional_error": 0.16473784355179702,
+          "worst_privacy_advantage": 0.03198942917547565
+        },
+        "max_constraint_violation": 1.8964208286888426e-16,
+        "method": "global_decoder_enumeration_transform_exact_lp",
+        "release_channel": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.6173361522198731,
+            0.38266384778012685
+          ],
+          [
+            -0.0,
+            1.0
+          ]
+        ],
+        "released_token_count": 2,
+        "risk_bound_kind": "simultaneous_confidence_target_table_only",
+        "selection_source_advantages": [
+          0.10440764896962973,
+          0.12664324999972765
+        ],
+        "selection_worst_conditional_error": 0.2015303560341833,
+        "solved_decoder_assignments": 4,
+        "solver_dual_bound": 0.20153035603418332,
+        "solver_mip_gap": 0.0,
+        "solver_objective": 0.20153035603418332,
+        "solver_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "threshold_decisions": {
+          "0.30": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.35": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.40": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.45": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.49": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          }
+        }
+      },
+      "method": "INLP",
+      "provenance": {
+        "commit": "e1edcc19d808108ab71cbb3afb0389db0206a7eb",
+        "compatibility_change": "SGDClassifier loss='log_loss' replaces removed alias loss='log'",
+        "official_entrypoint": "src.debias.get_debiasing_projection",
+        "rank": 8,
+        "remote": "https://github.com/shauli-ravfogel/nullspace_projection.git",
+        "repository": "/Volumes/Backups/FARO/external/nullspace_projection"
+      },
+      "strength": "rank=8"
+    },
+    {
+      "bridge_l1_radii": [
+        [
+          0.10138629346371542,
+          0.10138629346371542
+        ],
+        [
+          0.10138629346371542,
+          0.10138629346371542
+        ]
+      ],
+      "bridge_stratum_counts": [
+        [
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000
+        ]
+      ],
+      "bridge_token_counts": [
+        [
+          [
+            715,
+            676,
+            520,
+            89
+          ],
+          [
+            784,
+            623,
+            512,
+            81
+          ]
+        ],
+        [
+          [
+            13,
+            75,
+            360,
+            1552
+          ],
+          [
+            7,
+            50,
+            283,
+            1660
+          ]
+        ]
+      ],
+      "candidate": "LEACE::closed_form",
+      "diagnostic_token_counts": [
+        [
+          [
+            332,
+            349,
+            268,
+            51
+          ],
+          [
+            400,
+            318,
+            238,
+            44
+          ]
+        ],
+        [
+          [
+            6,
+            33,
+            191,
+            770
+          ],
+          [
+            3,
+            24,
+            143,
+            830
+          ]
+        ]
+      ],
+      "direct_target": {
+        "decoder": [
+          0,
+          1
+        ],
+        "diagnostic": {
+          "estimable": true,
+          "missing_strata": [],
+          "worst_conditional_error": 0.16033181818181835,
+          "worst_privacy_advantage": 0.04041818181818169
+        },
+        "max_constraint_violation": 2.740863092043355e-16,
+        "method": "global_decoder_enumeration_transform_exact_lp",
+        "release_channel": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.5920454545454539,
+            0.4079545454545461
+          ],
+          [
+            -0.0,
+            1.0
+          ]
+        ],
+        "released_token_count": 2,
+        "risk_bound_kind": "simultaneous_confidence_target_table_only",
+        "selection_source_advantages": [
+          0.10098330545542256,
+          0.13062624837651438
+        ],
+        "selection_worst_conditional_error": 0.2012613285500397,
+        "solved_decoder_assignments": 4,
+        "solver_dual_bound": 0.2012613285500394,
+        "solver_mip_gap": 0.0,
+        "solver_objective": 0.2012613285500394,
+        "solver_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "threshold_decisions": {
+          "0.30": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.35": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.40": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.45": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.49": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          }
+        }
+      },
+      "method": "LEACE",
+      "provenance": {
+        "commit": "9f51753821316a1edacf78b52b464ab26d40e60a",
+        "official_entrypoint": "concept_erasure.LeaceFitter.fit(method='leace')",
+        "remote": "https://github.com/EleutherAI/concept-erasure",
+        "repository": "/Volumes/Backups/FARO/external/concept-erasure"
+      },
+      "strength": "closed_form"
+    },
+    {
+      "bridge_l1_radii": [
+        [
+          0.10138629346371542,
+          0.10138629346371542
+        ],
+        [
+          0.10138629346371542,
+          0.10138629346371542
+        ]
+      ],
+      "bridge_stratum_counts": [
+        [
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000
+        ]
+      ],
+      "bridge_token_counts": [
+        [
+          [
+            842,
+            611,
+            478,
+            69
+          ],
+          [
+            642,
+            645,
+            606,
+            107
+          ]
+        ],
+        [
+          [
+            15,
+            77,
+            443,
+            1465
+          ],
+          [
+            4,
+            38,
+            268,
+            1690
+          ]
+        ]
+      ],
+      "candidate": "R-LACE::rank=1",
+      "diagnostic_token_counts": [
+        [
+          [
+            411,
+            306,
+            241,
+            42
+          ],
+          [
+            324,
+            330,
+            299,
+            47
+          ]
+        ],
+        [
+          [
+            5,
+            42,
+            232,
+            721
+          ],
+          [
+            0,
+            18,
+            134,
+            848
+          ]
+        ]
+      ],
+      "direct_target": {
+        "decoder": [
+          0,
+          1
+        ],
+        "diagnostic": {
+          "estimable": true,
+          "missing_strata": [],
+          "worst_conditional_error": 0.18434223069590083,
+          "worst_privacy_advantage": 0.08701525262154419
+        },
+        "max_constraint_violation": 1.214306433183765e-16,
+        "method": "global_decoder_enumeration_transform_exact_lp",
+        "release_channel": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.5919923736892276,
+            0.40800762631077236
+          ],
+          [
+            -0.0,
+            1.0
+          ]
+        ],
+        "released_token_count": 2,
+        "risk_bound_kind": "simultaneous_confidence_target_table_only",
+        "selection_source_advantages": [
+          0.1369125621763143,
+          0.16607059584576
+        ],
+        "selection_worst_conditional_error": 0.22781945750402172,
+        "solved_decoder_assignments": 4,
+        "solver_dual_bound": 0.2278194575040216,
+        "solver_mip_gap": 0.0,
+        "solver_objective": 0.2278194575040216,
+        "solver_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "threshold_decisions": {
+          "0.30": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.35": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.40": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.45": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.49": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          }
+        }
+      },
+      "method": "R-LACE",
+      "provenance": {
+        "commit": "2d9b6d03f65416172b4a2ca7f6da10e374002e5f",
+        "compatibility_change": "SGDClassifier loss='log_loss' replaces removed alias loss='log'",
+        "iterations": 10000,
+        "official_entrypoint": "rlace.solve_adv_game",
+        "rank": 1,
+        "remote": "https://github.com/shauli-ravfogel/rlace-icml",
+        "reported_upstream_score": 0.989875,
+        "repository": "/Volumes/Backups/FARO/external/rlace-icml"
+      },
+      "strength": "rank=1"
+    },
+    {
+      "bridge_l1_radii": [
+        [
+          0.10138629346371542,
+          0.10138629346371542
+        ],
+        [
+          0.10138629346371542,
+          0.10138629346371542
+        ]
+      ],
+      "bridge_stratum_counts": [
+        [
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000
+        ]
+      ],
+      "bridge_token_counts": [
+        [
+          [
+            837,
+            634,
+            466,
+            63
+          ],
+          [
+            567,
+            698,
+            626,
+            109
+          ]
+        ],
+        [
+          [
+            16,
+            79,
+            429,
+            1476
+          ],
+          [
+            4,
+            39,
+            262,
+            1695
+          ]
+        ]
+      ],
+      "candidate": "R-LACE::rank=4",
+      "diagnostic_token_counts": [
+        [
+          [
+            401,
+            332,
+            227,
+            40
+          ],
+          [
+            296,
+            352,
+            303,
+            49
+          ]
+        ],
+        [
+          [
+            7,
+            41,
+            215,
+            737
+          ],
+          [
+            2,
+            17,
+            134,
+            847
+          ]
+        ]
+      ],
+      "direct_target": {
+        "decoder": [
+          0,
+          1
+        ],
+        "diagnostic": {
+          "estimable": true,
+          "missing_strata": [],
+          "worst_conditional_error": 0.17842654028436017,
+          "worst_privacy_advantage": 0.07813744075829376
+        },
+        "max_constraint_violation": 9.927965506041248e-17,
+        "method": "global_decoder_enumeration_transform_exact_lp",
+        "release_channel": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.6066350710900473,
+            0.39336492890995267
+          ],
+          [
+            -0.0,
+            1.0
+          ]
+        ],
+        "released_token_count": 2,
+        "risk_bound_kind": "simultaneous_confidence_target_table_only",
+        "selection_source_advantages": [
+          0.14421225184438935,
+          0.1665567618108994
+        ],
+        "selection_worst_conditional_error": 0.22831636948067288,
+        "solved_decoder_assignments": 4,
+        "solver_dual_bound": 0.22831636948067288,
+        "solver_mip_gap": 0.0,
+        "solver_objective": 0.22831636948067288,
+        "solver_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "threshold_decisions": {
+          "0.30": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.35": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.40": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.45": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.49": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          }
+        }
+      },
+      "method": "R-LACE",
+      "provenance": {
+        "commit": "2d9b6d03f65416172b4a2ca7f6da10e374002e5f",
+        "compatibility_change": "SGDClassifier loss='log_loss' replaces removed alias loss='log'",
+        "iterations": 10000,
+        "official_entrypoint": "rlace.solve_adv_game",
+        "rank": 4,
+        "remote": "https://github.com/shauli-ravfogel/rlace-icml",
+        "reported_upstream_score": 0.99475,
+        "repository": "/Volumes/Backups/FARO/external/rlace-icml"
+      },
+      "strength": "rank=4"
+    },
+    {
+      "bridge_l1_radii": [
+        [
+          0.10138629346371542,
+          0.10138629346371542
+        ],
+        [
+          0.10138629346371542,
+          0.10138629346371542
+        ]
+      ],
+      "bridge_stratum_counts": [
+        [
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000
+        ]
+      ],
+      "bridge_token_counts": [
+        [
+          [
+            809,
+            655,
+            476,
+            60
+          ],
+          [
+            595,
+            593,
+            648,
+            164
+          ]
+        ],
+        [
+          [
+            15,
+            105,
+            403,
+            1477
+          ],
+          [
+            4,
+            42,
+            261,
+            1693
+          ]
+        ]
+      ],
+      "candidate": "TaCo::components_removed=1",
+      "diagnostic_token_counts": [
+        [
+          [
+            386,
+            338,
+            232,
+            44
+          ],
+          [
+            296,
+            337,
+            301,
+            66
+          ]
+        ],
+        [
+          [
+            9,
+            44,
+            217,
+            730
+          ],
+          [
+            2,
+            20,
+            128,
+            850
+          ]
+        ]
+      ],
+      "direct_target": {
+        "decoder": [
+          0,
+          1
+        ],
+        "diagnostic": {
+          "estimable": true,
+          "missing_strata": [],
+          "worst_conditional_error": 0.1958772597526166,
+          "worst_privacy_advantage": 0.08959942911512853
+        },
+        "max_constraint_violation": 2.220446049250313e-16,
+        "method": "global_decoder_enumeration_transform_exact_lp",
+        "release_channel": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.6584205518553762,
+            0.3415794481446238
+          ],
+          [
+            -0.0,
+            1.0
+          ]
+        ],
+        "released_token_count": 2,
+        "risk_bound_kind": "simultaneous_confidence_target_table_only",
+        "selection_source_advantages": [
+          0.169137332913339,
+          0.17567474286739126
+        ],
+        "selection_worst_conditional_error": 0.243364887930716,
+        "solved_decoder_assignments": 4,
+        "solver_dual_bound": 0.24336488793071598,
+        "solver_mip_gap": 0.0,
+        "solver_objective": 0.24336488793071598,
+        "solver_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "threshold_decisions": {
+          "0.30": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.35": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.40": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.45": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.49": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          }
+        }
+      },
+      "method": "TaCo",
+      "provenance": {
+        "commit": "35995e44b95dc1722b03d18b9b16c5b9f8322db5",
+        "components": 20,
+        "components_removed": 1,
+        "official_entrypoints": [
+          "TaCo.concept_removal.sobol_importance_from_sample",
+          "TaCo.concept_removal.crop_concepts",
+          "TaCo.concept_removal.build_gender_neutral_features"
+        ],
+        "protocol_adapter": "PCA is fit on train only to keep certification and external splits locked",
+        "remote": "https://github.com/fanny-jourdan/TaCo",
+        "repository": "/Volumes/Backups/FARO/external/TaCo",
+        "sobol_design": 8,
+        "sobol_sampled": 500
+      },
+      "strength": "components_removed=1"
+    },
+    {
+      "bridge_l1_radii": [
+        [
+          0.10138629346371542,
+          0.10138629346371542
+        ],
+        [
+          0.10138629346371542,
+          0.10138629346371542
+        ]
+      ],
+      "bridge_stratum_counts": [
+        [
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000
+        ]
+      ],
+      "bridge_token_counts": [
+        [
+          [
+            748,
+            753,
+            438,
+            61
+          ],
+          [
+            570,
+            622,
+            647,
+            161
+          ]
+        ],
+        [
+          [
+            14,
+            111,
+            401,
+            1474
+          ],
+          [
+            2,
+            52,
+            258,
+            1688
+          ]
+        ]
+      ],
+      "candidate": "TaCo::components_removed=2",
+      "diagnostic_token_counts": [
+        [
+          [
+            382,
+            360,
+            220,
+            38
+          ],
+          [
+            264,
+            364,
+            310,
+            62
+          ]
+        ],
+        [
+          [
+            12,
+            52,
+            212,
+            724
+          ],
+          [
+            2,
+            24,
+            134,
+            840
+          ]
+        ]
+      ],
+      "direct_target": {
+        "decoder": [
+          0,
+          1
+        ],
+        "diagnostic": {
+          "estimable": true,
+          "missing_strata": [],
+          "worst_conditional_error": 0.20216412213740448,
+          "worst_privacy_advantage": 0.08883396946564881
+        },
+        "max_constraint_violation": 2.498001805406602e-16,
+        "method": "global_decoder_enumeration_transform_exact_lp",
+        "release_channel": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.6517175572519079,
+            0.34828244274809206
+          ],
+          [
+            -0.0,
+            1.0
+          ]
+        ],
+        "released_token_count": 2,
+        "risk_bound_kind": "simultaneous_confidence_target_table_only",
+        "selection_source_advantages": [
+          0.17462158046957543,
+          0.1752321917870665
+        ],
+        "selection_worst_conditional_error": 0.24386251696086553,
+        "solved_decoder_assignments": 4,
+        "solver_dual_bound": 0.24386251696086525,
+        "solver_mip_gap": 0.0,
+        "solver_objective": 0.24386251696086525,
+        "solver_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "threshold_decisions": {
+          "0.30": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.35": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.40": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.45": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.49": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          }
+        }
+      },
+      "method": "TaCo",
+      "provenance": {
+        "commit": "35995e44b95dc1722b03d18b9b16c5b9f8322db5",
+        "components": 20,
+        "components_removed": 2,
+        "official_entrypoints": [
+          "TaCo.concept_removal.sobol_importance_from_sample",
+          "TaCo.concept_removal.crop_concepts",
+          "TaCo.concept_removal.build_gender_neutral_features"
+        ],
+        "protocol_adapter": "PCA is fit on train only to keep certification and external splits locked",
+        "remote": "https://github.com/fanny-jourdan/TaCo",
+        "repository": "/Volumes/Backups/FARO/external/TaCo",
+        "sobol_design": 8,
+        "sobol_sampled": 500
+      },
+      "strength": "components_removed=2"
+    },
+    {
+      "bridge_l1_radii": [
+        [
+          0.10138629346371542,
+          0.10138629346371542
+        ],
+        [
+          0.10138629346371542,
+          0.10138629346371542
+        ]
+      ],
+      "bridge_stratum_counts": [
+        [
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000
+        ]
+      ],
+      "bridge_token_counts": [
+        [
+          [
+            748,
+            761,
+            433,
+            58
+          ],
+          [
+            584,
+            614,
+            638,
+            164
+          ]
+        ],
+        [
+          [
+            16,
+            116,
+            399,
+            1469
+          ],
+          [
+            4,
+            55,
+            252,
+            1689
+          ]
+        ]
+      ],
+      "candidate": "TaCo::components_removed=3",
+      "diagnostic_token_counts": [
+        [
+          [
+            378,
+            361,
+            225,
+            36
+          ],
+          [
+            272,
+            362,
+            304,
+            62
+          ]
+        ],
+        [
+          [
+            12,
+            51,
+            215,
+            722
+          ],
+          [
+            3,
+            26,
+            132,
+            839
+          ]
+        ]
+      ],
+      "direct_target": {
+        "decoder": [
+          0,
+          1
+        ],
+        "diagnostic": {
+          "estimable": true,
+          "missing_strata": [],
+          "worst_conditional_error": 0.20191031822565098,
+          "worst_privacy_advantage": 0.08762584378013494
+        },
+        "max_constraint_violation": 2.220446049250313e-16,
+        "method": "global_decoder_enumeration_transform_exact_lp",
+        "release_channel": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.6460945033751209,
+            0.35390549662487913
+          ],
+          [
+            -0.0,
+            1.0
+          ]
+        ],
+        "released_token_count": 2,
+        "risk_bound_kind": "simultaneous_confidence_target_table_only",
+        "selection_source_advantages": [
+          0.17664578400340236,
+          0.17787386834260466
+        ],
+        "selection_worst_conditional_error": 0.24558900015519433,
+        "solved_decoder_assignments": 4,
+        "solver_dual_bound": 0.2455890001551943,
+        "solver_mip_gap": 0.0,
+        "solver_objective": 0.2455890001551943,
+        "solver_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "threshold_decisions": {
+          "0.30": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.35": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.40": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.45": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.49": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          }
+        }
+      },
+      "method": "TaCo",
+      "provenance": {
+        "commit": "35995e44b95dc1722b03d18b9b16c5b9f8322db5",
+        "components": 20,
+        "components_removed": 3,
+        "official_entrypoints": [
+          "TaCo.concept_removal.sobol_importance_from_sample",
+          "TaCo.concept_removal.crop_concepts",
+          "TaCo.concept_removal.build_gender_neutral_features"
+        ],
+        "protocol_adapter": "PCA is fit on train only to keep certification and external splits locked",
+        "remote": "https://github.com/fanny-jourdan/TaCo",
+        "repository": "/Volumes/Backups/FARO/external/TaCo",
+        "sobol_design": 8,
+        "sobol_sampled": 500
+      },
+      "strength": "components_removed=3"
+    },
+    {
+      "bridge_l1_radii": [
+        [
+          0.10138629346371542,
+          0.10138629346371542
+        ],
+        [
+          0.10138629346371542,
+          0.10138629346371542
+        ]
+      ],
+      "bridge_stratum_counts": [
+        [
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000
+        ]
+      ],
+      "bridge_token_counts": [
+        [
+          [
+            564,
+            742,
+            579,
+            115
+          ],
+          [
+            906,
+            584,
+            410,
+            100
+          ]
+        ],
+        [
+          [
+            7,
+            73,
+            321,
+            1599
+          ],
+          [
+            20,
+            92,
+            289,
+            1599
+          ]
+        ]
+      ],
+      "candidate": "TaCo::components_removed=5",
+      "diagnostic_token_counts": [
+        [
+          [
+            281,
+            361,
+            293,
+            65
+          ],
+          [
+            458,
+            298,
+            198,
+            46
+          ]
+        ],
+        [
+          [
+            6,
+            32,
+            164,
+            798
+          ],
+          [
+            12,
+            47,
+            144,
+            797
+          ]
+        ]
+      ],
+      "direct_target": {
+        "decoder": [
+          0,
+          1
+        ],
+        "diagnostic": {
+          "estimable": true,
+          "missing_strata": [],
+          "worst_conditional_error": 0.1615414746543779,
+          "worst_privacy_advantage": 0.05030184331797227
+        },
+        "max_constraint_violation": 8.326672684688674e-17,
+        "method": "global_decoder_enumeration_transform_exact_lp",
+        "release_channel": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.6705069124423962,
+            0.32949308755760376
+          ],
+          [
+            -0.0,
+            1.0
+          ]
+        ],
+        "released_token_count": 2,
+        "risk_bound_kind": "simultaneous_confidence_target_table_only",
+        "selection_source_advantages": [
+          0.13626369968728547,
+          0.10313486493225055
+        ],
+        "selection_worst_conditional_error": 0.203581395579784,
+        "solved_decoder_assignments": 4,
+        "solver_dual_bound": 0.20358139557978397,
+        "solver_mip_gap": 0.0,
+        "solver_objective": 0.20358139557978397,
+        "solver_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "threshold_decisions": {
+          "0.30": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.35": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.40": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.45": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.49": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          }
+        }
+      },
+      "method": "TaCo",
+      "provenance": {
+        "commit": "35995e44b95dc1722b03d18b9b16c5b9f8322db5",
+        "components": 20,
+        "components_removed": 5,
+        "official_entrypoints": [
+          "TaCo.concept_removal.sobol_importance_from_sample",
+          "TaCo.concept_removal.crop_concepts",
+          "TaCo.concept_removal.build_gender_neutral_features"
+        ],
+        "protocol_adapter": "PCA is fit on train only to keep certification and external splits locked",
+        "remote": "https://github.com/fanny-jourdan/TaCo",
+        "repository": "/Volumes/Backups/FARO/external/TaCo",
+        "sobol_design": 8,
+        "sobol_sampled": 500
+      },
+      "strength": "components_removed=5"
+    },
+    {
+      "bridge_l1_radii": [
+        [
+          0.10138629346371542,
+          0.10138629346371542
+        ],
+        [
+          0.10138629346371542,
+          0.10138629346371542
+        ]
+      ],
+      "bridge_stratum_counts": [
+        [
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000
+        ]
+      ],
+      "bridge_token_counts": [
+        [
+          [
+            798,
+            613,
+            454,
+            135
+          ],
+          [
+            709,
+            661,
+            510,
+            120
+          ]
+        ],
+        [
+          [
+            25,
+            94,
+            316,
+            1565
+          ],
+          [
+            9,
+            69,
+            327,
+            1595
+          ]
+        ]
+      ],
+      "candidate": "MANCE++::epsilon=0.05,steps=3",
+      "diagnostic_token_counts": [
+        [
+          [
+            355,
+            317,
+            256,
+            72
+          ],
+          [
+            383,
+            323,
+            238,
+            56
+          ]
+        ],
+        [
+          [
+            15,
+            39,
+            158,
+            788
+          ],
+          [
+            5,
+            32,
+            179,
+            784
+          ]
+        ]
+      ],
+      "direct_target": {
+        "decoder": [
+          0,
+          1
+        ],
+        "diagnostic": {
+          "estimable": true,
+          "missing_strata": [],
+          "worst_conditional_error": 0.16962711864406782,
+          "worst_privacy_advantage": 0.02286440677966106
+        },
+        "max_constraint_violation": 2.220446049250313e-16,
+        "method": "global_decoder_enumeration_transform_exact_lp",
+        "release_channel": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.6186440677966101,
+            0.3813559322033899
+          ],
+          [
+            -0.0,
+            1.0
+          ]
+        ],
+        "released_token_count": 2,
+        "risk_bound_kind": "simultaneous_confidence_target_table_only",
+        "selection_source_advantages": [
+          0.10456425956541016,
+          0.1140245002185154
+        ],
+        "selection_worst_conditional_error": 0.20793890944372212,
+        "solved_decoder_assignments": 4,
+        "solver_dual_bound": 0.20793890944372215,
+        "solver_mip_gap": 0.0,
+        "solver_objective": 0.20793890944372215,
+        "solver_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+        "threshold_decisions": {
+          "0.30": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.35": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.40": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.45": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          },
+          "0.49": {
+            "deployed": true,
+            "diagnostic_safe": true,
+            "false_acceptance": false
+          }
+        }
+      },
+      "method": "MANCE++",
+      "provenance": {
+        "commit": "d1a260f945914fa1d1c75a71163af3cd586eb241",
+        "epsilon": 0.05,
+        "external_label_adapter": "dummy labels are supplied because stop_at_floor=False; edited representations do not depend on evaluation labels",
+        "external_labels_hidden": true,
+        "history": [
+          {
+            "concept_acc": 0.5373499989509583,
+            "control_acc": 0.5842000246047974,
+            "scorer_val_acc": NaN,
+            "step": 0
+          },
+          {
+            "concept_acc": 0.539900004863739,
+            "control_acc": 0.5824499726295471,
+            "scorer_val_acc": 0.8744999766349792,
+            "step": 1
+          },
+          {
+            "concept_acc": 0.5460500121116638,
+            "control_acc": 0.5829499959945679,
+            "scorer_val_acc": 0.8744999766349792,
+            "step": 2
+          },
+          {
+            "concept_acc": 0.5521500110626221,
+            "control_acc": 0.5834500193595886,
+            "scorer_val_acc": 0.8744999766349792,
+            "step": 3
+          }
+        ],
+        "n_neighbors": 8,
+        "official_entrypoint": "mance.MANCE(variant='mance++').fit_erase",
+        "remote": "https://github.com/MatanAvitan/mance.git",
+        "repository": "/Volumes/Backups/FARO/external/mance",
+        "steps_completed": 3,
+        "steps_requested": 3,
+        "tangent_rank": 7
+      },
+      "strength": "epsilon=0.05,steps=3"
+    }
+  ],
+  "rule": "direct_target",
+  "seed": 1218,
+  "selection_by_utility_threshold": {
+    "0.30": {
+      "candidate": "LEACE::closed_form",
+      "decision": "deploy",
+      "diagnostic_estimable": true,
+      "diagnostic_safe": true,
+      "diagnostic_worst_conditional_error": 0.16033181818181835,
+      "diagnostic_worst_source_advantage": 0.04041818181818169,
+      "false_acceptance": false,
+      "method": "LEACE",
+      "rule": "direct_target",
+      "selection_source_advantages": [
+        0.10098330545542256,
+        0.13062624837651438
+      ],
+      "selection_worst_conditional_error": 0.2012613285500397,
+      "strength": "closed_form",
+      "utility_threshold": 0.3
+    },
+    "0.35": {
+      "candidate": "LEACE::closed_form",
+      "decision": "deploy",
+      "diagnostic_estimable": true,
+      "diagnostic_safe": true,
+      "diagnostic_worst_conditional_error": 0.16033181818181835,
+      "diagnostic_worst_source_advantage": 0.04041818181818169,
+      "false_acceptance": false,
+      "method": "LEACE",
+      "rule": "direct_target",
+      "selection_source_advantages": [
+        0.10098330545542256,
+        0.13062624837651438
+      ],
+      "selection_worst_conditional_error": 0.2012613285500397,
+      "strength": "closed_form",
+      "utility_threshold": 0.35
+    },
+    "0.40": {
+      "candidate": "LEACE::closed_form",
+      "decision": "deploy",
+      "diagnostic_estimable": true,
+      "diagnostic_safe": true,
+      "diagnostic_worst_conditional_error": 0.16033181818181835,
+      "diagnostic_worst_source_advantage": 0.04041818181818169,
+      "false_acceptance": false,
+      "method": "LEACE",
+      "rule": "direct_target",
+      "selection_source_advantages": [
+        0.10098330545542256,
+        0.13062624837651438
+      ],
+      "selection_worst_conditional_error": 0.2012613285500397,
+      "strength": "closed_form",
+      "utility_threshold": 0.4
+    },
+    "0.45": {
+      "candidate": "LEACE::closed_form",
+      "decision": "deploy",
+      "diagnostic_estimable": true,
+      "diagnostic_safe": true,
+      "diagnostic_worst_conditional_error": 0.16033181818181835,
+      "diagnostic_worst_source_advantage": 0.04041818181818169,
+      "false_acceptance": false,
+      "method": "LEACE",
+      "rule": "direct_target",
+      "selection_source_advantages": [
+        0.10098330545542256,
+        0.13062624837651438
+      ],
+      "selection_worst_conditional_error": 0.2012613285500397,
+      "strength": "closed_form",
+      "utility_threshold": 0.45
+    },
+    "0.49": {
+      "candidate": "LEACE::closed_form",
+      "decision": "deploy",
+      "diagnostic_estimable": true,
+      "diagnostic_safe": true,
+      "diagnostic_worst_conditional_error": 0.16033181818181835,
+      "diagnostic_worst_source_advantage": 0.04041818181818169,
+      "false_acceptance": false,
+      "method": "LEACE",
+      "rule": "direct_target",
+      "selection_source_advantages": [
+        0.10098330545542256,
+        0.13062624837651438
+      ],
+      "selection_worst_conditional_error": 0.2012613285500397,
+      "strength": "closed_form",
+      "utility_threshold": 0.49
+    }
+  }
+}

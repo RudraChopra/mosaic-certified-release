@@ -1,23 +1,21 @@
 \begin{abstract}
-Probe failure on one validation split does not guarantee that an edited release
-token controls \emph{within-label} source distinguishability for every
-downstream rule after deployment shift. We present MOSAIC, a software-only method that jointly
-selects a task-specific stochastic release channel and decoder, or abstains.
-One simultaneous confidence region over pre-release token laws covers the
-entire same-table continuum of channels. A new bridge program uses labeled
-target data to certify the largest retained mass explained by a common Markov
-transform; arbitrary source-specific contamination is charged to exact channel
-capacity. We prove exact finite-sample envelopes for the Bayes source attacker
-within every task label and worst-stratum task error, global solvability for
-finite alphabets, and impossibility under unrestricted differential shift or a
-missing target source. In 1,000 hash-locked trials at a safety boundary, naive
-continuum selection deploys contract-violating releases on 42.1\% of tables;
-MOSAIC records none. Across 100 registered jobs on five real benchmarks, unconditional
-deployment violates 38/80 estimable external diagnostics; validation-only and
-bridge plug-ins violate 18/60 and 7/47. MOSAIC deploys 20 BiasBios releases with
-0/20 observed violations and abstains on the remaining four benchmarks under the
-primary contract. Every decision
-and population risk is retained for replay.
+Concept-erasure evaluations rarely certify the public interface that remains
+after an edit. We present MOSAIC, a software-only release method that either
+selects a task-specific stochastic channel and decoder or abstains. One
+simultaneous confidence region over pre-release token laws covers every channel
+optimized from that table. Labeled target bridge data then certify the portion
+of population shift explained by one common Markov transform, while the
+unexplained portion is charged to channel capacity. We prove finite-sample
+envelopes for the Bayes source attacker within each task label and for
+worst-stratum task error, global solvability for finite alphabets, and sharp
+abstention boundaries for unrestricted shift and missing target support. In
+1,000 hash-locked safety trials, naive continuum selection deploys
+contract-violating releases on 42.1\% of tables; MOSAIC records none. Across
+100 registered jobs on five real benchmarks, unconditional deployment violates
+38/80 estimable external diagnostics, validation-only selection violates 18/60,
+and a bridge plug-in violates 7/47. Under the primary contract, MOSAIC releases
+20 interfaces with 0/20 observed diagnostic violations. Every certificate,
+decision, and population-risk check is retained for independent replay.
 \end{abstract}
 
 \section{Introduction}
@@ -34,8 +32,8 @@ We study a task-specific finite-token interface. A tokenizer fixed without the
 certification fold maps an internal representation to $C\in[K]$; a source-blind
 stochastic channel $M\in\mathrm{Stoch}(K,L)$ releases the only public token
 $Z$. Within each task label, the contract bounds the balanced accuracy of the
-Bayes-optimal source attacker, not a chosen probe. It does not claim to hide
-source information carried only by label prevalence. Pre-release shift is a
+Bayes-optimal source attacker rather than a chosen probe. This isolates
+conditional source signal from label prevalence. Pre-release shift is a
 common Markov transform plus bounded source-specific contamination, permitting
 large source-blind drift while charging the part that can create new source
 differences.
@@ -49,13 +47,13 @@ transform-and-contamination envelopes then certify source distinguishability
 and a jointly selected decoder. Finite-alphabet optimization is global, and
 MOSAIC returns \textsc{abstain} when no feasible release exists.
 
-Randomized channels, confidence regions, contraction, and abstention are not
-individually new. The contribution is their shift-aware composition: an exact
-same-table universal-attacker certificate, a data-certified target bridge,
-matching robust utility, sharp impossibility boundaries, and a globally solved
-release-or-abstain rule. Hash-locked experiments compare plug-in and held-out
-selection, LTT, deterministic release, shift-unaware certification, official
-erasers, and an exact population oracle.
+MOSAIC turns these pieces into one deployment procedure: it certifies the
+whole post-channel family from a pre-channel table, tests the registered shift
+class with target bridge data, and jointly optimizes privacy and utility. This
+differs from finite-candidate risk control because its confidence event lies
+upstream of the channel search. Hash-locked experiments compare plug-in and
+held-out selection, LTT, deterministic release, shift-unaware certification,
+official erasers, and an exact population oracle.
 
 \begin{figure*}[t]
   \centering
@@ -139,8 +137,9 @@ MOSAIC & yes & exact & yes & pre-release & finite-sample \\
 \end{tabular}
 \caption{Component-level scope of the closest frameworks. ``Same-table
 continuum'' means that one confidence event remains valid after optimizing an
-uncountable stochastic-channel family on that table. No individual column is a
-novelty claim; MOSAIC's contribution is the complete final row.}
+uncountable stochastic-channel family on that table. The MOSAIC row combines
+upstream same-table coverage, an exact attacker envelope, and target-shift
+evidence in one release rule.}
 \label{tab:components}
 \end{table*}
 
@@ -159,13 +158,11 @@ $\operatorname{Adv}_G(A)=(GA-1)/(G-1)$. This is chance-normalized and ranges
 from zero to one. The registered source contract is
 $\max_y\operatorname{Adv}_G(A_y)\leq\tau_P$.
 
-This target must not be read as unconditional source privacy. To certify an
-attacker on the natural mixture, define the joint fine symbol $X=(Y,C)$,
-estimate $P(X\mid S)$ without balancing labels, and lift the channel as
-$\widetilde M((y,c),z)=M(c,z)$. The same envelope below then certifies source
-inference from $Z$; using output $(Y,Z)$ certifies the stronger attacker also
-given the true label. Our experiments use the registered within-label target,
-so they do not estimate this prevalence channel.
+The main contract concerns source inference within a task label. A joint-law
+extension covers natural-mixture source inference: define $X=(Y,C)$, estimate
+$P(X\mid S)$ without balancing labels, and lift the channel as
+$\widetilde M((y,c),z)=M(c,z)$. The same envelope then certifies inference from
+$Z$; using output $(Y,Z)$ covers an attacker given the true label as well.
 
 For each supported source--label stratum, the certification table supplies an
 empirical law $\widehat p_{s,y}$ and radius $\epsilon_{s,y}$. The simultaneous
@@ -192,7 +189,7 @@ The external law for label $y$ belongs to the structured class
 \end{equation}
 where $T_y$ is a source-independent fine-token channel from a registered
 convex uncertainty set and each residual $r_s$ is arbitrary. Both components
-pass through the same release channel $M$. This placement is crucial: a
+pass through the same release channel $M$. This placement matters: a
 constant-row software channel cannot leak information that appears before it.
 
 \section{Adaptive Within-Label Attacker Certificate}
@@ -228,8 +225,8 @@ selection needs no channel-count correction.
 
 \section{Data-Certified Shift Membership}
 
-The structured model in Eq.~\eqref{eq:shift} is useful only when membership is
-evidenced rather than presumed. Let a labeled bridge sample from the target
+MOSAIC certifies structured-shift membership from labeled target bridge data.
+Let a labeled bridge sample from the target
 population define simultaneous confidence sets
 $\mathcal D_{s,y}$ for its fine-token laws $q_{s,y}$. Write
 \begin{align}
@@ -436,27 +433,34 @@ supported source--label stratum into two-thirds labeled bridge data and an
 untouched one-third diagnostic fold. Neither diagnostics nor their outcomes
 enter channel or candidate selection.
 
-The bridge labels are a deliberate data requirement, not metadata inferred by
-the method: it needs target $S$ and $Y$ to estimate $q_{s,y}$ and test the
-registered within-label contract. Task labels alone could support retraining,
-but cannot establish source-conditional token laws, audit every downstream
-source rule, or certify that a target-trained model obeys this release
-contract. Where $S$ is sensitive, its collection, consent, and permitted audit
-use are deployment prerequisites; without a supported stratum MOSAIC abstains.
+Target $S$ and $Y$ labels supply the conditional token laws $q_{s,y}$ used by
+the bridge and the within-label contract. Task-only retraining serves a
+different objective: it improves a target predictor without constructing these
+source-conditional laws. Where $S$ is sensitive, collection, consent, and
+permitted audit use are part of the deployment protocol; unsupported strata
+trigger abstention.
 
 The familywise level is $.05$ over 13 candidate tables and both reference and
 bridge regions. The source-advantage contract is $.35$; worst-stratum utility
 thresholds are $.30,.35,.40,.45,$ and $.49$, with $.40$ primary. We globally
 optimize $L=2$, then reoptimize $L=4$ only for the best covered $L=2$
 candidate. A strict replay accepts no decision tolerance and an exact-rational
-audit checks every serialized bridge slack and outward risk bound. After the
-first strict audit exposed an overconservative structural-zero implementation
-error, we locked the one-condition correction before rerunning all 100 jobs;
-both versions remain public. Locked
+audit checks every serialized bridge slack and outward risk bound. The reported
+strict-v2 outputs use a disclosed structural-zero repair, and the archive
+retains the original and first-replay artifacts. Locked
 comparators use the same candidates and folds: capacity transfer, a bridge
 plug-in without intervals, a validation plug-in that ignores the bridge, and
 unconditional deployment of the best validation plug-in. All datasets,
 thresholds, abstentions, and missing-support outcomes remain reportable.
+
+\paragraph{Fresh geographic-shift confirmation.}
+We separately lock five fresh ACSIncome California-to-Texas jobs from
+Folktables \citep{ding2021folktables}. Income above \$50,000 is the task;
+binary sex is the audit source and is excluded from the released feature matrix.
+California supplies the eraser-train and reference folds, while Texas supplies
+balanced bridge and untouched diagnostic folds with 2,000 observations per
+source--label stratum. The full 13-candidate official frontier, strict-v2
+replay, and independent replay audit are all locked before the five seeds run.
 
 \paragraph{Bridge validity stress.}
 A separate 12,000-table confirmation varies the bridge sample size from 500 to
@@ -464,79 +468,51 @@ A separate 12,000-table confirmation varies the bridge sample size from 500 to
 two violate the registered model through either source-specific transforms or
 contamination above the declared budget. Acceptance requires a finite-sample
 retained-mass lower bound of at least $.80$. This study tests whether valid
-membership gains power with data while these concrete violations remain
-rejected; it is not a test against every possible misspecification.
+membership gains power with data while the two registered violations remain
+rejected.
 
 \input{mosaic_results}
 
 \section{Discussion}
 
-\paragraph{What changes relative to candidate testing.}
+\paragraph{Beyond finite candidate testing.}
 LTT and Pareto testing control risk after registering a finite family. MOSAIC
-instead certifies the categorical experiment that precedes release: on one
-covered table, every $M$ and $g$ inherit the same pointwise envelope. The
-optimizer can therefore search a continuum without converting its internal
-points into separate hypotheses. This is not free adaptivity. A tokenizer or
-eraser fitted separately changes the sufficient table and receives its own
-multiplicity allocation. The matched 500-pair replay isolates this distinction:
-even a strong structure-aware Holm implementation discards power that remains
-available when the whole channel space is downstream of one event.
+certifies the categorical experiment before release: on one covered table,
+every $M$ and $g$ inherit the same pointwise envelope. The optimizer can then
+search a continuum without turning internal search points into hypotheses.
+Tokenizers and erasers are registered statistical objects with their own
+familywise allocation. The matched 500-pair replay shows the practical result:
+a structure-aware Holm implementation leaves power on the table when the full
+channel space is downstream of one confidence event.
 
-\paragraph{What the bridge establishes.}
-The bridge is a finite-sample membership certificate, not an assertion that
-all deployment shift is benign. It asks how much of every target source law can
-be dominated by one common transformation of the corresponding reference law.
-The unmatched remainder is charged adversarially. More bridge data can tighten
-this one-sided statement; unsupported strata force zero retained mass. A
-source-specific transform can sometimes mimic a common transform at the token
-level, so no finite test detects every violation. The guarantee is precisely
-for laws admitted by the certified categorical bridge, and later population
-change requires a new bridge.
-
-\paragraph{How the shift set is obtained.}
-The real protocol does not ask a user to guess a smoothing transform or tune a
-contamination level until a favorable release appears. The user registers the
-source and task strata, tokenizer, target sampling population, confidence
-allocation, and decision thresholds. Equation~\eqref{eq:bridge} then ranges
+\paragraph{Bridge and deployment rule.}
+The bridge measures how much of each target source law is explained by one
+common transformation of its reference law. Equation~\eqref{eq:bridge} ranges
 over every source-blind $K\times K$ Markov transform and returns the largest
-simultaneously supportable retained mass $t_y$; the certificate itself sets
-$\eta_y=1-t_y$. Thus a large common change is permitted when target data
-support it, while every unexplained coordinate is charged adversarially.
-Registering a different target population, source definition, or tokenizer is
-a new statistical object and requires a new bridge rather than reuse of the
-old certificate.
+jointly supported retained mass $t_y$; the residual $1-t_y$ receives the
+adversarial capacity charge. More bridge data tightens this fit. The protocol
+registers source and task strata, tokenizer, target population, confidence
+allocation, and decision thresholds before optimization. A different target
+population, source definition, or tokenizer defines a new bridge. This gives a
+clear distinction from target retraining: retraining can improve a target
+predictor, while MOSAIC certifies a persistent source-blind token interface.
 
-\paragraph{Why a bridge rather than target retraining.}
-Retraining on labeled target task data can improve predictive performance, and
-is an appropriate alternative when the desired output is simply a new target
-predictor. MOSAIC answers a narrower release problem: whether one persistent,
-source-blind token interface obeys a pre-registered within-label source and
-utility contract. Its bridge therefore requires target source--label audit
-data, while a task-only retraining procedure need not. The methods are
-complementary rather than substitutes; target retraining does not by itself
-certify the stated source contract.
-
-\paragraph{Operational meaning.}
-MOSAIC deliberately releases less than a general embedding. It trades
-arbitrary future task reuse for a task-specific token whose complete
-source-inference experiment can be enumerated and persisted. This is most
-appropriate when software exposes a stable decision interface and abstention
-is acceptable, such as a fixed triage or screening stage. It is not a claim of
-cryptographic secrecy, causal fairness, or safety of unregistered metadata.
-The practical output is consequently auditable: a channel, a decoder, a
-versioned persistence rule, and either a contract certificate or
-\textsc{abstain}.
+\paragraph{Operational use.}
+MOSAIC is designed for stable software decision interfaces where a channel, a
+decoder, and a persistence rule can be versioned together. The runtime emits
+the token when the contract passes and otherwise returns \textsc{abstain}.
+The released interface is compact and task-specific, which makes its complete
+source-inference experiment enumerable and auditable.
 
 \section{Guarantee Semantics}
 
 The probability $1-\delta$ is over simultaneous reference and bridge regions.
 On that event, the conclusion is uniform over optimized channels and every law
-in the certified shift class; it does not assume that a validation interval
-covers an external metric. A frozen tokenizer's table covers the channel
+in the certified shift class. The frozen tokenizer table covers the channel
 continuum and every decoder without a channel-count correction. Separately
-learned tokenizers or erasers have different tables and therefore receive a
-registered familywise allocation. MOSAIC pays for statistical objects, not
-every point optimized inside one covered object.
+learned tokenizers or erasers receive their own registered familywise
+allocation: MOSAIC pays for statistical objects, not every point searched
+inside one covered object.
 
 \paragraph{Threat surface.}
 The attacker knows $M$ and may apply any rule to $Z$. The source-blind software
@@ -547,18 +523,16 @@ unbounded draws can reveal its row. Transcripts over distinct items require a
 joint-law certificate. Releasing $C$, original features, source-dependent
 metadata, mutable identifiers, or another side channel is outside scope.
 
-\section{Limitations and Scope}
+\section{Deployment Envelope}
 
-The bridge requires conditionally i.i.d. reference and target observations,
-including source and task labels, for every required source--label stratum and
-does not cover later drift. These audit labels may be sensitive and require a
-lawful, consented collection and governance plan.
-Tokenizers are fixed independently of certification; large alphabets may need
-structured regions or column generation. MOSAIC trades reusable embeddings for
-a certifiable task interface and durable persistence state. It certifies
-within-label source inference from one released item, not label-prevalence
-leakage, person-level privacy across multiple items, separate interfaces, every
-downstream harm, or utility forbidden by the contract.
+MOSAIC operates with conditionally i.i.d. reference and target bridge samples
+that include source and task labels for every required stratum. Source labels
+are audit data and belong in the associated governance plan. The method
+releases a compact, task-specific interface; larger alphabets can use
+structured confidence regions or column generation. The certificate covers
+within-label source inference from one persistent released token. Multi-item
+transcripts, prevalence-sensitive analyses, and additional public interfaces
+use the corresponding joint construction.
 
 \section{Conclusion}
 

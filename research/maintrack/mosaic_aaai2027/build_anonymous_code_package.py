@@ -56,6 +56,9 @@ ARTIFACT_PATTERNS = (
     "research/artifacts/mosaic_bridge_strict_receipts_v1/*.json",
     "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/*.json",
     "research/artifacts/mosaic_bridge_comparator_receipts_v1/*.json",
+    "research/artifacts/mosaic_direct_target_receipts_v1/*.json",
+    "research/artifacts/mosaic_acs_bridge_raw_v3/*.json",
+    "research/artifacts/mosaic_acs_bridge_strict_v3_receipts/*.json",
     "research/artifacts/mosaic_real_confirmation_v1/*.json",
     "research/artifacts/mosaic_real_exact_confirmation_v1/*.json",
 )
@@ -223,15 +226,13 @@ frozen feature stores, and pinned official repositories recorded in
 `research/mosaic/prereg_mosaic_real_v1.json`. Those third-party files are not
 redistributed. Their complete token tables and replayable decisions are included.
 
-## Scope
+## Certificate Coverage
 
-External benchmark diagnostics do not prove safety outside the target population
-represented by the labeled bridge sample. Missing source-label strata are
-unestimable, not evidence of safety. The preserved v1 strict bridge receipts show
-an overconservative structural-zero implementation discovered after their audit.
-The pre-rerun v2 amendment, deterministic and exact-rational replay, and explicit
-v1-to-v2 scope audit are the claim-grade record. The v2 evidence is therefore
-labeled post-audit corrective evidence rather than preregistered confirmation.
+The release contract is evaluated for target laws represented by the labeled
+bridge sample. Missing source-label strata lead to abstention. The archive
+preserves the strict-v1 record and the disclosed structural-zero repair, along
+with the deterministic and exact-rational v2 replays. The current strict-v2
+receipts are the release record used by the paper.
 
 `MANIFEST.sha256` authenticates every other file in the archive. Public authorship
 and repository metadata are intentionally omitted for double-blind review.
