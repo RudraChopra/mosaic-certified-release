@@ -138,6 +138,36 @@ target source--label stratum is absent. This is the theorem's missing-support
 case, whereas treating those 20 releases as safe would be statistically
 unidentifiable.
 
+\paragraph{Dataset grouping sensitivity.}
+The 100 rows are 20 randomized jobs on each of five shared benchmarks, not 100
+independent deployment domains. At the primary threshold, every one of the 20
+strict deployments is on BiasBios-Clinical (median retained mass $.797$;
+range $[.756,.858]$). Camelyon17 and GaitPDB have zero retained mass from
+missing support; CivilComments and Waterbirds have no jointly feasible strict
+source--utility release. A descriptive bootstrap that resamples the five
+datasets gives a strict deployment-rate interval $[0,.60]$. Leaving out
+BiasBios leaves zero strict deployments, whereas leaving out any other dataset
+leaves 20. These summaries describe concentration of the experiment and do not
+alter the per-job finite-sample guarantee.
+
+\paragraph{Fresh corrected confirmation.}
+Before any outcome from seeds 1220--1224, a separate lock fixed the same five
+datasets, 13 official candidates, contracts, and new bridge--diagnostic splits.
+Its strict-v2 manifest, independent replay, and exact-rational audit digests
+are respectively \texttt{3d31450e26c822a6e88f59270eaade52}\allowbreak
+\texttt{128d6f189fdac7842212b5ff6468057d},
+\texttt{e824e4446ec502e64cdbed5ef167020c}\allowbreak
+\texttt{61a9e94d8063e33d77ebb48a1d920826}, and
+\texttt{25575e85e1c29596914e15d83986759}\allowbreak
+\texttt{ae5ac931651cf17aa87dbc6190202b295}. All 25 raw jobs have 13 rows and
+zero optimization errors; strict replay reproduces 325 candidates and 350
+global optimizations with no failure, and rational replay verifies every
+serialized bridge and release. At $.40$, it deploys on 5/5 BiasBios jobs with
+0/5 observed diagnostic violations (three INLP and two MANCE++), and abstains
+on every one of the other 20 jobs. This is an untouched confirmation of the
+corrected pipeline, while again showing that current real releases concentrate
+on one benchmark.
+
 The original v1 strict repair produced zero deployments at all five thresholds.
 The locked scope audit finds 918 zero-to-positive retained-mass corrections,
 all and only on label transforms with an identically zero output column. The

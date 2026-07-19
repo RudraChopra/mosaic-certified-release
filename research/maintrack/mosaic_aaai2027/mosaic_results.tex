@@ -1,6 +1,6 @@
 \section{Audited Results}
 
-All preregistered gates pass. Figure~\ref{fig:confirmation} reports every
+The preregistered synthetic gates pass. Figure~\ref{fig:confirmation} reports every
 implementable rule in the primary cells; ``fallback'' is MOSAIC's generic
 capacity certificate. Independent replay recomputes all 64,000 method receipts,
 128,000 population risks, decisions, and aggregate intervals with zero
@@ -61,21 +61,6 @@ failure on the joint confidence event and no invalid false acceptance. This
 supports power against the two registered violations, not detection of
 arbitrary misspecification.
 
-\begin{figure*}[t]
-  \centering
-  \includegraphics[width=\textwidth]{figures/figure3_mosaic_final_evidence.pdf}
-  \caption{Audited evidence beyond the primary synthetic comparison.
-  (a) One table-wide event certifies 57.9\% of low-data trials versus 28.3\%
-  for Holm LTT over 500 matched candidates. (b) Bridge evidence gains power
-  for a valid common transform while rejecting two registered violations.
-  (c) Across 100 real dataset--seed jobs, strict MOSAIC deploys 20\% through
-  the $.45$ utility contract and 23\% at $.49$. (d) It records no external
-  diagnostic violation; plug-in rules violate 14.9--36.1\% of their estimable
-  deployments. Validation-only and unconditional rules additionally deploy
-  all 20 unestimable Camelyon jobs.}
-  \label{fig:final-evidence}
-\end{figure*}
-
 \paragraph{Real data-certified bridge.}
 At the primary error contract $.40$, strict MOSAIC deploys on 20/100 jobs
 (20.0\%, exact 95\% interval $[12.67,29.18]$), all externally estimable, with
@@ -87,9 +72,41 @@ including 20 unestimable Camelyon jobs, and violates 18/60 estimable
 diagnostics (30.0\%). Unconditional deployment violates 38/80 estimable jobs
 (47.5\%) and also releases all 20 unestimable jobs. MOSAIC retains 20 safe
 deployments at every stronger threshold $.30$--$.45$ and adds three safe
-Waterbirds deployments at $.49$; Figure~\ref{fig:final-evidence} reports every
-threshold. These untouched diagnostics expose concrete selection failures but
+Waterbirds deployments at $.49$; the supplement enumerates every threshold.
+These untouched diagnostics expose concrete selection failures but
 do not replace the finite-sample bridge guarantee or establish clinical safety.
+
+\begin{table*}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.2pt}
+\begin{tabular}{lcccccl}
+\hline
+Dataset & Strict & Bridge & Validation & Unconditional & Strict diagnostic & Strict limitation \\
+\hline
+BiasBios-Clinical & 20/0 & 20/0 & 20/0 & 20/0 & 20 estimable & median $t=.797$ \\
+Camelyon17-WILDS & 0/0 & 0/0 & 20/-- & 20/-- & none & missing support \\
+CivilComments-WILDS & 0/0 & 0/0 & 0/0 & 20/20 & none & no joint feasibility \\
+GaitPDB & 0/0 & 7/7 & 20/18 & 20/18 & none & missing support \\
+Waterbirds & 0/0 & 20/0 & 20/0 & 20/0 & none & no joint feasibility \\
+\hline
+\end{tabular}
+\caption{Dataset-grouped primary results, 20 seeds per benchmark. Entries are
+deployments/diagnostic violations among estimable deployments; ``--'' denotes
+an unestimable diagnostic, never evidence of safety. The 20 strict MOSAIC
+deployments all occur on BiasBios-Clinical.}
+\label{tab:dataset-grouped}
+\end{table*}
+
+Table~\ref{tab:dataset-grouped} is intentionally less flattering than the
+aggregate: the primary strict result has releases on one of five benchmarks and
+abstains on the other four. The 100 jobs are repeated seeds, not 100 independent
+deployment populations. A descriptive dataset-resampling interval for the
+strict deployment rate is $[0,.60]$; leaving out BiasBios leaves zero strict
+deployments, whereas leaving out any other dataset leaves 20. Thus the job-level
+interval summarizes the registered trials only and does not support a
+cross-domain deployment-rate claim. Missing-support abstentions are required by
+the theorem, but they are not observed safety successes.
 
 \paragraph{What the real ablations remove.}
 The primary rows form a diagnostic ladder rather than unrelated baselines.
@@ -117,7 +134,12 @@ required exactly zero output column. All original inequalities are still
 rechecked. Deterministic replay matches 100/100 v2 receipts, and exact rational
 arithmetic verifies all 1,300 bridge slacks and 1,400 outward release bounds.
 We report v2 as post-audit corrective evidence and preserve raw, v1, and v2
-receipts; it is not presented as an untouched preregistered outcome.
+receipts; it is not presented as an untouched preregistered outcome. A separate
+pre-outcome lock on new seeds 1220--1224 then confirms the corrected pipeline:
+it deploys on all 5 BiasBios jobs with 0/5 diagnostic violations and abstains
+on the remaining 20. Independent replay covers 325 candidates and 350 global
+optimizations; exact-rational replay passes every serialized certificate. This
+confirms the correction, not a broader cross-dataset deployment rate.
 
 \paragraph{Alphabet sensitivity.}
 Reoptimizing the best covered candidate with four release tokens is no worse

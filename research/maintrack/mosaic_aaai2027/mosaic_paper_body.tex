@@ -1,7 +1,7 @@
 \begin{abstract}
-Probe failure on one validation split does not guarantee that an edited
-representation hides a source attribute from every downstream rule after
-deployment shift. We present MOSAIC, a software-only method that jointly
+Probe failure on one validation split does not guarantee that an edited release
+token controls \emph{within-label} source distinguishability for every
+downstream rule after deployment shift. We present MOSAIC, a software-only method that jointly
 selects a task-specific stochastic release channel and decoder, or abstains.
 One simultaneous confidence region over pre-release token laws covers the
 entire same-table continuum of channels. A new bridge program uses labeled
@@ -12,7 +12,7 @@ within every task label and worst-stratum task error, global solvability for
 finite alphabets, and impossibility under unrestricted differential shift or a
 missing target source. In 1,000 hash-locked trials at a safety boundary, naive
 continuum selection deploys contract-violating releases on 42.1\% of tables;
-MOSAIC records none. Across 100 registered real-domain jobs, unconditional
+MOSAIC records none. Across 100 registered jobs on five real benchmarks, unconditional
 deployment violates 38/80 estimable external diagnostics; validation-only and
 bridge plug-ins violate 18/60 and 7/47. MOSAIC deploys 20 releases with 0/20
 observed violations and abstains on every missing-support job. Every decision
@@ -27,7 +27,7 @@ jourdan2023taco,avitan2026mance}, although probe design can change the apparent
 conclusion \citep{pimentel2020probing}. This leaves two deployment gaps: a
 different downstream rule may recover the attribute, and an edit selected on a
 noisy validation table may fail after population shift. Both matter when the
-released representation is a public interface.
+released token is a public interface.
 
 We study a task-specific finite-token interface. A tokenizer fixed without the
 certification fold maps an internal representation to $C\in[K]$; a source-blind
@@ -194,7 +194,7 @@ convex uncertainty set and each residual $r_s$ is arbitrary. Both components
 pass through the same release channel $M$. This placement is crucial: a
 constant-row software channel cannot leak information that appears before it.
 
-\section{Adaptive Universal-Attacker Certificate}
+\section{Adaptive Within-Label Attacker Certificate}
 
 For a bounded vector $v$, define the exact confidence-set support function
 \begin{equation}
@@ -435,6 +435,14 @@ supported source--label stratum into two-thirds labeled bridge data and an
 untouched one-third diagnostic fold. Neither diagnostics nor their outcomes
 enter channel or candidate selection.
 
+The bridge labels are a deliberate data requirement, not metadata inferred by
+the method: it needs target $S$ and $Y$ to estimate $q_{s,y}$ and test the
+registered within-label contract. Task labels alone could support retraining,
+but cannot establish source-conditional token laws, audit every downstream
+source rule, or certify that a target-trained model obeys this release
+contract. Where $S$ is sensitive, its collection, consent, and permitted audit
+use are deployment prerequisites; without a supported stratum MOSAIC abstains.
+
 The familywise level is $.05$ over 13 candidate tables and both reference and
 bridge regions. The source-advantage contract is $.35$; worst-stratum utility
 thresholds are $.30,.35,.40,.45,$ and $.49$, with $.40$ primary. We globally
@@ -497,6 +505,16 @@ Registering a different target population, source definition, or tokenizer is
 a new statistical object and requires a new bridge rather than reuse of the
 old certificate.
 
+\paragraph{Why a bridge rather than target retraining.}
+Retraining on labeled target task data can improve predictive performance, and
+is an appropriate alternative when the desired output is simply a new target
+predictor. MOSAIC answers a narrower release problem: whether one persistent,
+source-blind token interface obeys a pre-registered within-label source and
+utility contract. Its bridge therefore requires target source--label audit
+data, while a task-only retraining procedure need not. The methods are
+complementary rather than substitutes; target retraining does not by itself
+certify the stated source contract.
+
 \paragraph{Operational meaning.}
 MOSAIC deliberately releases less than a general embedding. It trades
 arbitrary future task reuse for a task-specific token whose complete
@@ -521,7 +539,7 @@ every point optimized inside one covered object.
 
 \paragraph{Threat surface.}
 The attacker knows $M$ and may apply any rule to $Z$. The source-blind software
-channel is the only public representation interface and samples once per
+channel is the only public token interface and samples once per
 immutable item; persistent repeats reveal no more than one $Z$. If $r$ fresh
 draws are permitted, certification must use product channel $M^{\otimes r}$;
 unbounded draws can reveal its row. Transcripts over distinct items require a
@@ -530,13 +548,16 @@ metadata, mutable identifiers, or another side channel is outside scope.
 
 \section{Limitations and Scope}
 
-The bridge requires conditionally i.i.d. reference and target observations for
-every required source--label stratum and does not cover later drift.
+The bridge requires conditionally i.i.d. reference and target observations,
+including source and task labels, for every required source--label stratum and
+does not cover later drift. These audit labels may be sensitive and require a
+lawful, consented collection and governance plan.
 Tokenizers are fixed independently of certification; large alphabets may need
 structured regions or column generation. MOSAIC trades reusable embeddings for
 a certifiable task interface and durable persistence state. It certifies
-within-label source inference from $Z$, not label-prevalence leakage, separate
-interfaces, every downstream harm, or utility forbidden by the contract.
+within-label source inference from one released item, not label-prevalence
+leakage, person-level privacy across multiple items, separate interfaces, every
+downstream harm, or utility forbidden by the contract.
 
 \section{Conclusion}
 

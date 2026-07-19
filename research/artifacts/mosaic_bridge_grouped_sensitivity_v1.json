@@ -1,0 +1,346 @@
+{
+  "aggregate": {
+    "bridge_plugin": {
+      "deployment_exact_95_interval": [
+        0.36940516419439445,
+        0.5724185151099548
+      ],
+      "deployment_rate": 0.47,
+      "deployments": 47,
+      "estimable_deployments": 47,
+      "false_acceptance_exact_95_interval": [
+        0.0620441181219981,
+        0.2830575342432974
+      ],
+      "false_acceptance_one_sided_95_upper": 0.2616173520110007,
+      "false_acceptance_rate_among_estimable": 0.14893617021276595,
+      "false_acceptances": 7,
+      "selected_method_counts": {
+        "INLP": 27,
+        "LEACE": 5,
+        "MANCE++": 4,
+        "R-LACE": 1,
+        "TaCo": 10
+      },
+      "trials": 100,
+      "unestimable_deployments": 0
+    },
+    "strict_mosaic": {
+      "deployment_exact_95_interval": [
+        0.1266555521019559,
+        0.2918426890886281
+      ],
+      "deployment_rate": 0.2,
+      "deployments": 20,
+      "estimable_deployments": 20,
+      "false_acceptance_exact_95_interval": [
+        0.0,
+        0.16843347098308528
+      ],
+      "false_acceptance_one_sided_95_upper": 0.13910834066826516,
+      "false_acceptance_rate_among_estimable": 0.0,
+      "false_acceptances": 0,
+      "selected_method_counts": {
+        "INLP": 6,
+        "LEACE": 5,
+        "MANCE++": 9
+      },
+      "trials": 100,
+      "unestimable_deployments": 0
+    },
+    "unconditional": {
+      "deployment_exact_95_interval": [
+        0.9637833073548235,
+        1.0
+      ],
+      "deployment_rate": 1.0,
+      "deployments": 100,
+      "estimable_deployments": 80,
+      "false_acceptance_exact_95_interval": [
+        0.36213358167715265,
+        0.5897721586232292
+      ],
+      "false_acceptance_one_sided_95_upper": 0.5725776948872936,
+      "false_acceptance_rate_among_estimable": 0.475,
+      "false_acceptances": 38,
+      "selected_method_counts": {
+        "INLP": 42,
+        "Identity": 3,
+        "LEACE": 17,
+        "MANCE++": 7,
+        "R-LACE": 13,
+        "TaCo": 18
+      },
+      "trials": 100,
+      "unestimable_deployments": 20
+    },
+    "validation_plugin": {
+      "deployment_exact_95_interval": [
+        0.7081573109113719,
+        0.8733444478980441
+      ],
+      "deployment_rate": 0.8,
+      "deployments": 80,
+      "estimable_deployments": 60,
+      "false_acceptance_exact_95_interval": [
+        0.18845144541972267,
+        0.43208313387606173
+      ],
+      "false_acceptance_one_sided_95_upper": 0.41173663665248833,
+      "false_acceptance_rate_among_estimable": 0.3,
+      "false_acceptances": 18,
+      "selected_method_counts": {
+        "INLP": 37,
+        "Identity": 3,
+        "LEACE": 12,
+        "MANCE++": 1,
+        "R-LACE": 9,
+        "TaCo": 18
+      },
+      "trials": 100,
+      "unestimable_deployments": 20
+    }
+  },
+  "claim_boundary": "Dataset-level bootstrap is descriptive only. The finite-sample MOSAIC guarantee is per job on its covered reference and bridge event. These five benchmarks are not five exchangeable deployment populations, and the aggregate 100-job rate must not be read as an interval over 100 independent real domains.",
+  "datasets": [
+    "BiasBios-Clinical",
+    "Camelyon17-WILDS",
+    "CivilComments-WILDS",
+    "GaitPDB",
+    "Waterbirds"
+  ],
+  "leave_one_dataset_out": {
+    "BiasBios-Clinical": {
+      "strict_deployments": 0,
+      "strict_diagnostic_violations": 0,
+      "strict_estimable_deployments": 0
+    },
+    "Camelyon17-WILDS": {
+      "strict_deployments": 20,
+      "strict_diagnostic_violations": 0,
+      "strict_estimable_deployments": 20
+    },
+    "CivilComments-WILDS": {
+      "strict_deployments": 20,
+      "strict_diagnostic_violations": 0,
+      "strict_estimable_deployments": 20
+    },
+    "GaitPDB": {
+      "strict_deployments": 20,
+      "strict_diagnostic_violations": 0,
+      "strict_estimable_deployments": 20
+    },
+    "Waterbirds": {
+      "strict_deployments": 20,
+      "strict_diagnostic_violations": 0,
+      "strict_estimable_deployments": 20
+    }
+  },
+  "name": "MOSAIC dataset-grouped real-evidence sensitivity",
+  "per_dataset": {
+    "BiasBios-Clinical": {
+      "rules": {
+        "bridge_plugin": {
+          "deployments": 20,
+          "diagnostic_violations": 0,
+          "estimable_deployments": 20,
+          "unestimable_deployments": 0
+        },
+        "strict_mosaic": {
+          "deployments": 20,
+          "diagnostic_violations": 0,
+          "estimable_deployments": 20,
+          "unestimable_deployments": 0
+        },
+        "unconditional": {
+          "deployments": 20,
+          "diagnostic_violations": 0,
+          "estimable_deployments": 20,
+          "unestimable_deployments": 0
+        },
+        "validation_plugin": {
+          "deployments": 20,
+          "diagnostic_violations": 0,
+          "estimable_deployments": 20,
+          "unestimable_deployments": 0
+        }
+      },
+      "strict_details": {
+        "deployments": 20,
+        "diagnostic_violations": 0,
+        "estimable_deployments": 20,
+        "jobs": 20,
+        "limiting_contract": "mixed",
+        "median_retained_mass": 0.797144504356996,
+        "retained_mass_range": [
+          0.7564204515167557,
+          0.8576135923489971
+        ],
+        "zero_retained_mass_jobs": 0
+      }
+    },
+    "Camelyon17-WILDS": {
+      "rules": {
+        "bridge_plugin": {
+          "deployments": 0,
+          "diagnostic_violations": 0,
+          "estimable_deployments": 0,
+          "unestimable_deployments": 0
+        },
+        "strict_mosaic": {
+          "deployments": 0,
+          "diagnostic_violations": 0,
+          "estimable_deployments": 0,
+          "unestimable_deployments": 0
+        },
+        "unconditional": {
+          "deployments": 20,
+          "diagnostic_violations": 0,
+          "estimable_deployments": 0,
+          "unestimable_deployments": 20
+        },
+        "validation_plugin": {
+          "deployments": 20,
+          "diagnostic_violations": 0,
+          "estimable_deployments": 0,
+          "unestimable_deployments": 20
+        }
+      },
+      "strict_details": {
+        "deployments": 0,
+        "diagnostic_violations": 0,
+        "estimable_deployments": 0,
+        "jobs": 20,
+        "limiting_contract": "zero retained mass (audited missing support)",
+        "median_retained_mass": null,
+        "retained_mass_range": null,
+        "zero_retained_mass_jobs": 20
+      }
+    },
+    "CivilComments-WILDS": {
+      "rules": {
+        "bridge_plugin": {
+          "deployments": 0,
+          "diagnostic_violations": 0,
+          "estimable_deployments": 0,
+          "unestimable_deployments": 0
+        },
+        "strict_mosaic": {
+          "deployments": 0,
+          "diagnostic_violations": 0,
+          "estimable_deployments": 0,
+          "unestimable_deployments": 0
+        },
+        "unconditional": {
+          "deployments": 20,
+          "diagnostic_violations": 20,
+          "estimable_deployments": 20,
+          "unestimable_deployments": 0
+        },
+        "validation_plugin": {
+          "deployments": 0,
+          "diagnostic_violations": 0,
+          "estimable_deployments": 0,
+          "unestimable_deployments": 0
+        }
+      },
+      "strict_details": {
+        "deployments": 0,
+        "diagnostic_violations": 0,
+        "estimable_deployments": 0,
+        "jobs": 20,
+        "limiting_contract": "no joint source/utility feasibility",
+        "median_retained_mass": null,
+        "retained_mass_range": null,
+        "zero_retained_mass_jobs": 0
+      }
+    },
+    "GaitPDB": {
+      "rules": {
+        "bridge_plugin": {
+          "deployments": 7,
+          "diagnostic_violations": 7,
+          "estimable_deployments": 7,
+          "unestimable_deployments": 0
+        },
+        "strict_mosaic": {
+          "deployments": 0,
+          "diagnostic_violations": 0,
+          "estimable_deployments": 0,
+          "unestimable_deployments": 0
+        },
+        "unconditional": {
+          "deployments": 20,
+          "diagnostic_violations": 18,
+          "estimable_deployments": 20,
+          "unestimable_deployments": 0
+        },
+        "validation_plugin": {
+          "deployments": 20,
+          "diagnostic_violations": 18,
+          "estimable_deployments": 20,
+          "unestimable_deployments": 0
+        }
+      },
+      "strict_details": {
+        "deployments": 0,
+        "diagnostic_violations": 0,
+        "estimable_deployments": 0,
+        "jobs": 20,
+        "limiting_contract": "zero retained mass (audited missing support)",
+        "median_retained_mass": null,
+        "retained_mass_range": null,
+        "zero_retained_mass_jobs": 20
+      }
+    },
+    "Waterbirds": {
+      "rules": {
+        "bridge_plugin": {
+          "deployments": 20,
+          "diagnostic_violations": 0,
+          "estimable_deployments": 20,
+          "unestimable_deployments": 0
+        },
+        "strict_mosaic": {
+          "deployments": 0,
+          "diagnostic_violations": 0,
+          "estimable_deployments": 0,
+          "unestimable_deployments": 0
+        },
+        "unconditional": {
+          "deployments": 20,
+          "diagnostic_violations": 0,
+          "estimable_deployments": 20,
+          "unestimable_deployments": 0
+        },
+        "validation_plugin": {
+          "deployments": 20,
+          "diagnostic_violations": 0,
+          "estimable_deployments": 20,
+          "unestimable_deployments": 0
+        }
+      },
+      "strict_details": {
+        "deployments": 0,
+        "diagnostic_violations": 0,
+        "estimable_deployments": 0,
+        "jobs": 20,
+        "limiting_contract": "no joint source/utility feasibility",
+        "median_retained_mass": null,
+        "retained_mass_range": null,
+        "zero_retained_mass_jobs": 0
+      }
+    }
+  },
+  "privacy_threshold": 0.35,
+  "strict_dataset_rate": {
+    "bootstrap_repetitions": 20000,
+    "bootstrap_seed": 20260719,
+    "descriptive_dataset_bootstrap_95_interval": [
+      0.0,
+      0.6
+    ],
+    "estimate": 0.2
+  },
+  "utility_threshold": 0.4
+}
