@@ -35,6 +35,11 @@ CODE_PATHS = (
     "research/mosaic/run_mosaic_bridge_frontier.py",
     "research/mosaic/run_mosaic_official_frontier_exact_confirmation.py",
     "research/mosaic/run_mosaic_real_pilot.py",
+    "research/mosaic/mosaic_strict_certification_v2.py",
+    "research/mosaic/replay_mosaic_bridge_strict.py",
+    "research/mosaic/replay_mosaic_bridge_strict_v2.py",
+    "research/mosaic/audit_mosaic_bridge_strict.py",
+    "research/mosaic/audit_mosaic_bridge_strict_v2.py",
     "research/scripts/official_eraser_adapters.py",
     "research/scripts/run_official_eraser_frontier.py",
     "research/scripts/prepare_acs_income_store.py",
@@ -95,6 +100,7 @@ def main() -> None:
     parser.add_argument("--seed-start", type=int, default=1300)
     parser.add_argument("--seed-count", type=int, default=5)
     parser.add_argument("--supersedes", type=Path)
+    parser.add_argument("--strict-replay", action="store_true")
     args = parser.parse_args()
     if args.seed_count < 1:
         raise ValueError("seed count must be positive")
@@ -133,7 +139,11 @@ def main() -> None:
         }
     payload: dict[str, Any] = {
         "project": "MOSAIC: Minimax-Optimized Source-Agnostic Invariant Channels",
-        "phase": "fresh ACSIncome California-to-Texas bridge confirmation",
+        "phase": (
+            "fresh ACSIncome California-to-Texas strict bridge confirmation"
+            if args.strict_replay
+            else "fresh ACSIncome California-to-Texas bridge confirmation"
+        ),
         "status": "locked_before_confirmatory_outcomes",
         "locked_at": datetime.now(timezone.utc).isoformat(),
         "repository_head_at_lock": git("rev-parse", "HEAD"),
@@ -174,6 +184,23 @@ def main() -> None:
         "claim_boundary": "This is a fresh, preregistered confirmation on one public tabular geographic shift. The finite-sample statement is per registered reference/bridge event, not a population-wide privacy or fairness guarantee; it does not cover post-certification drift or unregistered outputs.",
         "stopping_rule": "Run all five seeds and all candidates. No outcome-based threshold changes, data replacement, early stopping, or selective reporting.",
     }
+    if args.strict_replay:
+        payload["strict_replay"] = {
+            "version": "v2_structural_zero_columns",
+            "execution": (
+                "Write each raw frontier receipt, deterministically replay every bridge "
+                "and release with the locked strict-v2 arithmetic, then independently "
+                "replay the strict receipts before reporting selections."
+            ),
+            "required_outputs": {
+                "strict_receipts": len(seeds),
+                "independent_replays": len(seeds),
+                "decision_tolerance": 0.0,
+            },
+        }
+        payload["pass_conditions"]["strict_replay"] = (
+            "Every raw receipt has a strict-v2 receipt and a matching independent replay."
+        )
     if supersession is not None:
         payload["supersession"] = supersession
     atomic_write(args.output, payload)
