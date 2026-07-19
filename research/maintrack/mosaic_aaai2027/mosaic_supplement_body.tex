@@ -665,6 +665,36 @@ the confirmation began. Pilot seeds zero through 199 are excluded. The oldest
 aggregate-only pilot is retained as design history but cannot support a
 channel-level claim; every later pilot row is replayed by the exact evaluator.
 
+\paragraph{Matched finite-family baselines.}
+A separately locked extension evaluates the same 1,000 paired tables per
+scenario with a $5^3$ grid of binary-output stochastic channels and all $2^2$
+binary decoders, for 500 channel--decoder pairs. The confidence-region grid
+applies MOSAIC's one simultaneous pre-channel event but restricts optimization
+to these 500 pairs. The deterministic baseline applies the same shift-aware
+certificate to every deterministic three-to-two map. This is a matched test of
+FARE's restricted finite-encoder principle, not an implementation of FARE's
+raw-input fair-tree training pipeline or demographic-parity objective.
+
+The LTT baseline tests every fixed pair without reusing MOSAIC's table region.
+Index its source-attacker and source--label utility inequalities by $j$. After
+removing the known contamination term, each has an empirical mean
+$\widehat\mu_j$, unsafe null $H_j:\mu_j\geq b_j$, and effective sample size
+$n_j$ (or $Gn$ for a balanced attacker average over $G$ source strata). Its
+one-sided Hoeffding value is
+\begin{equation}
+ p_j=\exp\{-2n_j(b_j-\widehat\mu_j)_+^2\}.
+ \label{supp:eq:lttcomponent}
+\end{equation}
+The unsafe candidate null is the union of its component nulls, so
+$p_{\rm cand}=\max_j p_j$ is valid by an intersection--union test: whenever any
+$H_j$ holds, rejection at level $\alpha$ implies rejection of that true
+component at level $\alpha$. Holm step-down then controls familywise false
+certification across all 500 candidates at $\delta=.05$. Among rejected
+candidates, LTT selects the smallest point-estimated worst error with a fixed
+index tie break; no rejection means abstention. The population evaluator grades
+all four rules on the paired untouched law, including every abstention and
+false acceptance.
+
 The data-certified bridge confirmation was locked separately after excluding
 all real-study seeds through 1199. It runs seeds 1200--1219 on Waterbirds,
 Camelyon17-WILDS, CivilComments-WILDS, BiasBios-Clinical, and GaitPDB. Within
