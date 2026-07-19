@@ -53,6 +53,7 @@ ARTIFACT_PATTERNS = (
     "research/artifacts/mosaic_*.json",
     "research/artifacts/mosaic_*.sha256",
     "research/artifacts/mosaic_real_confirmation_v1/*.json",
+    "research/artifacts/mosaic_real_exact_confirmation_v1/*.json",
 )
 
 FORBIDDEN_IDENTITY_MARKERS = (
@@ -139,6 +140,10 @@ PYTHONPATH=research/mosaic:research/scripts \
 PYTHONPATH=research/mosaic:research/scripts \
   python research/mosaic/audit_mosaic_real_transform_exact.py \
   --output /tmp/mosaic_real_transform_exact_audit.json
+PYTHONPATH=research/mosaic:research/scripts \
+  python research/mosaic/audit_mosaic_real_exact_frontier.py \
+  research/artifacts/mosaic_real_exact_confirmation_v1/*.json \
+  --output /tmp/mosaic_real_exact_confirmation_audit.json
 ```
 
 The real-feature transformation stage additionally requires the public datasets,

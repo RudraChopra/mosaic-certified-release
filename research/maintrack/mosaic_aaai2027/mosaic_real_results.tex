@@ -1,54 +1,53 @@
 \section{Official-Method Feature Results}
 
-All 25 dataset--seed jobs and all 325 registered candidate rows completed with
-no proxy implementations or optimization failures. The independent replay
-reconstructed every confidence radius, certificate, selected channel, decoder,
-external diagnostic, and lexical tie break with zero mismatch. Table
-\ref{tab:realfrontier} reports the complete selection behavior.
+All 25 dataset--seed jobs and all 325 registered candidate pairs completed with
+no proxy implementations or optimization failures. All ten preregistered gates
+pass. The independent replay reconstructed every confidence radius,
+certificate, selected channel, decoder, external diagnostic, lexical tie break,
+and 650 global optima with zero mismatch. Table \ref{tab:realfrontier} reports
+the complete selection behavior.
 
 \begin{table*}[t]
 \centering
-\small
-\setlength{\tabcolsep}{5.1pt}
+\footnotesize
+\setlength{\tabcolsep}{3.2pt}
 \begin{tabular}{llclcl}
 \hline
-Dataset & Modality & Deploy & Selected family & Best cert. error & Natural external diagnostic \\
+Dataset & Modality & Deploy F$\to$X & Exact family & Exact error & External diagnostic \\
 \hline
-Waterbirds & vision & 0/5 & -- & .499 & 1/65 candidate rows safe; none certified \\
-Camelyon17-WILDS & medical vision & 5/5 & LEACE (5) & .282 & unestimable: required source absent \\
-CivilComments-WILDS & text & 0/5 & -- & .500 & 0/65 candidate rows safe \\
-BiasBios-Clinical & clinical text & 5/5 & INLP (4), R-LACE (1) & .312 & 5/5 selections safe; 65/65 rows safe \\
-GaitPDB & time series & 0/5 & -- & .500 & 0/65 candidate rows safe \\
+Waterbirds & vision & $0/5\!\to\!1/5$ & INLP (1) & .490 & 5/65 rows safe; selected row safe \\
+Camelyon17-WILDS & medical vision & $5/5\!\to\!5/5$ & INLP (2), LEACE (3) & .248 & unestimable: source absent \\
+CivilComments-WILDS & text & $0/5\!\to\!0/5$ & -- & .500 & 0/65 candidate rows safe \\
+BiasBios-Clinical & clinical text & $5/5\!\to\!5/5$ & INLP (3), R-LACE (2) & .291 & 5/5 selected; 65/65 rows safe \\
+GaitPDB & time series & $0/5\!\to\!0/5$ & -- & .500 & 0/65 candidate rows safe \\
 \hline
 \end{tabular}
-\caption{Locked official-method frontier, five seeds per dataset and 13
-candidates per seed. ``Best cert. error'' is the mean selected value for
-deployment rows and the mean minimum available value for abstention rows.
-External diagnostics are descriptive and do not establish structured-shift
-membership.}
+\caption{Fresh locked paired frontier, five seeds per dataset and 13 candidates
+per seed. F and X denote fallback and transform-exact certificates. ``Best
+exact error'' is the mean minimum exact value across the five jobs. External
+diagnostics are descriptive and do not establish structured-shift membership.}
 \label{tab:realfrontier}
 \end{table*}
 
-BiasBios provides the positive real-feature case. Every official candidate
-clears both contracts on all five seeds; MOSAIC selects INLP four times and
-R-LACE once. The selected mean certified worst error is .312 (range
-.299--.326), while the natural external diagnostic has mean worst error .194
-and mean source advantage .061. All five estimable selections are externally
-safe, although five seeds are too few for a strong frequency claim.
+The paired comparison isolates the refinement. The exact objective is no larger
+on all 325 rows and is strictly smaller on 135, with mean and maximum reductions
+of 1.04 and 3.45 percentage points. Candidate deployments increase from 130 to
+131. On Waterbirds seed 107, exact INLP rank 4 crosses the contract at certified
+error .465; its external error is .291 and source advantage is .057. This is the
+one additional selected deployment registered by the protocol, and it is safe
+on the natural diagnostic.
 
-An audited post-outcome exact replay improves 133 of 325 objectives and adds two
-diagnostically safe Waterbirds deployments; it is exploratory and does not
-establish shift-class membership.
+BiasBios supplies the repeated positive case. Every official candidate clears
+both exact contracts on all five seeds; MOSAIC selects INLP three times and
+R-LACE twice. The selected mean certified worst error is .291 (range
+.281--.297), while the natural diagnostic has mean worst error .207 and mean
+source advantage .047. All five selections are externally safe.
 
-The negative rows explain why an explicit release rule matters. Every candidate
-in Waterbirds, CivilComments, and GaitPDB clears the privacy threshold only by
-giving a certified worst error near .50, above the registered .49 utility
-contract, so MOSAIC abstains on all 15 jobs. Natural external diagnostics agree
-on CivilComments and GaitPDB; one of 65 Waterbirds candidates happens to be safe
-externally but is not certifiable from its construction table. Conversely,
-Camelyon17 produces five certifiable LEACE releases under the registered shift
-model, but its natural external split lacks a required source class. The
-missing-source theorem therefore forces the external result to be labeled
-unestimable. Across the five externally estimable selected releases there are
-zero false acceptances; this is a diagnostic check, not proof that the benchmark
-splits satisfy Eq.~\eqref{eq:shift}.
+CivilComments and GaitPDB remain utility-limited: privacy is obtained only with
+certified error .50, so all ten jobs abstain. Four Waterbirds jobs also abstain.
+Camelyon17 yields five model-conditional releases, but every natural external
+split lacks a required source class; the missing-source theorem forces those
+diagnostics to remain unestimable. Across the six externally estimable exact
+selections there are zero false acceptances. This is a low-powered diagnostic
+(95\% exact upper bound 45.9\%), not evidence that the benchmark populations
+belong to Eq.~\eqref{eq:shift}.

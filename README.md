@@ -42,16 +42,15 @@ combination and the transform-exact certificate.
 - The transform-exact audit independently replays 10,000 decisions, 20,000
   privacy certificates, 40,000 utility certificates, and 20,000 external risks
   with zero mismatch.
-- The locked real-feature study evaluates 325 official-method rows across
+- A fresh paired real-feature study evaluates 325 official-method rows across
   Waterbirds, Camelyon17-WILDS, CivilComments-WILDS, BiasBios, and GaitPDB.
-  Every externally estimable selected release passes its natural-split
-  diagnostic; unsupported and utility-limited cases are reported as abstentions
-  or unestimable, not safe.
-- A post-outcome exploratory exact replay is pointwise no worse on all 325 real
-  rows and strictly improves 133. It converts two Waterbirds jobs from abstain
-  to deployment; all seven estimable exact selections pass the natural
-  diagnostic. An independent 325-optimization replay has zero mismatch.
-- The repository-wide test run passes 154 tests plus 14 subtests.
+  Transform-exact is pointwise no worse on every row and strictly improves 135,
+  adding one externally safe Waterbirds deployment.
+- All six externally estimable exact selections pass their natural diagnostic;
+  unsupported and utility-limited cases are reported as abstentions or
+  unestimable, not safe. An independent replay of 650 global optima has zero
+  mismatch, and all ten preregistered real-feature gates pass.
+- The repository-wide test run passes 158 tests plus 14 subtests.
 
 These empirical statements are scoped to their locked studies. Favorable
 benchmark behavior does not prove that a deployment population belongs to the
@@ -68,6 +67,9 @@ paper's structured shift class.
 - Current theorem record: `research/mosaic/PRE_RELEASE_SHIFT_THEOREMS.md`
 - Novelty collision audit: `research/mosaic/MOSAIC_NOVELTY_COLLISION_AUDIT_2026-07-18.md`
 - Numerical audit erratum: `research/mosaic/TRANSFORM_EXACT_AUDIT_ERRATUM.md`
+- Fresh paired real confirmation: `research/artifacts/mosaic_real_exact_confirmation_manifest_v1.json`
+- Fresh paired real audit: `research/artifacts/mosaic_real_exact_confirmation_audit_v1.json`
+- Fresh paired real summary: `research/artifacts/mosaic_real_exact_confirmation_summary_v1.json`
 - Exploratory real exact analysis: `research/artifacts/mosaic_real_transform_exact_exploratory_v1.json`
 - Exploratory real exact audit: `research/artifacts/mosaic_real_transform_exact_exploratory_audit_v1.json`
 
@@ -102,6 +104,10 @@ python research/mosaic/audit_mosaic_real_frontier.py \
   --output /tmp/mosaic_real_confirmation_audit.json
 python research/mosaic/audit_mosaic_real_transform_exact.py \
   --output /tmp/mosaic_real_transform_exact_audit.json
+python research/mosaic/run_mosaic_real_exact_confirmation.py --verify-only
+python research/mosaic/audit_mosaic_real_exact_frontier.py \
+  research/artifacts/mosaic_real_exact_confirmation_v1/*.json \
+  --output /tmp/mosaic_real_exact_confirmation_audit.json
 ```
 
 Build the papers with the official template copy included in the repository:

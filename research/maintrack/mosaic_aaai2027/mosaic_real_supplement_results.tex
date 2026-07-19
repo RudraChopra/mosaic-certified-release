@@ -1,99 +1,91 @@
 \section{Official-Method Real-Feature Receipts}
 
-\begingroup\raggedright
-The real-feature preregistration digest is
-\texttt{362065c8f110fd3eb096a638e12031ef}\allowbreak
-\texttt{494eb208524c69216910307033dd7ed3}. The complete manifest digest is
-\texttt{773ba872cab2b404900652a3d8f8f522}\allowbreak
-\texttt{e9e29295df2d50bd2736d109e7182b0b}; its independent replay digest is
-\texttt{bbf30f5db4f466325063ef0edb8c282b}\allowbreak
-\texttt{47916b287c9139b6595b8b14b86af4d6}. All seven locked gates pass: complete
-execution, positive usefulness, empirical safety, support discipline, modality
-coverage, claim discipline, and receipt replay.\par
-\endgroup
+\paragraph{Fresh paired confirmation.}
+The untouched seeds are 105--109; pilots 0--4 and the earlier real-feature
+seeds 100--104 are excluded. The protocol was locked before these outcomes with
+SHA-256 digest
+\texttt{d88d42e813d65c7d725e923c94be0518}\allowbreak
+\texttt{d7049e0b62131be96ffbec748d5e5775}. All 25 jobs and 325 candidate pairs
+complete with official INLP, LEACE, R-LACE, TaCo, and MANCE++ implementations
+and no proxy or failed row. All ten registered gates pass.
 
-The frontier contains 13 rows in a fixed order: identity; INLP ranks 1, 2, 4,
-and 8; LEACE; R-LACE ranks 1 and 4; TaCo with 1, 2, 3, and 5 removed
-components; and MANCE++. Every transformation calls a pinned official
-implementation and records its repository, commit, entry point, and parameters.
-There are no proxy rows. Each candidate has a separately fitted tokenizer, so
-its simultaneous table receives $\delta/13$ before continuum channel selection.
-Because the protocol predates the transform-exact amendment, these rows use the
-capacity-transfer fallback. The official-method study therefore evaluates the
-frontier and release protocol, while the paired synthetic study measures the
-exact refinement itself.
+The frontier order is identity; INLP ranks 1, 2, 4, and 8; LEACE; R-LACE ranks
+1 and 4; TaCo with 1, 2, 3, and 5 removed components; and MANCE++. Every
+candidate stores its pinned repository, commit, entry point, and parameters.
+Each separately fitted tokenizer receives $\delta/13$; both certificate
+variants optimize a continuum of channels from the same covered table.
 
 \begin{table}[t]
 \centering
 \small
-\setlength{\tabcolsep}{3.0pt}
-\begin{tabular}{rllrr}
+\setlength{\tabcolsep}{2.6pt}
+\begin{tabular}{rlrrr}
 \hline
-Seed & Selected & Cert. & Ext. error & Ext. adv. \\
+Dataset/seed & Exact selection & Cert. & Ext. error & Ext. adv. \\
 \hline
-100 & INLP rank 4 & .3124 & .1817 & .0451 \\
-101 & R-LACE rank 4 & .3086 & .2030 & .0720 \\
-102 & INLP rank 4 & .3259 & .2047 & .0843 \\
-103 & INLP rank 1 & .2991 & .1954 & .0598 \\
-104 & INLP rank 4 & .3160 & .1863 & .0456 \\
+BiasBios 105 & R-LACE rank 1 & .2969 & .1902 & .0579 \\
+BiasBios 106 & INLP rank 4 & .2882 & .2143 & .0380 \\
+BiasBios 107 & INLP rank 4 & .2920 & .2011 & .0711 \\
+BiasBios 108 & R-LACE rank 4 & .2952 & .2390 & .0610 \\
+BiasBios 109 & INLP rank 4 & .2814 & .1881 & .0082 \\
+Waterbirds 107 & INLP rank 4 & .4651 & .2905 & .0569 \\
 \hline
 \end{tabular}
-\caption{BiasBios selected rows; all are externally safe.}
-\label{supp:tab:biasselections}
+\caption{Every externally estimable transform-exact selection. All six pass
+the natural external diagnostic.}
+\label{supp:tab:exact-estimable-selections}
 \end{table}
 
 \begin{table}[t]
 \centering
 \small
 \setlength{\tabcolsep}{4.0pt}
-\begin{tabular}{rll}
+\begin{tabular}{rllr}
 \hline
-Seed & Selected & Cert. error \\
+Seed & Fallback selection & Exact selection & Exact cert. \\
 \hline
-100 & LEACE & .2702 \\
-101 & LEACE & .2818 \\
-102 & LEACE & .2773 \\
-103 & LEACE & .2955 \\
-104 & LEACE & .2853 \\
+105 & LEACE & INLP rank 1 & .2598 \\
+106 & LEACE & LEACE & .2302 \\
+107 & LEACE & LEACE & .2492 \\
+108 & LEACE & LEACE & .2590 \\
+109 & INLP rank 1 & INLP rank 1 & .2432 \\
 \hline
 \end{tabular}
-\caption{Camelyon17 selected rows. Every natural external diagnostic is
-unestimable because a required source is absent.}
-\label{supp:tab:camselections}
+\caption{Camelyon17 selections. Every natural external diagnostic is
+unestimable because a required source class is absent.}
+\label{supp:tab:cam-exact-selections}
 \end{table}
 
-All 65 BiasBios candidate rows are certifiable and externally safe. By contrast,
-all 195 rows across Waterbirds, CivilComments, and GaitPDB satisfy the privacy
-threshold only with certified worst error above .49; the selected decision is
-therefore abstention. Natural external evaluation finds zero safe candidates in
-CivilComments and GaitPDB and one of 65 in Waterbirds. That Waterbirds row is a
-useful conservative case: favorable external behavior does not retroactively
-make an uncertified construction-table decision deployable.
+Across the 325 paired objectives, transform-exact is no worse on every row and
+strictly better on 135, with mean, median, and maximum gains of .01036,
+$2.6\times10^{-15}$, and .03451. The effectively zero median reflects exact
+ties on the 190 rows for which the fallback is already tight. Candidate
+deployments increase from 130 to 131. The only decision-status crossing is
+Waterbirds seed 107, which is externally estimable and safe. All five BiasBios
+selections remain safe. CivilComments and GaitPDB each abstain on five seeds.
+Camelyon17 contributes five model-conditional deployments but no estimable
+external diagnostic, exactly matching the missing-source theorem.
 
-Camelyon17 has 65 certifiable candidate rows and selects LEACE on every seed,
-but every external row is missing a required source class. The external audit
-distribution is therefore identical under arbitrarily different missing-source
-laws, exactly matching the non-identifiability theorem. We count these five
-model-conditional releases separately from the five externally estimable
-BiasBios selections. Reporting ``zero false acceptances'' refers only to those
-five estimable selections and is not promoted to a population-frequency claim.
+The independent audit recomputes every confidence radius, both certificate
+families, both selected frontiers, all external diagnostics, and all 650 global
+optimization solutions. It reports zero mismatches, pointwise dominance, and
+no failures. The manifest digest is
+\texttt{c12f18c9b52bb68522691386131faad9}\allowbreak
+\texttt{66c1ae60d9cb0c540af8b909dd1eecc8}; the audit digest is
+\texttt{becebaa2839c776fcd806d3d8222a1e2}\allowbreak
+\texttt{8c213259300a7781a124bf3feb8fd600}.
 
-\paragraph{Exploratory transform-exact replay.}
-After confirmatory outcomes were known, we re-optimized the exact envelope on
-all 325 stored token tables. Exact certified error is no larger on every row and
-strictly smaller on 133, with a maximum reduction of 3.54 percentage points.
-Candidate deployments increase from 130 to 132: INLP rank 4 on Waterbirds seeds
-102 and 103 crosses the utility contract, and both selected releases pass the
-natural external diagnostic. Exact selection therefore deploys on 12 of 25
-jobs; all seven externally estimable selections are diagnostically safe, five
-Camelyon17 selections remain unestimable, and the remaining 13 jobs abstain.
-This analysis is post-outcome and exploratory, not a new confirmatory study.
+\paragraph{Preserved predecessor evidence.}
+An earlier lock on seeds 100--104 evaluated only the capacity-transfer
+fallback: five BiasBios selections were estimable and safe, five Camelyon17
+selections were unestimable, and 15 jobs abstained. After those outcomes were
+known, an explicitly exploratory exact replay improved 133 of 325 rows and
+added two safe Waterbirds deployments. That result motivated the fresh paired
+protocol above; it is not pooled with or substituted for the new confirmation.
+The earlier preregistration, manifest, fallback audit, exploratory analysis,
+and exploratory audit remain in the anonymous artifact for a complete record.
 
-\begingroup\raggedright
-The analysis digest is
-\texttt{ea45e4ed7c47691e1813fea40d36293e}\allowbreak
-\texttt{295db03245c11f4485c339ae7778aeae}; its independent 325-optimization replay
-has digest
-\texttt{3f3afabf41d5e4ff0c28c5d21dd68813}\allowbreak
-\texttt{af54c6b47ea2f0e9d478bd9bd92850ac} and zero mismatches.\par
-\endgroup
+As throughout the paper, external safety here is descriptive. The zero false
+acceptances among six estimable selections has a two-sided 95\% Clopper--Pearson
+upper bound of 45.9\%, and a favorable benchmark split cannot establish
+membership in the structured shift class.

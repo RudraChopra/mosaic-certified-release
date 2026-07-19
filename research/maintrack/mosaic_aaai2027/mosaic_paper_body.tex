@@ -7,7 +7,8 @@ method that jointly selects a stochastic representation-release channel and a
 task decoder while certifying privacy and utility under a structured
 pre-release shift. A single multinomial confidence event over fine-token laws
 simultaneously covers the continuum of channels selected on that same table,
-so the certificate incurs no candidate-count correction. We derive an exact
+so the certificate incurs no channel-grid correction within that table. We
+derive an exact
 multiclass attacker envelope, an exact structured-shift theorem combining
 common drift with bounded differential contamination, a matching utility
 certificate, and a no-free-lunch result for unrestricted differential shift.
@@ -16,11 +17,13 @@ find the global solution. In hash-locked synthetic studies, naive continuum
 selection deploys contract-violating releases on 42.1\% of 1,000 primary tables
 while MOSAIC records none. On 1,000 paired low-data tables, the transform-exact
 certificate safely deploys on 53.0\%, versus 0.3\% for its capacity-transfer
-fallback; at the next sample size the rates are 99.9\% and 57.8\%. Across 325
-official-method rows on five datasets, all five externally estimable selected
-releases pass the natural diagnostic; other cases abstain or remain
-unestimable. Independent programs replay 64,000 broad-comparison and 10,000
-exact-refinement receipts with zero mismatch.
+fallback; at the next sample size the rates are 99.9\% and 57.8\%. In a fresh
+paired study of 325 official-method rows on five datasets, the exact objective
+is never worse and improves 135 rows, adding one diagnostically safe
+Waterbirds release. All six externally estimable selections pass their natural
+diagnostic. Independent programs replay 64,000 broad-comparison receipts,
+10,000 exact-refinement receipts, and 650 real-feature optima with zero
+mismatch.
 \end{abstract}
 
 \section{Introduction}
@@ -422,17 +425,17 @@ if any gate fails.
 \input{mosaic_transform_exact_results}
 
 \paragraph{Official-method real-feature confirmation.}
-A separate pre-outcome lock evaluates five frozen feature stores spanning
+A fresh paired pre-outcome lock evaluates five frozen feature stores spanning
 vision (Waterbirds), medical vision (Camelyon17-WILDS), text
 (CivilComments-WILDS and BiasBios), and gait time series
 \citep{sagawa2020groupdro,koh2021wilds,borkan2019civilcomments,
 dearteaga2019bios,goldberger2000physionet}. For every dataset and each untouched seed in
-$\{100,\ldots,104\}$, the construction split fits a balanced logistic task
+$\{105,\ldots,109\}$, the construction split fits a balanced logistic task
 score and discretizes it at quartiles into four fine tokens. MOSAIC releases
 two tokens under identity or registered 10\% adjacent-token smoothing, with
 $(\eta,\tau_P,\tau_U,\delta)=(0.05,0.35,0.49,0.05)$.
-This pre-refinement lock uses the capacity-transfer fallback; the paired
-synthetic amendment isolates the exact-envelope gain.
+Each candidate is solved twice on the same table, once by the capacity-transfer
+fallback and once by the transform-exact certificate.
 
 The frontier contains identity and twelve settings from the pinned official
 INLP, LEACE, R-LACE, TaCo, and MANCE++ implementations
@@ -444,9 +447,9 @@ candidates that pass both certificates, the rule selects minimum certified
 worst-stratum error with a lexical tie break. Every receipt stores the complete
 token tables, channel, decoder, solver checks, decision, and natural external
 diagnostic. An independent program reconstructs every radius, certificate,
-selection, and diagnostic. External splits test empirical behavior but do not
-establish membership in Eq.~\eqref{eq:shift}; missing source--label strata are
-reported as unestimable rather than safe.
+selection, diagnostic, and all 650 global optima. External splits test
+empirical behavior but do not establish membership in Eq.~\eqref{eq:shift};
+missing source--label strata are reported as unestimable rather than safe.
 
 \input{mosaic_real_results}
 
