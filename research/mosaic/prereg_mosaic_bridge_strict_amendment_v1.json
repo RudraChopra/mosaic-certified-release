@@ -1,0 +1,41 @@
+{
+  "claim_rule": "The paper may use only strict-replay decisions and strict aggregate rates for the bridge confirmation. Original receipts remain preserved as inputs and cannot be silently substituted.",
+  "code_sha256": {
+    "research/mosaic/audit_mosaic_bridge_strict.py": "4d705e849dafd1aac81ec0ffa1e4c8a2e474569c90050b1889b8c065d15326d3",
+    "research/mosaic/lock_mosaic_bridge_strict_amendment.py": "08714a810d6f7d08a11d0f590a8ab140611d3153c0a9940a556b46745c262555",
+    "research/mosaic/mosaic_strict_certification.py": "0e51f5461fc3e109a65ac071d610b28f43b577303adacda9dfba87e85480611d",
+    "research/mosaic/replay_mosaic_bridge_strict.py": "291d285155fc6f3573606c103061bb06ffbeaf490882c2b7bd9f6c1015b18d07",
+    "research/tests/test_mosaic_bridge_strict_replay.py": "9f20d86fa6710e8aa59ddc2b80c9e6bcd26ebed23680d4d028a4fb94a340c8d6",
+    "research/tests/test_mosaic_strict_certification.py": "5070f9f57fdc20bba75cad494a0baddff013c21067bc7909348fa1cf1302631c"
+  },
+  "locked_at": "2026-07-19T03:07:47.257316+00:00",
+  "original_preregistration": "research/mosaic/prereg_mosaic_bridge_v1.json",
+  "original_preregistration_sha256": "d1fd9c04bd5b6dd76f35b6bc2e1bf8badb23dceeb32a19edf36fcfd611b8bf02",
+  "project": "MOSAIC data-certified bridge strict numerical amendment",
+  "repository_head_before_amendment": "82858fca6a51873b0e6d17737009a0a8b66644c5",
+  "required_outputs": {
+    "candidate_rows": 1300,
+    "global_optimizations": 1400,
+    "maximum_decision_tolerance": 0.0,
+    "minimum_membership_slack": 0.0,
+    "strict_receipts": 100
+  },
+  "status": "locked_before_complete_matrix_and_before_outcome_inspection",
+  "superseding_policy": {
+    "bridge_acceptance": "independently recomputed minimum slack must be >= 0",
+    "bridge_feasibility_guard": 1e-09,
+    "contract_acceptance": "outward-rounded source and utility bounds must be <= the original registered thresholds with no additive tolerance",
+    "decision_tolerance": 0.0,
+    "release_optimization_guard": 1e-06,
+    "reported_value_guard": 1e-09,
+    "scope": "Every bridge, L=2 release, L=4 follow-up, threshold decision, selection, and aggregate claim is recomputed from all 100 stored token-table receipts.",
+    "stopping_rule": "Replay all 100 original receipts regardless of strict outcomes; report all abstentions, failures, and decision changes."
+  },
+  "timing_disclosure": {
+    "expected_original_receipts": 100,
+    "information_seen": "filenames, file count, process status, and timestamps only; no candidate, bridge, certificate, decision, or diagnostic outcomes",
+    "receipt_contents_inspected": false,
+    "written_original_receipts": 27
+  },
+  "trigger": "An adversarial proof audit identified that accepting small negative solver residuals made the software guarantee tolerance-qualified."
+}
