@@ -1,7 +1,7 @@
 \section{Audited Results}
 
 The preregistered synthetic gates pass. Figure~\ref{fig:confirmation} reports every
-implementable rule in the primary cells; ``fallback'' is MOSAIC's generic
+implementable rule in the primary cells; ``capacity fallback'' is MOSAIC's generic
 capacity certificate. Independent replay recomputes all 64,000 method receipts,
 128,000 population risks, decisions, and aggregate intervals with zero
 mismatch.
@@ -13,7 +13,7 @@ mismatch.
   tables per cell.  Error bars are exact 95\% Clopper--Pearson intervals.
   (a) At the safety boundary, plug-in continuum selection falsely accepts
   42.1\% of tables; MOSAIC abstains with no false acceptance. Ignoring shift is
-  worse. (b) In the retention cell, the fallback safely deploys on 56.3\%,
+  worse. (b) In the retention cell, the capacity fallback safely deploys on 56.3\%,
   versus 2.5\% for held-out certification, 3.3\% for finite LTT, and 0\% for
   deterministic MOSAIC. (c) Deployment follows the preregistered theory curve
   with 0.20 percentage-point mean absolute error. Exact 95\%
@@ -23,8 +23,8 @@ mismatch.
 
 The paired safety difference is 42.1 points (95\% bootstrap interval
 $[39.0,45.2]$), with 421 plug-in-only violations and no reverse discordance.
-Across 8,000 fallback certification tables, no accepted release violates the
-exact population contract. In the retention cell, fallback safe deployment
+Across 8,000 capacity-fallback certification tables, no accepted release violates the
+exact population contract. In the retention cell, capacity-fallback safe deployment
 exceeds held-out, finite-LTT, and deterministic rates by 53.8, 53.0, and 56.3
 points. No deterministic channel is feasible. These finite-run facts support,
 but do not replace, the $1-\delta$ guarantee.
@@ -105,8 +105,11 @@ deployment populations. A descriptive dataset-resampling interval for the
 strict deployment rate is $[0,.60]$; leaving out BiasBios leaves zero strict
 deployments, whereas leaving out any other dataset leaves 20. Thus the job-level
 interval summarizes the registered trials only and does not support a
-cross-domain deployment-rate claim. Missing-support abstentions are required by
-the theorem, but they are not observed safety successes.
+cross-domain deployment-rate claim. Waterbirds makes the safety--retention tradeoff
+especially clear: its bridge plug-in releases 20/20 jobs with no observed diagnostic
+violations, while strict MOSAIC abstains because it cannot certify joint feasibility.
+That diagnostic cannot establish the formal contract. Missing-support abstentions are
+required by the theorem, but they are not observed safety successes.
 
 \paragraph{What the real ablations remove.}
 The primary rows form a diagnostic ladder rather than unrelated baselines.

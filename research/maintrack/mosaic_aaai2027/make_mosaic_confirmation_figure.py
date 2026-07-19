@@ -37,7 +37,7 @@ DISPLAY_NAMES = {
     "shift_unaware_mosaic": "Shift-unaware",
     "always_deploy_plugin": "Always deploy",
     "plugin_continuum": "Plug-in",
-    "mosaic": "MOSAIC-transfer",
+    "mosaic": "Capacity fallback",
     "heldout_fixed_channel": "Held-out",
     "finite_ltt": "Finite LTT",
     "deterministic_mosaic": "Deterministic",
