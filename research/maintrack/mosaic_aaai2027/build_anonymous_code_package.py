@@ -173,11 +173,15 @@ artifacts are deterministic and can be rebuilt directly:
 PYTHONPATH=research/mosaic:research/scripts \
   python research/mosaic/analyze_mosaic_admitted_shift_stress.py
 PYTHONPATH=research/mosaic:research/scripts \
+  python research/mosaic/analyze_mosaic_symmetric_scope_stress.py
+PYTHONPATH=research/mosaic:research/scripts \
   python research/mosaic/analyze_mosaic_acs_infeasibility.py
 PYTHONPATH=research/mosaic:research/scripts \
   python research/mosaic/summarize_mosaic_release_utility_table.py
 PYTHONPATH=research/mosaic:research/scripts \
   python research/mosaic/run_mosaic_scaling_study.py
+PYTHONPATH=research/mosaic:research/scripts \
+  python research/mosaic/audit_mosaic_acs_k8_high_support_v3.py
 ```
 
 The external-shift evidence has four independent replay layers. The first

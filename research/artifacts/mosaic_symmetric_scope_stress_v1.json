@@ -1,0 +1,53 @@
+{
+  "analysis_status": "post-review deterministic analysis of a prelocked 12,000-table study",
+  "by_scenario": {
+    "source_specific_transform": {
+      "bridge_violations": 4000,
+      "direct_region_bridge_violations": 3996,
+      "direct_region_events": 3996,
+      "direct_region_mosaic_abstentions": 3996,
+      "direct_region_validated_scope_rows": 3996,
+      "invalid_rows": 4000,
+      "mosaic_abstentions": 4000
+    },
+    "underdeclared_contamination": {
+      "bridge_violations": 4000,
+      "direct_region_bridge_violations": 3987,
+      "direct_region_events": 3987,
+      "direct_region_mosaic_abstentions": 3987,
+      "direct_region_validated_scope_rows": 3987,
+      "invalid_rows": 4000,
+      "mosaic_abstentions": 4000
+    }
+  },
+  "claim_boundary": "This audit does not claim a failure of direct target-table certification. It verifies that prelocked bridge-invalid target laws can fall inside the direct target region, while the MOSAIC membership gate abstains.",
+  "invalid_scenarios": [
+    "underdeclared_contamination",
+    "source_specific_transform"
+  ],
+  "maximum_l1_excess_over_direct_region_all_rows": 0.032591238757783164,
+  "maximum_l1_excess_over_direct_region_among_events": -0.0018989268664368064,
+  "minimum_retained_mass": 0.8,
+  "name": "MOSAIC symmetric direct-region bridge-rejection scope stress v1",
+  "pass": true,
+  "pass_conditions": {
+    "all_invalid_rows_retained": true,
+    "all_invalid_rows_violate_declared_bridge": true,
+    "every_direct_region_event_is_out_of_class_and_abstained": true,
+    "mosaic_abstains_on_every_invalid_row": true
+  },
+  "source_report": "research/artifacts/mosaic_bridge_misspecification_v1.json",
+  "source_report_sha256": "9721ab7dcbdcfad7189ef3ce857fac5708c8deb40880df5c8fcf486d5bd2ce4d",
+  "specification": "research/mosaic/MOSAIC_SYMMETRIC_SCOPE_STRESS_SPEC.md",
+  "specification_sha256": "d0b967407243074b6130ce99aef28d7d1da80810ce565d7694e87e314e3aa6e4",
+  "status": "complete",
+  "summary": {
+    "bridge_violations": 8000,
+    "direct_region_bridge_violations": 7983,
+    "direct_region_events": 7983,
+    "direct_region_mosaic_abstentions": 7983,
+    "direct_region_validated_scope_rows": 7983,
+    "invalid_rows": 8000,
+    "mosaic_abstentions": 8000
+  }
+}

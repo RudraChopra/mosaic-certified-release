@@ -44,11 +44,13 @@ deployments (57.9\%, exact 95\% interval $[54.77,60.98]$), versus 283/1,000
 channel--decoder pairs. MOSAIC alone deploys on 312 paired tables, LTT alone on
 16, and both on 267, a 29.6-point paired difference. The exact McNemar value
 is $2.28\times10^{-72}$; it is reported as a descriptive paired statistic.
-The confidence-region grid and matched deterministic
-restricted-encoder adaptation both abstain throughout this cell. All four
-rules have zero observed false acceptance. The deterministic row tests FARE's
-finite-encoder principle under MOSAIC's shift contract, not FARE's official
-end-to-end training objective.
+The confidence-region grid and matched deterministic restricted-encoder
+adaptation both abstain throughout this cell. All four rules have zero observed
+false acceptance. We do not label the deterministic row as FARE: official FARE
+trains a fair decision tree for demographic parity on its own raw-input
+protocol, whereas this study asks about within-label source inference under a
+pre-release geographic-shift contract. The row isolates the shared restricted-
+encoder idea without presenting a non-commensurate end-to-end comparison.
 
 \paragraph{Bridge validity and power.}
 Across a separate 12,000-table locked stress study, a correctly specified
@@ -130,38 +132,50 @@ the direct region is $.368$ in $\ell_1$ after deterministic resolution of an
 exact attacker tie. The supplement gives the construction,
 numerical interface utility, and threshold frontier.
 
-The stress result does not say that direct target-table certification fails
-inside its own confidence region; it is valid for that region. It shows that the
-region and the bridge class answer different deployment questions. The bridge
-assumption is also empirically falsifiable: in the separate 12,000-table study,
-both registered violations---underdeclared contamination and a source-specific
-transform---are rejected at every bridge sample size. A misspecified bridge
-therefore triggers abstention rather than silently expanding the certificate.
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.2pt}
+\begin{tabular}{p{.35\columnwidth}cc}
+\hline
+Target-law scope & Direct table & MOSAIC \\
+\hline
+Bridge-admitted, outside direct region (36 real jobs) & 16 violations & 20 releases; 0 violations \\
+Direct-region, bridge-invalid (7,983 locked tables) & region contains $q$ & 7,983 abstentions \\
+\hline
+\end{tabular}
+\caption{Complementary scope cells. The first is the post-hoc real-table
+stress; the second reuses two prelocked bridge-invalid target laws.}
+\label{tab:scope-cells}
+\end{table}
+
+The second row closes the scope check without claiming a failure of direct
+target-table certification. In the separate 12,000-table study, the two
+prelocked violations have population retained mass below $.80$. Their true
+target laws fall inside the direct target region on 7,983/8,000 invalid tables;
+MOSAIC's membership gate abstains on all 8,000. Thus direct-region coverage and
+bridge membership answer different questions, while the bridge has an explicit
+rejection path when its declared structure fails. The supplement reports the
+rowwise construction and the full frozen receipt.
 
 \paragraph{Numerical verification and fresh confirmations.}
-The main table uses the strict-v2 arithmetic: deterministic replay matches all
-100 receipts, and exact-rational checks verify 1,300 bridge certificates and
-1,400 outward release bounds. A pre-outcome rerun on seeds 1220--1224 releases
-all five BiasBios jobs without a diagnostic violation. A separate ACSIncome
-California-to-Texas confirmation abstains at the $.40$ primary contract but
-releases all five jobs at the registered utility threshold $\tau_U=0.45$; its best
-$.40$ bounds are $.4023$--$.4145$. The supplement preserves every earlier
-receipt, the structural-zero correction history, and the decomposed bounds.
+Strict-v2 deterministic replay matches all 100 receipts, while exact-rational
+checks verify 1,300 bridge certificates and 1,400 outward release bounds. A
+pre-outcome five-seed BiasBios rerun releases every job without a diagnostic
+violation. The supplement records the independent ACS confirmation, correction
+history, and decomposed bounds.
 
 \input{mosaic_acs_natural_shift_results}
 
 \paragraph{Alphabet sensitivity.}
-Reoptimizing the best covered candidate with four release tokens is no worse
-than its two-token solution on all 100 jobs within the registered $10^{-7}$
-solver criterion (largest serialized difference $1.07\times10^{-8}$), but is
-strictly better on only five. The real result therefore comes mainly from
-certifying shift geometry, not from hiding utility in a larger alphabet. It
-also reinforces the intended scope: MOSAIC is a compact task-specific release
-interface, not a generally reusable edited embedding. In 75 synthetic jobs
-spanning $K\in\{4,8,16,32,64\}$ and $G\in\{2,3,4\}$, every $.40$ contract
+Four released tokens improve only five of 100 jobs within the registered
+$10^{-7}$ solver criterion, so the real gain comes from certifying shift
+geometry rather than enlarging the public alphabet. Across 75 synthetic jobs
+with $K\in\{4,8,16,32,64\}$ and $G\in\{2,3,4\}$, every $.40$ contract
 certifies; the largest cell has $.237$ median utility slack and $.360$-second
-median solve time. Constraint generation uses 4 of 256 possible attacker
-assignments in a $G=L=4$ stress point. A real ACS $K=8$ extension reaches the
-opposite boundary: retained mass falls to $.377$--$.540$, all 13 candidates
-require a $.50$-error constant release, and MOSAIC abstains. The supplement
-reports the full runtime, retention, radius, and sample-size curves.
+median solve time. In the original real ACS $K=8$ extension, retained mass is
+$.377$--$.540$, every candidate needs a $.50$-error constant release, and
+MOSAIC abstains. With a locked increase from 6,000 to 16,000 certification
+rows per source--label stratum on three employment transfers, $K=8$ MOSAIC
+releases Florida and New York with 0/2 held-out and 0/200 operational
+violations; Illinois abstains. The supplement gives the complete support study.

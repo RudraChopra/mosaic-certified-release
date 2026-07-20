@@ -1,0 +1,57 @@
+{
+  "checks": {
+    "FL_bridge_cap": true,
+    "FL_candidate_count": true,
+    "FL_official_coverage": true,
+    "FL_receipt_sha256": true,
+    "FL_reference_cap": true,
+    "IL_bridge_cap": true,
+    "IL_candidate_count": true,
+    "IL_official_coverage": true,
+    "IL_receipt_sha256": true,
+    "IL_reference_cap": true,
+    "NY_bridge_cap": true,
+    "NY_candidate_count": true,
+    "NY_official_coverage": true,
+    "NY_receipt_sha256": true,
+    "NY_reference_cap": true,
+    "all_39_candidate_rows": true,
+    "lock_sidecar": true,
+    "summary_complete": true,
+    "summary_lock": true,
+    "three_locked_jobs": true,
+    "two_mosaic_deployments": true,
+    "two_safe_diagnostics": true,
+    "zero_operational_violations": true
+  },
+  "claim_boundary": "This study tests whether higher certification support changes K=8 feasibility for the three locked employment transfers.",
+  "lock": "research/mosaic/prereg_mosaic_acs_k8_high_support_v3.json",
+  "lock_sha256": "ff0ebc73b60a0f12ce868871964bd165af3368d5ccd682f47c102c9ec3eb78b1",
+  "name": "MOSAIC K=8 high-support ACS extension v3 audit",
+  "pass": true,
+  "selected_rows": [
+    {
+      "candidate": "INLP::rank=8",
+      "diagnostic_safe": true,
+      "mosaic_decision": "deploy",
+      "operational_violations": 0,
+      "target_state": "FL"
+    },
+    {
+      "candidate": null,
+      "diagnostic_safe": null,
+      "mosaic_decision": "abstain",
+      "operational_violations": null,
+      "target_state": "IL"
+    },
+    {
+      "candidate": "MANCE++::epsilon=0.05,steps=3",
+      "diagnostic_safe": true,
+      "mosaic_decision": "deploy",
+      "operational_violations": 0,
+      "target_state": "NY"
+    }
+  ],
+  "summary": "research/artifacts/mosaic_acs_k8_high_support_v3_summary.json",
+  "summary_sha256": "467f2ce07c3d842bc3defdd75544989cc53da16efadb5c118a9de3a35bd7ac9e"
+}

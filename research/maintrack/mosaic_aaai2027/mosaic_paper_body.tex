@@ -60,12 +60,11 @@ population oracle.
 \begin{figure*}[t]
   \centering
   \includegraphics[width=\textwidth]{figures/figure1_mosaic_overview.pdf}
-  \caption{MOSAIC jointly certifies reference and labeled target-bridge token
-  laws, optimizes a continuum of source-blind stochastic channels on that
-  event, and uses a robust bridge LP to certify target membership. The runtime
-  samples one persistent token only when within-label source distinguishability and
-  registered task utility pass; otherwise it abstains. The primary contract is
-  within-label source distinguishability.}
+  \caption{MOSAIC has three steps: certify the reference and labeled
+  target-bridge evidence, design a source-blind stochastic token interface on
+  that shared event, and gate deployment on bridge membership, source leakage,
+  and task utility. The runtime persists one token only after every check
+  passes; otherwise it abstains.}
   \label{fig:overview}
 \end{figure*}
 
@@ -246,6 +245,21 @@ $W=tT$ by solving
 \end{equation}
 The support functions and coordinate lower bounds have exact LP duals, so
 Eq.~\eqref{eq:bridge} is one linear program rather than a transform search.
+
+\paragraph{Running example, continued.}
+For the displayed $y=0$ reference rows, take bridge rows
+$\widehat q_{0,0}=(.37,.25,.38)$ and
+$\widehat q_{1,0}=(.45,.45,.10)$ and set the radii to zero only for this
+calculation. The LP returns $\widehat t_0=.795$ and, rounded to three digits,
+\[
+ \widehat T_0=
+ \begin{pmatrix}.634&.052&.314\\ .109&.891&0\\0&1&0\end{pmatrix}.
+\]
+The residuals are $r_{0,0}=(0,0,1)$ and $r_{1,0}=(1,0,0)$: substituting them
+into Eq.~\eqref{eq:shift} reconstructs the two bridge rows. Thus the LP turns
+the toy's target table into a retained common component of $.795$ and a
+charged source-specific remainder of $.205$; the release optimizer must pay
+for that remainder rather than treating it as shared signal.
 
 \begin{theorem}[Adaptive finite-sample bridge]
 Suppose the reference and bridge confidence sets jointly cover every

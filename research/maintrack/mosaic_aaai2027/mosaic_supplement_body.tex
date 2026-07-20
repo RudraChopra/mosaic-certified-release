@@ -672,9 +672,12 @@ scenario with a $5^3$ grid of binary-output stochastic channels and all $2^2$
 binary decoders, for 500 channel--decoder pairs. The confidence-region grid
 applies MOSAIC's one simultaneous pre-channel event but restricts optimization
 to these 500 pairs. The deterministic baseline applies the same shift-aware
-certificate to every deterministic three-to-two map. This is a matched test of
-FARE's restricted finite-encoder principle, not an implementation of FARE's
-raw-input fair-tree training pipeline or demographic-parity objective.
+certificate to every deterministic three-to-two map. We report it as a
+deterministic restricted-encoder baseline, not as FARE: official FARE trains a
+fair decision tree for demographic parity on a different raw-input protocol,
+whereas the present study evaluates within-label source inference under a
+pre-release geographic-shift contract. An end-to-end FARE number would not be
+commensurate with this contract.
 
 The LTT baseline tests every fixed pair without reusing MOSAIC's table region.
 Index its source-attacker and source--label utility inequalities by $j$. After
@@ -787,10 +790,10 @@ provenance in a separate manifest.
 \hline
 Artifact group & Checksum index \\
 \hline
-Main and supplement PDFs & V7 release SHA-256 manifest \\
+Main and supplement PDFs & V9 release SHA-256 manifest \\
 Locked protocols and reports & Anonymous code/data manifest \\
 Real compact receipts and audits & Anonymous code/data manifest \\
-Post-review stress, scaling, and natural shift & V7 release SHA-256 manifest \\
+Post-review stress, scaling, and natural shift & V9 release SHA-256 manifest \\
 \hline
 \end{tabular}
 \caption{Single-entry checksum map. Full digests are stored once in the two
