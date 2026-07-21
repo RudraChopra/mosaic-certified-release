@@ -75,7 +75,9 @@ class Mosaic:
 
     Construction, reference, and bridge rows must be disjoint. The protected
     source is used only during certification and must not be included in the
-    release-time feature vector.
+    release-time feature vector. One instance covers one registered tokenizer
+    and configuration; adaptive selection across instances requires an external
+    familywise allocation.
     """
 
     config: MosaicConfig = field(default_factory=MosaicConfig)

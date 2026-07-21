@@ -97,6 +97,9 @@ python -m pip install .
 
 The public deployment path has three steps. Construction, reference, and bridge
 rows must be disjoint; protected source labels are certification inputs only.
+One object certifies one registered tokenizer and configuration. Selecting among
+several separately fitted objects requires allocating the familywise confidence
+budget across those objects before looking at their certificates.
 
 ```python
 from mosaic_certified_release import Mosaic
