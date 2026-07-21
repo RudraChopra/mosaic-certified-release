@@ -1,0 +1,19 @@
+% Prewritten before the unlocked Qwen pilot. This file is not included until a
+% separately locked confirmation has completed and all registered outcomes are
+% available.
+\paragraph{LLM-derived moderation interface.}
+We apply the same release rule to internal states of the 1.54-billion-parameter
+Qwen2.5-Instruct language model on CivilComments-WILDS. A fixed hidden-state
+pooling rule supplies the input to a toxicity score tokenizer; MOSAIC then
+releases a persistent moderation-routing token while bounding inference of
+whether the comment mentions an annotated demographic identity. The source is
+an identity-mention annotation, not the author's demographic identity. Pilot
+rows select the layer, pooling rule, and fine alphabet and are excluded by ID
+from a separately locked confirmation. The confirmation preserves the official
+toxicity task and subpopulation-shift split, partitions each target
+source--label stratum into labeled bridge and untouched diagnostic folds, and
+reports every registered seed whether it releases or abstains.
+
+% Result sentence inserted only from the frozen confirmation receipt:
+% Across <N> locked seeds, MOSAIC releases <R> interfaces with <D> held-out
+% contract violations and <O> violations in <B> persistent-token replays.
