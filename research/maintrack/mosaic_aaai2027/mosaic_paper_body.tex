@@ -102,26 +102,32 @@ whereas unrestricted shift is impossible to certify
 
 \begin{table*}[t]
 \centering
-\scriptsize
-\setlength{\tabcolsep}{2.5pt}
-\begin{tabular}{lccccc}
+\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{p{.18\textwidth}p{.32\textwidth}p{.42\textwidth}}
 \hline
-Method & Finite $Z$ & Bayes attacker & Same-table $M$ & Target shift & Shift evidence \\
+Framework & Certified object & Difference from MOSAIC \\
 \hline
-FARE \citep{jovanovic2023fare} & yes & yes & no & no & no \\
-Randomized fair reps. \citep{agarwal2024randomization} & yes & yes & population & no & no \\
-LTT / risk control \citep{angelopoulos2025ltt,bates2021rcps} & general & candidate & finite family & optional & model-specific \\
-Blackwell / deficiency \citep{blackwell1953experiments,lecam1964sufficiency} & experiment & all decisions & no & population & assumed \\
-Robust validation \citep{cauchois2024robust} & no & no & no & declared ball & estimated \\
-Testable shift \citep{klivans2024testable} & no & no & hypothesis & yes & tested \\
-MOSAIC & yes & exact & yes & pre-release & finite-sample \\
+FARE \citep{jovanovic2023fare} & Downstream rules for a fixed finite encoder
+& No same-table stochastic-channel search or target-shift certificate \\
+LTT and risk control \citep{angelopoulos2025ltt,bates2021rcps}
+& Risks of registered candidates
+& Candidate-level tests rather than one pre-channel event for the continuum \\
+Blackwell and deficiency
+\citep{blackwell1953experiments,lecam1964sufficiency}
+& Population comparisons between experiments
+& Shift structure is assumed rather than certified from finite target data \\
+Robust and testable shift
+\citep{cauchois2024robust,klivans2024testable}
+& Predictor risk or a shift hypothesis
+& No joint optimization of an exact source attacker and public token \\
+MOSAIC & Source attacker and task risk for an optimized finite token
+& Pre-channel coverage plus a data-certified target-shift bridge \\
 \hline
 \end{tabular}
-\caption{Component-level scope of the closest frameworks. ``Same-table
-continuum'' means that one confidence event remains valid after optimizing an
-uncountable stochastic-channel family on that table. The MOSAIC row combines
-upstream same-table coverage, an exact attacker envelope, and target-shift
-evidence in one release rule.}
+\caption{Closest certification frameworks by object and scope. MOSAIC combines
+one pre-channel confidence event, an exact Bayes-attacker envelope, and
+finite-sample evidence for the target-shift class.}
 \label{tab:components}
 \end{table*}
 
@@ -425,19 +431,26 @@ fixed $(G,J,L,R)$ and exponential only in the released alphabet $L$. Constraint
 generation adds the strongest omitted attacker until none violates the contract;
 the supplement gives the proof and scaling details.
 
-\section{Hash-Locked Evaluation}
+\section{Evaluation Design}
 
-\paragraph{Synthetic confirmation.}
-Before outcomes, we SHA-256 locked the protocol, code, evaluators, seed
-exclusions, gates, and theory curve. Two source--label populations, two shift
-regimes, eight rules, and up to five sample sizes use 1,000 independent tables
-per cell and familywise $\delta=.05$. A separate population evaluator grades
-every selected channel, and replay scripts reconstruct every decision, risk,
-interval, and optimizer check. The primary contrasts test unsafe plug-in
-selection and safe retention against held-out certification, LTT, and
-deterministic release; every registered cell remains reportable.
+\paragraph{Study map.}
+The evaluation separates four questions: whether certification blocks unsafe
+selection, whether bridge membership is testable, whether useful interfaces
+remain releasable, and whether the result transfers across domains. Protocols
+fix data roles, thresholds, seeds, and failure gates before outcomes.
+Diagnostic folds never enter channel or candidate selection.
 
-\paragraph{Real bridge confirmation.}
+\paragraph{Synthetic safety and bridge power.}
+The safety study uses two source--label populations, two shift regimes, eight
+rules, up to five sample sizes, and 1,000 independent tables per cell at
+familywise $\delta=.05$. A separate population evaluator grades every selected
+channel. Comparators include held-out certification, finite-family LTT, and
+deterministic release. A second 12,000-table study varies bridge support from
+500 to 5,000 observations per source--label stratum. It compares a valid common
+transform with source-specific transforms and contamination above the declared
+budget, using a retained-mass threshold of $.80$.
+
+\paragraph{Five-benchmark release study.}
 We registered 100 fresh jobs: 20 untouched seeds on each of Waterbirds,
 Camelyon17-WILDS, CivilComments-WILDS, BiasBios-Clinical, and GaitPDB, spanning
 vision, medical vision, text, and time series. Each job evaluates 13 frozen
@@ -449,27 +462,26 @@ supported source--label stratum into two-thirds labeled bridge data and an
 untouched one-third diagnostic fold. Neither diagnostics nor their outcomes
 enter channel or candidate selection.
 
-Target $S$ and $Y$ labels supply the conditional token laws $q_{s,y}$ used by
-the bridge and the within-label contract. Task-only retraining serves a
-different objective: it improves a target predictor without constructing these
-source-conditional laws. Where $S$ is sensitive, collection, consent, and
-permitted audit use are part of the deployment protocol; unsupported strata
-trigger abstention.
-
 The familywise level is $.05$ over 13 candidate tables and both reference and
 bridge regions. The source-advantage contract is $.35$; worst-stratum utility
 thresholds are $.30,.35,.40,.45,$ and $.49$, with $.40$ primary. We globally
 optimize $L=2$, then reoptimize $L=4$ only for the best covered $L=2$
-candidate. A strict replay accepts no decision tolerance and an exact-rational
-audit checks every serialized bridge slack and outward risk bound. The reported
-strict-v2 outputs use a disclosed structural-zero repair, and the archive
-retains the original and first-replay artifacts. Locked
-comparators use the same candidates and folds: capacity transfer, a bridge
+candidate. Locked comparators use the same candidates and folds: capacity
+transfer, a bridge
 plug-in without intervals, a validation plug-in that ignores the bridge, and
 unconditional deployment of the best validation plug-in. All datasets,
 thresholds, abstentions, and missing-support outcomes remain reportable.
 
-\paragraph{Fresh geographic-shift confirmation.}
+\paragraph{Target labels and audit controls.}
+Target $S$ and $Y$ labels supply the conditional token laws $q_{s,y}$ used by
+the bridge and within-label contract. Where $S$ is sensitive, collection,
+consent, and permitted audit use are part of the deployment protocol;
+unsupported strata trigger abstention. Strict numerical replay and an
+exact-rational audit recheck every release decision. The supplement preserves
+the disclosed structural-zero repair, earlier artifacts, and complete
+amendment history.
+
+\paragraph{Geographic-shift confirmation.}
 Before downloading the target states, we register 60 Folktables jobs
 \citep{ding2021folktables}: three binary tasks (income, employment, and public
 coverage), four natural state shifts from California to Washington, Illinois,
@@ -482,7 +494,7 @@ folds; no person or PUMA crosses that boundary. Every job evaluates the same
 thresholds, and 100 one-token operational draws per release. We hash-lock all
 12 raw-data manifests and processed stores before any outcome is computed.
 
-\paragraph{Natural image-origin confirmation.}
+\paragraph{Image-origin confirmation.}
 CINIC-10 provides file-level CIFAR-10 versus ImageNet origin
 \citep{darlow2018cinic}. A locked five-seed study uses ImageNet-pretrained
 ResNet-18 features, a vehicle-versus-animal task, and disjoint construction,
@@ -491,15 +503,6 @@ interface with official closed-form LEACE under the same $.35$ source and
 $.40$ utility contracts; neither origin labels nor embeddings are released. A
 disclosed sequential extension reruns 40 fixed seeds under one stricter
 familywise allocation.
-
-\paragraph{Bridge validity stress.}
-A separate 12,000-table confirmation varies the bridge sample size from 500 to
-5,000 per source--label stratum. One population obeys a common transform;
-two violate the registered model through either source-specific transforms or
-contamination above the declared budget. Acceptance requires a finite-sample
-retained-mass lower bound of at least $.80$. This study tests whether valid
-membership gains power with data while the two registered violations remain
-rejected.
 
 \input{mosaic_results}
 

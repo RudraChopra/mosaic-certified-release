@@ -1,10 +1,10 @@
-\section{Audited Results}
+\section{Results}
 
-The preregistered synthetic gates pass. Figure~\ref{fig:confirmation} reports every
-implementable rule in the primary cells; ``capacity fallback'' is MOSAIC's generic
-capacity certificate. Independent replay recomputes all 64,000 method receipts,
-128,000 population risks, decisions, and aggregate intervals with zero
-mismatch.
+\paragraph{Synthetic selection safety.}
+All preregistered gates pass. Figure~\ref{fig:confirmation} reports every
+implementable rule in the primary cells; ``capacity fallback'' is MOSAIC's
+generic capacity certificate. Independent replay reconstructs every decision,
+population risk, and interval with zero mismatch.
 
 \begin{figure*}[t]
   \centering
@@ -63,32 +63,48 @@ failure on the joint confidence event and no invalid false acceptance. The
 study establishes power against both registered bridge violations and shows the
 acceptance transition as bridge support grows.
 
-\paragraph{Real data-certified bridge.}
+\paragraph{Five-benchmark release ladder.}
 At the primary $\tau_U=.40$ error contract, equivalently a $.60$
 worst-stratum accuracy floor, strict MOSAIC deploys on 20/100 jobs
 (20.0\%, exact 95\% interval $[12.67,29.18]$), all externally estimable, with
 0/20 observed violations (one-sided 95\% upper bound 13.91\%). The selected
 official edits comprise six INLP, five LEACE, and nine MANCE++ candidates.
-Capacity transfer deploys none. The bridge plug-in deploys 47 and violates
-7/47 estimable diagnostics (14.9\%); validation-only selection deploys 80,
-including 20 unestimable Camelyon jobs, and violates 18/60 estimable
-diagnostics (30.0\%). Unconditional deployment violates 38/80 estimable jobs
-(47.5\%) and also releases all 20 unestimable jobs. MOSAIC retains 20 safe
-deployments at every stronger threshold $.30$--$.45$ and adds three safe
-Waterbirds deployments at $.49$; the supplement enumerates every threshold.
-These untouched diagnostics show the practical effect of each selection rule
-alongside the finite-sample bridge guarantee.
 
-The primary releases concentrate on BiasBios-Clinical, where the bridge has
-strong support and certified median retained mass is $.797$. The other four
-benchmarks map the operational boundary of the method: missing source support
-produces a required abstention, while insufficient joint privacy--utility
-feasibility produces a contract-based abstention. Waterbirds illustrates the
-difference between an observed diagnostic and a certificate: its bridge plug-in
-releases all 20 jobs, whereas the strict procedure declines to release because
-the joint contract is not certified. The 100 jobs are repeated partitions of
-five benchmark populations, so results are reported by dataset as well as in
-aggregate.
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.4pt}
+\begin{tabular}{lrrr}
+\hline
+Rule & Released & Unsupported & Diagnostic violations \\
+\hline
+MOSAIC & 20/100 & 0 & 0/20 \\
+Capacity transfer & 0/100 & 0 & -- \\
+Bridge plug-in & 47/100 & 0 & 7/47 (14.9\%) \\
+Validation only & 80/100 & 20 & 18/60 (30.0\%) \\
+Always deploy & 100/100 & 20 & 38/80 (47.5\%) \\
+\hline
+\end{tabular}
+\caption{Primary five-benchmark ladder at $\tau_U=.40$. Unsupported jobs lack
+a required target source stratum and are excluded only from the diagnostic
+violation denominator.}
+\label{tab:release-ladder}
+\end{table}
+
+Moving down Table~\ref{tab:release-ladder} removes one safeguard at a time.
+Capacity transfer replaces the learned geometry with a worst-case charge; the
+bridge plug-in removes confidence regions; validation-only selection removes
+the target-membership gate; and unconditional deployment removes abstention.
+The resulting changes in release and violation counts isolate the role of each
+component.
+
+MOSAIC retains 20 safe deployments at every threshold $.30$--$.45$ and adds
+three safe Waterbirds deployments at $.49$. The primary releases are all on
+BiasBios-Clinical, where certified median retained mass is $.797$. Missing
+source support or an infeasible joint source--utility contract causes
+abstention on the other benchmarks. In particular, the Waterbirds bridge
+plug-in releases all 20 jobs, while strict MOSAIC declines because the joint
+contract is not certified.
 
 \paragraph{Concrete released interface.}
 One BiasBios-Clinical seed selects INLP at rank four for the binary clinical
@@ -101,19 +117,6 @@ and $.40$ contracts. On the untouched diagnostic fold, the corresponding values
 are $.052$ and $.184$. This is the deployed object: a small versioned routing
 interface with a decoder, not a claim that the underlying representation is
 universally erased.
-
-\paragraph{What the real ablations remove.}
-The primary rows form a diagnostic ladder rather than unrelated baselines.
-Capacity transfer keeps simultaneous regions but replaces the learned shift
-geometry by a worst-case channel-capacity charge; its 0/100 deployments versus
-MOSAIC's 20/100 show that the exact bridge is decision-relevant. The bridge
-plug-in retains target data and the fitted transform but removes confidence
-regions, gaining 27 deployments at the cost of seven observed violations.
-Validation-only selection removes the target-membership gate, adding 60
-deployments but producing 18 estimable violations and 20 unsupported releases.
-Unconditional deployment additionally removes contract-based abstention and
-produces 38 violations. Thus intervals, bridge membership, exact geometry, and
-abstention each change a measured deployment outcome.
 
 \paragraph{Direct target-table comparator.}
 An audited comparator applies the same simultaneous envelope directly to the
