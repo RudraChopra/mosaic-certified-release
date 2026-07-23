@@ -23,13 +23,12 @@ from mosaic_real import evaluate_external_channel
 from run_mosaic_real_proxy_study import (
     PROXY_COLUMNS,
     RAW,
-    calibration_counts,
-    stratified_partitions,
 )
 
 
 ROOT = Path(__file__).resolve().parents[2]
 PREREG = ROOT / "research/mosaic/prereg_mosaic_fare_proxy_v1.json"
+AMENDMENT = ROOT / "research/mosaic/prereg_mosaic_fare_proxy_v1_amendment.json"
 OUTPUT = ROOT / "research/artifacts/mosaic_fare_proxy_comparison_v1.json"
 PRIVACY_THRESHOLD = 0.35
 UTILITY_THRESHOLD = 0.40
@@ -56,12 +55,18 @@ def validate_lock() -> dict[str, object]:
     prereg = json.loads(PREREG.read_text(encoding="utf-8"))
     if prereg["status"] != "locked_before_fare_outcomes":
         raise ValueError("FARE comparison is not locked")
-    for relative, expected in prereg["code_sha256"].items():
+    amendment_sidecar = AMENDMENT.with_suffix(AMENDMENT.suffix + ".sha256")
+    if amendment_sidecar.read_text(encoding="utf-8").strip() != sha256(
+        AMENDMENT
+    ):
+        raise ValueError("FARE comparison amendment sidecar mismatch")
+    amendment = json.loads(AMENDMENT.read_text(encoding="utf-8"))
+    for relative, expected in amendment["code_sha256"].items():
         if sha256(ROOT / relative) != expected:
-            raise ValueError(f"locked code mismatch: {relative}")
+            raise ValueError(f"amended locked code mismatch: {relative}")
     if sha256(RAW) != prereg["raw_data_sha256"]:
         raise ValueError("raw ACS data mismatch")
-    for path in (PREREG, sidecar):
+    for path in (PREREG, sidecar, AMENDMENT, amendment_sidecar):
         relative = path.relative_to(ROOT)
         committed = subprocess.run(
             ["git", "show", f"HEAD:{relative.as_posix()}"],
@@ -72,6 +77,40 @@ def validate_lock() -> dict[str, object]:
         if committed != path.read_bytes():
             raise ValueError(f"{relative} is not the committed lock")
     return prereg
+
+
+def stratified_partitions_compat(
+    labels: np.ndarray, sources: np.ndarray, *, seed: int
+) -> dict[str, np.ndarray]:
+    """Python 3.9 spelling of the preregistered five-way partition."""
+
+    fractions = {
+        "task_train": 0.20,
+        "proxy_train": 0.20,
+        "calibration": 0.20,
+        "target_proxy": 0.25,
+        "diagnostic": 0.15,
+    }
+    names = tuple(fractions)
+    output = {name: [] for name in names}
+    rng = np.random.default_rng(seed)
+    cumulative = np.cumsum([fractions[name] for name in names])
+    for label in (0, 1):
+        for source in (0, 1):
+            indices = np.flatnonzero(
+                (labels == label) & (sources == source)
+            )
+            rng.shuffle(indices)
+            boundaries = np.floor(cumulative * len(indices)).astype(int)
+            boundaries[-1] = len(indices)
+            start = 0
+            for name, end in zip(names, boundaries):
+                output[name].extend(indices[start:end].tolist())
+                start = int(end)
+    return {
+        name: np.sort(np.asarray(values, dtype=np.int64))
+        for name, values in output.items()
+    }
 
 
 def remap_leaves(tree: DecisionTreeClassifier, values: np.ndarray) -> tuple[np.ndarray, dict[int, int]]:
@@ -128,7 +167,9 @@ def main() -> None:
         filtered.loc[:, PROXY_COLUMNS].to_numpy(dtype=np.float64),
         nan=-1.0,
     )
-    partitions = stratified_partitions(labels, sources, seed=20270723)
+    partitions = stratified_partitions_compat(
+        labels, sources, seed=20270723
+    )
     proxy_model = HistGradientBoostingClassifier(
         max_iter=160,
         max_leaf_nodes=31,
