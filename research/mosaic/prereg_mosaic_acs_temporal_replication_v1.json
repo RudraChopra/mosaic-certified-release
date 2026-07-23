@@ -1,0 +1,97 @@
+{
+  "claim_boundary": "The 2021 panel is a registered discovery census with empirical but not familywise-confirmed failures. This second lock tests the exact three discovered frozen direct interfaces on untouched 2022 ACS data. It is a prospective replication across years, not a prospectively selected 2021 hypothesis.",
+  "code_sha256": {
+    "research/mosaic/mosaic_channel.py": "a69c82b9182be32d28d30e83795ac77c9512fa09f95f8bad7e1ed5732e60ecc4",
+    "research/mosaic/mosaic_real.py": "b8e1d70b8c72f79db6d4cf6587a9e34fde0a050387058b4d00c754f8b60a94f7",
+    "research/mosaic/run_mosaic_acs_pandemic_panel.py": "f955c2722340b9f3e7086d7e62a3fea34efe16288b3b1acb882de46f08b397a6",
+    "research/mosaic/run_mosaic_acs_temporal_replication.py": "ebe16b6eaa75a4b8f581348c665b4139ad39dd7fbde6802cef3fc5b95f81a4c4",
+    "research/mosaic/run_mosaic_official_frontier_exact_confirmation.py": "66d7aa3eeedd6460fc894c281b4c660e3da0c781984012eeb379e543b506f166",
+    "research/scripts/official_eraser_adapters.py": "ebcb3db26b60ba240958ff9944ec174f4e63a90fadcbbb87169c67eac87bcd26",
+    "research/scripts/prepare_acs_natural_shift_stores.py": "f36e4717398857c8a2c77ca52431a6808baa2da552883f40de96b25568cf1bee",
+    "research/scripts/run_official_eraser_frontier.py": "2a408a5e78f88c687a40e600b12924c5d70299204ad6fdf3ead51911348b0f7f"
+  },
+  "discovery_rows": [
+    {
+      "candidate": "TaCo::components_removed=1",
+      "discovery_diagnostic_rows": 9436,
+      "discovery_worst_conditional_error_empirical": 0.4104882564116151,
+      "seed": 1401,
+      "target_state": "FL",
+      "task": "public_coverage"
+    },
+    {
+      "candidate": "R-LACE::rank=4",
+      "discovery_diagnostic_rows": 10520,
+      "discovery_worst_conditional_error_empirical": 0.4166548439522196,
+      "seed": 1402,
+      "target_state": "FL",
+      "task": "public_coverage"
+    },
+    {
+      "candidate": "Identity::unedited",
+      "discovery_diagnostic_rows": 9292,
+      "discovery_worst_conditional_error_empirical": 0.40153439716292516,
+      "seed": 1402,
+      "target_state": "IL",
+      "task": "public_coverage"
+    }
+  ],
+  "input_sha256": {
+    "research/artifacts/mosaic_acs_natural_shift_v1_receipts/ACS-public_coverage-CA-FL__seed1401.json": "2e1d666f70f027ea9be5ed91da273879c4e0e16a85d6668092df30b8615e39e0",
+    "research/artifacts/mosaic_acs_natural_shift_v1_receipts/ACS-public_coverage-CA-FL__seed1402.json": "039c1409a398a25d66bee11bd58bc681f7a4ed121413fe83ae0c19921351e90f",
+    "research/artifacts/mosaic_acs_natural_shift_v1_receipts/ACS-public_coverage-CA-IL__seed1402.json": "a835dc6710a8befd91dd1d8f9d18e64cffec77c0cf4bab929e6c4449eee0142a",
+    "research/artifacts/mosaic_acs_pandemic_panel_v1.json": "9ba209e2b973683782497dddd1814512e4977f0923aab0009ecaab90f71d294f",
+    "research/mosaic/prereg_mosaic_acs_natural_shift_data_v1.json": "6a38d6f2cb4dab58d6280d4592b3eb9f34708cee6f90c0cfc173ead913786aa8",
+    "research/mosaic/prereg_mosaic_acs_pandemic_panel_v1.json": "2d3fc8cd4a3d813e17bac9bff3f238d9277c7db9468aecfed7e5405df8cfd61e"
+  },
+  "locked_at_utc": "2026-07-23T20:58:01.709533+00:00",
+  "name": "MOSAIC ACS temporal failure replication preregistration v1",
+  "protocol": {
+    "confirmation": "a witness is confirmed only when the simultaneous lower bound on the frozen direct interface's worst conditional task error exceeds 0.40; its paired MOSAIC decision must be the frozen 2018 abstention",
+    "confirmation_year": "2022",
+    "design": "discovery-confirmation temporal replication: the locked 2021 diagnostic fold nominated exactly three direct-rule utility failures; this protocol freezes those interfaces before any 2022 ACS asset is accessed",
+    "discovery_year": "2021",
+    "familywise_delta": 0.05,
+    "future_asset_urls": {
+      "FL": "https://www2.census.gov/programs-surveys/acs/data/pums/2022/1-Year/csv_pfl.zip",
+      "IL": "https://www2.census.gov/programs-surveys/acs/data/pums/2022/1-Year/csv_pil.zip"
+    },
+    "hypotheses": 3,
+    "maximum_confirmation_rows_per_interface": 128000,
+    "reference_year": "2018",
+    "sampling": "one deterministic balanced sample over all 2022 rows in each source-task stratum; no 2022 model, channel, tokenizer, candidate, threshold, or hypothesis selection",
+    "source_advantage_threshold": 0.35,
+    "table_delta": 0.016666666666666666,
+    "utility_threshold": 0.4,
+    "witnesses": [
+      {
+        "candidate": "TaCo::components_removed=1",
+        "seed": 1401,
+        "target_state": "FL",
+        "task": "public_coverage"
+      },
+      {
+        "candidate": "R-LACE::rank=4",
+        "seed": 1402,
+        "target_state": "FL",
+        "task": "public_coverage"
+      },
+      {
+        "candidate": "Identity::unedited",
+        "seed": 1402,
+        "target_state": "IL",
+        "task": "public_coverage"
+      }
+    ]
+  },
+  "raw_2022_assets_absent_at_lock": true,
+  "reference_raw_asset": {
+    "bytes": 267297811,
+    "sha256": "dc2187fc90df2c5f6b546ee89a2b41c9a97379c9e7136461b6a6c8de871b43e0",
+    "state": "CA",
+    "year": "2018"
+  },
+  "repository_head_before_lock": "eabde560d320c120ba4e5bc46afa20ee8909158c",
+  "status": "locked_before_2022_download",
+  "stopping_rule": "Report all three frozen interfaces, every reconstruction failure, all simultaneous lower and upper bounds, and every confirmed or unconfirmed replication. No replacement witnesses are permitted."
+}
