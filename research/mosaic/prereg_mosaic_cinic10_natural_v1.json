@@ -1,0 +1,52 @@
+{
+  "claim_boundary": "CINIC-10 combines naturally collected CIFAR-10 and ImageNet images with file-level origin provenance. The frozen encoder uses ImageNet-pretrained ResNet-18 weights; the study evaluates release certification under origin shift, not independent ImageNet recognition.",
+  "code_sha256": {
+    "research/mosaic/audit_mosaic_cinic10_natural_confirmation.py": "fdc6e0a175494bedfd3969771b4fa006065bfb62a61924b2658622ebe4b3c5bb",
+    "research/mosaic/mosaic_bridge.py": "a4db7cf4752ec463fc01bd8ad436c06846c74d3feefe0aeb62d5dd87e4df32a4",
+    "research/mosaic/mosaic_real.py": "b8e1d70b8c72f79db6d4cf6587a9e34fde0a050387058b4d00c754f8b60a94f7",
+    "research/mosaic/mosaic_transform_exact_optimizer.py": "5188124aabd9e17e5648b5915ccb731023474b3f57aba5839b3a0ae37c4e5760",
+    "research/mosaic/run_mosaic_cinic10_natural_confirmation.py": "7866dbbb7ef929eeb08120fb02b14d8e2c016ce673e4c7b3466f0da180a27fa0"
+  },
+  "confirmation_seeds": [
+    4101,
+    4102,
+    4103,
+    4104,
+    4105
+  ],
+  "locked_at_utc": "2026-07-23T08:33:56Z",
+  "official_leace": {
+    "commit": "9f51753821316a1edacf78b52b464ab26d40e60a",
+    "entrypoint": "concept_erasure.LeaceFitter.fit(method='leace')",
+    "repository": "https://github.com/EleutherAI/concept-erasure"
+  },
+  "protocol": {
+    "candidates": [
+      "Identity::unedited",
+      "LEACE::closed_form"
+    ],
+    "family_failure_probability": 0.05,
+    "fine_token_count": 4,
+    "maximum_construction_rows": 4000,
+    "maximum_eraser_training_rows": 8000,
+    "maximum_reference_rows": 8000,
+    "maximum_target_bridge_rows": 8000,
+    "maximum_target_diagnostic_rows": 8000,
+    "primary_gate": "at least three of five primary releases and zero held-out false acceptances",
+    "primary_utility_error_threshold": 0.4,
+    "privacy_advantage_threshold": 0.35,
+    "released_token_count": 2,
+    "selection": "minimum certified task error among candidates passing the primary contract, with candidate-key tie break",
+    "source": "CIFAR-10 versus ImageNet file origin",
+    "task": "vehicle versus animal",
+    "utility_error_thresholds": [
+      0.3,
+      0.35,
+      0.4,
+      0.45
+    ]
+  },
+  "status": "locked_before_confirmatory_outcomes",
+  "stopping_rule": "Run all five seeds and both candidates. Do not replace seeds, candidates, thresholds, partitions, or the store based on outcomes.",
+  "store_manifest_sha256": "3e25dc12cbab007f4c991af108eace587b30deefffda52a455f9679bedb2b22a"
+}
