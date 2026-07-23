@@ -1,0 +1,57 @@
+{
+  "claim_boundary": "This is a locked powered follow-up motivated by the v1 abstention, not an independent first attempt. True source labels occur only in proxy training, calibration, and the untouched diagnostic fold. The target certificate receives task labels, tokens, and imputed source labels but not true target source labels.",
+  "code_sha256": {
+    "research/mosaic/mosaic_envelope.py": "01d8693d5557cf09d09ea5cf47d3259cb394f1c994e334040b1f898d58a772de",
+    "research/mosaic/mosaic_proxy_bridge.py": "de669b2c8ac2c1df5adf7b332c84d242955460ef46cf867a27e12dfb0fe4ae4e",
+    "research/mosaic/mosaic_real.py": "b8e1d70b8c72f79db6d4cf6587a9e34fde0a050387058b4d00c754f8b60a94f7",
+    "research/mosaic/mosaic_transform_exact_optimizer.py": "5188124aabd9e17e5648b5915ccb731023474b3f57aba5839b3a0ae37c4e5760",
+    "research/mosaic/run_mosaic_real_proxy_powered.py": "5d8b4e5f11f9bc29a4459a3b5604cc3ab86a76795876c6e6976a3dca636b7d3c",
+    "research/mosaic/run_mosaic_real_proxy_study.py": "a8637f414b04372a1f70e2c2f1e33623ff01b440ef639497d668719f6c68042b"
+  },
+  "locked_at_utc": "2026-07-23T21:05:43.661749+00:00",
+  "name": "MOSAIC powered real ACS proxy preregistration v1",
+  "prior_negative_result_sha256": "269f8409029a3b0029932173289eb360a9df4b60120bbcf3c7f5400ed34cfe62",
+  "protocol": {
+    "calibration_curve_fractions": [
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "calibration_model": "task-label, true-source, and two-token-specific source-to-proxy confusion tensor",
+    "confidence_region": "coordinate_clopper_pearson",
+    "curve_role": "descriptive nested calibration-size sensitivity; only the fixed full-calibration point is the primary release decision",
+    "design": "locked powered follow-up after v1 abstained; no diagnostic outcome selects the primary design",
+    "family_failure_probability": 0.05,
+    "fine_token_count": 2,
+    "partition_fractions": {
+      "calibration": 0.4,
+      "diagnostic": 0.05,
+      "proxy_train": 0.2,
+      "target_proxy": 0.2,
+      "task_train": 0.15
+    },
+    "primary_gate": "full-calibration release, proxy balanced accuracy at least .60, and zero diagnostic contract violations",
+    "privacy_advantage_threshold": 0.35,
+    "proxy_imputer": "fixed equal-weight soft ensemble of class-balanced HistGradientBoosting and ExtraTrees",
+    "released_token_count": 2,
+    "seed": 20270724,
+    "source": "RAC1P white-alone versus all other codes",
+    "task": "Folktables ACSIncome",
+    "task_token_threshold": 0.5,
+    "utility_error_threshold": 0.4
+  },
+  "raw_data": {
+    "bytes": 267297811,
+    "path": "/Users/rudrachopra/Documents/Science Fair/data/acs_pums/2018/1-Year/psam_p06.csv",
+    "sha256": "dc2187fc90df2c5f6b546ee89a2b41c9a97379c9e7136461b6a6c8de871b43e0",
+    "source": "2018 ACS 1-Year California person PUMS"
+  },
+  "raw_transport": {
+    "url": "https://www2.census.gov/programs-surveys/acs/data/pums/2018/1-Year/csv_pca.zip",
+    "verification": "require the streamed uncompressed member to match the prior locked byte count and SHA-256"
+  },
+  "repository_head_before_lock": "c70f71eda8d2c2b8be6a388694d3a6e4055044b0",
+  "status": "locked_before_powered_proxy_outcomes",
+  "stopping_rule": "Report all four nested calibration sizes and the fixed full-size primary decision. Do not replace the imputer, token count, partitions, confidence region, thresholds, or diagnostic fold."
+}
