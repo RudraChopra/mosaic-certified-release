@@ -28,7 +28,10 @@ from run_mosaic_real_proxy_study import (
 
 ROOT = Path(__file__).resolve().parents[2]
 PREREG = ROOT / "research/mosaic/prereg_mosaic_fare_proxy_v1.json"
-AMENDMENT = ROOT / "research/mosaic/prereg_mosaic_fare_proxy_v1_amendment.json"
+AMENDMENTS = (
+    ROOT / "research/mosaic/prereg_mosaic_fare_proxy_v1_amendment.json",
+    ROOT / "research/mosaic/prereg_mosaic_fare_proxy_v1_amendment_v2.json",
+)
 OUTPUT = ROOT / "research/artifacts/mosaic_fare_proxy_comparison_v1.json"
 PRIVACY_THRESHOLD = 0.35
 UTILITY_THRESHOLD = 0.40
@@ -55,18 +58,29 @@ def validate_lock() -> dict[str, object]:
     prereg = json.loads(PREREG.read_text(encoding="utf-8"))
     if prereg["status"] != "locked_before_fare_outcomes":
         raise ValueError("FARE comparison is not locked")
-    amendment_sidecar = AMENDMENT.with_suffix(AMENDMENT.suffix + ".sha256")
-    if amendment_sidecar.read_text(encoding="utf-8").strip() != sha256(
-        AMENDMENT
-    ):
-        raise ValueError("FARE comparison amendment sidecar mismatch")
-    amendment = json.loads(AMENDMENT.read_text(encoding="utf-8"))
+    for amendment_path in AMENDMENTS:
+        amendment_sidecar = amendment_path.with_suffix(
+            amendment_path.suffix + ".sha256"
+        )
+        if amendment_sidecar.read_text(encoding="utf-8").strip() != sha256(
+            amendment_path
+        ):
+            raise ValueError("FARE comparison amendment sidecar mismatch")
+    amendment = json.loads(AMENDMENTS[-1].read_text(encoding="utf-8"))
     for relative, expected in amendment["code_sha256"].items():
         if sha256(ROOT / relative) != expected:
             raise ValueError(f"amended locked code mismatch: {relative}")
     if sha256(RAW) != prereg["raw_data_sha256"]:
         raise ValueError("raw ACS data mismatch")
-    for path in (PREREG, sidecar, AMENDMENT, amendment_sidecar):
+    lock_paths = [PREREG, sidecar]
+    for amendment_path in AMENDMENTS:
+        lock_paths.extend(
+            [
+                amendment_path,
+                amendment_path.with_suffix(amendment_path.suffix + ".sha256"),
+            ]
+        )
+    for path in lock_paths:
         relative = path.relative_to(ROOT)
         committed = subprocess.run(
             ["git", "show", f"HEAD:{relative.as_posix()}"],
@@ -174,12 +188,18 @@ def main() -> None:
         max_iter=160,
         max_leaf_nodes=31,
         learning_rate=0.07,
-        class_weight="balanced",
         random_state=20270724,
     )
+    proxy_train = partitions["proxy_train"]
+    proxy_train_sources = sources[proxy_train]
+    source_counts = np.bincount(proxy_train_sources, minlength=2)
+    proxy_weights = proxy_train_sources.size / (
+        2.0 * source_counts[proxy_train_sources]
+    )
     proxy_model.fit(
-        proxy_features[partitions["proxy_train"]],
-        sources[partitions["proxy_train"]],
+        proxy_features[proxy_train],
+        proxy_train_sources,
+        sample_weight=proxy_weights,
     )
     proxies = proxy_model.predict(proxy_features).astype(np.int16)
     train = partitions["task_train"]
