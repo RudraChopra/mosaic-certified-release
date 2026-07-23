@@ -1,0 +1,30 @@
+{
+  "amendment": "When ST is absent from the official Florida state file, append the fixed Census FIPS value 12 after selecting all other locked columns.",
+  "code_sha256": {
+    "research/mosaic/run_mosaic_acs_scalar_confirmation_transport.py": "88383b319f16c7b724d42493536a2f6bfb6373299e1bef0fea87cd87183c1dfd"
+  },
+  "failure": {
+    "cause": "the official state-specific 2023 PUMS file omits the redundant constant ST column",
+    "exception": "ValueError: ACS file lacks required columns: ['ST']",
+    "outcomes_read": false,
+    "rows_read": 0,
+    "stage": "2023 Florida CSV header validation"
+  },
+  "locked_at_utc": "2026-07-23T21:21:35.626286+00:00",
+  "name": "MOSAIC ACS scalar confirmation transport amendment v1",
+  "original_lock_sha256": "353a5c323c2a6d0bf761db0b2830d17e6a0e11b7d4e3fba50c17b33dd112561d",
+  "repository_head_before_amendment": "b8b9aebfefc118413940089e5fef36a05e87009c",
+  "status": "locked_after_header_before_2023_rows",
+  "unchanged": [
+    "two frozen interfaces",
+    "2018 reconstruction",
+    "2023 confirmation population",
+    "balanced sampling rule and row cap",
+    "familywise allocation",
+    "utility threshold",
+    "fixed per-token loss functional",
+    "one-sided Hoeffding bounds",
+    "confirmation criterion",
+    "stopping rule"
+  ]
+}
