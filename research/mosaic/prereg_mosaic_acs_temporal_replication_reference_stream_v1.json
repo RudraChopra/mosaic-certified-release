@@ -1,0 +1,66 @@
+{
+  "amendment": "Change only reference-byte transport. Stream the official 2018 California Census PUMS archive in memory and require its uncompressed member to match the original locked byte count and SHA-256 before parsing.",
+  "code_sha256": {
+    "research/mosaic/run_mosaic_acs_temporal_replication.py": "7630b3d8b1df41108ce4e7009f8fcf63db396040c5df41cbdb7d816add1e601c"
+  },
+  "failure": {
+    "exception": "TimeoutError: [Errno 60] Operation timed out",
+    "failed_asset": "locked local 2018 California CSV inode",
+    "stage": "before_reference_header_and_before_any_2022_download"
+  },
+  "locked_at_utc": "2026-07-23T21:02:52.262738+00:00",
+  "name": "MOSAIC ACS temporal replication reference transport amendment v1",
+  "original_lock_sha256": "7b071f63b38edd12f6e0b4d4cfdf18cd2713c54e3056b259777aed20bb6f9664",
+  "original_protocol": {
+    "confirmation": "a witness is confirmed only when the simultaneous lower bound on the frozen direct interface's worst conditional task error exceeds 0.40; its paired MOSAIC decision must be the frozen 2018 abstention",
+    "confirmation_year": "2022",
+    "design": "discovery-confirmation temporal replication: the locked 2021 diagnostic fold nominated exactly three direct-rule utility failures; this protocol freezes those interfaces before any 2022 ACS asset is accessed",
+    "discovery_year": "2021",
+    "familywise_delta": 0.05,
+    "future_asset_urls": {
+      "FL": "https://www2.census.gov/programs-surveys/acs/data/pums/2022/1-Year/csv_pfl.zip",
+      "IL": "https://www2.census.gov/programs-surveys/acs/data/pums/2022/1-Year/csv_pil.zip"
+    },
+    "hypotheses": 3,
+    "maximum_confirmation_rows_per_interface": 128000,
+    "reference_year": "2018",
+    "sampling": "one deterministic balanced sample over all 2022 rows in each source-task stratum; no 2022 model, channel, tokenizer, candidate, threshold, or hypothesis selection",
+    "source_advantage_threshold": 0.35,
+    "table_delta": 0.016666666666666666,
+    "utility_threshold": 0.4,
+    "witnesses": [
+      {
+        "candidate": "TaCo::components_removed=1",
+        "seed": 1401,
+        "target_state": "FL",
+        "task": "public_coverage"
+      },
+      {
+        "candidate": "R-LACE::rank=4",
+        "seed": 1402,
+        "target_state": "FL",
+        "task": "public_coverage"
+      },
+      {
+        "candidate": "Identity::unedited",
+        "seed": 1402,
+        "target_state": "IL",
+        "task": "public_coverage"
+      }
+    ]
+  },
+  "raw_2022_assets_absent_at_amendment": true,
+  "reference_url": "https://www2.census.gov/programs-surveys/acs/data/pums/2018/1-Year/csv_pca.zip",
+  "repository_head_before_amendment": "73fce0d784a9d1ee12c30f8c03b08fa586dbb7f9",
+  "status": "locked_before_2022_download_after_io_failure",
+  "unchanged": [
+    "three hypotheses",
+    "2018 frozen interfaces",
+    "2022 confirmation population",
+    "sampling rule",
+    "familywise delta",
+    "thresholds",
+    "confirmation criterion",
+    "stopping rule"
+  ]
+}
