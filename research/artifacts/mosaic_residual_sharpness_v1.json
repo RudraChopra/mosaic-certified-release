@@ -1,0 +1,1562 @@
+{
+  "claim_boundary": "The decomposition is exact for the registered bridge class. It shows which part of the certificate survives infinite reference data under that model; it does not estimate how often adversarial residual laws occur naturally.",
+  "lock_sha256": "922ab8aeae69714c69d670ee6fdbfeac76685e1ca141af07fc361910ca626f5e",
+  "name": "MOSAIC residual-sharpness census v1",
+  "protocol": {
+    "design_case": "BiasBios seed 1200 was inspected while designing this analysis; the remaining 34 jobs form the untouched deterministic census",
+    "estimands": [
+      "exact bridge-class source-advantage upper bound",
+      "exact bridge-class worst conditional task-error upper bound"
+    ],
+    "jobs": "all 35 frozen primary MOSAIC deployments from BiasBios-Clinical and ACS-geographic",
+    "modes": {
+      "full": "registered radii and registered residual budgets",
+      "population_common": "zero radii and zero residual budgets",
+      "zero_radius": "zero radii and registered residual budgets",
+      "zero_residual": "registered radii and zero residual budgets"
+    },
+    "primary_comparison": "full minus zero_radius is the removable finite-sample increment; zero_radius minus population_common is the infinite-sample residual-shift increment"
+  },
+  "rows": [
+    {
+      "candidate": "INLP::rank=4",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 4.0080686103394214e-08,
+          "residual_shift_increment_at_population": 0.20388640453940332,
+          "total_minus_zero_residual": 0.20388639427465272
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 9.228193653676442e-09,
+          "residual_shift_increment_at_population": 0.18617581724912127,
+          "total_minus_zero_residual": 0.18617581492648577
+        }
+      },
+      "domain": "BiasBios-Clinical",
+      "held_out_diagnostic": {
+        "source_advantage": 0.05227299257819795,
+        "worst_conditional_error": 0.18386953676345044
+      },
+      "inputs": [
+        "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1200.json",
+        "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1200.json"
+      ],
+      "job": "BiasBios-Clinical__seed1200",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.20388648533886555,
+          "worst_conditional_error_upper": 0.26029440680720295
+        },
+        "population_common": {
+          "source_advantage_upper": 4.0718776128656486e-08,
+          "worst_conditional_error_upper": 0.07411858032988802
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.20388644525817945,
+          "worst_conditional_error_upper": 0.2602943975790093
+        },
+        "zero_residual": {
+          "source_advantage_upper": 9.106421283711086e-08,
+          "worst_conditional_error_upper": 0.07411859188071719
+        }
+      },
+      "seed": 1200
+    },
+    {
+      "candidate": "LEACE::closed_form",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 0.008173684764143818,
+          "residual_shift_increment_at_population": 0.2117485299558386,
+          "total_minus_zero_residual": 0.2095199029516832
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 2.8401606066985607e-08,
+          "residual_shift_increment_at_population": 0.17170073981595085,
+          "total_minus_zero_residual": 0.17170073302002786
+        }
+      },
+      "domain": "BiasBios-Clinical",
+      "held_out_diagnostic": {
+        "source_advantage": 0.04334445999722902,
+        "worst_conditional_error": 0.1617278430318527
+      },
+      "inputs": [
+        "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1201.json",
+        "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1201.json"
+      ],
+      "job": "BiasBios-Clinical__seed1201",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.23156740210544013,
+          "worst_conditional_error_upper": 0.282426157001187
+        },
+        "population_common": {
+          "source_advantage_upper": 0.011645187385457723,
+          "worst_conditional_error_upper": 0.11072538878363007
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.22339371734129632,
+          "worst_conditional_error_upper": 0.28242612859958094
+        },
+        "zero_residual": {
+          "source_advantage_upper": 0.022047499153756922,
+          "worst_conditional_error_upper": 0.11072542398115914
+        }
+      },
+      "seed": 1201
+    },
+    {
+      "candidate": "LEACE::closed_form",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 0.0,
+          "residual_shift_increment_at_population": 0.2076350749850837,
+          "total_minus_zero_residual": 0.19588277474672422
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 5.551115123125783e-17,
+          "residual_shift_increment_at_population": 0.15510387119854224,
+          "total_minus_zero_residual": 0.1492277210793625
+        }
+      },
+      "domain": "BiasBios-Clinical",
+      "held_out_diagnostic": {
+        "source_advantage": 0.009516642840559308,
+        "worst_conditional_error": 0.16962025732195943
+      },
+      "inputs": [
+        "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1202.json",
+        "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1202.json"
+      ],
+      "job": "BiasBios-Clinical__seed1202",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.22907954711064415,
+          "worst_conditional_error_upper": 0.2524163176720592
+        },
+        "population_common": {
+          "source_advantage_upper": 0.021444472125560443,
+          "worst_conditional_error_upper": 0.09731244647351688
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.22907954711064415,
+          "worst_conditional_error_upper": 0.25241631767205913
+        },
+        "zero_residual": {
+          "source_advantage_upper": 0.033196772363919935,
+          "worst_conditional_error_upper": 0.10318859659269669
+        }
+      },
+      "seed": 1202
+    },
+    {
+      "candidate": "INLP::rank=4",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 0.0,
+          "residual_shift_increment_at_population": 0.19995988325500336,
+          "total_minus_zero_residual": 0.19995981609127922
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 5.551115123125783e-17,
+          "residual_shift_increment_at_population": 0.17719007502455508,
+          "total_minus_zero_residual": 0.17719004144269307
+        }
+      },
+      "domain": "BiasBios-Clinical",
+      "held_out_diagnostic": {
+        "source_advantage": 0.08811686430000165,
+        "worst_conditional_error": 0.22446611748000456
+      },
+      "inputs": [
+        "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1203.json",
+        "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1203.json"
+      ],
+      "job": "BiasBios-Clinical__seed1203",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.1999599339327105,
+          "worst_conditional_error_upper": 0.2724139939326917
+        },
+        "population_common": {
+          "source_advantage_upper": 5.067770714184405e-08,
+          "worst_conditional_error_upper": 0.09522391890813657
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.1999599339327105,
+          "worst_conditional_error_upper": 0.27241399393269167
+        },
+        "zero_residual": {
+          "source_advantage_upper": 1.1784143127968605e-07,
+          "worst_conditional_error_upper": 0.09522395248999865
+        }
+      },
+      "seed": 1203
+    },
+    {
+      "candidate": "LEACE::closed_form",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 0.0,
+          "residual_shift_increment_at_population": 0.21323902946833861,
+          "total_minus_zero_residual": 0.1973814628252597
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 5.551115123125783e-17,
+          "residual_shift_increment_at_population": 0.1337796992355282,
+          "total_minus_zero_residual": 0.12585091591398886
+        }
+      },
+      "domain": "BiasBios-Clinical",
+      "held_out_diagnostic": {
+        "source_advantage": 0.026107712373320435,
+        "worst_conditional_error": 0.18922388567265702
+      },
+      "inputs": [
+        "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1204.json",
+        "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1204.json"
+      ],
+      "job": "BiasBios-Clinical__seed1204",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.24107954682069876,
+          "worst_conditional_error_upper": 0.261878324682578
+        },
+        "population_common": {
+          "source_advantage_upper": 0.02784051735236015,
+          "worst_conditional_error_upper": 0.12809862544704972
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.24107954682069876,
+          "worst_conditional_error_upper": 0.26187832468257793
+        },
+        "zero_residual": {
+          "source_advantage_upper": 0.04369808399543906,
+          "worst_conditional_error_upper": 0.13602740876858913
+        }
+      },
+      "seed": 1204
+    },
+    {
+      "candidate": "INLP::rank=8",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 0.009085737078261324,
+          "residual_shift_increment_at_population": 0.19141802253041118,
+          "total_minus_zero_residual": 0.18922796898119243
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 1.0390677540605964e-08,
+          "residual_shift_increment_at_population": 0.18155253898543106,
+          "total_minus_zero_residual": 0.17591465406236856
+        }
+      },
+      "domain": "BiasBios-Clinical",
+      "held_out_diagnostic": {
+        "source_advantage": 0.03422080773049685,
+        "worst_conditional_error": 0.1670080846000806
+      },
+      "inputs": [
+        "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1205.json",
+        "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1205.json"
+      ],
+      "job": "BiasBios-Clinical__seed1205",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.21496185578216576,
+          "worst_conditional_error_upper": 0.27019398129269656
+        },
+        "population_common": {
+          "source_advantage_upper": 0.014458096173493251,
+          "worst_conditional_error_upper": 0.08864143191658798
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.20587611870390443,
+          "worst_conditional_error_upper": 0.270193970902019
+        },
+        "zero_residual": {
+          "source_advantage_upper": 0.025733886800973327,
+          "worst_conditional_error_upper": 0.09427932723032802
+        }
+      },
+      "seed": 1205
+    },
+    {
+      "candidate": "MANCE++::epsilon=0.05,steps=3",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 1.7418303244198796e-08,
+          "residual_shift_increment_at_population": 0.19142200852806712,
+          "total_minus_zero_residual": 0.17461478176506606
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 8.709151622099398e-09,
+          "residual_shift_increment_at_population": 0.14085250475050456,
+          "total_minus_zero_residual": 0.132448891369004
+        }
+      },
+      "domain": "BiasBios-Clinical",
+      "held_out_diagnostic": {
+        "source_advantage": 0.024381688951168545,
+        "worst_conditional_error": 0.19368769766087632
+      },
+      "inputs": [
+        "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1206.json",
+        "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1206.json"
+      ],
+      "job": "BiasBios-Clinical__seed1206",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.2240795676179368,
+          "worst_conditional_error_upper": 0.27469625389662017
+        },
+        "population_common": {
+          "source_advantage_upper": 0.032657541671566426,
+          "worst_conditional_error_upper": 0.13384374043696398
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.22407955019963355,
+          "worst_conditional_error_upper": 0.27469624518746855
+        },
+        "zero_residual": {
+          "source_advantage_upper": 0.04946478585287073,
+          "worst_conditional_error_upper": 0.14224736252761616
+        }
+      },
+      "seed": 1206
+    },
+    {
+      "candidate": "MANCE++::epsilon=0.05,steps=3",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 2.0953501911336048e-07,
+          "residual_shift_increment_at_population": 0.21661071522501896,
+          "total_minus_zero_residual": 0.20665589695638853
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 1.0476750961219139e-07,
+          "residual_shift_increment_at_population": 0.13085130185943183,
+          "total_minus_zero_residual": 0.1258738927251166
+        }
+      },
+      "domain": "BiasBios-Clinical",
+      "held_out_diagnostic": {
+        "source_advantage": 0.02308398174212911,
+        "worst_conditional_error": 0.19470696429985193
+      },
+      "inputs": [
+        "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1207.json",
+        "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1207.json"
+      ],
+      "job": "BiasBios-Clinical__seed1207",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.22677349548313597,
+          "worst_conditional_error_upper": 0.25886742801790685
+        },
+        "population_common": {
+          "source_advantage_upper": 0.010162570723097897,
+          "worst_conditional_error_upper": 0.1280160213909654
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.22677328594811685,
+          "worst_conditional_error_upper": 0.25886732325039724
+        },
+        "zero_residual": {
+          "source_advantage_upper": 0.020117598526747438,
+          "worst_conditional_error_upper": 0.13299353529279026
+        }
+      },
+      "seed": 1207
+    },
+    {
+      "candidate": "INLP::rank=8",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 1.7731450308033914e-08,
+          "residual_shift_increment_at_population": 0.19050532639671114,
+          "total_minus_zero_residual": 0.1772085015181919
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 8.86572526503926e-09,
+          "residual_shift_increment_at_population": 0.16719359648989227,
+          "total_minus_zero_residual": 0.16054518405063284
+        }
+      },
+      "domain": "BiasBios-Clinical",
+      "held_out_diagnostic": {
+        "source_advantage": 0.022285122229502186,
+        "worst_conditional_error": 0.18601238272519707
+      },
+      "inputs": [
+        "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1208.json",
+        "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1208.json"
+      ],
+      "job": "BiasBios-Clinical__seed1208",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.21207956816390627,
+          "worst_conditional_error_upper": 0.27165578332510526
+        },
+        "population_common": {
+          "source_advantage_upper": 0.021574224035744827,
+          "worst_conditional_error_upper": 0.10446217796948773
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.21207955043245597,
+          "worst_conditional_error_upper": 0.27165577445938
+        },
+        "zero_residual": {
+          "source_advantage_upper": 0.03487106664571438,
+          "worst_conditional_error_upper": 0.11111059927447244
+        }
+      },
+      "seed": 1208
+    },
+    {
+      "candidate": "MANCE++::epsilon=0.05,steps=3",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 4.5511098445416565e-08,
+          "residual_shift_increment_at_population": 0.21082383084576084,
+          "total_minus_zero_residual": 0.19833717439369214
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 2.2755549278219434e-08,
+          "residual_shift_increment_at_population": 0.16712644275675043,
+          "total_minus_zero_residual": 0.16088311453071624
+        }
+      },
+      "domain": "BiasBios-Clinical",
+      "held_out_diagnostic": {
+        "source_advantage": 0.037535056438210646,
+        "worst_conditional_error": 0.1736121296587878
+      },
+      "inputs": [
+        "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1209.json",
+        "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1209.json"
+      ],
+      "job": "BiasBios-Clinical__seed1209",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.22677305300576034,
+          "worst_conditional_error_upper": 0.26719637926085327
+        },
+        "population_common": {
+          "source_advantage_upper": 0.015949176648901053,
+          "worst_conditional_error_upper": 0.10006991374855355
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.2267730074946619,
+          "worst_conditional_error_upper": 0.267196356505304
+        },
+        "zero_residual": {
+          "source_advantage_upper": 0.0284358786120682,
+          "worst_conditional_error_upper": 0.10631326473013704
+        }
+      },
+      "seed": 1209
+    },
+    {
+      "candidate": "MANCE++::epsilon=0.05,steps=3",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 8.762673697759737e-09,
+          "residual_shift_increment_at_population": 0.22107938768075197,
+          "total_minus_zero_residual": 0.22107929400811321
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 4.38133690439102e-09,
+          "residual_shift_increment_at_population": 0.12476627444021479,
+          "total_minus_zero_residual": 0.12476622760389541
+        }
+      },
+      "domain": "BiasBios-Clinical",
+      "held_out_diagnostic": {
+        "source_advantage": 0.02299999999999991,
+        "worst_conditional_error": 0.2038588571759548
+      },
+      "inputs": [
+        "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1210.json",
+        "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1210.json"
+      ],
+      "job": "BiasBios-Clinical__seed1210",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.22107955708855975,
+          "worst_conditional_error_upper": 0.248515266095155
+        },
+        "population_common": {
+          "source_advantage_upper": 1.6064513408409198e-07,
+          "worst_conditional_error_upper": 0.12374898727360331
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.22107954832588605,
+          "worst_conditional_error_upper": 0.2485152617138181
+        },
+        "zero_residual": {
+          "source_advantage_upper": 2.63080446538666e-07,
+          "worst_conditional_error_upper": 0.1237490384912596
+        }
+      },
+      "seed": 1210
+    },
+    {
+      "candidate": "INLP::rank=8",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 7.377807675901238e-08,
+          "residual_shift_increment_at_population": 0.20418803218906922,
+          "total_minus_zero_residual": 0.19171195500979143
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 3.711602053479979e-08,
+          "residual_shift_increment_at_population": 0.14302747511992012,
+          "total_minus_zero_residual": 0.13678943675726324
+        }
+      },
+      "domain": "BiasBios-Clinical",
+      "held_out_diagnostic": {
+        "source_advantage": 0.012945078393622245,
+        "worst_conditional_error": 0.1903828091734907
+      },
+      "inputs": [
+        "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1211.json",
+        "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1211.json"
+      ],
+      "job": "BiasBios-Clinical__seed1211",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.22227727885309956,
+          "worst_conditional_error_upper": 0.2460882926894965
+        },
+        "population_common": {
+          "source_advantage_upper": 0.018089172885953575,
+          "worst_conditional_error_upper": 0.10306078045355585
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.2222772050750228,
+          "worst_conditional_error_upper": 0.24608825557347597
+        },
+        "zero_residual": {
+          "source_advantage_upper": 0.030565323843308123,
+          "worst_conditional_error_upper": 0.10929885593223326
+        }
+      },
+      "seed": 1211
+    },
+    {
+      "candidate": "MANCE++::epsilon=0.05,steps=3",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 1.651402903313226e-08,
+          "residual_shift_increment_at_population": 0.23184845244365704,
+          "total_minus_zero_residual": 0.22859570745509505
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 8.257014572077281e-09,
+          "residual_shift_increment_at_population": 0.14046574075380272,
+          "total_minus_zero_residual": 0.13883936825952178
+        }
+      },
+      "domain": "BiasBios-Clinical",
+      "held_out_diagnostic": {
+        "source_advantage": 0.002581014164426021,
+        "worst_conditional_error": 0.21754242776384927
+      },
+      "inputs": [
+        "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1212.json",
+        "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1212.json"
+      ],
+      "job": "BiasBios-Clinical__seed1212",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.23677318682229975,
+          "worst_conditional_error_upper": 0.2721165449562343
+        },
+        "population_common": {
+          "source_advantage_upper": 0.004924717864613681,
+          "worst_conditional_error_upper": 0.13165079594541698
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.23677317030827072,
+          "worst_conditional_error_upper": 0.2721165366992197
+        },
+        "zero_residual": {
+          "source_advantage_upper": 0.008177479367204699,
+          "worst_conditional_error_upper": 0.1332771766967125
+        }
+      },
+      "seed": 1212
+    },
+    {
+      "candidate": "MANCE++::epsilon=0.05,steps=3",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 1.9329865263983947e-08,
+          "residual_shift_increment_at_population": 0.19252736773746348,
+          "total_minus_zero_residual": 0.1868528227731563
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 9.664932631991974e-09,
+          "residual_shift_increment_at_population": 0.12704217716817995,
+          "total_minus_zero_residual": 0.12420490468602643
+        }
+      },
+      "domain": "BiasBios-Clinical",
+      "held_out_diagnostic": {
+        "source_advantage": 0.04740208071030305,
+        "worst_conditional_error": 0.22122305645715107
+      },
+      "inputs": [
+        "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1213.json",
+        "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1213.json"
+      ],
+      "job": "BiasBios-Clinical__seed1213",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.19957957407051152,
+          "worst_conditional_error_upper": 0.2630221597452689
+        },
+        "population_common": {
+          "source_advantage_upper": 0.007052187003182775,
+          "worst_conditional_error_upper": 0.1359799729121563
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.19957955474064626,
+          "worst_conditional_error_upper": 0.26302215008033625
+        },
+        "zero_residual": {
+          "source_advantage_upper": 0.012726751297355232,
+          "worst_conditional_error_upper": 0.13881725505924244
+        }
+      },
+      "seed": 1213
+    },
+    {
+      "candidate": "MANCE++::epsilon=0.05,steps=3",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 5.259371627097664e-08,
+          "residual_shift_increment_at_population": 0.22475482704723282,
+          "total_minus_zero_residual": 0.2127014291208078
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 2.629685807997717e-08,
+          "residual_shift_increment_at_population": 0.16156448792700612,
+          "total_minus_zero_residual": 0.1555377889637935
+        }
+      },
+      "domain": "BiasBios-Clinical",
+      "held_out_diagnostic": {
+        "source_advantage": 0.024995092036679267,
+        "worst_conditional_error": 0.18100655570738955
+      },
+      "inputs": [
+        "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1214.json",
+        "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1214.json"
+      ],
+      "job": "BiasBios-Clinical__seed1214",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.23777293944829214,
+          "worst_conditional_error_upper": 0.2566840407650954
+        },
+        "population_common": {
+          "source_advantage_upper": 0.013018059807343052,
+          "worst_conditional_error_upper": 0.0951195265412312
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.23777288685457587,
+          "worst_conditional_error_upper": 0.2566840144682373
+        },
+        "zero_residual": {
+          "source_advantage_upper": 0.025071510327484336,
+          "worst_conditional_error_upper": 0.10114625180130188
+        }
+      },
+      "seed": 1214
+    },
+    {
+      "candidate": "MANCE++::epsilon=0.05,steps=3",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 1.7102096405707812e-08,
+          "residual_shift_increment_at_population": 0.24357951232285568,
+          "total_minus_zero_residual": 0.2435794727239553
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 8.55104836938736e-09,
+          "residual_shift_increment_at_population": 0.1687601846687462,
+          "total_minus_zero_residual": 0.16876016486929613
+        }
+      },
+      "domain": "BiasBios-Clinical",
+      "held_out_diagnostic": {
+        "source_advantage": 0.02217186812828409,
+        "worst_conditional_error": 0.20089054941112494
+      },
+      "inputs": [
+        "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1215.json",
+        "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1215.json"
+      ],
+      "job": "BiasBios-Clinical__seed1215",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.24357956997108654,
+          "worst_conditional_error_upper": 0.2823514788568554
+        },
+        "population_common": {
+          "source_advantage_upper": 4.054613444992583e-08,
+          "worst_conditional_error_upper": 0.11359128563706083
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.24357955286899013,
+          "worst_conditional_error_upper": 0.28235147030580704
+        },
+        "zero_residual": {
+          "source_advantage_upper": 9.724713123659967e-08,
+          "worst_conditional_error_upper": 0.1135913139875593
+        }
+      },
+      "seed": 1215
+    },
+    {
+      "candidate": "LEACE::closed_form",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 1.0901489044812251e-08,
+          "residual_shift_increment_at_population": 0.20567386448465363,
+          "total_minus_zero_residual": 0.1921261821083291
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 5.450744522406126e-09,
+          "residual_shift_increment_at_population": 0.14121268549963797,
+          "total_minus_zero_residual": 0.13443884431147582
+        }
+      },
+      "domain": "BiasBios-Clinical",
+      "held_out_diagnostic": {
+        "source_advantage": 0.02477222131222878,
+        "worst_conditional_error": 0.19838818750574447
+      },
+      "inputs": [
+        "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1216.json",
+        "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1216.json"
+      ],
+      "job": "BiasBios-Clinical__seed1216",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.22357955905606275,
+          "worst_conditional_error_upper": 0.25065346321831705
+        },
+        "population_common": {
+          "source_advantage_upper": 0.01790568366992007,
+          "worst_conditional_error_upper": 0.10944077226793456
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.2235795481545737,
+          "worst_conditional_error_upper": 0.25065345776757253
+        },
+        "zero_residual": {
+          "source_advantage_upper": 0.03145337694773365,
+          "worst_conditional_error_upper": 0.11621461890684123
+        }
+      },
+      "seed": 1216
+    },
+    {
+      "candidate": "LEACE::closed_form",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 0.0,
+          "residual_shift_increment_at_population": 0.22035796328886215,
+          "total_minus_zero_residual": 0.20919920323508423
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 0.0,
+          "residual_shift_increment_at_population": 0.18829335237611677,
+          "total_minus_zero_residual": 0.18271397234922782
+        }
+      },
+      "domain": "BiasBios-Clinical",
+      "held_out_diagnostic": {
+        "source_advantage": 0.046389548031989136,
+        "worst_conditional_error": 0.17395461645468996
+      },
+      "inputs": [
+        "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1217.json",
+        "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1217.json"
+      ],
+      "job": "BiasBios-Clinical__seed1217",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.23207954719460622,
+          "worst_conditional_error_upper": 0.27740316354016886
+        },
+        "population_common": {
+          "source_advantage_upper": 0.01172158390574407,
+          "worst_conditional_error_upper": 0.08910981116405207
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.23207954719460622,
+          "worst_conditional_error_upper": 0.27740316354016886
+        },
+        "zero_residual": {
+          "source_advantage_upper": 0.022880343959521987,
+          "worst_conditional_error_upper": 0.09468919119094105
+        }
+      },
+      "seed": 1217
+    },
+    {
+      "candidate": "INLP::rank=4",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 1.638194335740195e-08,
+          "residual_shift_increment_at_population": 0.21907950220275052,
+          "total_minus_zero_residual": 0.2190794660953288
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 8.190971734212127e-09,
+          "residual_shift_increment_at_population": 0.17137816742849965,
+          "total_minus_zero_residual": 0.1713781493747888
+        }
+      },
+      "domain": "BiasBios-Clinical",
+      "held_out_diagnostic": {
+        "source_advantage": 0.04850876043032515,
+        "worst_conditional_error": 0.18701535219610926
+      },
+      "inputs": [
+        "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1218.json",
+        "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1218.json"
+      ],
+      "job": "BiasBios-Clinical__seed1218",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.21907956673233597,
+          "worst_conditional_error_upper": 0.2592411547757132
+        },
+        "population_common": {
+          "source_advantage_upper": 4.8147642095486276e-08,
+          "worst_conditional_error_upper": 0.0878629791562418
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.21907955035039262,
+          "worst_conditional_error_upper": 0.25924114658474146
+        },
+        "zero_residual": {
+          "source_advantage_upper": 1.0063700717211077e-07,
+          "worst_conditional_error_upper": 0.0878630054009244
+        }
+      },
+      "seed": 1218
+    },
+    {
+      "candidate": "MANCE++::epsilon=0.05,steps=3",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 4.731649694278417e-08,
+          "residual_shift_increment_at_population": 0.2142446737108863,
+          "total_minus_zero_residual": 0.21421651105680772
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 2.3658248471392085e-08,
+          "residual_shift_increment_at_population": 0.14150983445702403,
+          "total_minus_zero_residual": 0.14149575312998472
+        }
+      },
+      "domain": "BiasBios-Clinical",
+      "held_out_diagnostic": {
+        "source_advantage": 0.010464898435441627,
+        "worst_conditional_error": 0.19430577048542785
+      },
+      "inputs": [
+        "research/artifacts/mosaic_bridge_strict_v2_receipts_v1/BiasBios-Clinical__seed1219.json",
+        "research/artifacts/mosaic_bridge_confirmation_receipts_v1/BiasBios-Clinical__seed1219.json"
+      ],
+      "job": "BiasBios-Clinical__seed1219",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.21427282351471955,
+          "worst_conditional_error_upper": 0.2509491595471223
+        },
+        "population_common": {
+          "source_advantage_upper": 2.8102487336312265e-05,
+          "worst_conditional_error_upper": 0.10943930143184981
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.2142727761982226,
+          "worst_conditional_error_upper": 0.25094913588887385
+        },
+        "zero_residual": {
+          "source_advantage_upper": 5.631245791182238e-05,
+          "worst_conditional_error_upper": 0.1094534064171376
+        }
+      },
+      "seed": 1219
+    },
+    {
+      "candidate": "INLP::rank=8",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 0.0,
+          "residual_shift_increment_at_population": 0.1642870434720931,
+          "total_minus_zero_residual": 0.16428697603324083
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 1.1102230246251565e-16,
+          "residual_shift_increment_at_population": 0.11174331250235109,
+          "total_minus_zero_residual": 0.11174327878292512
+        }
+      },
+      "domain": "ACS-geographic",
+      "held_out_diagnostic": {
+        "source_advantage": 0.026315076324114228,
+        "worst_conditional_error": 0.3023101348295742
+      },
+      "inputs": [
+        "research/artifacts/mosaic_acs_natural_shift_v1_receipts/ACS-employment-CA-FL__seed1400.json"
+      ],
+      "job": "ACS-employment-CA-FL__seed1400",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.16428706246926206,
+          "worst_conditional_error_upper": 0.3714946435627893
+        },
+        "population_common": {
+          "source_advantage_upper": 1.899716894904202e-08,
+          "worst_conditional_error_upper": 0.2597513310604381
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.16428706246926206,
+          "worst_conditional_error_upper": 0.37149464356278916
+        },
+        "zero_residual": {
+          "source_advantage_upper": 8.643602122937466e-08,
+          "worst_conditional_error_upper": 0.25975136477986416
+        }
+      },
+      "seed": 1400
+    },
+    {
+      "candidate": "LEACE::closed_form",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 0.0,
+          "residual_shift_increment_at_population": 0.16459366413289978,
+          "total_minus_zero_residual": 0.16459297882656632
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 1.1102230246251565e-16,
+          "residual_shift_increment_at_population": 0.12075496728417556,
+          "total_minus_zero_residual": 0.12075462463100889
+        }
+      },
+      "domain": "ACS-geographic",
+      "held_out_diagnostic": {
+        "source_advantage": 0.01832928525960642,
+        "worst_conditional_error": 0.2775345759220043
+      },
+      "inputs": [
+        "research/artifacts/mosaic_acs_natural_shift_v1_receipts/ACS-employment-CA-FL__seed1402.json"
+      ],
+      "job": "ACS-employment-CA-FL__seed1402",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.16459423449634158,
+          "worst_conditional_error_upper": 0.3329866827341297
+        },
+        "population_common": {
+          "source_advantage_upper": 5.703634418097181e-07,
+          "worst_conditional_error_upper": 0.212231715449954
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.16459423449634158,
+          "worst_conditional_error_upper": 0.33298668273412957
+        },
+        "zero_residual": {
+          "source_advantage_upper": 1.2556697752685864e-06,
+          "worst_conditional_error_upper": 0.2122320581031208
+        }
+      },
+      "seed": 1402
+    },
+    {
+      "candidate": "LEACE::closed_form",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 0.0,
+          "residual_shift_increment_at_population": 0.16533500448049065,
+          "total_minus_zero_residual": 0.1653347578555875
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 0.0,
+          "residual_shift_increment_at_population": 0.12201903437249079,
+          "total_minus_zero_residual": 0.1220189110600392
+        }
+      },
+      "domain": "ACS-geographic",
+      "held_out_diagnostic": {
+        "source_advantage": 0.03957528972747726,
+        "worst_conditional_error": 0.2614221335819196
+      },
+      "inputs": [
+        "research/artifacts/mosaic_acs_natural_shift_v1_receipts/ACS-employment-CA-FL__seed1403.json"
+      ],
+      "job": "ACS-employment-CA-FL__seed1403",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.1653351370157803,
+          "worst_conditional_error_upper": 0.32945016595824417
+        },
+        "population_common": {
+          "source_advantage_upper": 1.3253528963197425e-07,
+          "worst_conditional_error_upper": 0.20743113158575338
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.1653351370157803,
+          "worst_conditional_error_upper": 0.32945016595824417
+        },
+        "zero_residual": {
+          "source_advantage_upper": 3.7916019279826685e-07,
+          "worst_conditional_error_upper": 0.20743125489820496
+        }
+      },
+      "seed": 1403
+    },
+    {
+      "candidate": "MANCE++::epsilon=0.05,steps=3",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 3.2109898635557244e-06,
+          "residual_shift_increment_at_population": 0.17150751748412496,
+          "total_minus_zero_residual": 0.1715068200028429
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 1.1102230246251565e-16,
+          "residual_shift_increment_at_population": 0.13683980814872276,
+          "total_minus_zero_residual": 0.13683980814872287
+        }
+      },
+      "domain": "ACS-geographic",
+      "held_out_diagnostic": {
+        "source_advantage": 0.062149795238083616,
+        "worst_conditional_error": 0.2751890418016177
+      },
+      "inputs": [
+        "research/artifacts/mosaic_acs_natural_shift_v1_receipts/ACS-employment-CA-FL__seed1404.json"
+      ],
+      "job": "ACS-employment-CA-FL__seed1404",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.17151451996094313,
+          "worst_conditional_error_upper": 0.3224200369373087
+        },
+        "population_common": {
+          "source_advantage_upper": 3.791486954618506e-06,
+          "worst_conditional_error_upper": 0.18558022878858582
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.17151130897107958,
+          "worst_conditional_error_upper": 0.3224200369373086
+        },
+        "zero_residual": {
+          "source_advantage_upper": 7.699958100237936e-06,
+          "worst_conditional_error_upper": 0.18558022878858582
+        }
+      },
+      "seed": 1404
+    },
+    {
+      "candidate": "LEACE::closed_form",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 0.02555644246279054,
+          "residual_shift_increment_at_population": 0.17691865833208076,
+          "total_minus_zero_residual": 0.1711516572253149
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 0.0,
+          "residual_shift_increment_at_population": 0.13766677734016008,
+          "total_minus_zero_residual": 0.13766677734016008
+        }
+      },
+      "domain": "ACS-geographic",
+      "held_out_diagnostic": {
+        "source_advantage": 0.06449437404540292,
+        "worst_conditional_error": 0.24961044491132908
+      },
+      "inputs": [
+        "research/artifacts/mosaic_acs_natural_shift_v1_receipts/ACS-employment-CA-IL__seed1402.json"
+      ],
+      "job": "ACS-employment-CA-IL__seed1402",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.23631394804432948,
+          "worst_conditional_error_upper": 0.32162025159290736
+        },
+        "population_common": {
+          "source_advantage_upper": 0.03383884724945818,
+          "worst_conditional_error_upper": 0.18395347425274727
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.21075750558153894,
+          "worst_conditional_error_upper": 0.32162025159290736
+        },
+        "zero_residual": {
+          "source_advantage_upper": 0.06516229081901459,
+          "worst_conditional_error_upper": 0.18395347425274727
+        }
+      },
+      "seed": 1402
+    },
+    {
+      "candidate": "LEACE::closed_form",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 0.021324953732428265,
+          "residual_shift_increment_at_population": 0.1804611991235212,
+          "total_minus_zero_residual": 0.1756056016355032
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 1.1102230246251565e-16,
+          "residual_shift_increment_at_population": 0.13144871092744076,
+          "total_minus_zero_residual": 0.13144871092744087
+        }
+      },
+      "domain": "ACS-geographic",
+      "held_out_diagnostic": {
+        "source_advantage": 0.05724755676384019,
+        "worst_conditional_error": 0.26920323999817064
+      },
+      "inputs": [
+        "research/artifacts/mosaic_acs_natural_shift_v1_receipts/ACS-employment-CA-IL__seed1404.json"
+      ],
+      "job": "ACS-employment-CA-IL__seed1404",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.22877023079585346,
+          "worst_conditional_error_upper": 0.32889064845829885
+        },
+        "population_common": {
+          "source_advantage_upper": 0.026984077939903983,
+          "worst_conditional_error_upper": 0.19744193753085798
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.2074452770634252,
+          "worst_conditional_error_upper": 0.32889064845829874
+        },
+        "zero_residual": {
+          "source_advantage_upper": 0.05316462916035025,
+          "worst_conditional_error_upper": 0.19744193753085798
+        }
+      },
+      "seed": 1404
+    },
+    {
+      "candidate": "MANCE++::epsilon=0.05,steps=3",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 1.0071451772564188e-06,
+          "residual_shift_increment_at_population": 0.16228689605766577,
+          "total_minus_zero_residual": 0.16228670094709963
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 3.294412215248954e-08,
+          "residual_shift_increment_at_population": 0.12769110085664584,
+          "total_minus_zero_residual": 0.12769109449795996
+        }
+      },
+      "domain": "ACS-geographic",
+      "held_out_diagnostic": {
+        "source_advantage": 0.031671689678010484,
+        "worst_conditional_error": 0.2962389175363002
+      },
+      "inputs": [
+        "research/artifacts/mosaic_acs_natural_shift_v1_receipts/ACS-employment-CA-NY__seed1400.json"
+      ],
+      "job": "ACS-employment-CA-NY__seed1400",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.16228899658200513,
+          "worst_conditional_error_upper": 0.3384370414454632
+        },
+        "population_common": {
+          "source_advantage_upper": 1.0933791620981737e-06,
+          "worst_conditional_error_upper": 0.21074590764469522
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.16228798943682787,
+          "worst_conditional_error_upper": 0.33843700850134106
+        },
+        "zero_residual": {
+          "source_advantage_upper": 2.2956349055025527e-06,
+          "worst_conditional_error_upper": 0.21074594694750326
+        }
+      },
+      "seed": 1400
+    },
+    {
+      "candidate": "LEACE::closed_form",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 6.44371103142305e-08,
+          "residual_shift_increment_at_population": 0.1462716536995745,
+          "total_minus_zero_residual": 0.14627160457238242
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 3.221855526813755e-08,
+          "residual_shift_increment_at_population": 0.10945441057823546,
+          "total_minus_zero_residual": 0.10945438601463944
+        }
+      },
+      "domain": "ACS-geographic",
+      "held_out_diagnostic": {
+        "source_advantage": 0.022244192368998217,
+        "worst_conditional_error": 0.2588564904570103
+      },
+      "inputs": [
+        "research/artifacts/mosaic_acs_natural_shift_v1_receipts/ACS-employment-CA-NY__seed1401.json"
+      ],
+      "job": "ACS-employment-CA-NY__seed1401",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.14627176226536553,
+          "worst_conditional_error_upper": 0.31600951362395113
+        },
+        "population_common": {
+          "source_advantage_upper": 4.412868070957643e-08,
+          "worst_conditional_error_upper": 0.2065550708271604
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.14627169782825522,
+          "worst_conditional_error_upper": 0.31600948140539586
+        },
+        "zero_residual": {
+          "source_advantage_upper": 1.5769298311596458e-07,
+          "worst_conditional_error_upper": 0.2065551276093117
+        }
+      },
+      "seed": 1401
+    },
+    {
+      "candidate": "LEACE::closed_form",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 6.508527428117361e-08,
+          "residual_shift_increment_at_population": 0.16319624558802226,
+          "total_minus_zero_residual": 0.1631874795307171
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 3.2542637140586805e-08,
+          "residual_shift_increment_at_population": 0.12917077970591714,
+          "total_minus_zero_residual": 0.12916639667726465
+        }
+      },
+      "domain": "ACS-geographic",
+      "held_out_diagnostic": {
+        "source_advantage": 0.026106884779611095,
+        "worst_conditional_error": 0.26288641572380694
+      },
+      "inputs": [
+        "research/artifacts/mosaic_acs_natural_shift_v1_receipts/ACS-employment-CA-NY__seed1403.json"
+      ],
+      "job": "ACS-employment-CA-NY__seed1403",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.1632050235168423,
+          "worst_conditional_error_upper": 0.32301581227473897
+        },
+        "population_common": {
+          "source_advantage_upper": 8.712843545755078e-06,
+          "worst_conditional_error_upper": 0.19384500002618468
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.16320495843156801,
+          "worst_conditional_error_upper": 0.3230157797321018
+        },
+        "zero_residual": {
+          "source_advantage_upper": 1.754398612519026e-05,
+          "worst_conditional_error_upper": 0.19384941559747432
+        }
+      },
+      "seed": 1403
+    },
+    {
+      "candidate": "MANCE++::epsilon=0.05,steps=3",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 0.0,
+          "residual_shift_increment_at_population": 0.17416974772346427,
+          "total_minus_zero_residual": 0.1741694107373648
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 1.6653345369377348e-16,
+          "residual_shift_increment_at_population": 0.12900239316417753,
+          "total_minus_zero_residual": 0.12900222467112796
+        }
+      },
+      "domain": "ACS-geographic",
+      "held_out_diagnostic": {
+        "source_advantage": 0.06650272041308036,
+        "worst_conditional_error": 0.2884234006865636
+      },
+      "inputs": [
+        "research/artifacts/mosaic_acs_natural_shift_v1_receipts/ACS-employment-CA-WA__seed1400.json"
+      ],
+      "job": "ACS-employment-CA-WA__seed1400",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.17416996596622236,
+          "worst_conditional_error_upper": 0.3263418512534413
+        },
+        "population_common": {
+          "source_advantage_upper": 2.1824275808768334e-07,
+          "worst_conditional_error_upper": 0.1973394580892636
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.17416996596622236,
+          "worst_conditional_error_upper": 0.3263418512534411
+        },
+        "zero_residual": {
+          "source_advantage_upper": 5.552288575572106e-07,
+          "worst_conditional_error_upper": 0.19733962658231333
+        }
+      },
+      "seed": 1400
+    },
+    {
+      "candidate": "LEACE::closed_form",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 5.585554863074549e-07,
+          "residual_shift_increment_at_population": 0.16437411078345,
+          "total_minus_zero_residual": 0.1643739942492004
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 5.551115123125783e-17,
+          "residual_shift_increment_at_population": 0.12087259504146627,
+          "total_minus_zero_residual": 0.12087259504146633
+        }
+      },
+      "domain": "ACS-geographic",
+      "held_out_diagnostic": {
+        "source_advantage": 0.06238622551403461,
+        "worst_conditional_error": 0.2578512833568739
+      },
+      "inputs": [
+        "research/artifacts/mosaic_acs_natural_shift_v1_receipts/ACS-employment-CA-WA__seed1401.json"
+      ],
+      "job": "ACS-employment-CA-WA__seed1401",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.16437522933889248,
+          "worst_conditional_error_upper": 0.3165947643019656
+        },
+        "population_common": {
+          "source_advantage_upper": 5.599999561844982e-07,
+          "worst_conditional_error_upper": 0.19572216926049926
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.16437467078340617,
+          "worst_conditional_error_upper": 0.31659476430196554
+        },
+        "zero_residual": {
+          "source_advantage_upper": 1.2350896920754195e-06,
+          "worst_conditional_error_upper": 0.19572216926049926
+        }
+      },
+      "seed": 1401
+    },
+    {
+      "candidate": "MANCE++::epsilon=0.05,steps=3",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 0.0,
+          "residual_shift_increment_at_population": 0.18456738671092476,
+          "total_minus_zero_residual": 0.18456738671092476
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 0.0,
+          "residual_shift_increment_at_population": 0.12263778984620294,
+          "total_minus_zero_residual": 0.12263778984620294
+        }
+      },
+      "domain": "ACS-geographic",
+      "held_out_diagnostic": {
+        "source_advantage": 0.049552540482506346,
+        "worst_conditional_error": 0.30574282755562165
+      },
+      "inputs": [
+        "research/artifacts/mosaic_acs_natural_shift_v1_receipts/ACS-employment-CA-WA__seed1402.json"
+      ],
+      "job": "ACS-employment-CA-WA__seed1402",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.18456738671092476,
+          "worst_conditional_error_upper": 0.327776334800394
+        },
+        "population_common": {
+          "source_advantage_upper": 0.0,
+          "worst_conditional_error_upper": 0.20513854495419104
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.18456738671092476,
+          "worst_conditional_error_upper": 0.327776334800394
+        },
+        "zero_residual": {
+          "source_advantage_upper": 0.0,
+          "worst_conditional_error_upper": 0.20513854495419104
+        }
+      },
+      "seed": 1402
+    },
+    {
+      "candidate": "LEACE::closed_form",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 7.628972420459235e-07,
+          "residual_shift_increment_at_population": 0.18145360626814533,
+          "total_minus_zero_residual": 0.18145343715055584
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 0.0,
+          "residual_shift_increment_at_population": 0.1264448951325385,
+          "total_minus_zero_residual": 0.1264448951325385
+        }
+      },
+      "domain": "ACS-geographic",
+      "held_out_diagnostic": {
+        "source_advantage": 0.0649925270135312,
+        "worst_conditional_error": 0.2604950820576405
+      },
+      "inputs": [
+        "research/artifacts/mosaic_acs_natural_shift_v1_receipts/ACS-employment-CA-WA__seed1403.json"
+      ],
+      "job": "ACS-employment-CA-WA__seed1403",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.18145518081745382,
+          "worst_conditional_error_upper": 0.3069041346593428
+        },
+        "population_common": {
+          "source_advantage_upper": 8.116520664458449e-07,
+          "worst_conditional_error_upper": 0.1804592395268043
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.18145441792021177,
+          "worst_conditional_error_upper": 0.3069041346593428
+        },
+        "zero_residual": {
+          "source_advantage_upper": 1.7436668979797787e-06,
+          "worst_conditional_error_upper": 0.1804592395268043
+        }
+      },
+      "seed": 1403
+    },
+    {
+      "candidate": "INLP::rank=4",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 0.022696354048527434,
+          "residual_shift_increment_at_population": 0.17720833797576296,
+          "total_minus_zero_residual": 0.1720127982206172
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 0.0026573010740137404,
+          "residual_shift_increment_at_population": 0.1432420698512154,
+          "total_minus_zero_residual": 0.1391719551368129
+        }
+      },
+      "domain": "ACS-geographic",
+      "held_out_diagnostic": {
+        "source_advantage": 0.046713655753891636,
+        "worst_conditional_error": 0.3427788182336001
+      },
+      "inputs": [
+        "research/artifacts/mosaic_acs_natural_shift_v1_receipts/ACS-income-CA-NY__seed1400.json"
+      ],
+      "job": "ACS-income-CA-NY__seed1400",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.2485740551929676,
+          "worst_conditional_error_upper": 0.39203699398463066
+        },
+        "population_common": {
+          "source_advantage_upper": 0.048669363168677204,
+          "worst_conditional_error_upper": 0.2461376230594015
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.22587770114444017,
+          "worst_conditional_error_upper": 0.3893796929106169
+        },
+        "zero_residual": {
+          "source_advantage_upper": 0.07656125697235039,
+          "worst_conditional_error_upper": 0.25286503884781775
+        }
+      },
+      "seed": 1400
+    },
+    {
+      "candidate": "R-LACE::rank=4",
+      "decomposition": {
+        "source_advantage_upper": {
+          "finite_sample_increment": 0.02042445561511652,
+          "residual_shift_increment_at_population": 0.18508665380021583,
+          "total_minus_zero_residual": 0.1802276926534523
+        },
+        "worst_conditional_error_upper": {
+          "finite_sample_increment": 0.0021536248314674156,
+          "residual_shift_increment_at_population": 0.136145829979753,
+          "total_minus_zero_residual": 0.1356636992445267
+        }
+      },
+      "domain": "ACS-geographic",
+      "held_out_diagnostic": {
+        "source_advantage": 0.04999185265864048,
+        "worst_conditional_error": 0.37179346774394256
+      },
+      "inputs": [
+        "research/artifacts/mosaic_acs_natural_shift_v1_receipts/ACS-income-CA-NY__seed1402.json"
+      ],
+      "job": "ACS-income-CA-NY__seed1402",
+      "modes": {
+        "full": {
+          "source_advantage_upper": 0.24241985106890862,
+          "worst_conditional_error_upper": 0.3940052146133912
+        },
+        "population_common": {
+          "source_advantage_upper": 0.03690874165357627,
+          "worst_conditional_error_upper": 0.2557057598021708
+        },
+        "zero_radius": {
+          "source_advantage_upper": 0.2219953954537921,
+          "worst_conditional_error_upper": 0.3918515897819238
+        },
+        "zero_residual": {
+          "source_advantage_upper": 0.06219215841545633,
+          "worst_conditional_error_upper": 0.2583415153688645
+        }
+      },
+      "seed": 1402
+    }
+  ],
+  "status": "complete_locked_residual_census",
+  "summary": {
+    "jobs": 35,
+    "jobs_residual_exceeds_sampling_for_source": 35,
+    "jobs_residual_exceeds_sampling_for_utility": 35,
+    "maximum_source_finite_sample_increment": 0.02555644246279054,
+    "maximum_utility_finite_sample_increment": 0.0026573010740137404,
+    "median_source_finite_sample_increment": 4.0080686103394214e-08,
+    "median_source_residual_shift_increment": 0.19142200852806712,
+    "median_utility_finite_sample_increment": 8.257014572077281e-09,
+    "median_utility_residual_shift_increment": 0.13766677734016008,
+    "minimum_source_residual_shift_increment": 0.1462716536995745,
+    "minimum_utility_residual_shift_increment": 0.10945441057823546,
+    "untouched_census_jobs": 34
+  }
+}
