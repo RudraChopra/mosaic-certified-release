@@ -1,0 +1,92 @@
+{
+  "attacker_constraint_generation": true,
+  "candidate": "Qwen2.5-1.5B-Instruct::layer28_mean::K=2",
+  "claim_boundary": "This is a registered powered follow-up after an unlocked pilot, not an independent first attempt. The source variable records whether a comment mentions an annotated identity, not the author's demographic identity. Every seed, abstention, solver error, held-out diagnostic, and operational replay is reportable.",
+  "code_sha256": {
+    "research/mosaic/mosaic_bridge.py": "a4db7cf4752ec463fc01bd8ad436c06846c74d3feefe0aeb62d5dd87e4df32a4",
+    "research/mosaic/mosaic_channel.py": "a69c82b9182be32d28d30e83795ac77c9512fa09f95f8bad7e1ed5732e60ecc4",
+    "research/mosaic/mosaic_envelope.py": "01d8693d5557cf09d09ea5cf47d3259cb394f1c994e334040b1f898d58a772de",
+    "research/mosaic/mosaic_real.py": "b8e1d70b8c72f79db6d4cf6587a9e34fde0a050387058b4d00c754f8b60a94f7",
+    "research/mosaic/mosaic_transform_exact_optimizer.py": "5188124aabd9e17e5648b5915ccb731023474b3f57aba5839b3a0ae37c4e5760",
+    "research/mosaic/prepare_civilcomments_qwen_confirmation_store.py": "59506cd222b84fb9cc32b44a0d57ce1688967478b10269b0b509edf1fac96e8e",
+    "research/mosaic/prepare_civilcomments_qwen_powered_store.py": "c0d2b92dff832a5c89e1f2d756e36afb576600dab83a13ed7301317beb495c4b",
+    "research/mosaic/run_mosaic_bridge_frontier.py": "4478d1d525648f783f1ed4172c611a3fd336c546098387f005904c2f0efe02ab",
+    "research/mosaic/run_mosaic_qwen_powered_confirmation.py": "f3f56af0ca24da908eb4da1d5ee3dcc8621e3e7b7ed4deedc57094034f469609",
+    "research/mosaic/run_mosaic_qwen_temporal_confirmation.py": "38f0f516ef6e179e838d2088671f1b540bbaa2c54d590c387d673b7ba13782ef"
+  },
+  "design": "locked powered temporal confirmation after the architecture pilot missed its .49 eligibility gate",
+  "family": "two token tables for each of five registered seeds",
+  "familywise_delta": 0.05,
+  "fine_token_count": 2,
+  "locked_at_utc": "2026-07-23T21:42:03.417620+00:00",
+  "main_paper_inclusion_gate": {
+    "maximum_heldout_primary_violations": 0,
+    "maximum_operational_primary_violations": 0,
+    "minimum_primary_releases": 3
+  },
+  "model": {
+    "batch_size": 16,
+    "hidden_size": 1536,
+    "layer_count": 28,
+    "max_length": 96,
+    "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+    "parameter_count": 1540000000,
+    "pooling": "attention-mask-aware mean",
+    "prompt_prefix": "Moderate this comment for toxicity:\n",
+    "representation": "last transformer layer",
+    "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306"
+  },
+  "model_snapshot_absent_at_lock": true,
+  "name": "MOSAIC Qwen2.5 powered temporal confirmation lock v1",
+  "operational_draws_per_primary_release": 100,
+  "pilot_artifact": "research/artifacts/mosaic_qwen_pilot_v1.json",
+  "pilot_artifact_sha256": "eb3498b6b78f1c00208ba0944d6264b87d3e3779b4e884d09fdf45ac57750fcf",
+  "pilot_result": {
+    "best_candidate": "layer28_mean::K=4",
+    "best_certified_error": 0.49011716452534876,
+    "best_minimum_retained_mass": 0.6557498169410484,
+    "go_to_locked_confirmation": false
+  },
+  "primary_utility_threshold": 0.4,
+  "privacy_advantage_threshold": 0.35,
+  "released_token_count": 2,
+  "repository_head_before_lock": "71c782bc373acebaf061eef673804853e40a8a60",
+  "runtime_semantics": "one persistent sampled release token per immutable item",
+  "seeds": [
+    4201,
+    4202,
+    4203,
+    4204,
+    4205
+  ],
+  "selection": "the last-layer mean representation is inherited from the best pilot candidate; K=2 is fixed because the pilot K=4 optimum collapsed its four fine tokens into two identical channel rows per side of the median threshold",
+  "solver_time_limit_seconds": 300.0,
+  "source_csv": {
+    "bytes": 272542670,
+    "sha256": "403e638c83a225d738a937ff98b61fd0631e30f710d57928c7766d413526b77f"
+  },
+  "status": "locked_before_model_and_outcomes",
+  "stopping_rule": "Run all five seeds after one locked extraction. Do not replace the model, revision, representation, pooling, alphabet, temporal cutoffs, row caps, seeds, thresholds, confidence allocation, or diagnostic folds.",
+  "target_split": "within each toxicity by identity-mention stratum, two thirds bridge and one third untouched diagnostic",
+  "temporal_roles": {
+    "balanced_role_caps": {
+      "construction": 6000,
+      "reference": 18000,
+      "target": 32000
+    },
+    "confirmation_partition": "integer dataset id modulo 4 is nonzero",
+    "construction": "created before 2016-10-01 UTC",
+    "pilot_partition": "integer dataset id modulo 4 equals 0",
+    "reference": "created from 2016-10-01 through 2017-03-31 UTC",
+    "reference_start_utc": "2016-10-01",
+    "selection_seed": 20270726,
+    "target": "created on or after 2017-04-01 UTC",
+    "target_start_utc": "2017-04-01"
+  },
+  "utility_thresholds": [
+    0.35,
+    0.4,
+    0.45,
+    0.49
+  ]
+}
