@@ -49,6 +49,51 @@ The Weissman radius used by MOSAIC gives the matching upper rate. This
 optimality statement concerns universal same-table regions; a test of one
 fixed scalar functional can be easier.
 
+\subsection{Exact residual support and the infinite-sample floor}
+
+Fix one label, common transform $T$, reference laws $p_s$, release channel
+$M$, and residual budget $\eta$, so
+\[
+q_s=(1-\eta)p_sT+\eta r_s,
+\]
+where each $r_s$ is unrestricted. For attacker assignment $a$, let
+$v_{a,s}$ be its score on the fine alphabet and
+$R_a(q)=G^{-1}\sum_s q_s^\top v_{a,s}$.
+
+\begin{theorem}[Sharp residual floor]
+For every fixed attacker assignment and task-loss vector $u$,
+\begin{align}
+\sup_{r_{1:G}}R_a(q)
+&=\frac{1-\eta}{G}\sum_s p_s^\top Tv_{a,s}
+ +\frac{\eta}{G}\sum_s\max_c v_{a,s}(c),\\
+\sup_r q_s^\top u
+&=(1-\eta)p_s^\top Tu+\eta\max_c u(c).
+\end{align}
+These terms persist at zero reference radius and no uniformly valid
+certificate over the stated bridge class can make them smaller. If two
+common released laws coincide and $M$ has binary Dobrushin coefficient
+$\alpha$, the class contains source advantage exactly $\eta\alpha$.
+\end{theorem}
+
+\begin{proof}
+Each objective is linear in every residual law, hence maximized at a simplex
+vertex placing all mass on a highest-scoring fine token. Those vertices belong
+to the registered bridge class and attain both displays. For the final claim,
+choose source residuals on two channel rows attaining total variation
+$\alpha$; their common component cancels and the residual contribution has
+total variation $\eta\alpha$.
+\end{proof}
+
+This separates statistical uncertainty from declared shift breadth. Tighter
+multinomial regions can reduce the first, but only a narrower bridge class or
+a more contractive channel can reduce the second. A locked census recomputes
+all 35 primary BiasBios and ACS releases in four modes: full, zero reference
+radius, zero residual, and both zero. Residual shift exceeds sampling in all
+35 jobs for both source and utility. Median source increments are $.1914$
+versus $4.01\times10^{-8}$; median utility increments are $.1377$ versus
+$8.26\times10^{-9}$. An independent replay cross-checks every frozen release
+and all summary statistics.
+
 \subsection{Bounded correlated sessions}
 
 Let a source be associated with $r$ fine items
@@ -223,16 +268,60 @@ relative to its selected four-token task interface.
 
 \subsection{A real estimated proxy}
 
-A separately locked ACSIncome study trains a nontrivial source imputer from
-geography, birthplace, ancestry, Hispanic origin, language, nativity, and
-citizenship on a disjoint partition. Its balanced accuracy is $.840$.
-True-source calibration data estimate a label- and token-dependent confusion
-tensor; the target certificate sees only proxy labels. All calibration cells
-are observed, but the largest conditional $\ell_1$ radius is $1.480$.
-MOSAIC therefore abstains at the $.35$ source and $.40$ utility contract
-(\texttt{ABSTAIN\_EXACT\_UTILITY\_CONTRACT}). This is a measured fail-closed
-boundary for a real imputer rather than evidence from synthetic symmetric
-corruption. ACS lacks surnames, so the experiment is not labeled BISG.
+A locked ACSIncome follow-up trains a source imputer from geography,
+birthplace, ancestry, Hispanic origin, language, nativity, and citizenship on
+a disjoint partition; balanced accuracy is $.8413$. True-source calibration
+data estimate a label- and token-dependent confusion tensor, while the target
+certificate sees proxy labels. The follow-up adds simultaneous source-mass
+intervals to the latent-law polytope and uses its exact $\ell_1$ Chebyshev
+center. This constraint was developed on a disclosed earlier split that
+abstained, then locked under seed 20270725 before the new diagnostic outcome.
+
+At 19,566 and 39,133 calibration rows, maximum conditional radii $.5534$ and
+$.4771$ force abstention. At 58,700 and 78,267 rows, radii $.4126$ and $.3669$
+permit release. The primary full-data certificate bounds source advantage by
+$.2175/.2790$ and worst error by $.3691$. The untouched diagnostic values are
+$.0590$ and $.2769$, with released expected balanced accuracy $.7729$ versus
+$.8144$ for the unedited task score. The auditor independently reruns the
+optimizer, verifies all 28 checks, and accounts for the complete $.05$
+familywise budget. ACS lacks surnames, so the experiment is not labeled BISG.
+
+\subsection{Matched local differential privacy}
+
+For every primary MOSAIC release in BiasBios and ACS, a matched baseline uses
+the same four-token input, binary output, bridge class, radii, and $.40$
+utility contract. Four-ary randomized response keeps the registered task bit
+with probability $.675$, giving $\epsilon_{\rm LDP}=.7309$ and Dobrushin
+coefficient $.35$, exactly the source-advantage threshold. We enumerate all
+16 deterministic fine-token task maps before applying that fixed channel.
+
+Randomized response meets the stronger input-local-DP guarantee, but releases
+0/35 interfaces because its certified task error exceeds $.40$. MOSAIC
+releases 35/35 under its narrower source-inference contract and has lower
+certified error in every job. The median, minimum, and maximum error penalties
+for randomized response are $.1554$, $.0939$, and $.1710$. The independent
+audit verifies all 35 local-DP channels, all source receipts, and the complete
+summary.
+
+\subsection{A prospective natural direct-rule failure}
+
+The original ACS geographic study used 2018 California reference data and
+held-out 2018 target states. A later pandemic-panel analysis identified two
+fixed public-coverage interfaces that direct certification released while
+MOSAIC abstained. The pattern was discovered in 2021 and persisted in 2022.
+Before accessing 2023, a lock fixed both channels, their task decoders, Florida
+as target, the $.40$ utility threshold, the exact Census archive member and
+checksum, and a familywise Hoeffding lower bound over eight strata.
+
+Both interfaces violate the threshold empirically in 27,772 Florida rows.
+For the TaCo interface at seed 1401, worst error is $.42453$ and the familywise
+lower bound is $.40542$, confirming a contract violation. The R-LACE
+interface has error $.40812$ and lower bound $.38900$, so it is an empirical
+but not familywise-confirmed violation. MOSAIC had abstained on both 2018
+decisions. A separate 52-check auditor reconstructs the 2018 reference
+functionals, verifies the streamed 2023 archive hash, and recomputes every
+bound. This is a prospective confirmation of a previously identified failure
+mode, not a first-look discovery.
 
 \subsection{Designer chart}
 
