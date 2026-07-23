@@ -1,0 +1,143 @@
+{
+  "claim_boundary": "The 2021 panel is a registered discovery census with empirical but not familywise-confirmed failures. This second lock tests the exact three discovered frozen direct interfaces on untouched 2022 ACS data. It is a prospective replication across years, not a prospectively selected 2021 hypothesis.",
+  "discovery_report_sha256": "9ba209e2b973683782497dddd1814512e4977f0923aab0009ecaab90f71d294f",
+  "future_raw_assets": [
+    {
+      "archive_member": "psam_p12.csv",
+      "compressed_bytes": 38968213,
+      "compressed_sha256": "e9a2156b9bb0aaa34e284e17984ac89a4480bf08058e6f0c323d1af043ec140a",
+      "source": "locked_url_streamed_in_memory",
+      "state": "FL",
+      "url": "https://www2.census.gov/programs-surveys/acs/data/pums/2022/1-Year/csv_pfl.zip"
+    },
+    {
+      "archive_member": "psam_p17.csv",
+      "compressed_bytes": 22572211,
+      "compressed_sha256": "98369e31db4b91a03e72d567961e564053fded2d0a06ce14167748ec54997a75",
+      "source": "locked_url_streamed_in_memory",
+      "state": "IL",
+      "url": "https://www2.census.gov/programs-surveys/acs/data/pums/2022/1-Year/csv_pil.zip"
+    }
+  ],
+  "lock_sha256": "7b071f63b38edd12f6e0b4d4cfdf18cd2713c54e3056b259777aed20bb6f9664",
+  "name": "MOSAIC ACS 2022 temporal failure replication v1",
+  "reference_raw_asset": {
+    "archive_member": "psam_p06.csv",
+    "bytes": 267297811,
+    "compressed_bytes": 67233615,
+    "compressed_sha256": "6194ade52892ddb0e41903f7d3b49399842f08eeebd42e6b19ee8e417affbf79",
+    "sha256": "dc2187fc90df2c5f6b546ee89a2b41c9a97379c9e7136461b6a6c8de871b43e0",
+    "source": "official_archive_streamed_in_memory",
+    "state": "CA",
+    "url": "https://www2.census.gov/programs-surveys/acs/data/pums/2018/1-Year/csv_pca.zip",
+    "year": "2018"
+  },
+  "rows": [
+    {
+      "candidate": "TaCo::components_removed=1",
+      "confirmation_rows": 29312,
+      "confirmation_stratum_counts": [
+        [
+          7328,
+          7328
+        ],
+        [
+          7328,
+          7328
+        ]
+      ],
+      "confirmation_table_delta": 0.016666666666666666,
+      "direct_decision_2018": "deploy",
+      "future_diagnostic": {
+        "source_advantage_empirical": 0.021818868978575212,
+        "source_advantage_lower": 0.0,
+        "source_advantage_upper": 0.06889406738332345,
+        "source_contract_violation_confirmed": false,
+        "source_contract_violation_empirical": false,
+        "utility_contract_violation_confirmed": false,
+        "utility_contract_violation_empirical": true,
+        "worst_conditional_error_empirical": 0.4232441598150928,
+        "worst_conditional_error_lower": 0.3997065606127187,
+        "worst_conditional_error_upper": 0.4467817590174669
+      },
+      "mosaic_decision_2018": "abstain",
+      "reference_reconstruction_match": true,
+      "seed": 1401,
+      "target_state": "FL",
+      "task": "public_coverage"
+    },
+    {
+      "candidate": "R-LACE::rank=4",
+      "confirmation_rows": 29312,
+      "confirmation_stratum_counts": [
+        [
+          7328,
+          7328
+        ],
+        [
+          7328,
+          7328
+        ]
+      ],
+      "confirmation_table_delta": 0.016666666666666666,
+      "direct_decision_2018": "deploy",
+      "future_diagnostic": {
+        "source_advantage_empirical": 0.027001198036272323,
+        "source_advantage_lower": 0.0,
+        "source_advantage_upper": 0.07407639644102056,
+        "source_contract_violation_confirmed": false,
+        "source_contract_violation_empirical": false,
+        "utility_contract_violation_confirmed": false,
+        "utility_contract_violation_empirical": true,
+        "worst_conditional_error_empirical": 0.4019031108347319,
+        "worst_conditional_error_lower": 0.3784997848583168,
+        "worst_conditional_error_upper": 0.42530643681114694
+      },
+      "mosaic_decision_2018": "abstain",
+      "reference_reconstruction_match": true,
+      "seed": 1402,
+      "target_state": "FL",
+      "task": "public_coverage"
+    },
+    {
+      "candidate": "Identity::unedited",
+      "confirmation_rows": 23008,
+      "confirmation_stratum_counts": [
+        [
+          5752,
+          5752
+        ],
+        [
+          5752,
+          5752
+        ]
+      ],
+      "confirmation_table_delta": 0.016666666666666666,
+      "direct_decision_2018": "deploy",
+      "future_diagnostic": {
+        "source_advantage_empirical": 0.07405897008043971,
+        "source_advantage_lower": 0.020924610468190948,
+        "source_advantage_upper": 0.12719332969268848,
+        "source_contract_violation_confirmed": false,
+        "source_contract_violation_empirical": false,
+        "utility_contract_violation_confirmed": false,
+        "utility_contract_violation_empirical": false,
+        "worst_conditional_error_empirical": 0.3721240866618347,
+        "worst_conditional_error_lower": 0.34555690685571033,
+        "worst_conditional_error_upper": 0.3986912664679591
+      },
+      "mosaic_decision_2018": "abstain",
+      "reference_reconstruction_match": true,
+      "seed": 1402,
+      "target_state": "IL",
+      "task": "public_coverage"
+    }
+  ],
+  "status": "complete_locked_confirmation",
+  "summary": {
+    "empirical_2022_utility_violations": 2,
+    "familywise_confirmed_2022_utility_violations": 0,
+    "paired_mosaic_2018_abstentions": 3,
+    "registered_interfaces": 3
+  }
+}
