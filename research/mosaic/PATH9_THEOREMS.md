@@ -67,6 +67,55 @@ subexperiment and Bretagnolle--Huber yield the confidence term. This
 corollary is deliberately about universal post-selection regions. A test of
 one scalar functional can require fewer samples.
 
+### 1.1 A sharp residual floor
+
+The preceding result concerns sampling error. A separate, non-vanishing term
+comes from the registered source-specific residual shift. Fix a label, a common
+transform `T`, reference laws `p_s`, channel `M`, residual budget `eta`, and
+
+```
+q_s = (1-eta) p_s T + eta r_s,
+```
+
+where each residual law `r_s` is unrestricted on the fine alphabet.
+
+**Theorem 1.1 (exact residual support and infinite-sample floor).** For every
+fixed attacker assignment `a` with score vector `v_{a,s}` for source `s`,
+
+```
+sup_{r_1,...,r_G} (1/G) sum_s q_s^T v_{a,s}
+ = (1-eta)/G sum_s p_s^T T v_{a,s}
+   + eta/G sum_s max_c v_{a,s}(c).
+```
+
+For every task loss vector `u`,
+
+```
+sup_r q_s^T u
+ = (1-eta) p_s^T T u + eta max_c u(c).
+```
+
+Consequently these residual terms remain when the reference sample is
+infinite and its confidence radius is zero. No uniformly valid certificate
+over the stated bridge class can replace either term by a smaller value.
+If the common released laws are identical across two sources and the channel
+has binary Dobrushin coefficient `alpha`, the class contains a pair with
+normalized source advantage exactly `eta alpha`.
+
+**Proof.** Each display is linear in every residual law. A linear functional
+on a simplex is maximized at a vertex, so source `s` places all residual mass
+on a fine token maximizing its score. This proves both equalities. Taking the
+maximizing residual vertices produces a member of the registered class, so a
+smaller uniform upper bound fails on that member. For the final claim, choose
+two channel rows attaining total variation `alpha`. Their residual
+contribution has total variation `eta alpha`; the identical common component
+cancels. QED.
+
+This theorem separates two forms of conservatism. Better multinomial regions
+can reduce the confidence-radius term, but they cannot reduce the registered
+residual floor without narrowing the shift model or making the release channel
+more contractive.
+
 ## 2. Bounded correlated multi-item transcripts
 
 Let one source be associated with `r` fine items
@@ -253,31 +302,3 @@ The triangle inequality with the observed proxy-table event therefore places
 `A_Qhat x` inside the enlarged observed-law region. The remaining conditional
 optimization is the same linear-fractional support problem as in the pooled
 proxy theorem and has the same exact Charnes--Cooper reduction. QED.
-
-## 6. A sharp source-task conflict bound
-
-For binary source `S` evaluated under the balanced-source audit law, normalized
-Bayes source advantage is `1-2 e_S^*`, where `e_S^*` is Bayes source error.
-Let the binary task label be `Y`, and write `kappa=P(Y != S)` after fixing the
-registered identification of their two labels.
-
-**Theorem 8 (privacy-utility conflict).** Every released observation and task
-decoder with task error `e_Y` and source advantage at most `tau` satisfies
-
-```
-e_Y >= max(0, (1-tau)/2 - kappa).
-```
-
-The same lower bound applies to worst-label task error because it is at least
-the corresponding average error. When `Y=S`, the bound is sharp.
-
-**Proof.** Use the task decoder as a source decoder. By the union bound its
-source error is at most `e_Y+kappa`, so Bayes source error is no larger.
-Therefore source advantage is at least `1-2(e_Y+kappa)`. Combining this with
-the contract and rearranging gives the display. For `Y=S`, a binary symmetric
-channel with crossover `(1-tau)/2` attains equality. QED.
-
-At the paper's primary `tau=.35` contract, a maximally conflicting task must
-pay at least `.325` average error. This result does not say every observed
-utility loss is inevitable: the data-dependent disagreement `kappa` determines
-whether the lower bound is informative.
