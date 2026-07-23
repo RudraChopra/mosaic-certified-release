@@ -40,6 +40,7 @@ PDFS = {
 ARCHIVE = PAPER / "mosaic_aaai2027_code_data_anonymous.zip"
 EVIDENCE_AUDITS = (
     ROOT / "research/artifacts/mosaic_path9_theory_v1_audit.json",
+    ROOT / "research/artifacts/mosaic_large_release_scaling_v1_audit.json",
     ROOT / "research/artifacts/mosaic_cinic10_natural_v1_audit.json",
     ROOT / "research/artifacts/mosaic_cinic10_natural_v2_audit.json",
     ROOT / "research/artifacts/mosaic_real_proxy_v1_audit.json",
@@ -171,7 +172,7 @@ def main() -> None:
     for path in EVIDENCE_AUDITS:
         payload = json.loads(path.read_text(encoding="utf-8"))
         evidence[path.name] = {
-            "passed": payload.get("pass") is True,
+            "passed": payload.get("pass", payload.get("passed")) is True,
             "sha256": sha256(path),
         }
     lean = json.loads(

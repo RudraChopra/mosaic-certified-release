@@ -110,6 +110,11 @@ Blackwell garbling and its residual is a contamination neighborhood
 huber1964robust}. The bridge makes that shift model testable from target data,
 whereas unrestricted shift is impossible to certify
 \citep{bendavid2010impossibility,klivans2024testable,chandrasekaran2025learning}.
+Robust conformal validation assumes a declared shift set and certifies a
+prediction loss; it does not construct the source-conditional bridge or the
+Bayes source-attacker objective used here. We therefore compare experimentally
+with the commensurate direct target-region and worst-case capacity rules rather
+than relabeling a predictor-risk certificate as a source-inference baseline.
 
 \section{Contract and Running Example}
 
@@ -208,13 +213,13 @@ $A(P,M)\leq\overline A(\widehat P,M)$. For fixed $M$, the right-hand side is the
 exact supremum over the product of the stated $\ell_1$ confidence sets.
 \end{theorem}
 
-The proof writes the Bayes attacker as a maximum over deterministic assignments.
-For a fixed assignment the source confidence sets separate, giving one support
-function per source; all maxima are finite and commute. The implication is
-pointwise over the complete stochastic-channel space, which is why adaptive
-selection needs no channel-count correction. In the running case, the same
-confidence event covers the displayed $M$ and every alternative four-by-two
-channel considered by the optimizer.
+\paragraph{Meaning.}
+The confidence event describes the fine-token laws before $M$ is chosen. On
+that event, Eq.~\eqref{eq:abar} upper-bounds every possible channel at once.
+The optimizer may therefore search a continuum of channels on the same table
+without spending a separate error budget on each candidate. In the running
+case, one event covers both the displayed $M$ and every alternative
+four-to-two channel. The supplement gives the support-function proof.
 
 \section{Learning the Supported Shift Class}
 
@@ -264,19 +269,15 @@ Moreover, Eq.~\eqref{eq:bridge} returns the largest retained mass certified
 uniformly over the product confidence region.
 \end{theorem}
 
-Indeed, feasibility and coverage imply
-$q_{s,y}(z)\geq p_{s,y}^{\top}\widehat W_{:z}$ coordinatewise. The difference is
-nonnegative and sums to $1-\widehat t$, so normalization constructs
-$r_{s,y}$. Conversely, robust membership requires exactly these coordinatewise
-inequalities; maximizing the reference support and minimizing the bridge
-coordinate yields Eq.~\eqref{eq:bridge}. Thus the learned singleton transform
-$\{\widehat T_y\}$ and contamination
-$\widehat\eta_y=1-\widehat t_y$ can be inserted into the certificates below on
-the same event. If a required bridge source--label stratum is absent, its
-confidence set is the full simplex, every coordinate lower bound is zero, and
-Eq.~\eqref{eq:bridge} forces $\widehat t=0$.
-For the practitioner, the bridge either supplies a measured residual budget for
-the target population or stops the release before a channel is deployed.
+\paragraph{Meaning.}
+The bridge asks how much of every target law can be explained by one common
+source-blind transform. Its answer is $\widehat t$; the unexplained fraction
+$1-\widehat t$ becomes the residual budget charged by the release certificate.
+The coordinate constraints ensure that the unexplained remainder is a valid
+probability law, and maximizing $\widehat t$ makes the charge as small as the
+confidence regions permit. If a required target stratum is absent, the program
+cannot establish positive retained mass and returns zero. The algebraic
+construction and optimality proof are in the supplement.
 
 \section{Certifying Source and Task Risk after Shift}
 
@@ -315,16 +316,17 @@ the right-hand side is the exact supremum over the stated confidence sets,
 transform polytope, retained masses, and arbitrary residual laws.
 \end{theorem}
 
-For fixed $T$, retained mass, and attacker assignment, the source confidence
-sets and residual simplexes separate. Their support values are respectively
-$\Phi(\widehat p,\epsilon;Tv)$ and $\max_cv(c)$. The latter is no smaller, so
-the worst retained mass is $1-\eta_y$. The support objective is convex in $T$;
-its maximum over a polytope occurs at an extreme. These finite maxima commute,
-proving exactness. Since the statement holds pointwise for every $M$, it
-survives adaptive channel selection.
+\paragraph{Meaning.}
+The theorem combines the two earlier steps. It evaluates the strongest source
+attacker over every reference law in the confidence region, every supported
+common transform, and every allowed residual. Because this bound also holds
+for every $M$ at once, the final channel can still be selected on the same
+table. The supplement proves exactness by reducing the attacker to finite
+assignments and the transform polytope to its extreme points.
 
-When transform extremes cannot be enumerated, a capacity-fallback corollary is
-available. Define
+When transform extremes cannot be enumerated, MOSAIC uses a simpler fallback.
+Here $\operatorname{Cap}_G(M)$ is the strongest possible source attacker when
+the fine-token laws are unrestricted. Define
 $\rho_T(M)=\max_c\operatorname{TV}((TM)(c,\cdot),M(c,\cdot))$ and
 $B_y(M)=\min\{\operatorname{Cap}_G(M),
 \overline A_y(\widehat P,M)+\rho_{\mathcal T_y}(M)\}$. Then
@@ -336,11 +338,11 @@ The exact envelope in Eq.~\eqref{eq:exactshift} is never larger. When
 $\eta_y=0$ and $TM=M$, both reduce to the reference certificate; when
 $\eta_y=1$, both reduce to exact distribution-free capacity.
 
-Because the fallback separately upper-bounds every law in the same structured
-class, both transform-exact source and utility values are pointwise no larger
-than their fallback values. ``Never worse'' is therefore an implementation
-check implied by the theorem; experiments measure how often tightness changes
-the release decision. Proofs are in the supplement.
+The fallback trades tightness for easier computation: it charges the channel
+for the largest change induced by the transform and then adds the residual
+capacity. The transform-exact certificate optimizes over the actual learned
+geometry and is therefore never looser. Experiments measure how often that
+tighter geometry changes the release decision; proofs are in the supplement.
 
 For decoder $g:[L]\to[J]$, let
 $u_y(c)=\sum_zM(c,z)\mathbf 1\{g(z)\neq y\}$. The matching exact conditional
@@ -495,6 +497,12 @@ of finite-sample uncertainty and transport coverage. Diagnostics evaluate a
 selection after the fact; only the certificate controls the declared law class
 before release.
 
+The receipt also identifies where that price is paid. In the active stratum,
+the $.260294$ error bound equals $.059215$ fitted common-law error, less than
+$10^{-8}$ finite-sample support charge, and $.201080$ arbitrary-residual charge.
+For this interface, nearly all conservatism comes from the bridge residual
+rather than the multinomial confidence radius.
+
 \paragraph{How to read a contract.}
 The values $.35$ source advantage and $.40$ worst-stratum error are registered
 experimental thresholds, not recommended defaults. An application owner must
@@ -548,11 +556,12 @@ No support & \textsc{abstain} \\
 
 \paragraph{Current empirical envelope.}
 The real-data studies use binary sources and public alphabets of two or four
-tokens. Synthetic scaling reaches $K=64$, $G=4$, and $L=4$, while the natural
-$K=8$ ACS study shows that larger internal token tables can require much more
-audit data. The bridge misspecification study verifies two registered failure
-modes but does not map power for every near-boundary violation. These boundaries
-define the next empirical tests rather than changing the stated certificate.
+tokens. Synthetic constraint generation reaches $G=4,L=8$ and $G=2,L=16$,
+while the natural $K=8$ ACS study shows that larger internal token tables can
+require much more audit data. The bridge misspecification study verifies two
+registered failure modes but does not map power for every near-boundary
+violation. These boundaries define the next empirical tests rather than
+changing the stated certificate.
 
 \paragraph{What MOSAIC contributes.}
 Unlike finite-family LTT, MOSAIC certifies the categorical experiment before
