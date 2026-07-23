@@ -1,0 +1,260 @@
+{
+  "calibration_curve": [
+    {
+      "all_calibration_cells_observed": true,
+      "calibration_rows": 19566,
+      "certified_source_advantage_upper": [],
+      "certified_worst_conditional_error_upper": null,
+      "decision": "abstain",
+      "fraction": 0.25,
+      "maximum_conditional_l1_radius": 1.1085833406657712,
+      "maximum_effective_proxy_l1_radius": 0.16685354924845522,
+      "minimum_source_mass_lower_bound": 0.15689486820502044,
+      "reason": "ABSTAIN_EXACT_UTILITY_CONTRACT"
+    },
+    {
+      "all_calibration_cells_observed": true,
+      "calibration_rows": 39133,
+      "certified_source_advantage_upper": [],
+      "certified_worst_conditional_error_upper": null,
+      "decision": "abstain",
+      "fraction": 0.5,
+      "maximum_conditional_l1_radius": 0.9557235898029267,
+      "maximum_effective_proxy_l1_radius": 0.12468474268265078,
+      "minimum_source_mass_lower_bound": 0.17956917684392967,
+      "reason": "ABSTAIN_EXACT_UTILITY_CONTRACT"
+    },
+    {
+      "all_calibration_cells_observed": true,
+      "calibration_rows": 58700,
+      "certified_source_advantage_upper": [],
+      "certified_worst_conditional_error_upper": null,
+      "decision": "abstain",
+      "fraction": 0.75,
+      "maximum_conditional_l1_radius": 0.7563525396676357,
+      "maximum_effective_proxy_l1_radius": 0.10805616347928101,
+      "minimum_source_mass_lower_bound": 0.20291866224235539,
+      "reason": "ABSTAIN_EXACT_UTILITY_CONTRACT"
+    },
+    {
+      "all_calibration_cells_observed": true,
+      "calibration_rows": 78267,
+      "certified_source_advantage_upper": [],
+      "certified_worst_conditional_error_upper": null,
+      "decision": "abstain",
+      "fraction": 1.0,
+      "maximum_conditional_l1_radius": 0.6613969199439941,
+      "maximum_effective_proxy_l1_radius": 0.09764882256149449,
+      "minimum_source_mass_lower_bound": 0.21556625088401107,
+      "reason": "ABSTAIN_EXACT_UTILITY_CONTRACT"
+    }
+  ],
+  "claim_boundary": "This is a locked powered follow-up motivated by the v1 abstention, not an independent first attempt. True source labels occur only in proxy training, calibration, and the untouched diagnostic fold. The target certificate receives task labels, tokens, and imputed source labels but not true target source labels.",
+  "gates": {
+    "full_calibration_certificate_releases": false,
+    "no_false_acceptance": true,
+    "proxy_is_nontrivial": true,
+    "released_interface_is_diagnostically_safe": true
+  },
+  "lock_sha256": "2b3225084b0006afdf18e876e9e08a6996f75c16cd805b286d064be1cc635c3e",
+  "name": "MOSAIC powered real ACS proxy certification v1",
+  "passed": false,
+  "primary_proxy_certificate": {
+    "calibration_mode": "label_and_token_specific_confusion_calibration",
+    "calibration_sample_size": 78267,
+    "conditional_centers": [
+      [
+        [
+          0.7907251973554259,
+          0.209274802644574
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.2515839027058926,
+          0.7484160972941074
+        ],
+        [
+          0.09770293505418724,
+          0.9022970649458129
+        ]
+      ]
+    ],
+    "conditional_l1_radii": [
+      [
+        0.28254535177226364,
+        0.551584655301704
+      ],
+      [
+        0.281215924240731,
+        0.6613969199439941
+      ]
+    ],
+    "labels": [
+      {
+        "conditional_lp_solves": 8,
+        "confusion_matrix": [
+          [
+            [
+              0.7639941497141337,
+              0.23600585028586624
+            ],
+            [
+              0.9,
+              0.1
+            ]
+          ],
+          [
+            [
+              0.18530045487191765,
+              0.8146995451280824
+            ],
+            [
+              0.17123287671232876,
+              0.8287671232876712
+            ]
+          ]
+        ],
+        "confusion_row_l1_radii": [
+          0.02304533751504386,
+          0.052305148506846616,
+          0.026780535783526866,
+          0.06948332716207299
+        ],
+        "effective_proxy_l1_radius": 0.09571749514857344,
+        "source_mass_lower_bounds": [
+          0.45364540966075656,
+          0.28247810881399216
+        ]
+      },
+      {
+        "conditional_lp_solves": 8,
+        "confusion_matrix": [
+          [
+            [
+              0.8208786231884058,
+              0.1791213768115942
+            ],
+            [
+              0.9377493546115935,
+              0.062250645388406474
+            ]
+          ],
+          [
+            [
+              0.17453347969264543,
+              0.8254665203073546
+            ],
+            [
+              0.12479536582294422,
+              0.8752046341770557
+            ]
+          ]
+        ],
+        "confusion_row_l1_radii": [
+          0.052091511881526845,
+          0.026515250351186664,
+          0.06621580738968472,
+          0.038845784516669535
+        ],
+        "effective_proxy_l1_radius": 0.09764882256149449,
+        "source_mass_lower_bounds": [
+          0.5498726919776483,
+          0.21556625088401107
+        ]
+      }
+    ],
+    "per_event_failure_probability": 0.005,
+    "proxy_sample_size": 39133
+  },
+  "protocol": {
+    "calibration_curve_fractions": [
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "calibration_model": "task-label, true-source, and two-token-specific source-to-proxy confusion tensor",
+    "confidence_region": "coordinate_clopper_pearson",
+    "curve_role": "descriptive nested calibration-size sensitivity; only the fixed full-calibration point is the primary release decision",
+    "design": "locked powered follow-up after v1 abstained; no diagnostic outcome selects the primary design",
+    "family_failure_probability": 0.05,
+    "fine_token_count": 2,
+    "partition_fractions": {
+      "calibration": 0.4,
+      "diagnostic": 0.05,
+      "proxy_train": 0.2,
+      "target_proxy": 0.2,
+      "task_train": 0.15
+    },
+    "primary_gate": "full-calibration release, proxy balanced accuracy at least .60, and zero diagnostic contract violations",
+    "privacy_advantage_threshold": 0.35,
+    "proxy_imputer": "fixed equal-weight soft ensemble of class-balanced HistGradientBoosting and ExtraTrees",
+    "released_token_count": 2,
+    "seed": 20270724,
+    "source": "RAC1P white-alone versus all other codes",
+    "task": "Folktables ACSIncome",
+    "task_token_threshold": 0.5,
+    "utility_error_threshold": 0.4
+  },
+  "proxy_balanced_accuracy": 0.8398242460952994,
+  "proxy_columns": [
+    "PUMA",
+    "POBP",
+    "ANC",
+    "ANC1P",
+    "ANC2P",
+    "HISP",
+    "LANP",
+    "ENG",
+    "NATIVITY",
+    "CIT"
+  ],
+  "raw_data": {
+    "archive_member": "psam_p06.csv",
+    "bytes": 267297811,
+    "compressed_bytes": 67233615,
+    "compressed_sha256": "6194ade52892ddb0e41903f7d3b49399842f08eeebd42e6b19ee8e417affbf79",
+    "sha256": "dc2187fc90df2c5f6b546ee89a2b41c9a97379c9e7136461b6a6c8de871b43e0",
+    "source": "official_archive_streamed_in_memory",
+    "url": "https://www2.census.gov/programs-surveys/acs/data/pums/2018/1-Year/csv_pca.zip"
+  },
+  "release": {
+    "certified_source_advantage_upper": [],
+    "certified_worst_conditional_error_upper": null,
+    "decision": "abstain",
+    "decoder": null,
+    "diagnostic_safe": true,
+    "diagnostic_source_advantage": null,
+    "diagnostic_worst_conditional_error": null,
+    "reason": "ABSTAIN_EXACT_UTILITY_CONTRACT",
+    "release_channel": null
+  },
+  "sample_counts": {
+    "calibration": 78267,
+    "diagnostic": 9785,
+    "proxy_train": 39132,
+    "target_proxy": 39133,
+    "task_train": 29348
+  },
+  "status": "complete_locked_powered_followup",
+  "task_columns": [
+    "AGEP",
+    "COW",
+    "SCHL",
+    "MAR",
+    "OCCP",
+    "POBP",
+    "RELP",
+    "WKHP",
+    "SEX"
+  ],
+  "utility": {
+    "released_interface_expected_balanced_accuracy": null,
+    "unedited_task_score_balanced_accuracy": 0.8129562926601406
+  }
+}
