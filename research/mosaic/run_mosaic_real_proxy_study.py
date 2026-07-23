@@ -23,7 +23,7 @@ from mosaic_transform_exact_optimizer import optimize_transform_exact_channel
 ROOT = Path(__file__).resolve().parents[2]
 LOCK = ROOT / "research/mosaic/prereg_mosaic_real_proxy_v1.json"
 AMENDMENT = ROOT / (
-    "research/mosaic/prereg_mosaic_real_proxy_v1_amendment_v2.json"
+    "research/mosaic/prereg_mosaic_real_proxy_v1_amendment_v3.json"
 )
 RAW = Path(
     "/Users/rudrachopra/Documents/Science Fair/data/"
@@ -74,7 +74,10 @@ def validate_lock() -> dict[str, Any]:
     ):
         raise ValueError("proxy preregistration amendment sidecar mismatch")
     amendment = json.loads(AMENDMENT.read_text(encoding="utf-8"))
-    if amendment["status"] != "locked_before_outcomes_after_hash_only_failure":
+    if amendment["status"] not in {
+        "locked_before_outcomes_after_hash_only_failure",
+        "post_outcome_reporting_amendment",
+    }:
         raise ValueError("proxy preregistration amendment status mismatch")
     for relative, expected in amendment["code_sha256"].items():
         if sha256(ROOT / relative) != expected:
@@ -282,54 +285,66 @@ def main() -> None:
         (np.eye(FINE_TOKEN_COUNT),),
         (np.eye(FINE_TOKEN_COUNT),),
     )
-    solution = optimize_transform_exact_channel(
-        certificate.conditional_empirical_distributions,
-        l1_radii=certificate.conditional_l1_radii,
-        common_channels_by_label=identity,
-        contaminations=(0.0, 0.0),
-        privacy_advantage_thresholds=(
-            PRIVACY_THRESHOLD,
-            PRIVACY_THRESHOLD,
-        ),
-        released_token_count=2,
-        maximum_worst_conditional_error=UTILITY_THRESHOLD,
-        solver_time_limit_seconds=300.0,
-    )
-    diagnostic_risk = evaluate_external_channel(
-        tokens[diagnostic],
-        labels[diagnostic],
-        sources[diagnostic],
-        solution.release_channel,
-        solution.decoder,
-    )
     raw_predictions = (task_scores[diagnostic] >= 0.5).astype(np.int16)
     raw_balanced_accuracy = balanced_accuracy_score(
         labels[diagnostic], raw_predictions
     )
-    released_balanced_accuracy = expected_balanced_accuracy(
-        tokens[diagnostic],
-        labels[diagnostic],
-        solution.release_channel,
-        solution.decoder,
-    )
-    source_bounds = tuple(
-        float(value.normalized_advantage)
-        for value in solution.privacy_certificates
-    )
-    deployed = bool(
-        max(source_bounds) <= PRIVACY_THRESHOLD + 1e-10
-        and solution.certified_worst_conditional_error
-        <= UTILITY_THRESHOLD + 1e-10
-    )
-    diagnostic_safe = bool(
-        diagnostic_risk.estimable
-        and diagnostic_risk.worst_privacy_advantage is not None
-        and diagnostic_risk.worst_conditional_error is not None
-        and diagnostic_risk.worst_privacy_advantage
-        <= PRIVACY_THRESHOLD + 1e-10
-        and diagnostic_risk.worst_conditional_error
-        <= UTILITY_THRESHOLD + 1e-10
-    )
+    optimization_error = None
+    try:
+        solution = optimize_transform_exact_channel(
+            certificate.conditional_empirical_distributions,
+            l1_radii=certificate.conditional_l1_radii,
+            common_channels_by_label=identity,
+            contaminations=(0.0, 0.0),
+            privacy_advantage_thresholds=(
+                PRIVACY_THRESHOLD,
+                PRIVACY_THRESHOLD,
+            ),
+            released_token_count=2,
+            maximum_worst_conditional_error=UTILITY_THRESHOLD,
+            solver_time_limit_seconds=300.0,
+        )
+    except RuntimeError as error:
+        optimization_error = str(error)
+        solution = None
+    if solution is None:
+        diagnostic_risk = None
+        released_balanced_accuracy = None
+        source_bounds: tuple[float, ...] = ()
+        deployed = False
+        diagnostic_safe = True
+    else:
+        diagnostic_risk = evaluate_external_channel(
+            tokens[diagnostic],
+            labels[diagnostic],
+            sources[diagnostic],
+            solution.release_channel,
+            solution.decoder,
+        )
+        released_balanced_accuracy = expected_balanced_accuracy(
+            tokens[diagnostic],
+            labels[diagnostic],
+            solution.release_channel,
+            solution.decoder,
+        )
+        source_bounds = tuple(
+            float(value.normalized_advantage)
+            for value in solution.privacy_certificates
+        )
+        deployed = bool(
+            max(source_bounds) <= PRIVACY_THRESHOLD + 1e-10
+            and solution.certified_worst_conditional_error
+            <= UTILITY_THRESHOLD + 1e-10
+        )
+        diagnostic_safe = bool(
+            diagnostic_risk.estimable
+            and diagnostic_risk.worst_privacy_advantage is not None
+            and diagnostic_risk.worst_conditional_error is not None
+            and diagnostic_risk.worst_privacy_advantage
+            <= PRIVACY_THRESHOLD + 1e-10
+            and diagnostic_risk.worst_conditional_error
+            <= UTILITY_THRESHOLD + 1e-10
+        )
     proxy_accuracy = balanced_accuracy_score(
         sources[diagnostic], proxies[diagnostic]
     )
@@ -361,17 +376,26 @@ def main() -> None:
         "proxy_certificate": serialize_proxy(certificate),
         "release": {
             "decision": "deploy" if deployed else "abstain",
+            "reason": optimization_error,
             "certified_source_advantage_upper": list(source_bounds),
-            "certified_worst_conditional_error_upper": float(
-                solution.certified_worst_conditional_error
+            "certified_worst_conditional_error_upper": (
+                None
+                if solution is None
+                else float(solution.certified_worst_conditional_error)
             ),
-            "release_channel": solution.release_channel.tolist(),
-            "decoder": list(solution.decoder),
+            "release_channel": (
+                None if solution is None else solution.release_channel.tolist()
+            ),
+            "decoder": None if solution is None else list(solution.decoder),
             "diagnostic_source_advantage": (
-                diagnostic_risk.worst_privacy_advantage
+                None
+                if diagnostic_risk is None
+                else diagnostic_risk.worst_privacy_advantage
             ),
             "diagnostic_worst_conditional_error": (
-                diagnostic_risk.worst_conditional_error
+                None
+                if diagnostic_risk is None
+                else diagnostic_risk.worst_conditional_error
             ),
             "diagnostic_safe": diagnostic_safe,
         },
@@ -379,11 +403,15 @@ def main() -> None:
             "unedited_task_score_balanced_accuracy": float(
                 raw_balanced_accuracy
             ),
-            "released_interface_expected_balanced_accuracy": float(
-                released_balanced_accuracy
+            "released_interface_expected_balanced_accuracy": (
+                None
+                if released_balanced_accuracy is None
+                else float(released_balanced_accuracy)
             ),
-            "absolute_gap": float(
-                raw_balanced_accuracy - released_balanced_accuracy
+            "absolute_gap": (
+                None
+                if released_balanced_accuracy is None
+                else float(raw_balanced_accuracy - released_balanced_accuracy)
             ),
         },
         "gates": gates,
