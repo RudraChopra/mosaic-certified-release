@@ -40,11 +40,19 @@ from run_official_eraser_frontier import (
 
 ROOT = Path(__file__).resolve().parents[2]
 LOCK = ROOT / "research/mosaic/prereg_mosaic_acs_temporal_replication_v1.json"
+AMENDMENT = ROOT / (
+    "research/mosaic/"
+    "prereg_mosaic_acs_temporal_replication_reference_stream_v1.json"
+)
 OUTPUT = ROOT / "research/artifacts/mosaic_acs_temporal_replication_v1.json"
 RECEIPTS = ROOT / "research/artifacts/mosaic_acs_natural_shift_v1_receipts"
 DISCOVERY = ROOT / "research/artifacts/mosaic_acs_pandemic_panel_v1.json"
 PANDEMIC_LOCK = ROOT / "research/mosaic/prereg_mosaic_acs_pandemic_panel_v1.json"
 FUTURE_YEAR = "2022"
+REFERENCE_URL = (
+    "https://www2.census.gov/programs-surveys/acs/data/pums/"
+    "2018/1-Year/csv_pca.zip"
+)
 STATE_FIPS = {"FL": "12", "IL": "17"}
 SOURCE_THRESHOLD = 0.35
 UTILITY_THRESHOLD = 0.40
@@ -194,6 +202,41 @@ def load_future_frame(
     }
 
 
+def load_reference_frame_from_url(url: str) -> tuple[Any, dict[str, Any]]:
+    request = urllib.request.Request(
+        url, headers={"User-Agent": "MOSAIC-research/1.0"}
+    )
+    with urllib.request.urlopen(request, timeout=300) as response:
+        archive = response.read()
+    with zipfile.ZipFile(io.BytesIO(archive)) as bundle:
+        members = [
+            name
+            for name in bundle.namelist()
+            if name.lower().endswith(".csv") and "psam_p" in name.lower()
+        ]
+        if len(members) != 1:
+            raise ValueError(f"unexpected reference archive members: {members}")
+        raw = bundle.read(members[0])
+    expected = load(PANDEMIC_LOCK)["reference_raw_asset"]
+    observed = {
+        "state": "CA",
+        "year": "2018",
+        "bytes": len(raw),
+        "sha256": sha256_bytes(raw),
+    }
+    if observed != expected:
+        raise ValueError("streamed 2018 reference member differs from frozen asset")
+    frame = read_selected_csv(io.BytesIO(raw), required_columns())
+    return apply_relationship_crosswalk(frame, state="CA"), {
+        **observed,
+        "source": "official_archive_streamed_in_memory",
+        "url": url,
+        "archive_member": members[0],
+        "compressed_bytes": len(archive),
+        "compressed_sha256": sha256_bytes(archive),
+    }
+
+
 def receipt_path(witness: dict[str, Any]) -> Path:
     return RECEIPTS / (
         f"ACS-{witness['task']}-CA-{witness['target_state']}"
@@ -228,7 +271,7 @@ def validate_discovery() -> None:
         raise ValueError("locked witness family differs from the discovery report")
 
 
-def validate_lock(path: Path, reference_csv: Path) -> dict[str, Any]:
+def validate_lock(path: Path, reference_asset: dict[str, Any]) -> dict[str, Any]:
     sidecar = path.with_suffix(path.suffix + ".sha256")
     if sidecar.read_text(encoding="utf-8").split()[0] != sha256(path):
         raise ValueError("temporal-replication lock sidecar mismatch")
@@ -237,18 +280,47 @@ def validate_lock(path: Path, reference_csv: Path) -> dict[str, Any]:
         raise ValueError("temporal-replication lock has the wrong status")
     if lock.get("protocol") != expected_protocol():
         raise ValueError("temporal-replication protocol differs from its lock")
+    amended_relative = (
+        "research/mosaic/run_mosaic_acs_temporal_replication.py"
+    )
     for relative, expected in lock["code_sha256"].items():
-        if sha256(ROOT / relative) != expected:
+        if relative == amended_relative:
+            original = subprocess.run(
+                [
+                    "git",
+                    "show",
+                    f"{lock['repository_head_before_lock']}:{relative}",
+                ],
+                cwd=ROOT,
+                check=True,
+                capture_output=True,
+            ).stdout
+            if sha256_bytes(original) != expected:
+                raise ValueError(f"original locked code mismatch: {relative}")
+        elif sha256(ROOT / relative) != expected:
             raise ValueError(f"locked code mismatch: {relative}")
     for relative, expected in lock["input_sha256"].items():
         if sha256(ROOT / relative) != expected:
             raise ValueError(f"locked input mismatch: {relative}")
     expected_reference = lock["reference_raw_asset"]
-    if reference_csv.stat().st_size != expected_reference["bytes"]:
-        raise ValueError("2018 California raw file size differs from the lock")
+    observed_reference = {
+        key: reference_asset[key] for key in ("year", "state", "bytes", "sha256")
+    }
+    if observed_reference != expected_reference:
+        raise ValueError("2018 California raw asset differs from the lock")
     if expected_reference != load(PANDEMIC_LOCK)["reference_raw_asset"]:
         raise ValueError("2018 reference asset differs from the prior committed lock")
-    for local in (path, sidecar):
+    amendment_sidecar = AMENDMENT.with_suffix(AMENDMENT.suffix + ".sha256")
+    if amendment_sidecar.read_text(encoding="utf-8").split()[0] != sha256(AMENDMENT):
+        raise ValueError("reference-stream amendment sidecar mismatch")
+    amendment = load(AMENDMENT)
+    if amendment.get("status") != "locked_before_2022_download_after_io_failure":
+        raise ValueError("reference-stream amendment has the wrong status")
+    if amendment.get("original_lock_sha256") != sha256(path):
+        raise ValueError("reference-stream amendment points to another lock")
+    if amendment["code_sha256"][amended_relative] != sha256(ROOT / amended_relative):
+        raise ValueError("amended replication runner differs from its lock")
+    for local in (path, sidecar, AMENDMENT, amendment_sidecar):
         relative = local.resolve().relative_to(ROOT.resolve())
         committed = subprocess.run(
             ["git", "show", f"HEAD:{relative.as_posix()}"],
@@ -417,7 +489,9 @@ def reconstruct_interface(
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--reference-csv", type=Path, required=True)
+    reference = parser.add_mutually_exclusive_group(required=True)
+    reference.add_argument("--reference-csv", type=Path)
+    reference.add_argument("--reference-url")
     parser.add_argument("--future-raw-root", type=Path, required=True)
     parser.add_argument("--official-root", type=Path, required=True)
     parser.add_argument("--download", action="store_true")
@@ -429,12 +503,26 @@ def main() -> None:
     args = parse_args()
     if args.output.exists():
         raise FileExistsError(f"refusing to overwrite {args.output}")
-    lock = validate_lock(LOCK, args.reference_csv)
+    if args.reference_url:
+        reference_frame, reference_asset = load_reference_frame_from_url(
+            args.reference_url
+        )
+    else:
+        assert args.reference_csv is not None
+        expected = load(PANDEMIC_LOCK)["reference_raw_asset"]
+        if args.reference_csv.stat().st_size != expected["bytes"]:
+            raise ValueError("local 2018 reference file size differs")
+        reference_frame = load_reference_frame(args.reference_csv)
+        reference_asset = {
+            **expected,
+            "source": "local_uncompressed_csv",
+            "path": str(args.reference_csv),
+        }
+    lock = validate_lock(LOCK, reference_asset)
     configure_official_repositories(args.official_root)
     data_lock = load(
         ROOT / "research/mosaic/prereg_mosaic_acs_natural_shift_data_v1.json"
     )
-    reference_frame = load_reference_frame(args.reference_csv)
     future_frames: dict[str, Any] = {}
     assets = []
     for state in sorted({row["target_state"] for row in WITNESSES}):
@@ -474,6 +562,7 @@ def main() -> None:
         "claim_boundary": lock["claim_boundary"],
         "lock_sha256": sha256(LOCK),
         "discovery_report_sha256": sha256(DISCOVERY),
+        "reference_raw_asset": reference_asset,
         "future_raw_assets": assets,
         "rows": rows,
         "summary": summary,
