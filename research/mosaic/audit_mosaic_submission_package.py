@@ -78,9 +78,19 @@ def audit_pdf(
     if not path.exists():
         return {"path": str(path), "passed": False, "failures": ["missing"]}
     reader = PdfReader(path)
+    if path.name.startswith("mosaic_aaai2027_supplement_"):
+        if path.stat().st_size >= 10 * 1024 * 1024:
+            failures.append("technical supplement exceeds 10 MB")
     page_text = [page.extract_text() or "" for page in reader.pages]
     pages = len(page_text)
     text = "\n".join(page_text)
+    for page_number, page in enumerate(reader.pages, start=1):
+        width = float(page.mediabox.width)
+        height = float(page.mediabox.height)
+        if abs(width - 612.0) > 0.5 or abs(height - 792.0) > 0.5:
+            failures.append(
+                f"page {page_number} is not US letter: {width}x{height}"
+            )
     if anonymous:
         failures.extend(
             f"identity pattern: {pattern.pattern}"
@@ -187,12 +197,32 @@ def main() -> None:
         ).read_text(encoding="utf-8")
     )
     archive = audit_archive(ARCHIVE)
+    bibliography = (
+        PAPER / "mosaic_aaai2027_anonymous.bbl"
+    ).read_text(encoding="utf-8", errors="replace")
+    citation_count = len(
+        re.findall(r"(?m)^\s*\\bibitem", bibliography)
+    )
+    source_text = "\n".join(
+        path.read_text(encoding="utf-8", errors="replace")
+        for path in PAPER.glob("mosaic_*.tex")
+    )
+    manuscript_source = {
+        "main_bibliography_entries": citation_count,
+        "minimum_bibliography_entries": 40,
+        "em_dash_count": source_text.count("\N{EM DASH}"),
+        "passed": (
+            citation_count >= 40
+            and "\N{EM DASH}" not in source_text
+        ),
+    }
     passed = (
         all(item["passed"] for item in pdfs.values())
         and all(item["passed"] for item in logs.values())
         and all(item["passed"] for item in evidence.values())
         and lean.get("status") == "pass"
         and archive["passed"]
+        and manuscript_source["passed"]
     )
     report = {
         "name": "MOSAIC submission package audit",
@@ -202,6 +232,7 @@ def main() -> None:
         "evidence_audits": evidence,
         "lean_build_receipt": lean,
         "archive": archive,
+        "manuscript_source": manuscript_source,
     }
     OUTPUT.write_text(
         json.dumps(report, indent=2, sort_keys=True) + "\n",
