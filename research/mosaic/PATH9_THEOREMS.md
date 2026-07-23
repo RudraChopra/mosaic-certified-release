@@ -302,3 +302,31 @@ The triangle inequality with the observed proxy-table event therefore places
 `A_Qhat x` inside the enlarged observed-law region. The remaining conditional
 optimization is the same linear-fractional support problem as in the pooled
 proxy theorem and has the same exact Charnes--Cooper reduction. QED.
+
+## 6. A sharp source-task conflict bound
+
+For binary source `S` evaluated under the balanced-source audit law, normalized
+Bayes source advantage is `1-2 e_S^*`, where `e_S^*` is Bayes source error.
+Let the binary task label be `Y`, and write `kappa=P(Y != S)` after fixing the
+registered identification of their two labels.
+
+**Theorem 8 (privacy-utility conflict).** Every released observation and task
+decoder with task error `e_Y` and source advantage at most `tau` satisfies
+
+```
+e_Y >= max(0, (1-tau)/2 - kappa).
+```
+
+The same lower bound applies to worst-label task error because it is at least
+the corresponding average error. When `Y=S`, the bound is sharp.
+
+**Proof.** Use the task decoder as a source decoder. By the union bound its
+source error is at most `e_Y+kappa`, so Bayes source error is no larger.
+Therefore source advantage is at least `1-2(e_Y+kappa)`. Combining this with
+the contract and rearranging gives the display. For `Y=S`, a binary symmetric
+channel with crossover `(1-tau)/2` attains equality. QED.
+
+At the paper's primary `tau=.35` contract, a maximally conflicting task must
+pay at least `.325` average error. This result does not say every observed
+utility loss is inevitable: the data-dependent disagreement `kappa` determines
+whether the lower bound is informative.
