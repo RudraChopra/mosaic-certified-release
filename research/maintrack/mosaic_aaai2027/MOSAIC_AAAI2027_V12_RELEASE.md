@@ -21,6 +21,18 @@ The named paper and named supplement are included for arXiv and direct review.
 - A locked powered Qwen2.5-1.5B hidden-state study releases 5/5 temporal
   moderation interfaces with zero held-out violations and zero violations in
   500 operational replays.
+- A prospectively frozen 2023 ACS panel confirms one natural direct-rule
+  contract violation that MOSAIC had rejected, with empirical error .4245 and
+  a familywise lower bound of .4054 against the .40 contract.
+- A real proxy-label path releases at the two largest calibration sizes,
+  including the full 78,267-row fold, after correctly abstaining on two smaller
+  folds.
+- The sharp residual-support theorem characterizes the infinite-sample
+  conservatism floor; its independent census finds residual shift larger than
+  sampling uncertainty in all 35 primary BiasBios and ACS releases.
+- A matched local-DP randomized-response baseline releases 0/35 interfaces at
+  the .40 utility contract, while MOSAIC releases 35/35 and has lower certified
+  error in every job.
 - The 40-seed CINIC extension uses one stricter familywise allocation and
   passes its locked gate. The minimum leave-one-domain-out release rate is
   43.8%.
@@ -43,10 +55,10 @@ The named paper and named supplement are included for arXiv and direct review.
 
 ## Verification
 
-- Main paper: 8 pages total; references begin on page 8.
-- Supplement: 15 pages.
+- Main paper: 9 pages total; references begin on page 8.
+- Supplement: 16 pages before final Camelyon integration.
 - Code/data archive: 15.9 MB, below the 50 MB limit.
-- Full test suite: 279 tests and 14 subtests pass.
+- Full test suite: 313 tests and 14 subtests pass before the final rebuild.
 - Submission audit: pass.
 - Anonymous PDF and archive identity scans: pass.
 - Visual PDF inspection: pass.
